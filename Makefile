@@ -4,7 +4,8 @@ all: build/thesis.pdf
 TeXOptions = -lualatex \
 			 -interaction=nonstopmode \
 			 -halt-on-error \
-			 -output-directory=build
+			 -output-directory=build \
+			 -f
                                                                                 
 build/thesis.pdf: FORCE | build
 	latexmk $(TeXOptions) thesis.tex
