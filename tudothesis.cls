@@ -98,3 +98,9 @@
 \renewcommand\author[1]{%
   \oldauthor{#1 \\ \thebirthplace}
 }
+
+
+
+
+% Custom Commands
+\newcommand{\odag}[1]{{\overset{\wedge}{#1}}^{\dagger}}
