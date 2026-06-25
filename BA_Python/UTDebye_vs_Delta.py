@@ -40,7 +40,7 @@ fig.savefig("plots/T_vs_delta.pdf")
 
 # #E_Debye vs Delta
 E_debye = np.linspace(0.1, 3, 100)  #K
-U = 6
+U = 3
 T= 1
 deltas = np.array([])
 for elem in E_debye:
