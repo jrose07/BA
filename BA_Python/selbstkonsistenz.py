@@ -56,10 +56,10 @@ print(deltas[-1])
 
 delta_linspace=np.linspace(0, 50, 1000)*t
 U = 1e-18*t
-E_debye = 0.5*t
+E_debye = 1*t
 mask = np.logical_and(E< np.abs(E_debye), E> - np.abs(E_debye))
 x = E[mask]
-T = 1e2# K
+T = 1e# K
 DOS = mlg.DensityOfStates(x, model='FullTightBinding')
 y = np.array([])
 for delta in delta_linspace:
