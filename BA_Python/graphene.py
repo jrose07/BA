@@ -5,6 +5,7 @@ import scipy.integrate as integrate
 from scipy.optimize import newton
 from graphenemodeling.graphene import _constants as _c
 from scipy.constants import k as k_b #In J/K
+import scipy.constants as const
 
 t = _c.g0 #Braucht man nur für die voncersion von k_b*T in die unit t (dazu mache k_b*T /t. )
 
@@ -29,21 +30,26 @@ def func_DOS(E):
     """
     return np.abs(E)*rho_triangle(3-E**2)
     
-def newton_func(delta, E, U, T, E_debye):
-    mask = np.logical_and(E< np.abs(E_debye), E> - np.abs(E_debye))
-    x = E[mask]
+def newton_func(delta, U, T, E_debye, num_points):
+    # mask = np.logical_and(E< np.abs(E_debye), E> - np.abs(E_debye))
+    x = np.linspace(-E_debye, E_debye, num_points)
     DOS = func_DOS(x)
     E_k = np.sqrt(delta**2 + x**2)
-    return U*integrate.simpson(DOS*delta/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x) - delta
+    if T == 0:
+        return U*integrate.simpson(DOS*delta/E_k, x=x) - delta
 
-def integral(delta, E, U, T, E_debye):
-    mask = np.logical_and(E< np.abs(E_debye), E> - np.abs(E_debye))
-    x = E[mask]
+    else:
+        return U*integrate.simpson(DOS*delta/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x) - delta
+
+def integral(delta, U, T, E_debye):
+    # mask = np.logical_and(E< np.abs(E_debye), E> - np.abs(E_debye))
+    # # x = E[mask]
+    x = np.linspace(-E_debye, E_debye, 10001)
     DOS = func_DOS(x)
     E_k = np.sqrt(delta**2 + x**2)
     return U*integrate.simpson(DOS*delta/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x)
 
-def fixpunkt_algo(start, E, T, U, num_max, E_debye):
+def fixpunkt_algo(start, T, U, E_debye, num_max, num_points):
     """start: Starting Value of Delta in units of t
     E: Energy linspace, in units of t
     T: Temperature in Kelvin
@@ -52,19 +58,51 @@ def fixpunkt_algo(start, E, T, U, num_max, E_debye):
     E_debye: Debye-Energy in units of t
     returns list of delta for each iteration in units of t
     """
-    mask = np.logical_and(E< np.abs(E_debye), E> - np.abs(E_debye))
-    x = E[mask]
+    # mask = np.logical_and(E< np.abs(E_debye), E> - np.abs(E_debye))
+    # x = E[mask]
+    x = np.linspace(-E_debye, E_debye, num_points)
     DOS = func_DOS(x) #in units of 1/t
+    #Bei x = 1 ist DOS unendlich -> Filtere Punkte heraus
+    mask = DOS < np.inf
+    x = x[mask]
+    DOS = DOS[mask]
     deltas = np.array([start])
     for i in range(num_max):
         E_k = np.sqrt(deltas[i]**2 + x**2)
-        delta_next = U*integrate.simpson(DOS*deltas[i]/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x) #Sollte in units of t sein, weil [DOS] = 1/t, [delta] = t, [E_k] = t und durch integration noch mal t
+        if T == 0:
+            delta_next = U*integrate.simpson(DOS*deltas[i]/E_k, x=x)
+        else:
+            delta_next = U*integrate.simpson(DOS*deltas[i]/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x) #Sollte in units of t sein, weil [DOS] = 1/t, [delta] = t, [E_k] = t und durch integration noch mal t
         deltas = np.append(deltas, delta_next)
     return deltas
 
-def get_delta(U,T,E,E_debye, n_fixpunkt, start):
-    deltas = fixpunkt_algo(start, E, T, U, n_fixpunkt, E_debye)
+def get_delta(start, T,U, E_debye, num_max, num_points ):
+    deltas = fixpunkt_algo(start, T, U, E_debye, num_max, num_points)
     delta = deltas[-1]
+    # return delta
     #Newton Verfahren
-    delta = newton(newton_func, args=(E,U,T,E_debye),x0=delta)
-    return delta
+    try:
+        delta = newton(newton_func, args=(U,T,E_debye, num_points), x0=delta, maxiter=200)
+        return delta
+    except Exception:
+        return deltas[-1]
+
+# E=np.linspace(-3,3,100001)
+# T=1
+# U=3
+# E_debye=2
+
+# deltas = fixpunkt_algo(1,T=T, U=U, num_max=200, E_debye=E_debye, num_points=10019)
+# delta_FP = deltas[-1]
+# delta_Newton = newton(newton_func, args=(E,U,T,E_debye), x0=deltas[-1])
+# m = delta_Newton-delta_FP
+# fig,ax=plt.subplots()
+# x = np.linspace(-E_debye, E_debye, 10001)
+# DOS = func_DOS(x)
+# ax.plot(x, DOS)
+# ax.plot(np.arange(len(deltas)), deltas, "r.")
+# ax.plot(len(deltas)+1, delta_Newton, "b.")
+# x = np.linspace(len(deltas),len(deltas)+1,100)
+# ax.plot(x, m*x+delta_FP,"r--")
+# plt.show()
+# print(f"t = {t/const.e:.2f}eV")

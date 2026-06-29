@@ -1,0 +1,126 @@
+% This example is meant to be compiled with lualatex or xelatex
+% The theme itself also supports pdflatex
+\PassOptionsToPackage{unicode}{hyperref}
+\documentclass[aspectratio=1610, 9pt]{beamer}
+
+% Load packages you need here
+\usepackage[german]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{pgffor}
+\usepackage{csquotes}
+
+% anything concerning math:
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{mhchem}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{xfrac}
+\usepackage{color}
+\usepackage{transparent}
+
+\usepackage{mathtools}
+
+\usepackage[export]{adjustbox} % align figures
+
+% short commands
+\input{commands.tex}
+\newcommand{\dsq}{\phantom{}^2}
+\newcommand{\oW}{\op{W}}
+\newcommand{\cV}{V}
+\newcommand{\thd}{\mathrm{thd}}
+\newcommand{\timeord}{\mathcal{T}}
+\newcommand{\invtimeord}{\overline{\timeord}}
+\newcommand{\permut}{\mathcal{P}}
+\newcommand{\invpermut}{\overline{\permut}}
+
+
+%=======================
+% Bibliography:
+%=======================
+\usepackage[style=nature,doi=false,isbn=false,url=false,eprint=false,backend=bibtex]{biblatex}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\addbibresource{lit.bib}
+\newcommand{\addtobibliography}{{\color{white}\cite{graes21,graes24,stark18,chave21,store14,david15}}} % engel74,alvar10c,marti23
+% this can be used for a single slide with all references
+% for putting references on a single slide consider foot references
+
+
+%=======================
+% References Foot notes:
+%=======================
+% footnotes are abused for including references
+% use \slidecite{...} to add a reference as a footnote
+% note that the reference has to be defined by hand, e.g., using shortref
+\def\shortref#1#2#3#4#5#6{{#1}, {#2} \textbf{#3}, {#4} ({#5}).} % authors,journal,volume,pages,year, doi: {#6}
+\def\shortarXiv#1#2#3{{#1}, arXiv:{#2} ({#3}).} % authors,arXiv identifier,year 
+\def\shortthanks#1#2{Danke an {#1} für {#2}.} % authors,arXiv identifier,year 
+\newcommand{\graesA}{\shortref{T.~Gräßer et al.}{Phys. Rev. Res.}{3}{043168}{2021}{10.1103/PhysRevResearch.3.043168}}
+\newcommand{\graesB}{\shortref{T.~Gräßer et al.}{Phys. Rev. Res.}{5}{043191}{2023}{10.1103/PhysRevResearch.5.043191}}
+\newcommand{\graesC}{\shortref{T.~Gräßer et al.}{Sol. State NMR}{132}{101936}{2024}{10.1016/j.ssnmr.2024.101936}}
+\newcommand{\dwyer}{\shortref{B.~L.~Dwyer et al.}{PRX Quantum}{3}{040328}{2022}{10.1103/PRXQuantum.3.040328}}
+\newcommand{\chave}{\shortref{Ch\'avez, M. et al.}{Mag. Res.}{2}{499}{2021}{10.5194/mr-2-499-2021}}
+\newcommand{\store}{\shortref{Storek, M. et al.}{Sol. Stat. NMR}{59-60}{8}{2014}{10.1016/j.ssnmr.2014.01.002}}
+\newcommand{\david}{\shortref{Davidson, S. M. et al.}{Phys. Rev. Lett.}{114}{045701}{2015}{10.1103/PhysRevLett.114.045701}}
+\newcommand{\zobov}{\shortref{V.~E.~Zobov}{Theo. \& Math. Phys.}{77}{1573}{1988}{10.1007/BF01016985}}
+\newcommand{\sompo}{\shortref{D.~H.~Sompolinsky et al.}{Phys. Rev. B}{25}{6860}{1982}{10.1103/PhysRevB.25.6860}}
+\newcommand{\gremp}{\shortref{D.~R.~Grempel et al.}{Phys. Rev. Lett.}{80}{389}{1998}{10.1103/PhysRevLett.80.389}}
+\newcommand{\georg}{\shortref{A.~Georges et al.}{Rev. Mod. Phys.}{68}{13}{1996}{10.1103/RevModPhys.68.13}}
+\newcommand{\starkA}{\shortref{G.~A.~Starkov et al.}{Phys. Rev. B}{98}{214421}{2018}{10.1103/PhysRevB.98.214421}}
+\newcommand{\starkB}{\shortref{G.~A.~Starkov et al.}{Phys. Rev. B}{101}{024428}{2020}{10.1103/PhysRevB.101.024428}}
+\newcommand{\thankspb}{\shortthanks{P.~Bleicker \& D.-B.~Hering}{die Vergleichsdaten}}
+\newcommand{\thankskr}{\shortthanks{K.~Rezai \& A.~O.~Sushkov}{die experimentellen Daten}}
+%\newcommand{\marti}{\shortref{L.~S.~Martin et al.}{Phys. Rev. Lett.}{130}{210403}{2023}}
+%\newcommand{\engel}{\shortref{M.~Engelsberg et al.}{Phys. Rev. B}{10}{822}{1974}}
+%\newcommand{\alvar}{\shortref{G.~A.~\'Alvarez et al.}{Phys. Rev. A}{82}{042306}{2010}}
+
+% load the theme after all packages
+\usetheme[
+  showtotalframes, % show total number of frames in the footline
+  %dark, % optional dark theme, uncomment to use
+]{tudo}
+
+% Put settings here, like
+\unimathsetup{
+  math-style=ISO,
+  bold-style=ISO,
+  nabla=upright,
+  partial=upright,
+  mathrm=sym,
+}
+
+%Titel:
+\title{Supraleitung auf dem Honigwabengitter}
+%Autor:
+\author[J.~Rosenbaum]{Julian Rosenbaum}
+%Datum:
+\date{01.07.2026}
+%Lehrstuhl/Fakultät:
+\institute[CMT | Uhrig Group]{Condensed Matter Physics \\ Uhrig Group}
+%Titelgrafik:
+%\titlegraphic{\includegraphics[width=0.3\textwidth]{images/title.pdf}}
+
+\begin{document}
+
+{
+  \maketitle
+}
+
+\input{content/1_Motivation.tex}
+\input{content/2_Results.tex}
+\input{content/3_Outlook.tex}
+
+\sectionframe{Thanks for listening!}
+
+%\backupframe{Referenzen\addtobibliography}
+%{
+%  \printbibliography
+%}
+
+\end{document}

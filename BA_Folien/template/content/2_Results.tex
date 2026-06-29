@@ -1,0 +1,218 @@
+\section{ SpinDMFT derivation }
+
+\begin{frame}
+	\frametitle{ The setup }
+    \begin{itemize}
+        \item Heisenberg model, $J_{ij} = J_{ji}$ and $J_{ii} = 0$
+        \begin{align*}
+            \oH &= \frac12 \sum_{i,j} J_{ij} \vSi \cdot \vSj
+        \end{align*}
+        \item separation of the Hamiltonian with respect to a single spin $\vS_0$
+        \begin{align*}
+            \oH &= \underbrace{\vS_0 \cdot \vV_0}_{\oH_0} + \underbrace{\frac12 \sum_{i,j \neq 0} J_{ij} \vSi \cdot \vSj}_{\oW}
+        \end{align*}
+        \item local-environment field
+        \begin{align*}
+            \vV_0 &= \sum_{j} J_{0j} \vSj
+        \end{align*}
+        \item aim: derivation of the mean-field approximation of the spin autocorrelation function 
+        \begin{align*}
+            g^{\alpha\beta}(t,0) &\coloneqq \langle \Sa_0 (t) \Sb_0 (0) \rangle = \frac{1}{d} \Tr{ \oUd \Sa_0 \oU \Sb_0 }
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ Trotterization (1) }
+    \begin{itemize}
+        \item Trotter's formula 
+        \begin{align*}
+            \exp{\oA+\oB} &= \lim_{n\to\infty} \left( \exp{\frac{\oA}{n}} \exp{\frac{\oB}{n}} \right)^{n}
+        \end{align*}
+        \item applied to the time propagator
+        \begin{align*}
+            \oU &= \exp{-\im \oH t} = \lim_{n\to\infty} \left( \exp{-\im \oH_0 \frac{t}{n}} \exp{-\im \oW \frac{t}{n}} \right)^{n}
+        \end{align*}
+        \item insertion of identities
+        \begin{align*}
+            \one &= \exp{-\im \oW t \frac{k}{n}} \exp{\im \oW t \frac{k}{n}}
+        \end{align*}
+        leads to
+        \begin{align*}
+            \oU &= \lim_{n\to\infty} \exp{-\im \oW t} \prod_{k=1}^{n} \exp{\im \oW t \frac{k}{n}} \exp{-\im \oH_0 \frac{t}{n}} \exp{-\im \oW t \frac{k}{n}} \\
+            &= \exp{-\im \oW t} \lim_{n\to\infty} \prod_{k=1}^{n} \exp{-\im \vS_0 \cdot \tilde{\vV}_0(\frac{kt}{n}) \frac{t}{n}}
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ Trotterization (2) }
+    \begin{itemize}
+        \item time-evolved environments
+        \begin{align*}
+            \tilde{\vV}_0(t) \coloneqq \exp{\im \oW t} \vV_0 \exp{-\im \oW t}
+        \end{align*}
+        \item propagator expressed via the time-ordering operator
+        \begin{align*}
+            \oU &= \exp{-\im \oW t} \timeord \exp{ -\im \int_0^t \vS_0 \cdot \tilde{\vV}_0(t') \mathrm{d}t' }
+        \end{align*}
+        \item remaining expression (still exact!)
+        \begin{align*}
+            g^{\alpha\beta}(t,0) &= \frac{1}{d} \Tr{ \invtimeord \exp{ \im \int_0^t \vS_0 \cdot \tilde{\vV}_0(t) \mathrm{d}t' } \exp{\im \oW t} \Sa_0 \exp{-\im \oW t} \timeord \exp{ -\im \int_0^t \vS_0 \cdot \tilde{\vV}_0(t) \mathrm{d}t' } \Sb_0 } \\
+            &= \frac{1}{d} \Tr{ \invtimeord \exp{ \im \int_0^t \vS_0 \cdot \tilde{\vV}_0(t) \mathrm{d}t' } \Sa_0 \timeord \exp{ -\im \int_0^t \vS_0 \cdot \tilde{\vV}_0(t) \mathrm{d}t' } \Sb_0 }
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ Approximating the trace (1) }
+    \begin{itemize}
+        \item introduce basis of states, $\ket{m_0}$ refers to the local site $0$ and $\ket{W}$ refers to the rest of the system
+        \begin{align*}
+            \ket{\psi} \coloneqq \ket{m_0} \ket{W},
+        \end{align*}
+        \item expressing the trace
+        \begin{align*}
+            g^{\alpha\beta}(t,0) &= \frac{1}{d} \sum_{m_0} \sum_{W} \bra{W} \bra{m_0} \invtimeord \exp{ \im \int_0^t \vS_0 \cdot \tilde{\vV}_0(t) \mathrm{d}t' } \Sa_0 \timeord \exp{ -\im \int_0^t \vS_0 \cdot \tilde{\vV}_0(t) \mathrm{d}t' } \Sb_0 \ket{m_0} \ket{W} \\
+            \begin{split}
+                &= \sum_{m,n} \frac{\im^{m-n}}{m! n!} \int_{0}^{t} \mathrm{d}t_1 \dots \mathrm{d}t_m \mathrm{d}t_1^{'} \dots \mathrm{d}t_n^{'} \sum_{m_0} \sum_{W} \frac{1}{d} \bra{W} \bra{m_0} \\
+                &\invtimeord \left[ \vS_0 \cdot \tilde{\vV}_0(t_1) \dots \vS_0 \cdot \tilde{\vV}_0(t_m) \right] \Sa_0 \timeord \left[ \vS_0 \cdot \tilde{\vV}_0(t_1^{'}) \dots \vS_0 \cdot \tilde{\vV}_0(t_n^{'}) \right] \Sb_0 \\
+                &\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \ket{m_0} \ket{W} \\
+            \end{split}
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ Approximating the trace (2) }
+    \begin{itemize}
+        \item separate the local from the environmental part
+        \begin{align*}
+        \begin{split}
+            f^{mn}(t_1,\dots,t_m,t_1^{'},\dots,,t_n^{'}) &= \sum_{\alpha_1\dots\alpha_m} \sum_{\alpha_1^{'}\dots\alpha_n^{'}} \\
+            &\sum_{m_0} \frac1{d_0} \bra{m_0} \invpermut^{\alpha_1\dots\alpha_m}_{t_1\dots t_m} \left[\prod_{p=1}^{m} \oS_0^{\alpha_p} \right]\Sa_0 \permut^{\alpha_1^{'}\dots\alpha_n^{'}}_{t_1^{'} \dots t_n^{'}} \left[\prod_{q=1}^{n} \oS_0^{\alpha_q^{'}} \right] \Sb_0 \ket{m_0} \\
+            &\sum_{W} \frac{d_0}{d} \bra{W} \invtimeord \left[\prod_{p=1}^{m} \tilde{\oV}_0^{\alpha_p} (t_p) \right] \timeord \left[ \prod_{q=1}^{n} \tilde{\oV}_0^{\alpha_q} (t_q) \right] \ket{W}
+        \end{split}
+        \end{align*}
+        \item environment trace
+        \begin{align*}
+            w^{mn}(t_1,\dots,t_m,t_1^{'},\dots,t_n^{'}) &= \frac{d_0}{d} \Tr_{/\{0\}} \left\{ \timeord \left[\prod_{p=1}^{m} \tilde{\oV}_0^{\alpha_p} (t_p) \right] \timeord \left[ \prod_{q=1}^{n} \tilde{\oV}_0^{\alpha_q} (t_q) \right] \right\}
+        \end{align*}
+        \item cavity trick\slidecite{\georg}: back actions of a single spin are negligible, replace $w^{mn}$ by a trace over the complete system
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ Approximating the trace (3) }
+    \begin{itemize}
+        \item central assumption: the local environment operator $\vV_{0}$ approximately fulfills Wick's theorem if $z$ is large\slidecite{\zobov}
+        \begin{align*}
+            \expval{ \oV_0^{\alpha} \oV_0^{\beta} \oV_0^{\gamma} \oV_0^{\rho} } &= \expval{ \oV_0^{\alpha} \oV_0^{\beta} } \expval{ \oV_0^{\gamma} \oV_0^{\rho} } + \expval{ \oV_0^{\alpha} \oV_0^{\gamma} } \expval{ \oV_0^{\beta} \oV_0^{\rho} } + \expval{ \oV_0^{\alpha} \oV_0^{\rho} } \expval{ \oV_0^{\beta} \oV_0^{\gamma} } + \mathcal{O}\left(\frac1{z}\right)
+        \end{align*}
+        \item can be shown $\forall t_i = 0$, but a proof for $t_i \neq 0$ is difficult
+        \item strong arguments from the standard spinDMFT derivation
+        \begin{itemize}
+            \item components of the environment operator approximately commute with one another
+            \item environment consists of a large number of essentially independent spins (central limit theorem)
+        \end{itemize}
+        \item Wick reduction leads to
+        \begin{align*}
+            w^{mn}(t_1,\dots,t_m,t_1^{'},\dots,t_n^{'}) &\approx \sum_{C} \prod_{P\in C} \expval{ \oV_0^{\alpha_{P(1)}} (t_{P(1)}) \oV_0^{\alpha_{P(2)}} (t_{P(2)}) }
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ Auxiliary model (1) }
+    \begin{itemize}
+        \item auxiliary model: single spin coupling to a classical Gaussian dynamic field
+        \begin{align*}
+            \oH^{\mf}(t) &= \vS_0 \cdot \cvV_0(t)
+        \end{align*}
+        \item infinite-temperature two-point correlation function
+        \begin{align*}
+            g^{\alpha\beta}(t,0) &= \int \mathrm{D}\mathcal{V}_0 p(\mathcal{V}_0) \frac{1}{d_0} \Tr{ \invtimeord \exp{ \im \int_0^t \vS_0 \cdot \cvV_0(t') \mathrm{d}t' } \Sa_0 \timeord \exp{ -\im \int_0^t \vS_0 \cdot \cvV_0(t') \mathrm{d}t' } \Sb_0 }
+        \end{align*}
+        \item exactly the same as the previous expression except for 
+        \begin{align*}
+            \tilde{w}^{mn}(t_1,\dots,t_m,t_1^{'},\dots,t_n^{'}) &= \sum_{C} \prod_{P\in C} \int \mathrm{D}\mathcal{V}_0 p(\mathcal{V}_0) \cV_0^{\alpha_{P(1)}} (t_{P(1)}) \cV_0^{\alpha_{P(2)}} (t_{P(2)})
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ Auxiliary model (2) }
+    \begin{itemize}
+        \item the auxiliary model approximately captures the correct spin dynamics if
+        \begin{align*}
+            \int \mathrm{D}\mathcal{V}_0 p(\mathcal{V}_0) \cV_0^{\alpha} (t_1) \cV_0^{\beta} (t_2) &= \expval{ \oV_0^{\alpha} (t_1) \oV_0^{\beta} (t_2) }
+        \end{align*}
+        \item self-consistency condition (pair correlations neglected)
+        \begin{align*}
+            \int \mathrm{D}\mathcal{V}_0 p(\mathcal{V}_0) \cV_0^{\alpha} (t_1) \cV_0^{\beta} (t_2) &= \JQ^2 \expval{ \Sa_0 (t_1) \Sb_0 (t_2) }
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+
+
+\section{ Finite temperatures }
+
+\begin{frame}
+	\frametitle{ Thermodynamic autocorrelation }
+    \begin{itemize}
+        \item the auxiliary model approximately captures the correct spin dynamics if
+        \begin{align*}
+            g^{\alpha\beta}(t,0) &\coloneqq \langle \Sa_0 (t) \Sb_0 (0) \rangle = \frac{1}{Z} \Tr{ \rho \oUd \Sa_0 \oU \Sb_0 }
+        \end{align*}
+        \item density operator 
+        \begin{align*}
+            \rho&=\mathrm{e}^{-\beta \oH}, & Z &= \Tr{\rho}
+        \end{align*}
+        \item thermodynamic autocorrelation (imaginary time $\tau\in\realnumbers$)
+        \begin{align*}
+            g^{\alpha\beta}_{\thd}(\tau,0) &\coloneqq \langle \Sa_0 (\tau) \Sb_0 (0) \rangle = \frac{1}{Z} \Tr{ \exp{-\beta\oH} \exp{\tau\oH} \Sa_0 \exp{-\tau\oH} \Sb_0 } = \frac{1}{Z} \Tr{ \exp{(\tau-\beta)\oH} \Sa_0 \exp{-\tau\oH} \Sb_0 }
+        \end{align*}
+        \item relation to real-time autocorrelation through analytic continuation
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ Trotterization, cavity method and Wick's theorem }
+    \begin{itemize}
+        \item trotterization works the same as for infinite temperature
+        \begin{align*}
+            g^{\alpha\beta}_{\thd}(\tau,0) &= \frac{1}{Z} \Tr{ \exp{-\beta\oW} \timeord \exp{ -\int_\tau^\beta \vS_0 \cdot \tilde{\vV}_0(\tau') \mathrm{d}\tau' } \Sa_0 \timeord \exp{ -\int_0^\tau \vS_0 \cdot \tilde{\vV}_0(\tau') \mathrm{d}\tau' } \Sb_0 }
+        \end{align*}
+        \item replace cavity system by full system
+        \begin{align*}
+            w^{mn}(\tau_1,\dots,\tau_m,\tau_1^{'},\dots,\tau_n^{'}) &\approx \frac{1}{Z} \Tr{ \exp{-\beta\oH} \timeord \left[\prod_{p=1}^{m} \oV_0^{\alpha_p} (\tau_p) \prod_{q=1}^{n} \oV_0^{\alpha_q} (\tau_q) \right] }
+        \end{align*}
+        \item apply Wick's theorem
+        \begin{align*}
+            w^{mn}(\tau_1,\dots,\tau_m,\tau_1^{'},\dots,\tau_n^{'}) &= \sum_{C} \prod_{P\in C} \expval{ \timeord \oV_0^{\alpha_{P(1)}} (\tau_{P(1)}) \oV_0^{\alpha_{P(2)}} (\tau_{P(2)}) }
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ Auxiliary model }
+    \begin{itemize}
+        \item single-site model with dynamic Gaussian mean-field
+        \begin{align*}
+            \oH^{\mf}(\tau) &= \vS_0 \cdot \cvV_0(\tau)
+        \end{align*}
+        \item thermodynamic autocorrelation 
+        \begin{align*}
+            g^{\alpha\beta}(\tau,0) &= \int \mathrm{D}\mathcal{V}_0 p(\mathcal{V}_0) \frac{1}{Z_0} \Tr{ \timeord \exp{ -\int_\tau^\beta \vS_0 \cdot \cvV_0(\tau') \mathrm{d}\tau' } \Sa_0 \exp{ - \int_0^\tau \vS_0 \cdot \cvV_0(\tau) \mathrm{d}\tau' } \Sb_0 }
+        \end{align*}
+        \item self-consistency condition
+        \begin{align*}
+            \int \mathrm{D}\mathcal{V}_0 p(\mathcal{V}_0) \cV_0^{\alpha} (\tau_1) \cV_0^{\beta} (\tau_2) &= \expval{ \timeord \oV_0^{\alpha} (\tau_1) \oV_0^{\beta} (\tau_2) } \approx \JQ^2 \expval{ \timeord \Sa_0(\tau_1) \Sb_0 (\tau_2) }
+        \end{align*}
+        \item local partition function
+        \begin{align*}
+            Z_0 &= \int \mathrm{D}\mathcal{V}_0 p(\mathcal{V}_0) \Tr{ \timeord \exp{ -\int_0^\beta \vS_0 \cdot \cvV_0(\tau') \mathrm{d}\tau' } }
+        \end{align*}
+    \end{itemize}
+\end{frame}

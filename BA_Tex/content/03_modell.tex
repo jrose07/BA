@@ -3,6 +3,81 @@
 Tight-Binding Hamiltonian mit Hubbard-Anziehung gemäß gängiger Supraleitungstheorie
 
 \begin{align}
-    \mathcal{H} = \sum_{\vec{k}, \sigma} f(\vec{k}) A_{\vec{k}, \sigma}^{\dagger} B_{\vec{k}, \sigma}
+    \mathcal{H} = \sum_{\vec{k}, \sigma} f(\vec{k}) A_{\vec{k}, \sigma}^{\dagger} B_{\vec{k}, \sigma} + h.c.  - U \sum_{\vec{R}} \sum_C C_{\vec{R}, \uparrow}^\dagger C_{\vec{R}, \uparrow} C_{\vec{R}, \downarrow}^\dagger C_{\vec{R}, \downarrow} \, ,
 \end{align}
 
+wobei 
+\begin{equation}
+    f(\vec{k}) = -t \sum_{\vec{\delta}} e^{i\vec{k}\cdot\vec{\delta}} = -t(e^{-ik_x a} + 2e^{ik_x \frac{a}{2}} \cos\left(\frac{k_y a \sqrt{3}}{2}\right))
+\end{equation}
+ist und $U>0$,$t>0$ die Hubbard-Anziehung und Hüpfparameter sind. Die Summe über die Operatoren $C$ soll hier bedeuten, dass über $A$ und $B$-Type Operatoren summiert wird.\\
+
+Um die Tranlsationsinvarianz des Systems auszunutzen, wird der Hubbard-Term hier Fouriertransformiert.
+
+\section{Fouriertrafo}
+
+Fouriertrafo wird mit 
+\begin{align}
+    C_{\vec{R}} = \frac{1}{\sqrt{N}} \sum_{\vec{k}} C_{\vec{k}} e^{i \vec{k} \cdot \vec{R}}
+\end{align}
+angesetzt. \\
+
+Damit gilt für den Wechselwirkungsteil des Hamiltonians:
+\begin{align}
+    \mathcal{H}_\text{WW} &= -U \sum_C \sum_{\vec{m}\vec{n}\vec{o}\vec{p}} C_{\vec{m}, \uparrow}^\dagger C_{\vec{n}, \uparrow} C_{\vec{o}, \downarrow}^\dagger C_{\vec{p}, \downarrow} \underbrace{\frac{1}{N^2} \sum_{\vec{R}} e^{i(-\vec{m}-\vec{o} + \vec{n} + \vec{p} )\cdot \vec{R}}}_{= \frac{1}{N} \delta_{\vec{m}+\vec{o}, \vec{n} + \vec{p}}} 
+\end{align}
+wobei durch $\delta_{\vec{m}+\vec{o}, \vec{n} + \vec{p}}$ die Impulserhaltung gewährleistet ist. Durch diese Bedingung kann die Anzahl der freien Parameter auf drei reduziert werden, sodass der Hamiltonian dann in die Form
+\begin{align}
+    \mathcal{H}_\text{WW} &= -U \sum_C \sum_{\vec{k}\, \vec{k'} \vec{q} } C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k}, \uparrow} C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow}
+\end{align}
+gebracht werden kann. Um nun die Form eines typischen BCS-Hamiltonians zu erhlangen, können noch die Vertauschungsrelationen $\{C_{\vec{k}, \uparrow} ,C_{\vec{k'} - \vec{q}, \downarrow}^\dagger\} = 0$ und $\{C_{\vec{k}, \uparrow}, C_{\vec{k'}, \downarrow}\} = 0$ ausgenutzt werden. Damit ergibt sich
+\begin{align}
+    \mathcal{H}_\text{WW} &= -U \sum_C \sum_{\vec{k}\, \vec{k'} \vec{q} } C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow} \, . \label{eq:H_ww}
+\end{align}
+
+\section{Mean-Field-Näherung}
+
+Um sich nicht mit quartischen Termen herumschlagen zu müssen, wird auf die Operatoren in Gleichung~\eqref{eq:H_ww} Wicks Theorem angewandt:
+\begin{align*}
+    C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow} &= \, :C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow}: \\
+    &+ \, : C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger : \expval{C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow}} + \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'} - \vec{q}, \downarrow}^\dagger } : C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow} :\\
+    &- : C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'}, \downarrow}  :  \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow} } -  \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'}, \downarrow} } :C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow}:  \\
+    &+ \, : C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k}, \uparrow} : \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} } + \expval{  C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k}, \uparrow}  } : C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow}  : \\
+    &+ \text{const.}
+\end{align*}
+
+Für die Mean-Field Näherung wird der quartische Term und auch die konstanten Terme vernachlässigt, da diese für die Dynamik des Systems keinen Unterschied machen. \\
+Für die anderen drei Terme können die Erwartungswerte genauer untersucht werden.
+
+Der erste Term enthält den anomalen Erwartungswert 
+\begin{equation}
+    \expval{C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow}} = \delta_{\vec{k},\vec{-k'}}
+\end{equation}
+aufgrund der Impulserhaltung. Allgemein ist der Erwartungswert in der normalleitenden Phase null, in der supraleitenden Phase allerdings endlich. Er ist also später für den Ordnungsparameter der supraleitenden Phase relevant.
+
+Für den negativen, zweiten Term gilt
+\begin{equation}
+    \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow} } = 0
+\end{equation}
+aufgrund der Drehimpulserhaltung.
+
+Der dritte Term hat Hartree-mäßige Erwartungswerte 
+\begin{equation}
+    \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} } = \delta_{\vec{q},0} \; .
+\end{equation}
+
+Damit kann der Wechselwirkungsterm also zwei verschiedenen Terme umgeschrieben werden. Der erste Term ergibt sich zu
+\begin{align}
+    \mathcal{H}_1 = -U \sum_C \sum_{\vec{k},\vec{q}} C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{-(\vec{k}+\vec{q}),\downarrow} \expval{ C_{-\vec{k}, \downarrow} C_{\vec{k}, \uparrow} } + \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{-(\vec{k}+\vec{q}),\downarrow} }  C_{-\vec{k}, \downarrow} C_{\vec{k}, \uparrow} \; .
+\end{align}
+
+Dieser kann mit der Reparametrisierung $\vec{k'} = \vec{k} + \vec{q}$ weiter zu 
+\begin{align}
+    \mathcal{H}_1 = - \sum_C \Delta_C 
+\end{align}
+
+und 
+\begin{align}
+    
+\end{align}
+aufgeteit werden.
