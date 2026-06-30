@@ -9,9 +9,9 @@ from scipy.constants import k as k_B
 
 # #U_vs_Delta
 
-U = np.linspace(80,1000,100)
+U = np.linspace(0,10,100)
 T = 0
-E_D = 0.01
+E_D = 1
 deltas = np.array([])
 for elem in U:
     deltas = np.append(deltas, get_delta(U=elem, T=T, E_debye=E_D, num_max=200, start=1, num_points=108))

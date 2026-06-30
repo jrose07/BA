@@ -107,12 +107,28 @@
 \newcommand{\oUeffd}{\op{U}_{\eff}^{\dagg}}
 
 % ladder and occupation operators
-\def\oc#1{\op{c}^{\pdagg}_{#1}}
-\def\ocd#1{\op{c}^{\dagg}_{#1}}
+\def\oc#1{\op{C}^{\pdagg}_{#1}}
+\def\ocd#1{\op{C}^{\dagg}_{#1}}
 \def\ocb#1{\op{c}^{(\dagg)}_{#1}}
-\def\oa#1{\op{a}^{\pdagg}_{#1}}
-\def\oad#1{\op{a}^{\dagg}_{#1}}
+\def\oa#1{\op{A}^{\pdagg}_{#1}}
+\def\oad#1{\op{A}^{\dagg}_{#1}}
+\def\ob#1{\op{B}^{\pdagg}_{#1}}
+\def\obd#1{\op{B}^{\dagg}_{#1}}
 \def\on#1{\op{n}^{\pdagg}_{#1}}
+
+\newcommand{\ocdu}{\ocd{\mb{k}+\mb{q}, \uparrow}}
+\newcommand{\ocdd}{\ocd{\mb{k'} - \mb{q},\downarrow}}
+\newcommand{\ocndd}{\oc{\mb{k'}, \downarrow}}
+\newcommand{\ocndu}{\oc{\mb{k}, \uparrow}}
+
+\newcommand{\ophioned}{~{\varphi}^{\dagg}_{1, \mb{k}}}
+\newcommand{\ophione}{~{\varphi}^{\pdagg}_{1, \mb{k}}}
+\newcommand{\ophitwod}{~{\varphi}^{\dagg}_{2, \mb{k}}}
+\newcommand{\ophitwo}{~{\varphi}^{\pdagg}_{2, \mb{k}}}
+\newcommand{\ophithreed}{~{\varphi}^{\dagg}_{3, \mb{k}}}
+\newcommand{\ophithree}{~{\varphi}^{\pdagg}_{3, \mb{k}}}
+\newcommand{\ophifourd}{~{\varphi}^{\dagg}_{4, \mb{k}}}
+\newcommand{\ophifour}{~{\varphi}^{\pdagg}_{4, \mb{k}}}
 
 % spin operators in direction
 \newcommand{\oS}{\op{S}}
@@ -316,6 +332,8 @@
 % complex numbers
 \newcommand{\im}{\texttt{i}}
 
+% Bold symbols
+\newcommand{\bdelta}{\vec{\delta}}
 
 
 

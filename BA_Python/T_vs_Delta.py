@@ -10,7 +10,7 @@ t = _c.g0
 """Delta eher 2-5meV, U -> Delta~10meV"""
 """T_C im Weak Coupling Limit"""
 
-T = np.linspace(0.1, 1000, 100)  #K
+T = np.linspace(0, 1000, 100)  #K
 U = 30
 E_D = 0.1
 deltas = np.array([])
