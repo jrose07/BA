@@ -9,12 +9,12 @@ from scipy.constants import k as k_B
 
 # #U_vs_Delta
 
-U = np.linspace(0,10,100)
+U = np.linspace(0,100,1000)
 T = 0
-E_D = 1
+E_D = 0.07
 deltas = np.array([])
 for elem in U:
-    deltas = np.append(deltas, get_delta(U=elem, T=T, E_debye=E_D, num_max=200, start=1, num_points=108))
+    deltas = np.append(deltas, get_delta(U=elem, T=T, E_debye=E_D, num_max=15, start=1, num_points=10009))
 
 fig, ax = plt.subplots()
 ax.plot(U,deltas)

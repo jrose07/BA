@@ -36,18 +36,21 @@ def newton_func(delta, U, T, E_debye, num_points):
     DOS = func_DOS(x)
     E_k = np.sqrt(delta**2 + x**2)
     if T == 0:
-        return U*integrate.simpson(DOS*delta/E_k, x=x) - delta
+        return U/2*integrate.simpson(DOS*delta/E_k, x=x) - delta
 
     else:
-        return U*integrate.simpson(DOS*delta/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x) - delta
+        return U/2*integrate.simpson(DOS*delta/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x) - delta
 
 def integral(delta, U, T, E_debye):
     # mask = np.logical_and(E< np.abs(E_debye), E> - np.abs(E_debye))
     # # x = E[mask]
-    x = np.linspace(-E_debye, E_debye, 10001)
+    x = np.linspace(-E_debye, E_debye, 10009)
     DOS = func_DOS(x)
+    mask = np.logical_and(DOS < np.inf, x != 0)
+    x = x[mask]
+    DOS = DOS[mask]
     E_k = np.sqrt(delta**2 + x**2)
-    return U*integrate.simpson(DOS*delta/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x)
+    return U/2*integrate.simpson(DOS*delta/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x)
 
 def fixpunkt_algo(start, T, U, E_debye, num_max, num_points):
     """start: Starting Value of Delta in units of t
@@ -63,16 +66,16 @@ def fixpunkt_algo(start, T, U, E_debye, num_max, num_points):
     x = np.linspace(-E_debye, E_debye, num_points)
     DOS = func_DOS(x) #in units of 1/t
     #Bei x = 1 ist DOS unendlich -> Filtere Punkte heraus
-    mask = DOS < np.inf
+    mask = np.logical_and(DOS < np.inf, x != 0)
     x = x[mask]
     DOS = DOS[mask]
     deltas = np.array([start])
     for i in range(num_max):
         E_k = np.sqrt(deltas[i]**2 + x**2)
         if T == 0:
-            delta_next = U*integrate.simpson(DOS*deltas[i]/E_k, x=x)
+            delta_next = U/2*integrate.simpson(DOS*deltas[i]/E_k, x=x)
         else:
-            delta_next = U*integrate.simpson(DOS*deltas[i]/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x) #Sollte in units of t sein, weil [DOS] = 1/t, [delta] = t, [E_k] = t und durch integration noch mal t
+            delta_next = U/2*integrate.simpson(DOS*deltas[i]/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x) #Sollte in units of t sein, weil [DOS] = 1/t, [delta] = t, [E_k] = t und durch integration noch mal t
         deltas = np.append(deltas, delta_next)
     return deltas
 
@@ -105,4 +108,8 @@ def get_delta(start, T,U, E_debye, num_max, num_points ):
 # x = np.linspace(len(deltas),len(deltas)+1,100)
 # ax.plot(x, m*x+delta_FP,"r--")
 # plt.show()
-# print(f"t = {t/const.e:.2f}eV")
+
+
+print(f"t = {t/const.e:.2f}eV von Graphenemodeling")
+print(f"Debye Energien für Graphen sind ca. {1800*k_b/const.e*1e3:.2f} - {2300*k_b/const.e*1e3:.2f} meV, also 0.05- 0.07t")
+print(f"Delta Werte sind im Bereich ca. 1-10 meV")
