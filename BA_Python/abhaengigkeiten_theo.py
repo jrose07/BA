@@ -51,7 +51,7 @@ conv = _c.g0 / const.e * 1e3
 levels = np.linspace(np.nanmin(T_C), np.nanmax(T_C), 100)
 T_C_masked = np.ma.masked_invalid(T_C)
 fig, ax = plt.subplots()
-colorbar = ax.contourf(U*conv*1e-3, E_D*conv, T_C_masked, levels=levels)
+colorbar = ax.contourf(U*conv*1e-3, E_D*conv, T_C_masked, levels=levels, cmap='inferno')
 fig.colorbar(colorbar, ax=ax, label=r"$T_C \, / \, K$")
 ax.set(
     xlabel=r"$U \, / \, eV$",
