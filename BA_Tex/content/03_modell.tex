@@ -3,14 +3,14 @@
 Tight-Binding Hamiltonian mit Hubbard-Anziehung gemäß gängiger Supraleitungstheorie
 
 \begin{align}
-    \mathcal{H} = \sum_{\vec{k}, \sigma} f(\vec{k}) A_{\vec{k}, \sigma}^{\dagger} B_{\vec{k}, \sigma} + h.c.  - U \sum_{\vec{R}} \sum_C C_{\vec{R}, \uparrow}^\dagger C_{\vec{R}, \uparrow} C_{\vec{R}, \downarrow}^\dagger C_{\vec{R}, \downarrow} \, ,
+    \oH = -t \sum_{\expval{\mb{R}, \mb{R'}}, \sigma} \ocd{\mb{R}, \sigma} \oc{\mb{R'}, \sigma} - U \sum_{\mb{R}} \sum_\oC \ocd{\mb{R}, \up} \oc{\mb{R},\up} \ocd{\mb{R},\down} \oc{\mb{R}, \down} \, ,
 \end{align}
 
 wobei 
-\begin{equation}
-    f(\vec{k}) = -t \sum_{\vec{\delta}} e^{i\vec{k}\cdot\vec{\delta}} = -t(e^{-ik_x a} + 2e^{ik_x \frac{a}{2}} \cos\left(\frac{k_y a \sqrt{3}}{2}\right))
-\end{equation}
-ist und $U>0$,$t>0$ die Hubbard-Anziehung und Hüpfparameter sind. Die Summe über die Operatoren $C$ soll hier bedeuten, dass über $A$ und $B$-Type Operatoren summiert wird.\\
+% \begin{equation}
+%     f(\vk) = -t \sum_{\vec{\delta}} e^{i\vk\cdot\vec{\delta}} = -t\left(e^{-ik_x a} + 2e^{ik_x \frac{a}{2}} \cos\left(\frac{k_y a \sqrt{3}}{2}\right)\right)
+% \end{equation}
+ist und $U>0$,$t>0$ die Hubbard-Anziehung und Hüpfparameter sind. Die Summe über die Operatoren $\oC$ soll hier bedeuten, dass über $\oA$ und $\oB$-Type Operatoren summiert wird.\\
 
 Um die Tranlsationsinvarianz des Systems auszunutzen, wird der Hubbard-Term hier Fouriertransformiert.
 
@@ -18,9 +18,14 @@ Um die Tranlsationsinvarianz des Systems auszunutzen, wird der Hubbard-Term hier
 
 Fouriertrafo wird mit 
 \begin{align}
-    C_{\vec{R}} = \frac{1}{\sqrt{N}} \sum_{\vec{k}} C_{\vec{k}} e^{i \vec{k} \cdot \vec{R}}
+    \oc{\mb{R}} = \frac{1}{\sqrt{N}} \sum_{\vk} \oc{\vk} e^{\im \vk \cdot \mb{R}} & & \text{und} & & \ocd{\mb{R}} = \frac{1}{\sqrt{N}} \sum_{\vk} \ocd{\vk} e^{-\im \vk \cdot \mb{R}}
 \end{align}
 angesetzt. \\
+
+Der Hüpfterm wird damit zu 
+\begin{align}
+    \oH_{\text{Hüpf}} &= \sum_{\mb{k}, \sigma} \underbrace{\sum_{\bdelta} -t e^{\im \mb{k}\cdot \bdelta}}_{:= f(\mb{k}) } \oad{\mb{k}, \sigma} \ob{\mb{k}, \sigma} + h.c. = \sum_{\mb{k}, \sigma} f(\mb{k}) \oad{\mb{k}, \sigma} \ob{\mb{k}, \sigma} + h.c.
+\end{align}
 
 Damit gilt für den Wechselwirkungsteil des Hamiltonians:
 \begin{align}
@@ -39,11 +44,14 @@ gebracht werden kann. Um nun die Form eines typischen BCS-Hamiltonians zu erhlan
 
 Um sich nicht mit quartischen Termen herumschlagen zu müssen, wird auf die Operatoren in Gleichung~\eqref{eq:H_ww} Wicks Theorem angewandt:
 \begin{align*}
-    C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow} &= \, :C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow}: \\
-    &+ \, : C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger : \expval{C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow}} + \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'} - \vec{q}, \downarrow}^\dagger } : C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow} :\\
-    &- : C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'}, \downarrow}  :  \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow} } -  \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'}, \downarrow} } :C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow}:  \\
-    &+ \, : C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k}, \uparrow} : \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} } + \expval{  C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k}, \uparrow}  } : C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow}  : \\
-    &+ \text{const.}
+    % C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow} &= \, :C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow}: \\
+    % &+ \, : C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger : \expval{C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow}} + \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'} - \vec{q}, \downarrow}^\dagger } : C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow} :\\
+    % &- : C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'}, \downarrow}  :  \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow} } -  \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'}, \downarrow} } :C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow}:  \\
+    % &+ \, : C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k}, \uparrow} : \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} } + \expval{  C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k}, \uparrow}  } : C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow}  : \\
+    % &+ \text{const.}
+    \ocdu \ocdd \ocndd \ocndu &\approx \, :\ocdu \ocdd : \underbrace{\expval{\ocndd \ocndu}}_{\propto \delta_{\mb{k}, -\mb{k'}}} + \expval{\ocdu \ocdd} : \ocndd \ocndu :\\
+    &- : \ocdu \ocndd : \underbrace{\expval{\ocdd \ocndu}}_{= 0} - \expval{\ocdu \ocndd} : \ocdd \ocndu : \\
+    &+ : \ocdu \ocndu : \underbrace{\expval{\ocdd \ocndd}}_{\propto \delta_{\mb{q}, \mb{0}}} + \expval{\ocdu \ocndu} : \ocdd \ocndd : + \text{const.}
 \end{align*}
 
 Für die Mean-Field Näherung wird der quartische Term und auch die konstanten Terme vernachlässigt, da diese für die Dynamik des Systems keinen Unterschied machen. \\
@@ -78,6 +86,6 @@ Dieser kann mit der Reparametrisierung $\vec{k'} = \vec{k} + \vec{q}$ weiter zu
 
 und 
 \begin{align}
-    
+    jdlajld dlajdlajdl
 \end{align}
 aufgeteit werden.

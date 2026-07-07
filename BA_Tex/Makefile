@@ -6,10 +6,12 @@ TeXOptions = -lualatex \
 			 -halt-on-error \
 			 -output-directory=build \
 			 -f \
-			 -pvc 
                                                                                 
 build/thesis.pdf: FORCE | build
 	latexmk $(TeXOptions) thesis.tex
+
+preview: FORCE | build
+	latexmk $(texoptions) -pvc thesis.tex
 	
 FORCE:
 
