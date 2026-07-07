@@ -52,15 +52,21 @@ def newton_func(delta, U, T, E_debye, num_points):
     return U_arr / 2 * integral - delta
 
 def integral(delta, U, T, E_debye):
-    # mask = np.logical_and(E< np.abs(E_debye), E> - np.abs(E_debye))
-    # # x = E[mask]
     x = np.linspace(-E_debye, E_debye, 10009)
     DOS = func_DOS(x)
     mask = np.logical_and(DOS < np.inf, x != 0)
     x = x[mask]
     DOS = DOS[mask]
     E_k = np.sqrt(delta**2 + x**2)
-    return U/2*integrate.simpson(DOS*delta/E_k * np.tanh(E_k/(2*k_b*T/t)), x=x)
+    integrand_base = DOS * delta / E_k
+    if T == 0:
+        integral = integrate.simpson(integrand_base, x=x)
+    else:
+        with np.errstate(divide='ignore', invalid='ignore'):
+            arg = E_k / (2 * k_b * T / t)
+            tanh_val = np.tanh(arg)
+        integral = integrate.simpson(integrand_base * tanh_val, x=x, axis=-1)
+    return U / 2 * integral 
 
 def fixpunkt_algo(start, T, U, E_debye, num_max, num_points):
     """start: Starting Value of Delta in units of t
@@ -71,8 +77,6 @@ def fixpunkt_algo(start, T, U, E_debye, num_max, num_points):
     E_debye: Debye-Energy in units of t
     returns list of delta for each iteration in units of t
     """
-    # mask = np.logical_and(E< np.abs(E_debye), E> - np.abs(E_debye))
-    # x = E[mask]
     x = np.linspace(-E_debye, E_debye, num_points)
     DOS = func_DOS(x) #in units of 1/t
     #Bei x = 1 ist DOS unendlich -> Filtere Punkte heraus
