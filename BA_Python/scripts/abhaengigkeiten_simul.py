@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from graphene import get_delta
-from graphenemodeling.graphene import _constants as _c
+# from graphenemodeling.graphene import _constants as _c
 import pandas as pd
 
 #Schreibe eine Funktion die für ein T_array einfach die kritische Temperatur T_C (In Abhängigkeit von U,E_D, A) zurückgibt

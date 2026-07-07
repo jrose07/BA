@@ -4,10 +4,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.constants import k as k_b #In J/K
 import scipy.integrate as integrate
+import scipy.constants as const
 # from functools import partial
 
 
-t = _c.g0 # in J
+t = 2.7*const.e # in J
 E = np.linspace(-3, 3, 10001) *t
 DOS = mlg.DensityOfStates(E, model="FullTightBinding")
 

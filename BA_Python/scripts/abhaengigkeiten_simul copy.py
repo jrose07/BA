@@ -37,7 +37,7 @@ T = np.linspace(1,100,100)
 T_C = get_T_C(U,E_D, T, 1)
 
 
-conv = _c.g0 / const.e * 1e3
+conv = t / const.e * 1e3
 
 levels = np.linspace(np.nanmin(T_C), np.nanmax(T_C), 100)
 T_C_masked = np.ma.masked_invalid(T_C)
@@ -49,4 +49,4 @@ ax.set(
     ylabel=r"$E_D \, / \, meV$"
 )
 ax.set_facecolor(color='black')
-fig.savefig("plots/T_C_with_delta_1.pdf")
+fig.savefig("../plots/T_C_with_delta_1.pdf")

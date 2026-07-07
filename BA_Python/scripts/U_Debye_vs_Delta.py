@@ -1,4 +1,4 @@
-from graphenemodeling.graphene import _constants as _c
+# from graphenemodeling.graphene import _constants as _c
 from graphene import get_delta
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,4 +31,4 @@ ax.set(
     title=rf"$T = {T}K$"
 )
 
-fig.savefig("plots/U_Debye_vs_Delta.pdf")
+fig.savefig("../plots/U_Debye_vs_Delta.pdf")

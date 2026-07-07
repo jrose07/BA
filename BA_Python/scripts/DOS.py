@@ -1,4 +1,4 @@
-from graphenemodeling.graphene import _constants as _c
+# from graphenemodeling.graphene import _constants as _c
 from graphene import get_delta, func_DOS
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,8 +7,8 @@ import scipy.constants as const
 from scipy.stats import linregress
 from uncertainties import ufloat, std_dev as stds, nominal_value as noms
 
-conv = _c.g0 /const.e * 1e3 
-t = _c.g0 / const.e
+t = 2.7*const.e / const.e
+conv = t /const.e * 1e3 
 E_D = 200*1e-3/ t # t
 E = np.linspace(-E_D, E_D, 10001) # in t
 
@@ -31,7 +31,7 @@ ax.set(
     ylabel=r"$\rho(E) \, [1/t]$"
 )
 
-fig.savefig("plots/DOS.pdf")
+fig.savefig("../plots/DOS.pdf")
 
 
 print(f"Wie man sieht ist das DOS in dem Debye-Frequenz-Bereich komplett linear.\n")
@@ -54,7 +54,7 @@ ax.set(
     ylabel=r"$\rho(E) \, [1/meV]$"
 )
 
-fig.savefig("plots/DOS_meV.pdf")
+fig.savefig("../plots/DOS_meV.pdf")
 
 
 print(f"Wie man sieht ist das DOS in dem Debye-Frequenz-Bereich komplett linear.\n")

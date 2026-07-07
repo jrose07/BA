@@ -1,4 +1,4 @@
-from graphenemodeling.graphene import _constants as _c
+# from graphenemodeling.graphene import _constants as _c
 from graphene import get_delta, integral
 import numpy as np
 import matplotlib.pyplot as plt
@@ -30,10 +30,10 @@ ax.set(
 )
 ax.grid()
 ax.legend()
-fig.savefig(f"plots/schnittpunkte/schnittpunkte_U{U:.0f}t.pdf")
+fig.savefig(f"../plots/schnittpunkte/schnittpunkte_U{U:.0f}t.pdf")
 
 ax.cla()
-conv = _c.g0 /const.e * 1e3 #from [t] -> [meV]
+conv = t /const.e * 1e3 #from [t] -> [meV]
 ax.plot(delta_arr*conv, f*conv,label=r"$\int \rho(E) \cdot f(E, \Delta) \mathrm{d} E$")
 ax.plot(delta_arr*conv,delta_arr*conv, label=r"$\Delta$")
 ax.plot(delta_arr[SP_mask]*conv, f[SP_mask]*conv, "rx", label="Schnittpunkte")
@@ -44,7 +44,7 @@ ax.set(
 )
 ax.grid()
 ax.legend()
-fig.savefig(f"plots/schnittpunkte/schnittpunkte_U{U*conv/1e3:.0f}ev.pdf")
+fig.savefig(f"../plots/schnittpunkte/schnittpunkte_U{U*conv/1e3:.0f}ev.pdf")
 
 #Schnittpunkte_delta
 delta_SP = delta_arr[SP_mask]

@@ -24,4 +24,4 @@ ax.set(
     title=rf"$T={T}K, E_D = {E_D}t$"
 )
 ax.grid()
-fig.savefig("plots/U_vs_delta.pdf")
+fig.savefig("../plots/U_vs_delta.pdf")

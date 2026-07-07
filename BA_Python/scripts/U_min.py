@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.constants as const
-from graphenemodeling.graphene import _constants as _c
+# from graphenemodeling.graphene import _constants as _c
+import scipy.constants as const
 
-t = _c.g0 #J
+t = 2.7*const.e #J
 E_D = 0.07*t
 
 def U_min(T):

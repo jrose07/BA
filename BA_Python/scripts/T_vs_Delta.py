@@ -1,11 +1,12 @@
-from graphenemodeling.graphene import _constants as _c
+# from graphenemodeling.graphene import _constants as _c
 from graphene import get_delta
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.constants import k as k_B
+import scipy.constants as const
 
 
-t = _c.g0
+t = 2.7*const.e
 
 # #T_vs_Delta 
 """Delta eher 2-5meV, U -> Delta~10meV"""
@@ -40,4 +41,4 @@ ax.set(
 )
 ax.grid()
 ax.legend()
-fig.savefig(f"plots/T_vs_Delta/U_{U:.0f}t_Debye_{E_D*100:.0f}mt.pdf")
+fig.savefig(f"../plots/T_vs_Delta/U_{U:.0f}t_Debye_{E_D*100:.0f}mt.pdf")

@@ -8,7 +8,7 @@ from scipy.optimize import newton
 
 # def E_D_theo(U, T_C, A):
 #     return 2*const.k*T_C*np.arccosh(np.exp(1/(2*U*A*const.k*T_C)))
-t = _c.g0
+t = 2.7*const.e
 
 def y_func(y, U, A, E_D):
     y = float(y)

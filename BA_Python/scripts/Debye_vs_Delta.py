@@ -1,5 +1,5 @@
-from graphenemodeling.graphene import _constants as _c
-from graphene import get_delta
+# from graphenemodeling.graphene import _constants as _c
+from scripts.graphene import get_delta
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.constants import k as k_B
