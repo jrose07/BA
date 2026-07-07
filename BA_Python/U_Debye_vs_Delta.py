@@ -17,7 +17,7 @@ for i, u in enumerate(U):
         print(f"{(i*len(E_D) + j)/(len(E_D)*len(U))*100} % finished")
 
 U, E_D = np.meshgrid(U, E_D)
-levels= np.linspace(deltas.min(), deltas.max(), 100)
+levels= np.linspace(deltas.min(), deltas.max(), 1000)
 
 
 fig, ax = plt.subplots()

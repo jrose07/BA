@@ -109,7 +109,9 @@ def get_delta(start, T,U, E_debye, num_max, num_points ):
 # ax.plot(x, m*x+delta_FP,"r--")
 # plt.show()
 
+conv = _c.g0 /const.e * 1e3 #from [t] -> [meV]
 
 print(f"t = {t/const.e:.2f}eV von Graphenemodeling")
 print(f"Debye Energien für Graphen sind ca. {1800*k_b/const.e*1e3:.2f} - {2300*k_b/const.e*1e3:.2f} meV, also 0.05- 0.07t")
 print(f"Delta Werte sind im Bereich ca. 1-10 meV")
+print(f"1t entspricht {conv:.2f}meV")
