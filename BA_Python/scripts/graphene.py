@@ -104,6 +104,13 @@ def get_delta(start, T,U, E_debye, num_max, num_points ):
     except Exception:
         return deltas[-1]
 
+def t2meV(x):
+    conv = t /const.e * 1e3 #from [t] -> [meV]
+    return x * conv
+
+def mev2t(x):
+    return x * const.e*1e-3/t
+
 # E=np.linspace(-3,3,100001)
 # T=1
 # U=3
@@ -123,12 +130,14 @@ def get_delta(start, T,U, E_debye, num_max, num_points ):
 # ax.plot(x, m*x+delta_FP,"r--")
 # plt.show()
 
-conv = t /const.e * 1e3 #from [t] -> [meV]
-U = 9.4 #eV 
-U = 9.4*const.e/t
 
-print(f"t = {t/const.e:.2f}eV von Graphenemodeling")
-print(f"Debye Energien für Graphen sind ca. {1800*k_b/const.e*1e3:.2f} - {2300*k_b/const.e*1e3:.2f} meV, also 0.05- 0.07t")
-print(f"Delta Werte sind im Bereich ca. 1-10 meV")
-print(f"1t entspricht {conv:.2f}meV")
-print(f"U ist im Bereich von {U:.2f}t = {U*conv*1e-3:.2f}eV")
+if __name__ == "__main__":
+    conv = t /const.e * 1e3 #from [t] -> [meV]
+    U = 9.4 #eV 
+    U = 9.4*const.e/t
+
+    print(f"t = {t/const.e:.2f}eV von Graphenemodeling")
+    print(f"Debye Energien für Graphen sind ca. {1800*k_b/const.e*1e3:.2f} - {2300*k_b/const.e*1e3:.2f} meV, also 0.05- 0.07t")
+    print(f"Delta Werte sind im Bereich ca. 1-10 meV")
+    print(f"1t entspricht {conv:.2f}meV")
+    print(f"U ist im Bereich von {U:.2f}t = {U*conv*1e-3:.2f}eV")
