@@ -1,18 +1,18 @@
 \chapter{Modell}\label{sec:modell}
 
-Tight-Binding Hamiltonian mit Hubbard-Anziehung gemäß gängiger Supraleitungstheorie
+Als Modell wird hier der Hubbard-Hamiltonian
 
 \begin{align}
     \oH = -t \sum_{\expval{\mb{R}, \mb{R'}}, \sigma} \ocd{\mb{R}, \sigma} \oc{\mb{R'}, \sigma} - U \sum_{\mb{R}} \sum_\oC \ocd{\mb{R}, \up} \oc{\mb{R},\up} \ocd{\mb{R},\down} \oc{\mb{R}, \down} \, ,
 \end{align}
+mit Next-Neighbour-Hopping mit Hüpfparameter $t$ und effektiver Anziehung $U > 0$ verwendet. Die Summe über die Operatoren $\oC$ soll hier bedeuten, dass über $\oA$ und $\oB$-Type Operatoren summiert wird, und $\expval{\mb{R}, \mb{R'}}$ beschreibt, dass hier nur über nächste Nachbarn summiert wird.\\
 
-wobei 
-% \begin{equation}
-%     f(\vk) = -t \sum_{\vec{\delta}} e^{i\vk\cdot\vec{\delta}} = -t\left(e^{-ik_x a} + 2e^{ik_x \frac{a}{2}} \cos\left(\frac{k_y a \sqrt{3}}{2}\right)\right)
-% \end{equation}
-ist und $U>0$,$t>0$ die Hubbard-Anziehung und Hüpfparameter sind. Die Summe über die Operatoren $\oC$ soll hier bedeuten, dass über $\oA$ und $\oB$-Type Operatoren summiert wird.\\
+Im Bienenwabenitter ist der nächste Nachbar eines $\oA$-type Atoms immer ein $\oB$-type Atom (\red{TODO: referenziere $\delta$ aus Grundlagen}) und andersherum, sodass für den Hüpfterm gilt 
+\begin{equation}
+    \oHNN = -t \sum_{\mb{R}, \vec{\delta}, \sigma} \oad{\mb{R}, \sigma} \ob{\mb{R} + \vec{\delta}, \sigma} + h.c.
+\end{equation}
 
-Um die Tranlsationsinvarianz des Systems auszunutzen, wird der Hubbard-Term hier Fouriertransformiert.
+Um jetzt die Tranlsationsinvarianz des Systems auszunutzen, wird der Hubbard-Term hier Fouriertransformiert.
 
 \section{Fouriertrafo}
 
@@ -24,68 +24,82 @@ angesetzt. \\
 
 Der Hüpfterm wird damit zu 
 \begin{align}
-    \oH_{\text{Hüpf}} &= \sum_{\mb{k}, \sigma} \underbrace{\sum_{\bdelta} -t e^{\im \mb{k}\cdot \bdelta}}_{:= f(\mb{k}) } \oad{\mb{k}, \sigma} \ob{\mb{k}, \sigma} + h.c. = \sum_{\mb{k}, \sigma} f(\mb{k}) \oad{\mb{k}, \sigma} \ob{\mb{k}, \sigma} + h.c.
+    \oHNN &= -t \sum_{\vk,\mb{q}, \sigma} \sum_{\vec{\delta}} \oad{\mb{q}, \sigma}\obk \frac{1}{N}\sum_{\mb{R}} e^{\im \vk \cdot \vec{\delta}} e^{\im \mb{R} \cdot (\vk - \mb{q})} + h.c.\\
+    &= \sum_{\vk, \sigma} \underbrace{\left(-t \sum_{\vec{\delta}} e^{\im \vk \cdot \vec{\delta}} \right)}_{:= f(\vk)} \oakd \obk + h.c. \\
+    &= \sum_{\vk, \sigma} f(\vk) \oakd \obk + h.c.
 \end{align}
+unter Verwendung der Relation $\sum_{\mb{R}} e^{\im \mb{R} \cdot (\vk - \mb{q})} = N \cdot \delta_{\vk, \mb{q}}$ im ersten Schritt.
 
-Damit gilt für den Wechselwirkungsteil des Hamiltonians:
+Der Wechselwirkungsteil des Hamiltonians transformiert sich analog zu 
+% \begin{align}
+%     \mathcal{H}_\text{WW} &= -U \sum_C \sum_{\vec{m}\vec{n}\vec{o}\vec{p}} C_{\vec{m}, \uparrow}^\dagger C_{\vec{n}, \uparrow} C_{\vec{o}, \downarrow}^\dagger C_{\vec{p}, \downarrow} \underbrace{\frac{1}{N^2} \sum_{\vec{R}} e^{i(-\vec{m}-\vec{o} + \vec{n} + \vec{p} )\cdot \vec{R}}}_{= \frac{1}{N} \delta_{\vec{m}+\vec{o}, \vec{n} + \vec{p}}} 
+% \end{align}
 \begin{align}
-    \mathcal{H}_\text{WW} &= -U \sum_C \sum_{\vec{m}\vec{n}\vec{o}\vec{p}} C_{\vec{m}, \uparrow}^\dagger C_{\vec{n}, \uparrow} C_{\vec{o}, \downarrow}^\dagger C_{\vec{p}, \downarrow} \underbrace{\frac{1}{N^2} \sum_{\vec{R}} e^{i(-\vec{m}-\vec{o} + \vec{n} + \vec{p} )\cdot \vec{R}}}_{= \frac{1}{N} \delta_{\vec{m}+\vec{o}, \vec{n} + \vec{p}}} 
+    \oHWW &= -U \sum_\oC \sum_{\mb{m}, \mb{n}, \mb{o}, \mb{p}} \ocd{\mb{m}, \up} \oc{\mb{n}, \up} \ocd{\mb{o}, \down} \oc{\mb{p}, \down} \underbrace{\left(\frac{1}{N^2} \sum_{\mb{R}} e^{\im \mb{R} \cdot \left(\mb{n}+\mb{p} - \mb{m} - \mb{o}\right)}\right)}_{= \frac{1}{N} \delta_{\mb{n} + \mb{p}, \mb{m} +\mb{o}}}\\
+    &= -\frac{U}{N} \sum_\oC \sum_{\mb{k}, \mb{k'}, \mb{q}} \ocd{\mb{k}+\mb{q}, \up} \oc{\vk, \up} \ocd{\mb{k'} - \mb{q}, \down} \oc{\mb{k'}, \down} \\
+    &= - \frac{U}{N} \sum_\oC  \sum_{\mb{k}, \mb{k'}, \mb{q}}\ocdu \ocdd \ocndd \ocndu~\label{eq:Hww} \, ,
 \end{align}
-wobei durch $\delta_{\vec{m}+\vec{o}, \vec{n} + \vec{p}}$ die Impulserhaltung gewährleistet ist. Durch diese Bedingung kann die Anzahl der freien Parameter auf drei reduziert werden, sodass der Hamiltonian dann in die Form
-\begin{align}
-    \mathcal{H}_\text{WW} &= -U \sum_C \sum_{\vec{k}\, \vec{k'} \vec{q} } C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k}, \uparrow} C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow}
-\end{align}
-gebracht werden kann. Um nun die Form eines typischen BCS-Hamiltonians zu erhlangen, können noch die Vertauschungsrelationen $\{C_{\vec{k}, \uparrow} ,C_{\vec{k'} - \vec{q}, \downarrow}^\dagger\} = 0$ und $\{C_{\vec{k}, \uparrow}, C_{\vec{k'}, \downarrow}\} = 0$ ausgenutzt werden. Damit ergibt sich
-\begin{align}
-    \mathcal{H}_\text{WW} &= -U \sum_C \sum_{\vec{k}\, \vec{k'} \vec{q} } C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow} \, . \label{eq:H_ww}
-\end{align}
+wobei vom ersten zum zweiten Schritt aufgrund der geforderten Impulserhaltung $\delta_{\mb{n} + \mb{p}, \mb{m} +\mb{o}}$ die Anzahl der Freiheitsgrade reduziert wurde. Es werden die neuen Impulse $\mb{k}, \mb{k'}, \mb{q}$ unter der Voraussetzung zu $\mb{m} = \mb{k + q}, \, \mb{o} = \mb{k' - q}, \, \mb{n = k}$ und $\mb{p = k'}$ gewählt. Vom zweiten auf den dritten Schritt wurden die Antikommutatorrelationen $\anticommute{\oc{\alpha}}{\ocd{\beta}} = \delta_{\alpha, \beta}$ und $\anticommute{\oc{\alpha}}{\oc{\beta}} = 0$ angewandt, sodass der Wechselwirkungsteil die für die BCS-Theorie typische Form einer Wechselwirkung zwischen Cooper-Paaren, hier mit Impulsübertrag $\mb{q}$ zwischen den Impulsen $\mb{k}$ und $\mb{k'}$ erhält. \\
+
+Für die BCS-Theorie ist es hier üblich $\mb{k} = -\mb{k'}$ zu wählen, da für den Großteil der Wechselwirkungen der Gesamtimpuls $\mb{K} = \vk + \mb{k'} = 0$ verschwindet (\red{Wenn ich das erwähnen will, kann ich diese Grafik für diese Überlegung aus dem Czycholl einfügen?}). Da dies für die Mean-Field-Näherung im nächsten Schritt allerdings keinen Unterschied macht, wird dieser Schritt hier einfacherhaltshalber nicht getan.
 
 \section{Mean-Field-Näherung}
 
-Um sich nicht mit quartischen Termen herumschlagen zu müssen, wird auf die Operatoren in Gleichung~\eqref{eq:H_ww} Wicks Theorem angewandt:
+Da die quartischen Terme in der Wechselwirkung nicht allgemein gelöst werden können, wird hier zur Vereinfachung eine Mean-Fiel-Näherung des Wechselwirkungsteils aus Gleichung~\eqref{eq:Hww} angewandt. Die Operatoren können gemäß Wicks Theorems zu 
 \begin{align*}
-    % C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow} &= \, :C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow}: \\
-    % &+ \, : C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k'} - \vec{q}, \downarrow}^\dagger : \expval{C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow}} + \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'} - \vec{q}, \downarrow}^\dagger } : C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow} :\\
-    % &- : C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'}, \downarrow}  :  \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow} } -  \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger  C_{\vec{k'}, \downarrow} } :C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow}:  \\
-    % &+ \, : C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k}, \uparrow} : \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} } + \expval{  C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{\vec{k}, \uparrow}  } : C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow}  : \\
-    % &+ \text{const.}
-    \ocdu \ocdd \ocndd \ocndu &\approx \, :\ocdu \ocdd : \underbrace{\expval{\ocndd \ocndu}}_{\propto \delta_{\mb{k}, -\mb{k'}}} + \expval{\ocdu \ocdd} : \ocndd \ocndu :\\
-    &- : \ocdu \ocndd : \underbrace{\expval{\ocdd \ocndu}}_{= 0} - \expval{\ocdu \ocndd} : \ocdd \ocndu : \\
-    &+ : \ocdu \ocndu : \underbrace{\expval{\ocdd \ocndd}}_{\propto \delta_{\mb{q}, \mb{0}}} + \expval{\ocdu \ocndu} : \ocdd \ocndd : + \text{const.}
+    \ocdu \ocdd \ocndd \ocndu &= \,: \ocdu \ocdd \ocndd \ocndu :\\
+    &+ \, :\ocdu \ocdd : \underbrace{\expval{\ocndd \ocndu}}_{\propto \delta_{\mb{k}, -\mb{k'}}} + \expval{\ocdu \ocdd} : \ocndd \ocndu :\\
+    &- \, : \ocdu \ocndd : \underbrace{\expval{\ocdd \ocndu}}_{= 0} - \expval{\ocdu \ocndd} : \ocdd \ocndu : \\
+    &+ \, : \ocdu \ocndu : \underbrace{\expval{\ocdd \ocndd}}_{\propto \delta_{\mb{q}, \mb{0}}} + \expval{\ocdu \ocndu} : \ocdd \ocndd : \\
+    &+ \, \text{const.}
 \end{align*}
+expandiert werden.
+Für die Mean-Field-Näherung wird nun der quartische Therm nicht beachtet, genauso die Konstante, da diese nicht in die Dynamik des Systems mit reinspielt und nur das allgemeine Energieniveau verschiebt. \\
+In diesem Fall fällt außerdem der Fock Term aus der Expansion heraus, da hier antiparallele Spins miteinander koppeln, was die Drehimpulserhaltung verletzt. Es bleiben also nur Terme mit anomalen Erwartungswerten und Hartree Terme übrig, die im folgenden genauer untersucht werden. \\
 
-Für die Mean-Field Näherung wird der quartische Term und auch die konstanten Terme vernachlässigt, da diese für die Dynamik des Systems keinen Unterschied machen. \\
-Für die anderen drei Terme können die Erwartungswerte genauer untersucht werden.
-
-Der erste Term enthält den anomalen Erwartungswert 
-\begin{equation}
-    \expval{C_{\vec{k'}, \downarrow} C_{\vec{k}, \uparrow}} = \delta_{\vec{k},\vec{-k'}}
-\end{equation}
-aufgrund der Impulserhaltung. Allgemein ist der Erwartungswert in der normalleitenden Phase null, in der supraleitenden Phase allerdings endlich. Er ist also später für den Ordnungsparameter der supraleitenden Phase relevant.
-
-Für den negativen, zweiten Term gilt
-\begin{equation}
-    \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow} } = 0
-\end{equation}
-aufgrund der Drehimpulserhaltung.
-
-Der dritte Term hat Hartree-mäßige Erwartungswerte 
-\begin{equation}
-    \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} } = \delta_{\vec{q},0} \; .
-\end{equation}
-
-Damit kann der Wechselwirkungsterm also zwei verschiedenen Terme umgeschrieben werden. Der erste Term ergibt sich zu
+Der anomale Erwartungswert $\expval{\ocndd \ocndu}$ ist in der normaleitenden Phase des Festkörpers immer null, da dieser Paarerzeugung und Vernichtung voraussetzt und damit die Teilchenzahlerhaltung verletzt. Gemäß der BCS-Theorie, sind diese Prozesse allerdings der Ursprung dafür, dass sich eine supraleitende Phase ausbilden kann, der Erwartungswert darf hier also nicht pauschal auf null gesetzt werden. Aufgrund der Impulserhaltung muss hier also gelten $\mb{k} = - \mb{k'}$. \\
+Damit ergibt sich in der supraleitende Phase der wechselwirkende Teilhamiltonian
 \begin{align}
-    \mathcal{H}_1 = -U \sum_C \sum_{\vec{k},\vec{q}} C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{-(\vec{k}+\vec{q}),\downarrow} \expval{ C_{-\vec{k}, \downarrow} C_{\vec{k}, \uparrow} } + \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{-(\vec{k}+\vec{q}),\downarrow} }  C_{-\vec{k}, \downarrow} C_{\vec{k}, \uparrow} \; .
+    \oH_1 = -\frac{U}{N} \sum_\oC \sum_{\mb{k}, \mb{q}} \left[\ocdu \ocd{-(\mb{k + q}), \down} \expval{\oc{-\vk, \down} \ocndu} + \expval{\ocdu \ocd{-(\mb{k + q}), \down}} \oc{-\vk, \down} \ocndu\right] \, ,
 \end{align}
-
-Dieser kann mit der Reparametrisierung $\vec{k'} = \vec{k} + \vec{q}$ weiter zu 
+der nun mit der Indextrafo $\mb{k'} = \mb{k + q}$ und gleichzeitigem Indextausch $\mb{k'} \leftrightarrow \mb{k} $ im ersten Teil der Summe zu 
 \begin{align}
-    \mathcal{H}_1 = - \sum_C \Delta_C 
+    \oH_1 = - \sum_\oC \Delta_\oC \sum_{\vk} \ocdup \ocddown + h.c.
 \end{align}
-
-und 
+mit den Ordnungsparametern
 \begin{align}
-    jdlajld dlajdlajdl
+    \Delta_\oC &= \frac{U}{N} \sum_{\mb{k'}} \expval{\oc{-\vk, \down} \ocndu} \, 
 \end{align}
-aufgeteit werden.
+wird.\\
+\vspace{1cm}
+% \begin{equation}
+%     \expval{\ocndd \ocndu}
+% \end{equation}
+% aufgrund der Impulserhaltung. Allgemein ist der Erwartungswert in der normalleitenden Phase null, in der supraleitenden Phase allerdings endlich. Er ist also später für den Ordnungsparameter der supraleitenden Phase relevant.
+
+% Für den negativen, zweiten Term gilt
+% \begin{equation}
+%     \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow} } = 0
+% \end{equation}
+% aufgrund der Drehimpulserhaltung.
+
+% Der dritte Term hat Hartree-mäßige Erwartungswerte 
+% \begin{equation}
+%     \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} } = \delta_{\vec{q},0} \; .
+% \end{equation}
+
+% Damit kann der Wechselwirkungsterm also zwei verschiedenen Terme umgeschrieben werden. Der erste Term ergibt sich zu
+% \begin{align}
+%     \mathcal{H}_1 = -U \sum_C \sum_{\vec{k},\vec{q}} C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{-(\vec{k}+\vec{q}),\downarrow} \expval{ C_{-\vec{k}, \downarrow} C_{\vec{k}, \uparrow} } + \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{-(\vec{k}+\vec{q}),\downarrow} }  C_{-\vec{k}, \downarrow} C_{\vec{k}, \uparrow} \; .
+% \end{align}
+
+% Dieser kann mit der Reparametrisierung $\vec{k'} = \vec{k} + \vec{q}$ weiter zu 
+% \begin{align}
+%     \mathcal{H}_1 = - \sum_C \Delta_C 
+% \end{align}
+
+% und 
+% \begin{align}
+%     jdlajld dlajdlajdl
+% \end{align}
+% aufgeteit werden.
