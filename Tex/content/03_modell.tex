@@ -57,7 +57,8 @@ expandiert werden.
 Für die Mean-Field-Näherung wird nun der quartische Therm nicht beachtet, genauso die Konstante, da diese nicht in die Dynamik des Systems mit reinspielt und nur das allgemeine Energieniveau verschiebt. \\
 In diesem Fall fällt außerdem der Fock Term aus der Expansion heraus, da hier antiparallele Spins miteinander koppeln, was die Drehimpulserhaltung verletzt. Es bleiben also nur Terme mit anomalen Erwartungswerten und Hartree Terme übrig, die im folgenden genauer untersucht werden. \\
 
-Der anomale Erwartungswert $\expval{\ocndd \ocndu}$ ist in der normaleitenden Phase des Festkörpers immer null, da dieser Paarerzeugung und Vernichtung voraussetzt und damit die Teilchenzahlerhaltung verletzt. Gemäß der BCS-Theorie, sind diese Prozesse allerdings der Ursprung dafür, dass sich eine supraleitende Phase ausbilden kann, der Erwartungswert darf hier also nicht pauschal auf null gesetzt werden. Aufgrund der Impulserhaltung muss hier also gelten $\mb{k} = - \mb{k'}$. \\
+\textbf{Anomaler Erwartungswert} \\
+Der anomale Erwartungswert $\expval{\ocndd \ocndu}$ ist in der normaleitenden Phase des Festkörpers immer null, da dieser Paar-erzeugung und -vernichtung voraussetzt und damit die Teilchenzahlerhaltung verletzt. Gemäß der BCS-Theorie, sind diese Prozesse allerdings der Ursprung dafür, dass sich eine supraleitende Phase ausbilden kann, der Erwartungswert darf hier also nicht pauschal auf null gesetzt werden. Aufgrund der Impulserhaltung muss hier also gelten $\mb{k} = - \mb{k'}$. \\
 Damit ergibt sich in der supraleitende Phase der wechselwirkende Teilhamiltonian
 \begin{align}
     \oH_1 = -\frac{U}{N} \sum_\oC \sum_{\mb{k}, \mb{q}} \left[\ocdu \ocd{-(\mb{k + q}), \down} \expval{\oc{-\vk, \down} \ocndu} + \expval{\ocdu \ocd{-(\mb{k + q}), \down}} \oc{-\vk, \down} \ocndu\right] \, ,
@@ -68,38 +69,40 @@ der nun mit der Indextrafo $\mb{k'} = \mb{k + q}$ und gleichzeitigem Indextausch
 \end{align}
 mit den Ordnungsparametern
 \begin{align}
-    \Delta_\oC &= \frac{U}{N} \sum_{\mb{k'}} \expval{\oc{-\vk, \down} \ocndu} \, 
+    \Delta_\oC &= \frac{U}{N} \sum_{\mb{k'}} \expval{\oc{-\vk, \down} \ocndu} & & \text{und} & \Delta_{\oC}^{*} &= \frac{U}{N} \sum_{\mb{k'}} \expval{\ocdup, \ocddown} \,
 \end{align}
-wird.\\
-\vspace{1cm}
-% \begin{equation}
-%     \expval{\ocndd \ocndu}
-% \end{equation}
-% aufgrund der Impulserhaltung. Allgemein ist der Erwartungswert in der normalleitenden Phase null, in der supraleitenden Phase allerdings endlich. Er ist also später für den Ordnungsparameter der supraleitenden Phase relevant.
+wird. Da das Bienenwabengitter symmetrisch unter Vertauschung von Gitter $A$ und $B$ ist, kann hier angenommen werden, dass für die Ordnungsparameter $\Delta_{\oA} = \Delta_{\oB} \equiv \Delta$ gilt. Zusätzlich kann die komplexe Phase vom Delta aufgrund der $U(1)$-Eichsymmetrie des Systems auf null gesetzt werden~\cite{condensed matter field theory}, also ist es hier kein Problem $\Delta$ der Einfachheit halber reel zu wählen. Damit kann dann $\oH_1$ weiter zu 
+\begin{align}
+    \oH_1 &= - \Delta \left(\sum_\oC \sum_\vk \ocdup \ocddown + h.c.\right)
+\end{align}
+vereinfacht werden. \\
 
-% Für den negativen, zweiten Term gilt
-% \begin{equation}
-%     \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger  C_{\vec{k}, \uparrow} } = 0
-% \end{equation}
-% aufgrund der Drehimpulserhaltung.
+\textbf{Hartree-Term}\\
+Die Erwartungswerte $\expval{\ocdu \ocndu}$ und $\expval{\ocdu \ocndu}$ der beiden Hartree-Terme verletzen für $\mb{q} \neq 0$ die Impulserhaltung der Systems. Darum muss hier also nur der Beitrag der Hartree-Terme für $\mb{q} = 0$ betrachtet werden, denn für endliche Werte von $\mb{q}$ sind die Erwartungswerte null. \\
+Damit ergibt sich der Hartree-Hamiltonian 
+\begin{align}
+    \oH_2 &= -\frac{U}{N} \sum_\oC \left[ \sum_{\vk, \mb{k'}} \left(\ocdup \ocup \expval{\ocd{\mb{k'}, \down} \oc{\mb{k'}, \down}} + \ocd{\vk, \down} \oc{\vk, \down} \expval{ \ocd{\mb{k', \up}} \oc{\mb{k'}, \up} } \right) \right] \, ,
+\end{align}
+welcher unter der Einführung der spin- und gitter-abhängigen Besetzungszahl 
+\begin{equation}
+    n_{\oC, \sigma} = \frac{1}{N} \sum_{\vk'} \expval{\ockd, \ock}
+\end{equation}
+und dem damit assozierten chemischen Potential 
+\begin{equation}
+    \mu_{\oC, \sigma} = U n_{\oC, \overbar{\sigma}}
+\end{equation}
+schließlich in die Form 
+\begin{align}
+    \oH_2 &= - \sum_\oC \sum_{\vk, \sigma} \mu_{\oC, \sigma} \on{\oC, \vk, \sigma} 
+\end{align}
+gebracht werden kann. \\
+Die bei der Definition des chemischen Potentials verwendete Schreibweise $\overbar{\sigma}$ soll hier zum Ausdruck bringen, dass die Besetzungszahl des gegensätzlichen Spins das chemische Potential erzeugt. Diese Feinheit ist allerdings nur bei Betrachtung spinabhängiger Störungen, wie externen Magnetfeldern relevant und ist für das hier betrachtete Modell unerheblich.
+\\ 
 
-% Der dritte Term hat Hartree-mäßige Erwartungswerte 
-% \begin{equation}
-%     \expval{ C_{\vec{k'} - \vec{q}, \downarrow}^\dagger C_{\vec{k'}, \downarrow} } = \delta_{\vec{q},0} \; .
-% \end{equation}
+Insgesamt ergibt sich damit der effektive Ein-Teilchen-Hamiltonoperator 
+\begin{align}
+    \oHeff &= \oHNN + \oH_1 + \oH_2 \\
+    &= \sum_{\vk, \sigma} \left[\left(f(\vk) \oakd \obk +h.c.\right) - \mu_{\oA, \sigma} \oakd \oak - \mu_{\oB, \sigma} \obkd \obk\right] \\
+    &- \Delta \sum_{\vk} \left(\oadup \oaddown + \obdup \obddown + h.c. \right) \, . \notag
+\end{align}
 
-% Damit kann der Wechselwirkungsterm also zwei verschiedenen Terme umgeschrieben werden. Der erste Term ergibt sich zu
-% \begin{align}
-%     \mathcal{H}_1 = -U \sum_C \sum_{\vec{k},\vec{q}} C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{-(\vec{k}+\vec{q}),\downarrow} \expval{ C_{-\vec{k}, \downarrow} C_{\vec{k}, \uparrow} } + \expval{ C_{\vec{k}+\vec{q}, \uparrow}^\dagger C_{-(\vec{k}+\vec{q}),\downarrow} }  C_{-\vec{k}, \downarrow} C_{\vec{k}, \uparrow} \; .
-% \end{align}
-
-% Dieser kann mit der Reparametrisierung $\vec{k'} = \vec{k} + \vec{q}$ weiter zu 
-% \begin{align}
-%     \mathcal{H}_1 = - \sum_C \Delta_C 
-% \end{align}
-
-% und 
-% \begin{align}
-%     jdlajld dlajdlajdl
-% \end{align}
-% aufgeteit werden.
