@@ -40,7 +40,9 @@ def solve_with_y(U, A, E_D, start):
                 ys.append(logcosh - 1/(A*u*e))
             y_FP = ys[-1]
         # Newton Algo
-            return newton(y_func, args=(u, A, e), x0=y_FP, maxiter=200, tol=1e-8)
+            y_newton = newton(y_func, args=(u, A, e), x0=y_FP, maxiter=200, tol=1e-8)
+            # print(y_FP, y_newton, np.abs(y_FP- y_newton)/y_FP * 100 )
+            return y_newton
         except Exception:
             return np.nan
 
@@ -50,7 +52,7 @@ def solve_with_y(U, A, E_D, start):
     T_C = np.where(np.isfinite(y), E_D_b * t / (2 * const.k * y), np.nan)
     return T_C
 
-from graphene import mev2t
+from graphene import mev2t, t2mev
 A = 0.184080 #(1/t^2)
 U = np.linspace(75,110,100)
 E_D = np.linspace(mev2t(150),mev2t(200),100)
@@ -67,16 +69,18 @@ U_C = 1/(A*E_D)
 
 conv = _c.g0 / const.e * 1e3
 
-levels = np.linspace(np.nanmin(T_C), np.nanmax(T_C), 100)
+levels = np.linspace(np.nanmin(T_C), np.nanmax(T_C), 10)
 T_C_masked = np.ma.masked_invalid(T_C)
 fig, ax = plt.subplots()
-colorbar = ax.contourf(U*conv*1e-3, E_D*conv, T_C_masked, levels=levels, cmap='inferno')
+colorbar = ax.contourf(U*conv*1e-3, E_D*conv, T_C_masked, levels=levels, cmap='viridis')
 # colorbar = ax.contourf(U_arr*conv*1e-3, E_D_arr*conv, C)
 ax.plot(U_C*conv*1e-3, E_D*conv, label=r"$U_C$")
 fig.colorbar(colorbar, ax=ax, label=r"$T_C \, / \, K$")
 ax.set(
     xlabel=r"$U \, / \, eV$",
     ylabel=r"$E_D \, / \, meV$"
+    # xlim=[np.min(t2mev(U)*1e-3), np.max(t2mev(U)*1e-3)],
+    # ylim=[np.min(t2mev(E_D)), np.max(t2mev(E_D))]
 )
 ax.legend()
 ax.set_facecolor(color='black')

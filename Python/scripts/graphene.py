@@ -104,7 +104,7 @@ def get_delta(start, T,U, E_debye, num_max, num_points ):
     except Exception:
         return deltas[-1]
 
-def t2meV(x):
+def t2mev(x):
     conv = t /const.e * 1e3 #from [t] -> [meV]
     return x * conv
 
