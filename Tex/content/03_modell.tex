@@ -9,43 +9,40 @@ mit Next-Neighbour-Hopping mit Hüpfparameter $t$ und effektiver Anziehung $U > 
 
 Im Bienenwabenitter ist der nächste Nachbar eines $\oA$-type Atoms immer ein $\oB$-type Atom (\red{TODO: referenziere $\delta$ aus Grundlagen}) und andersherum, sodass für den Hüpfterm gilt 
 \begin{equation}
-    \oHNN = -t \sum_{\mb{R}, \vec{\delta}, \sigma} \oad{\mb{R}, \sigma} \ob{\mb{R} + \vec{\delta}, \sigma} + h.c.
+    \oHNN = -t \sum_{\mb{R}, \symbf{\delta}, \sigma} \oad{\mb{R}, \sigma} \ob{\mb{R} + \symbf{\delta}, \sigma} + h.c.
 \end{equation}
 
-Um jetzt die Tranlsationsinvarianz des Systems auszunutzen, wird der Hubbard-Term hier Fouriertransformiert.
+Um in den $\vk$-Raum zu transformieren und die Translationsinvarianz des Systems auszunutzen wird im nächsten Schritt eine Fouriertrafo der Operatoren durchgeführt.
 
 \section{Fouriertrafo}
 
-Fouriertrafo wird mit 
+Die Fouriertrafo der Operatoren wird mit 
 \begin{align}
     \oc{\mb{R}} = \frac{1}{\sqrt{N}} \sum_{\vk} \oc{\vk} e^{\im \vk \cdot \mb{R}} & & \text{und} & & \ocd{\mb{R}} = \frac{1}{\sqrt{N}} \sum_{\vk} \ocd{\vk} e^{-\im \vk \cdot \mb{R}}
 \end{align}
 angesetzt. \\
 
-Der Hüpfterm wird damit zu 
+Der Nearest-Neighbour-Term wird damit zu 
 \begin{align}
-    \oHNN &= -t \sum_{\vk,\mb{q}, \sigma} \sum_{\vec{\delta}} \oad{\mb{q}, \sigma}\obk \frac{1}{N}\sum_{\mb{R}} e^{\im \vk \cdot \vec{\delta}} e^{\im \mb{R} \cdot (\vk - \mb{q})} + h.c.\\
-    &= \sum_{\vk, \sigma} \underbrace{\left(-t \sum_{\vec{\delta}} e^{\im \vk \cdot \vec{\delta}} \right)}_{:= f(\vk)} \oakd \obk + h.c. \\
+    \oHNN &= -t \sum_{\vk,\mb{q}, \sigma} \sum_{\symbf{\delta}} \oad{\mb{q}, \sigma}\obk \frac{1}{N}\sum_{\mb{R}} e^{\im \vk \cdot \symbf{\delta}} e^{\im \mb{R} \cdot (\vk - \mb{q})} + h.c.\\
+    &= \sum_{\vk, \sigma} \underbrace{\left(-t \sum_{\symbf{\delta}} e^{\im \vk \cdot \symbf{\delta}} \right)}_{:= f(\vk)} \oakd \obk + h.c. \\
     &= \sum_{\vk, \sigma} f(\vk) \oakd \obk + h.c.
 \end{align}
 unter Verwendung der Relation $\sum_{\mb{R}} e^{\im \mb{R} \cdot (\vk - \mb{q})} = N \cdot \delta_{\vk, \mb{q}}$ im ersten Schritt.
 
-Der Wechselwirkungsteil des Hamiltonians transformiert sich analog zu 
-% \begin{align}
-%     \mathcal{H}_\text{WW} &= -U \sum_C \sum_{\vec{m}\vec{n}\vec{o}\vec{p}} C_{\vec{m}, \uparrow}^\dagger C_{\vec{n}, \uparrow} C_{\vec{o}, \downarrow}^\dagger C_{\vec{p}, \downarrow} \underbrace{\frac{1}{N^2} \sum_{\vec{R}} e^{i(-\vec{m}-\vec{o} + \vec{n} + \vec{p} )\cdot \vec{R}}}_{= \frac{1}{N} \delta_{\vec{m}+\vec{o}, \vec{n} + \vec{p}}} 
-% \end{align}
+Analog transformiert sich der Wechselwirkungsteil $\oHWW$ des Hamiltonians zu
 \begin{align}
     \oHWW &= -U \sum_\oC \sum_{\mb{m}, \mb{n}, \mb{o}, \mb{p}} \ocd{\mb{m}, \up} \oc{\mb{n}, \up} \ocd{\mb{o}, \down} \oc{\mb{p}, \down} \underbrace{\left(\frac{1}{N^2} \sum_{\mb{R}} e^{\im \mb{R} \cdot \left(\mb{n}+\mb{p} - \mb{m} - \mb{o}\right)}\right)}_{= \frac{1}{N} \delta_{\mb{n} + \mb{p}, \mb{m} +\mb{o}}}\\
     &= -\frac{U}{N} \sum_\oC \sum_{\mb{k}, \mb{k'}, \mb{q}} \ocd{\mb{k}+\mb{q}, \up} \oc{\vk, \up} \ocd{\mb{k'} - \mb{q}, \down} \oc{\mb{k'}, \down} \\
     &= - \frac{U}{N} \sum_\oC  \sum_{\mb{k}, \mb{k'}, \mb{q}}\ocdu \ocdd \ocndd \ocndu~\label{eq:Hww} \, ,
 \end{align}
-wobei vom ersten zum zweiten Schritt aufgrund der geforderten Impulserhaltung $\delta_{\mb{n} + \mb{p}, \mb{m} +\mb{o}}$ die Anzahl der Freiheitsgrade reduziert wurde. Es werden die neuen Impulse $\mb{k}, \mb{k'}, \mb{q}$ unter der Voraussetzung zu $\mb{m} = \mb{k + q}, \, \mb{o} = \mb{k' - q}, \, \mb{n = k}$ und $\mb{p = k'}$ gewählt. Vom zweiten auf den dritten Schritt wurden die Antikommutatorrelationen $\anticommute{\oc{\alpha}}{\ocd{\beta}} = \delta_{\alpha, \beta}$ und $\anticommute{\oc{\alpha}}{\oc{\beta}} = 0$ angewandt, sodass der Wechselwirkungsteil die für die BCS-Theorie typische Form einer Wechselwirkung zwischen Cooper-Paaren, hier mit Impulsübertrag $\mb{q}$ zwischen den Impulsen $\mb{k}$ und $\mb{k'}$ erhält. \\
+wobei vom ersten zum zweiten Schritt aufgrund der geforderten Impulserhaltung $\delta_{\mb{n} + \mb{p}, \mb{m} +\mb{o}}$ die Anzahl der Freiheitsgrade reduziert wurde. Es werden die neuen Impulse $\mb{k}, \mb{k'}, \mb{q}$ unter der Voraussetzung zu $\mb{m} = \mb{k + q}, \, \mb{o} = \mb{k' - q}, \, \mb{n = k}$ und $\mb{p = k'}$ gewählt. Vom zweiten auf den dritten Schritt werden die Antikommutatorrelationen $\anticommute{\oc{\alpha}}{\ocd{\beta}} = \delta_{\alpha, \beta}$ und $\anticommute{\oc{\alpha}}{\oc{\beta}} = 0$ angewandt, sodass der Wechselwirkungsteil die für die BCS-Theorie typische Form einer Wechselwirkung zwischen Cooper-Paaren, hier mit Impulsübertrag $\mb{q}$ zwischen den Impulsen $\mb{k}$ und $\mb{k'}$ erhält. \\
 
 Für die BCS-Theorie ist es hier üblich $\mb{k} = -\mb{k'}$ zu wählen, da für den Großteil der Wechselwirkungen der Gesamtimpuls $\mb{K} = \vk + \mb{k'} = 0$ verschwindet (\red{Wenn ich das erwähnen will, kann ich diese Grafik für diese Überlegung aus dem Czycholl einfügen?}). Da dies für die Mean-Field-Näherung im nächsten Schritt allerdings keinen Unterschied macht, wird dieser Schritt hier einfacherhaltshalber nicht getan.
 
 \section{Mean-Field-Näherung}
 
-Da die quartischen Terme in der Wechselwirkung nicht allgemein gelöst werden können, wird hier zur Vereinfachung eine Mean-Fiel-Näherung des Wechselwirkungsteils aus Gleichung~\eqref{eq:Hww} angewandt. Die Operatoren können gemäß Wicks Theorems zu 
+Da die quartischen Terme in der Wechselwirkung nicht allgemein gelöst werden können, wird hier zur Vereinfachung eine Mean-Fiel-Näherung des Wechselwirkungsteils aus Gleichung~\eqref{eq:Hww} angewandt. Die Operatoren können gemäß des Wick Theorems zu 
 \begin{align*}
     \ocdu \ocdd \ocndd \ocndu &= \,: \ocdu \ocdd \ocndd \ocndu :\\
     &+ \, :\ocdu \ocdd : \underbrace{\expval{\ocndd \ocndu}}_{\propto \delta_{\mb{k}, -\mb{k'}}} + \expval{\ocdu \ocdd} : \ocndd \ocndu :\\
@@ -69,9 +66,9 @@ der nun mit der Indextrafo $\mb{k'} = \mb{k + q}$ und gleichzeitigem Indextausch
 \end{align}
 mit den Ordnungsparametern
 \begin{align}
-    \Delta_\oC &= \frac{U}{N} \sum_{\mb{k'}} \expval{\oc{-\vk, \down} \ocndu} & & \text{und} & \Delta_{\oC}^{*} &= \frac{U}{N} \sum_{\mb{k'}} \expval{\ocdup, \ocddown} \,
+    \Delta_\oC &= \frac{U}{N} \sum_{\mb{k'}} \expval{\oc{-\vk, \down} \ocndu} & & \text{und} & \Delta_{\oC}^{*} &= \frac{U}{N} \sum_{\mb{k'}} \expval{\ocdup, \ocddown}\label{eq:def_delta} \,
 \end{align}
-wird. Da das Bienenwabengitter symmetrisch unter Vertauschung von Gitter $A$ und $B$ ist, kann hier angenommen werden, dass für die Ordnungsparameter $\Delta_{\oA} = \Delta_{\oB} \equiv \Delta$ gilt. Zusätzlich kann die komplexe Phase vom Delta aufgrund der $U(1)$-Eichsymmetrie des Systems auf null gesetzt werden~\cite{condensed matter field theory}, also ist es hier kein Problem $\Delta$ der Einfachheit halber reel zu wählen. Damit kann dann $\oH_1$ weiter zu 
+wird. Da das Bienenwabengitter symmetrisch unter Vertauschung von Gitter $A$ und $B$ ist, kann hier angenommen werden, dass für die Ordnungsparameter $\Delta_{\oA} = \Delta_{\oB} \equiv \Delta$ gilt. Zusätzlich kann die komplexe Phase vom Delta aufgrund der $U(1)$-Eichsymmetrie des Systems auf null gesetzt werden~\cite[272]{altland_condensed_2012}, also ist es hier kein Problem $\Delta$ der Einfachheit halber reel zu wählen. Damit kann dann $\oH_1$ weiter zu 
 \begin{align}
     \oH_1 &= - \Delta \left(\sum_\oC \sum_\vk \ocdup \ocddown + h.c.\right)
 \end{align}
@@ -103,6 +100,108 @@ Insgesamt ergibt sich damit der effektive Ein-Teilchen-Hamiltonoperator
 \begin{align}
     \oHeff &= \oHNN + \oH_1 + \oH_2 \\
     &= \sum_{\vk, \sigma} \left[\left(f(\vk) \oakd \obk +h.c.\right) - \mu_{\oA, \sigma} \oakd \oak - \mu_{\oB, \sigma} \obkd \obk\right] \\
-    &- \Delta \sum_{\vk} \left(\oadup \oaddown + \obdup \obddown + h.c. \right) \, . \notag
+    &- \Delta \sum_{\vk} \left(\oadup \oaddown + \obdup \obddown + h.c. \right) \notag \, .
 \end{align}
+
+Um nun Aussagen über den Ordnungsparameter $\Delta$ zu erhalten muss die Selbstkonsistenz der Definition von $\Delta$ ausgenutzt werden. Dazu ist es notwendig den Hamiltonian in eine diagonale Form zu bringen, um die gängige Fermi-Dirac-Statistik bei der Bestimmung der anomalen Erwartungswerte verwenden zu können. \\
+
+Um das Problem der Diagonalisierung auf die Diagonalisierung einer Matrix zu reduzieren wird hier nun die Methode der Nambu-Spinoren genutzt. Mithilfe der Wahl von 
+\begin{align}
+    \opsi &= \begin{pmatrix} \oadup \\  \obdup \\ \oadown \\ \obdown \end{pmatrix} & & \text{und} & & \opsid = \begin{pmatrix} \oaup \, , & \obup\, , & \oaddown\, , & \obddown\end{pmatrix} \, ,
+\end{align}
+kann der effektive Hamiltonian in die Matrix-Form 
+\begin{align}
+    \oHeff &= \sum_\vk \opsid \dul{h} \, \opsi + \text{const.} & & \text{mit} & & \dul{h} = \begin{pmatrix} \mu_{\oA, \up} & -f(\vk) & \Delta & 0 \\ -f^*(\vk) & \mu_{\oB, \up} & 0 & \Delta \\ \Delta & 0 & -\mu_{\oA, \down} & f^*(-\vk) \\ 0 & \Delta & f(-\vk) & -\mu_{\oB, \down} \end{pmatrix} \, ,
+\end{align}
+umgeschrieben werden. \\
+Des weiteren kann aufgrund der Symmetrieeigenschaften des Bienenwabengitters die Relation $f(-\vk) = f^*(\vk)$ genutzt werden, sodass die Matrix $\dul{h}$ zu
+\begin{align}
+    \dul{h} = \begin{pmatrix} \mu_{\oA, \up} & -f(\vk) & \Delta & 0 \\ -f^*(\vk) & \mu_{\oB, \up} & 0 & \Delta \\ \Delta & 0 & -\mu_{\oA, \down} & f^*(\vk) \\ 0 & \Delta & f(\vk) & -\mu_{\oB, \down} \end{pmatrix}
+\end{align}
+wird. $\dul{h}$ wird in der Literatur auch als Bogoliubov-de-Genne- (BdG)-Matrix bezeichnet.~\cite{quelle}\\
+In den folgenden Schritten wird nun $\dul{h}$ für verschiedene Spezialfälle diagonalisiert, um Aussagen über die Existenz einer supraleitenden Phase treffen zu können. \\
+% In dieser BCS-Näherung ist der Hamiltonian nun exakt lösbar, es verbleibt also nur noch eine Diagonalisierung durchzuführen um Aussagen über die Dynamik des Systems treffen zu können. Der Schlüssel zur Bestimmung des Gap Parameters $\Delta$ und damit der Vorhersage der Existenz einer supraleitenden Phase wird die Ausnutzung der Selbstkonsistenz der Definition von $\Delta$ sein. \\
+% Diese Selbstkonsistenzgleichung wird nun in den weiteren Schritten für unterschiedliche chemische Potentiale und damit Füllungen der Gitter hergeleitet.
+
+\newpage
+
+\section{Selbstkonsistenz im Fall halber Füllung}
+
+Um erst einmal ohne größeren Aufwand Aussagen zur Charakteristik der Supraleitung im Bienenwabengitter zu machen, beschäftigen wir uns zuerst mit dem möglichst einfachen Spezialfall, nämlich dem Fall halber Füllung. \\
+% In diesem Spezialfall wird die effektive Fermienergie des Systems $E_{F, \eff, \oC} = E_F - \mu_{\oC}$ auf null gesetzt. Wie bereits in \red{ref zu DOS von Bienenwabenitter} gezeigt, sind die Energiezustände um die Energie  $E_\text{symm} = 0$ symmetrisch verteilt, weshalb also bei der Wahl von $E_F = E_\text{symm} = 0$ das Gitter genau zur Hälfte gefüllt ist. \\
+Dazu wird das chemische Potential $\mu_{\oC, \sigma}$ auf null gesetzt, was der Wahl des Fermi-Niveaus $E_F = 0$ entspricht. Da es sich bei der Wahl von $E_F = 0$ um die Symmetrieachse der Energiezustände handelt, ist das Gitter damit genau zur Hälfte gefüllt. \\
+
+Für den Hamiltonian $\oHeff$ ergibt sich damit die vereinfachte Matrix
+\begin{align}
+    \dul{h} = \begin{pmatrix} 0 & -f(\vk) & \Delta & 0 \\ -f^*(\vk) & 0 & 0 & \Delta \\ \Delta & 0 & 0 & f^*(\vk) \\ 0 & \Delta & f(\vk) & 0 \end{pmatrix} \, ,
+\end{align}
+die es zu diagonalisieren gilt. Gesucht ist also eine unitäre Matrix $\dul{U}$, sodass $\dul{h}_\text{diag} = \dul{U}^\dagger \dul{h} \dul{U}$ gilt. Mit der Wahl von
+\begin{align}
+    \dul{U} = \frac{1}{\sqrt{2}}\begin{pmatrix} 
+        1 & 0 & -1 & 0 \\ 
+        -\frac{f}{E_\vk} & \frac{\Delta}{E_\vk} & - \frac{f}{E_\vk} & - \frac{\Delta}{E_\vk} \\
+        \frac{\Delta}{E_\vk} & \frac{f^{*}}{E_\vk}  & \frac{\Delta}{E_\vk} & - \frac{f^{*}}{E_\vk} \\
+        0 & 1 & 0 & 1 \end{pmatrix}
+\end{align}
+ergibt sich die diagonale Form
+\begin{align}
+    \dul{h}_\text{diag} = \dul{U}^\dagger \dul{h} \dul{U} = \begin{pmatrix} E_\vk & 0 & 0 & 0 \\ 0 & E_\vk & 0 & 0 \\ 0 & 0 & -E_\vk & 0 \\ 0 & 0 & 0 & -E_\vk \end{pmatrix} \, ,
+\end{align}
+wobei die Energieeigenwerte $E_\vk$ die aus der BCS-Theorie bekannten Energieniveaus
+\begin{align}
+    E_\vk = \pm \sqrt{\Delta^2 + \abs{f(\vk)}^2}
+\end{align}
+darstellen. $\epsilon_\vk = \pm \abs{f(\vk)}$ sind die Energiebänder des Bienenwabengitters im normalleitenden Grundzustand, für $\Delta = 0$ erhalten wir also die normalen Energiebänder zurück, was auch konsistent mit der Funktion von $\Delta$ als Ordnungsparameter ist. \\
+
+Neben der BdG-Matrix $\dul{h}$ werden ebenfalls die Nambu-Spinoren $\opsi$ und $\opsid$ über 
+\begin{align}
+    \ophi = \dul{U}^\dagger \opsi & & \text{und} & & \ophid = \opsid \dul{U}
+\end{align}
+in die Quasiteilchenbasis transformiert, sodass der Hamiltonian in der Form 
+\begin{align}
+    \oHeff &= \sum_\vk E_\vk \left(\ophioned \ophione + \ophitwod \ophitwo - \ophithreed \ophithree - \ophifourd \ophifour \right)
+\end{align}
+mit den Quasiteilchenoperatoren $\ophione, \ophitwo, \ophithree$ und $\ophifour$ geschrieben werden kann. \\
+Damit hat der Hamiltonian nun die Form eines wechselwirkungsfreien Systems, sodass die Fermi-Dirac-Statistik zur Berechnung der anomalen Erwartungswerte verwendet werden kann. \\
+
+
+Um nun die Selbstkonsistenzgleichung für $\Delta$ zu erhalten, wird die Definition von $\Delta$ in der Quasiteilchenbasis ausgedrückt, denn dort sind die Erwartungswerte der Quasiteilchenoperatoren bekannt. Starten wir also zunächst mit der Definition von $\Delta$ aus~\eqref{eq:def_delta}
+\begin{equation}
+    \Delta = \frac{U}{N} \sum_\vk \expval{\oa{-\vk, \down} \oa{\vk, \up}} = \frac{U}{N} \sum_\vk \expval{\ob{-\vk, \down} \ob{\vk, \up}} \, ,
+\end{equation}
+dann ist erkenntlich, dass nun die Operatoren $\oA$ und $\oB$ in Abhängigkeit von den Quasiteilchenoperatoren $\ophi_i$ ausgedrückt werden müssen. Dazu betrachte die Inverse Trafo 
+\begin{align}
+    \opsi = \dul{U} \ophi = \frac{1}{\sqrt{2}}\begin{pmatrix} 
+        \ophione - \ophithree \\ 
+        -\frac{f}{E_\vk} \ophione + \frac{\Delta}{E_\vk} \ophitwo - \frac{f}{E_\vk} \ophithree - \frac{\Delta}{E_\vk} \ophifour \\
+        \frac{\Delta}{E_\vk} \ophione + \frac{f^{*}}{E_\vk}  \ophitwo + \frac{\Delta}{E_\vk} \ophithree - \frac{f^{*}}{E_\vk}  \ophifour\\
+        \ophitwo + \ophifour \end{pmatrix} = \begin{pmatrix}
+            \oadup \\  \obdup \\ \oadown \\ \obdown
+        \end{pmatrix}\, ,
+\end{align}
+und setze in die Definition von $\Delta$, die inverse Trafo von $\opsi$, als auch von $\opsid$ ein. \\
+Damit ergibt sich für $\Delta_\oA$ und $\Delta_\oB$ die Form
+\begin{align}
+    \Delta = \frac{U}{2N} \sum_\vk \frac{\Delta}{E_\vk} \left(\expval{\ophi_{1/2, \vk} \ophid_{1/2, \vk}} - \expval{\ophi_{3/4, \vk} \ophid_{3/4, \vk}}\right) + \sum_{\substack{i, j \\ i \neq j}} A_{ij} \expval{\ophi_{i, \vk} \ophid_{j, \vk}}\, ,
+\end{align}
+mit 
+\begin{align}
+    \ophi_{1/2, \vk} &= \begin{cases}
+        \ophione & \text{für } \Delta_\oA\\
+        \ophitwo & \text{für } \Delta_\oB
+    \end{cases} & & \text{und} & & & \ophi_{3/4, \vk} &= \begin{cases}
+        \ophithree & \text{für } \Delta_\oA\\
+        \ophifour & \text{für } \Delta_\oB
+    \end{cases} \, .
+\end{align}
+$A_{ij} \in \realnumbers$ sind reelle Koeffizienten, die sich aus der Inversen Trafo ergeben. Für die gemischten Erwartungswerte $\expval{\ophi_{i, \vk} \ophid_{j, \vk}}$ mit $i \neq j$ gilt allerdings $\expval{\ophi_{i, \vk} \ophid_{j, \vk}} = 0$, da diese Operatoren unterschiedliche Quasiteilchen erzeugen und vernichten, diese in der Quasiteilchenbasis aber nicht miteinander wechselwirken. Gleichzeitig gilt im Fall $i = j$
+\begin{equation}
+    \expval{\ophi_{i, \vk} \ophid_{i, \vk}} = 1 - \expval{\ophid_{i, \vk} \ophi_{i, \vk}} = 1 - f(E_{i, \vk}) = 1 - \frac{1}{e^{\beta E_{i, \vk}} + 1} \, ,
+\end{equation}
+mit der Fermifunktion $f(E_{i, \vk})$ und der Inversen Temperatur $\beta = 1/k_B T$. Damit vereinfacht sich die Selbstkonsistenzgleichung für $\Delta$ zu
+\begin{align}
+    \Delta &= \frac{U}{2N} \sum_\vk \frac{\Delta}{E_\vk} \left( f(-E_\vk) - f(E_\vk) \right) \\
+    &= \frac{U}{2N} \sum_\vk \frac{\Delta}{E_\vk} \tanh\left(\frac{\beta E_\vk}{2}\right) \, ,
+\end{align}
+unter Ausnutzung der Relation $f(-E_\vk) = 1 - f(E_\vk)$ und der Definition der hyperbolischen Tangensfunktion $\tanh(x) = 1 - 2/(e^{2x} + 1)$. \\
 
