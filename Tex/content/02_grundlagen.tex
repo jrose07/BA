@@ -4,11 +4,26 @@ In diesem Kapitel werden die theoretischen Grundlagen auf denen die Rechnungen i
 
 \section{Bienenwabengitter}
 
-Das Bienenwabengitter ist eine zweidimensionale Gitterstruktur, deren Elemente in einem sechseckigen Muster angeordnet sind, wie es aus Bienenwaben bekannt ist. Ein bekanntes Beispiel für ein Material mit Bienenwabenstruktur ist das kohlenstoffbasierte \textit{Graphen}~\cite{castro_neto_electronic_2009} bzw. die Monolayer des Graphits, aber  auch in Übergangsmetall-Dichalkogeniden (TMDs) wie \textit{MoS2} oder \textit{MoSe2} kommt diese Struktur vor. \\
-Das Gitter selbst besteht aus zwei ineinander verschobenen hexagonalen Untergittern, die als $A$- und $B$-Untergitter bezeichnet werden, wie in \autoref{fig:gitter} dargestellt.
+Das Bienenwabengitter ist eine zweidimensionale Gitterstruktur, deren Elemente in einem hexagonalen Muster angeordnet sind, wie es aus Bienenwaben bekannt ist. Ein prominentes Beispiel für ein Material mit Bienenwabenstruktur ist das kohlenstoffbasierte \textit{Graphen}~\cite{castro_neto_electronic_2009} bzw. die Monolayer des Graphits, aber  auch in Übergangsmetall-Dichalkogeniden (TMDs) wie \textit{MoS2} oder \textit{MoSe2} kommt diese Struktur vor. \\
+Das Gitter selbst besteht aus zwei ineinander verschobenen dreieckigen Untergittern, die als $A$- und $B$-Untergitter bezeichnet werden, wie in \autoref{fig:gitter} dargestellt.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{images/gitter.png}
     \caption{Skizze des Bienenwabengitters mit den Untergittern $A$ und $B$. Ebenfalls zu sehen sind die primitiven Gittervektoren $\mb{a}_1$ und $\mb{a}_2$, sowie die nearest-neighbor Vektoren $\symbf{\delta}_1$, $\symbf{\delta}_2$ und $\symbf{\delta}_3$~\cite{castro_neto_electronic_2009}.}
     \label{fig:gitter}
 \end{figure}
+
+Das Gitter kann also nur mit einer zweiatomigen Basis, bestehend aus den Atomen $A$ und $B$ beschrieben werden. \\
+Dabei wird jedes Atom von drei Atomen des anderen Gitters umgeben, deren genaue Position durch die Nearest-Neighbour-Vektoren 
+\begin{align}
+    \vd{1} &= \frac{a}{2} \begin{pmatrix}1 \\ \sqrt{3}\end{pmatrix} & \vd{2} &= \frac{a}{2} \begin{pmatrix}1 \\ -\sqrt{3}\end{pmatrix} & \vd{3} &= a \begin{pmatrix}-1 \\ 0\end{pmatrix}
+    \label{eq:nn-vektoren}
+\end{align}
+beschrieben wird, wobei $a$ der Gitterabstand ist. 
+
+
+\red{\textbf{IDEEN: Noch etwas zur Brillouin-Zone schreiben bzw. primtive Vektoren und reziproke. Ist noch allgemein zu Bienenwabengitter, aber sowas wie DOS ist schon graphen-spezifisch, sowie das Modell eigentlich..}}
+
+% \section{Tight-Binding-Modell}
+
+\section{BCS-Theorie}

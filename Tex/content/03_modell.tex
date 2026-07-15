@@ -42,16 +42,18 @@ Für die BCS-Theorie ist es hier üblich $\mb{k} = -\mb{k'}$ zu wählen, da für
 
 \section{Mean-Field-Näherung}
 
-Da die quartischen Terme in der Wechselwirkung nicht allgemein gelöst werden können, wird hier zur Vereinfachung eine Mean-Fiel-Näherung des Wechselwirkungsteils aus Gleichung~\eqref{eq:Hww} angewandt. Die Operatoren können gemäß des Wick Theorems zu 
+% Da die quartischen Terme in der Wechselwirkung nicht allgemein gelöst werden können, wird hier zur Vereinfachung eine Mean-Fiel-Näherung des Wechselwirkungsteils aus Gleichung~\eqref{eq:Hww} angewandt. Die Operatoren können gemäß des Wick Theorems zu 
+Da das Hubbard-Modell selbst im einfachsten 1-Band-Fall nicht für Dimension $d>1$ exakt gelöst werden kann (vgl.~\cite[17]{blumer_quanten-monte-carlo-untersuchungen_nodate}), muss an dieser Stelle also eine Näherung zur Vereinfachung des Wechselwirkungsteils aus Gleichung~\eqref{eq:Hww} angewandt werden. Üblicherweise wird hier eine Mean-Field-Näherung durchgeführt, welche für supraleitende Phasenübergänge im Vergleich zu anderen Phasenübergängen gut die experimentell gemessenen Abhängigkeiten der Ordnungsparameter von der Temperatur reproduziert~\cite[234]{czycholl_theoretische_Bd2}.\\
+Zuerst wird dazu der quadrilineare Term aus Gleichung~\eqref{eq:Hww} mithilfe des Wick Theorems in normalgeordnete Terme und Erwartungswerte zerlegt. Es gilt
 \begin{align*}
     \ocdu \ocdd \ocndd \ocndu &= \,: \ocdu \ocdd \ocndd \ocndu :\\
     &+ \, :\ocdu \ocdd : \underbrace{\expval{\ocndd \ocndu}}_{\propto \delta_{\mb{k}, -\mb{k'}}} + \expval{\ocdu \ocdd} : \ocndd \ocndu :\\
     &- \, : \ocdu \ocndd : \underbrace{\expval{\ocdd \ocndu}}_{= 0} - \expval{\ocdu \ocndd} : \ocdd \ocndu : \\
     &+ \, : \ocdu \ocndu : \underbrace{\expval{\ocdd \ocndd}}_{\propto \delta_{\mb{q}, \mb{0}}} + \expval{\ocdu \ocndu} : \ocdd \ocndd : \\
-    &+ \, \text{const.}
+    &+ \, \text{const.} \, ,
 \end{align*}
-expandiert werden.
-Für die Mean-Field-Näherung wird nun der quartische Therm nicht beachtet, genauso die Konstante, da diese nicht in die Dynamik des Systems mit reinspielt und nur das allgemeine Energieniveau verschiebt. \\
+wobei alle Terme hier schon normalgeordnet sind. Die eigentliche Mean-Field Näherung ist es hier nun, den quadrilinearen Term der Entwicklung zu vernachlässigen, sodass nur Hartree- und Fock-mäßige Ein-Teilchen-Wechselwirkungen mit einem gemittelten Feld übrig bleiben. Zusätzlich als besondere Eigenschaft der BCS-Theorie bleibt noch ein anomaler Erwartungswert übrig. Die Konstanten werden hierbei ebenfalls misachtet, die diese nur das allgemeine Energieniveau des Systems verschieben und die Dynamiken des Systems nicht beeinflussen. \\
+
 In diesem Fall fällt außerdem der Fock Term aus der Expansion heraus, da hier antiparallele Spins miteinander koppeln, was die Drehimpulserhaltung verletzt. Es bleiben also nur Terme mit anomalen Erwartungswerten und Hartree Terme übrig, die im folgenden genauer untersucht werden. \\
 
 \textbf{Anomaler Erwartungswert} \\
