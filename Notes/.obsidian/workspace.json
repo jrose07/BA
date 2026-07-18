@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Strukturierung der Arbeit.md",
+                "file": "Notizen.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Strukturierung der Arbeit"
+              "title": "Notizen"
             }
           }
         ]
@@ -185,6 +185,9 @@
   },
   "active": "3712851c3e748d66",
   "lastOpenFiles": [
+    "diagonalize_2.jpg",
+    "diagonalize_1.jpg",
+    "Notizen.md",
     "Strukturierung der Arbeit.md"
   ]
 }

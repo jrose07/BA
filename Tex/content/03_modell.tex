@@ -113,12 +113,12 @@ Um das Problem der Diagonalisierung auf die Diagonalisierung einer Matrix zu red
 \end{align}
 kann der effektive Hamiltonian in die Matrix-Form 
 \begin{align}
-    \oHeff &= \sum_\vk \opsid \dul{h} \, \opsi + \text{const.} & & \text{mit} & & \dul{h} = \begin{pmatrix} \mu_{\oA, \up} & -f(\vk) & \Delta & 0 \\ -f^*(\vk) & \mu_{\oB, \up} & 0 & \Delta \\ \Delta & 0 & -\mu_{\oA, \down} & f^*(-\vk) \\ 0 & \Delta & f(-\vk) & -\mu_{\oB, \down} \end{pmatrix} \, ,
+    \oHeff &= \sum_\vk \opsid \dul{h} \, \opsi + \text{const.} & & \text{mit} & & \dul{h} = \begin{pmatrix} \mu_{\oA, \up} & -f^*(\vk) & \Delta & 0 \\ -f(\vk) & \mu_{\oB, \up} & 0 & \Delta \\ \Delta & 0 & -\mu_{\oA, \down} & f(-\vk) \\ 0 & \Delta & f^*(-\vk) & -\mu_{\oB, \down} \end{pmatrix} \, ,
 \end{align}
 umgeschrieben werden. \\
 Des weiteren kann aufgrund der Symmetrieeigenschaften des Bienenwabengitters die Relation $f(-\vk) = f^*(\vk)$ genutzt werden, sodass die Matrix $\dul{h}$ zu
 \begin{align}
-    \dul{h} = \begin{pmatrix} \mu_{\oA, \up} & -f(\vk) & \Delta & 0 \\ -f^*(\vk) & \mu_{\oB, \up} & 0 & \Delta \\ \Delta & 0 & -\mu_{\oA, \down} & f^*(\vk) \\ 0 & \Delta & f(\vk) & -\mu_{\oB, \down} \end{pmatrix}
+    \dul{h} = \begin{pmatrix} \mu_{\oA, \up} & -f^*(\vk) & \Delta & 0 \\ -f(\vk) & \mu_{\oB, \up} & 0 & \Delta \\ \Delta & 0 & -\mu_{\oA, \down} & f^*(\vk) \\ 0 & \Delta & f(\vk) & -\mu_{\oB, \down} \end{pmatrix}
 \end{align}
 wird. $\dul{h}$ wird in der Literatur auch als Bogoliubov-de-Genne- (BdG)-Matrix bezeichnet.~\cite{quelle}\\
 In den folgenden Schritten wird nun $\dul{h}$ für verschiedene Spezialfälle diagonalisiert, um Aussagen über die Existenz einer supraleitenden Phase treffen zu können. \\
@@ -135,7 +135,7 @@ Dazu wird das chemische Potential $\mu_{\oC, \sigma}$ auf null gesetzt, was der 
 
 Für den Hamiltonian $\oHeff$ ergibt sich damit die vereinfachte Matrix
 \begin{align}
-    \dul{h} = \begin{pmatrix} 0 & -f(\vk) & \Delta & 0 \\ -f^*(\vk) & 0 & 0 & \Delta \\ \Delta & 0 & 0 & f^*(\vk) \\ 0 & \Delta & f(\vk) & 0 \end{pmatrix} \, ,
+    \dul{h} = \begin{pmatrix} 0 & -f^*(\vk) & \Delta & 0 \\ -f(\vk) & 0 & 0 & \Delta \\ \Delta & 0 & 0 & f^*(\vk) \\ 0 & \Delta & f(\vk) & 0 \end{pmatrix} \, ,
 \end{align}
 die es zu diagonalisieren gilt. Gesucht ist also eine unitäre Matrix $\dul{U}$, sodass $\dul{h}_\text{diag} = \dul{U}^\dagger \dul{h} \dul{U}$ gilt. Mit der Wahl von
 \begin{align}
