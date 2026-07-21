@@ -4,9 +4,10 @@ from graphene_mu import *
 import scipy.constants as const
 
 
-T = np.linspace(0, 50, 1000)  #K
-U = mev2t(150e3)
+T = np.linspace(0, 400, 1000)  #K
+U = mev2t(200e3)
 E_D = mev2t(200)
+# mu = np.linspace(0,0.2,5)
 mu = np.linspace(0,0.2,10)
 # mu = 1
 fig, ax = plt.subplots()
@@ -48,4 +49,4 @@ if 'legend_items' in locals() and len(legend_items) > 0:
 else:
     ax.legend(loc='upper left', bbox_to_anchor=(1, 1))
 fig.tight_layout()
-fig.savefig(f"../plots/U_{t2mev(U)*1e-3:.0f}ev_Debye_{E_D*100:.0f}mt.pdf")
+fig.savefig(f"../plots/U_{t2mev(U)*1e-3:.0f}ev_Debye_{E_D*100:.0f}mev.pdf")

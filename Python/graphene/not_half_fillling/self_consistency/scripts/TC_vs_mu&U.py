@@ -24,12 +24,24 @@ def get_T_C(U, mu, E_D, T_array, start):
                 delta = np.nan
             deltas.append(delta)
         deltas = np.asarray(deltas)
+        delta_0 = deltas[-1]
+        tol = delta_0 / 100
+        T_C_theo = 2*t2mev(delta_0)*1e-3*const.e/(const.k*3.52)
+        # print(T_C_theo)
         abs_deltas = np.abs(deltas)
-        min_abs_delta = np.nanmin(abs_deltas)
-        mask = np.isclose(abs_deltas, min_abs_delta, atol=1e-10)
-        if not np.any(mask):
-            T_C = np.nan
-        T_C = np.min(T_array[mask])
+        # handle all-NaN or empty cases robustly
+        if abs_deltas.size == 0 or np.all(np.isnan(abs_deltas)):
+            return np.nan
+        try:
+            min_abs_delta = np.nanmin(abs_deltas)
+        except (ValueError, FloatingPointError):
+            return np.nan
+        mask = np.isclose(abs_deltas, min_abs_delta, rtol=1e-12)
+        T_candidates = T_array[mask]
+        if T_candidates.size == 0:
+            return np.nan
+        T_C = np.min(T_candidates)
+        print(T_C_theo, T_C)
         return T_C
     return np.vectorize(T_C_scalar, otypes=[float])(U_b, mu_b)
 
@@ -38,11 +50,11 @@ def get_T_C(U, mu, E_D, T_array, start):
 
 #Params
 E_D = mev2t(200)
-U = np.linspace(0,mev2t(300e3),100)
+U = np.linspace(0,mev2t(200e3),100)
 mu = np.linspace(0,0.1,100)
-T = np.linspace(0,1500,100)
+T = np.linspace(0,500,100)
 
-version = 13
+version = 18
 
 #Rechnung und plots
 t1= time.perf_counter()

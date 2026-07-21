@@ -4,6 +4,8 @@ import pandas as pd
 from scipy import constants as const
 from graphene_mu import *
 from concurrent.futures import ProcessPoolExecutor
+import scipy.integrate as integrate
+
 
 """In diesem Skript ist die Idee herauszufinden, wie die nicht-analytische (denke ich) Abhägigkeit der DOS von mu sein wird.
 Hierbei ist diesmal E_D eine Konstante und zwar die Größtmöglkiche (es geht darum was maximal in Graphen möglich ist -> E_D = 0.07t)"""
