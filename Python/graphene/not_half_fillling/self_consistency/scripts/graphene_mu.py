@@ -30,6 +30,7 @@ def func_DOS(E):
     """E:arraylike with unit E = epsilon/t with [epsilon] = J (real energy). 
     return DOS of honeycomb-lattice in units of 1/t for mu=0.
     """
+    E = np.asarray(E)
     return np.abs(E)*rho_triangle(3-E**2)
     
 def newton_func(delta, U, T, E_D, mu, num_points):
@@ -42,11 +43,11 @@ def newton_func(delta, U, T, E_D, mu, num_points):
     returns list of delta for each iteration in units of t
     """
     x = np.linspace(-E_D, E_D, num_points)
-    DOS = func_DOS(x + mu)
+    DOS = func_DOS(x)
     mask = np.logical_and(DOS < np.inf, x != 0)
     x = x[mask]
     DOS = DOS[mask]
-    E_k = np.sqrt(delta**2 + x**2)
+    E_k = np.sqrt(delta**2 + (x-mu)**2)
     integrand_base = DOS * delta / E_k
     if T == 0:
         integral = integrate.simpson(integrand_base, x=x)
@@ -57,6 +58,26 @@ def newton_func(delta, U, T, E_D, mu, num_points):
         integral = integrate.simpson(integrand_base * tanh_val, x=x, axis=-1)
     return U / 2 * integral - delta
 
+def newton_func2(delta, U, T, E, DOS, mu):
+    """start: Starting Value of Delta in units of t
+    T: Temperature in Kelvin
+    U: Coupling Constant in Units of t
+    mu: chemical Potential in Units of t
+    iterations: maximum number of iterations
+    E_debye: Debye-Energy in units of t
+    returns list of delta for each iteration in units of t
+    """
+    E_k = np.sqrt(delta**2 + (E-mu)**2)
+    integrand_base = DOS * delta / E_k
+    if T == 0:
+        integral = integrate.simpson(integrand_base, x=E)
+    else:
+        with np.errstate(divide='ignore', invalid='ignore'):
+            arg = E_k / (2 * k_b * T / t)
+            tanh_val = np.tanh(arg)
+        integral = integrate.simpson(integrand_base * tanh_val, x=E, axis=-1)
+    return U / 2 * integral - delta
+
 def integral(delta, U, T, E_D, mu, num_points):
     """Get the integral of the DOS-Formula for a delta and mu!=0
     E: arraylike
@@ -65,11 +86,11 @@ def integral(delta, U, T, E_D, mu, num_points):
     returns integral of DOS and Self_consistency
     """
     x = np.linspace(-E_D, E_D, num_points)
-    DOS = func_DOS(x + mu)
+    DOS = func_DOS(x)
     mask = np.logical_and(DOS < np.inf, x != 0)
     x = x[mask]
     DOS = DOS[mask]
-    E_k = np.sqrt(delta**2 + x**2)
+    E_k = np.sqrt(delta**2 + (x-mu)**2)
     integrand_base = DOS * delta / E_k
     if T == 0:
         integral = integrate.simpson(integrand_base, x=x)
@@ -87,8 +108,8 @@ def get_next_delta(delta, T, U, mu, E):
     U, T: scalar
     returns delta_n+1 of fipoint algorithm
     """
-    E_k = np.sqrt(E**2 + delta**2)
-    DOS = func_DOS(E + mu)
+    E_k = np.sqrt((E-mu)**2 + delta**2)
+    DOS = func_DOS(E)
     if T==0:
         integral = integrate.simpson(DOS*delta/E_k, x=E) 
     else:
@@ -106,7 +127,7 @@ def fixpunkt_algo(start, T, U, E_D, mu, iterations, num_points):
     returns list of delta for each iteration in units of t
     """
     x = np.linspace(-E_D, E_D, num_points)
-    DOS = func_DOS(x + mu) #in units of 1/t
+    DOS = func_DOS(x) #in units of 1/t
     #Bei x = 1 ist DOS unendlich -> Filtere Punkte heraus
     mask = np.logical_and(DOS < np.inf, x != 0)
     x = x[mask]
@@ -132,6 +153,32 @@ def get_delta(start, T, U, E_D, iterations, num_points, mu=0):
     #Newton Verfahren
     try:
         delta = newton(newton_func, args=(U,T,E_D, mu, num_points), x0=delta, maxiter=200)
+        return delta
+    except Exception:
+        return deltas[-1]
+
+def get_delta_2(E, DOS, mu, start, T, U, iterations):
+    """start: Starting Value of Delta in units of t
+    T: Temperature in Kelvin
+    U: Coupling Constant in Units of t
+    mu: chemical Potential in Units of t
+    iterations: maximum number of iterations
+    num_pints: number of points in E_linspace, integration
+    E_debye: Debye-Energy in units of t
+    returns list of delta for each iteration in units of t
+    """
+    deltas = np.array([start])
+    for i in range(iterations):
+        E_k = np.sqrt((E-mu)**2 + deltas[i]**2)
+        if T==0:
+            integral = integrate.simpson(DOS*deltas[i]/E_k, x=E) 
+        else:
+            integral = integrate.simpson(DOS*deltas[i]/E_k * np.tanh(E_k/(2*k_b*T/t)), x=E)
+        delta_next=U/2 * integral
+        deltas = np.append(deltas, delta_next)
+    delta = deltas[-1]
+    try:
+        delta = newton(newton_func2, args=(U,T, E, DOS,mu), x0=delta, maxiter=200)
         return delta
     except Exception:
         return deltas[-1]

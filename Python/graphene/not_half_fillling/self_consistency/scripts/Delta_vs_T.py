@@ -4,10 +4,10 @@ from graphene_mu import *
 import scipy.constants as const
 
 
-T = np.linspace(5000, 30000, 100)  #K
-U = mev2t(155.07*1e3)
+T = np.linspace(0, 50, 1000)  #K
+U = mev2t(150e3)
 E_D = mev2t(200)
-mu = np.linspace(1,1.01,10)
+mu = np.linspace(0,0.2,10)
 # mu = 1
 fig, ax = plt.subplots()
 for m in mu:
