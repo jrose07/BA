@@ -41,7 +41,7 @@ def get_T_C(U, mu, E_D, T_array, start):
         if T_candidates.size == 0:
             return np.nan
         T_C = np.min(T_candidates)
-        print(T_C_theo, T_C)
+        # print(T_C_theo, T_C)
         return T_C
     return np.vectorize(T_C_scalar, otypes=[float])(U_b, mu_b)
 
@@ -50,11 +50,11 @@ def get_T_C(U, mu, E_D, T_array, start):
 
 #Params
 E_D = mev2t(200)
-U = np.linspace(0,mev2t(200e3),100)
+U = np.linspace(0,mev2t(500e3),100)
 mu = np.linspace(0,0.1,100)
-T = np.linspace(0,500,100)
+T = np.linspace(0,1500,100)
 
-version = 18
+version = 19
 
 #Rechnung und plots
 t1= time.perf_counter()

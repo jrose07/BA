@@ -7,7 +7,7 @@ import pandas as pd
 A = 0.18
 E_D = mev2t(200)
 
-csv_path = Path(r"TC_vs_mu&U_18.csv")
+csv_path = Path(r"TC_vs_mu&U_19.csv")
 data = pd.read_csv(csv_path, header=None)
 U = pd.to_numeric(data.iloc[0, 1:], errors="coerce").to_numpy() #eV
 mu = pd.to_numeric(data.iloc[1:, 0], errors="coerce").to_numpy()
@@ -42,7 +42,7 @@ colorbar = ax.contourf(U, t2mev(mu)*1e-3, T_C_masked, levels=levels, cmap='infer
 """Plot U_C"""
 # Compute U_C for each mu safely and vectorized
 mu_arr = np.asarray(mu)
-U_C = np.full(mu_arr.shape, np.nan, dtype=float)
+U_C = np.full(mu_arr.shape, 0, dtype=float)
 
 # valid where mu is nonzero and more than E_D (avoid divide-by-zero / log issues)
 valid = (mu_arr != 0) & (mu_arr > E_D)
@@ -52,7 +52,7 @@ if np.any(valid):
     with np.errstate(divide='ignore', invalid='ignore'):
         # arg = m / ((E_D - m) * (E_D + m) ** 2)
         arg = m**2 /(m**2 - E_D**2)
-        Uvals = 2.0 / A / (m * np.log(arg))
+        Uvals = 2 / (A *m * np.log(arg))
     # keep only finite results
     Uvals[~np.isfinite(Uvals)] = np.nan
     U_C[valid] = Uvals
