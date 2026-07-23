@@ -1,11 +1,11 @@
 \chapter{Theoretische Grundlagen}\label{sec:grundlagen}
 
-In diesem Kapitel werden die theoretischen Grundlagen auf denen die Rechnungen in dieser Arbeit aufbauen dargelegt. Wichtig sind hierbei vorallem Vorüberlegungen zur Geometrie und elektronischer Eigenschaften des Bienenwabengitters, sowie die wichtigsten Punkte der konventiellen Theorie zu Supraleitung, der BCS-Theorie. \\
+In diesem Kapitel werden die theoretischen Grundlagen auf denen die Rechnungen in dieser Arbeit aufbauen dargelegt. Wichtig sind hierbei vorallem Vorüberlegungen zur Geometrie und elektronischen Eigenschaften des Bienenwabengitters, sowie die wichtigsten Punkte der konventiellen Theorie zu Supraleitung, der BCS-Theorie. \\
 
 \section{Bienenwabengitter}
 
-Das Bienenwabengitter ist eine zweidimensionale Gitterstruktur, deren Elemente in einem hexagonalen Muster angeordnet sind, wie es aus Bienenwaben bekannt ist. Ein prominentes Beispiel für ein Material mit Bienenwabenstruktur ist das kohlenstoffbasierte \textit{Graphen}~\cite{castro_neto_electronic_2009} bzw. die Monolayer des Graphits, aber  auch in Übergangsmetall-Dichalkogeniden (TMDs) wie \textit{MoS2} oder \textit{MoSe2} kommt diese Struktur vor. \\
-Das Gitter selbst besteht aus zwei ineinander verschobenen dreieckigen Untergittern, die als $A$- und $B$-Untergitter bezeichnet werden, wie in \autoref{fig:gitter} dargestellt.
+Das Bienenwabengitter ist eine zweidimensionale Gitterstruktur, deren Elemente in einem hexagonalen Muster angeordnet sind. Ein prominentes Beispiel für ein Material mit Bienenwabenstruktur ist das kohlenstoffbasierte \textit{Graphen}~\cite{castro_neto_electronic_2009} bzw. die Monolayer des Graphits, aber  auch in Übergangsmetall-Dichalkogeniden (TMDs) wie \textit{MoS2} oder \textit{MoSe2} kommt diese Struktur vor. \\
+Das Gitter selbst muss im Gegensatz zu einem einfachen hexagonalen Gitter durch gegeneinander verschobene Untergitter $A$ und $B$ beschrieben werden, die jeweils eine hexagonale Struktur aufweisen, siehe Abbildung \autoref{fig:gitter}.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{images/gitter.png}
@@ -13,17 +13,27 @@ Das Gitter selbst besteht aus zwei ineinander verschobenen dreieckigen Untergitt
     \label{fig:gitter}
 \end{figure}
 
-Das Gitter kann also nur mit einer zweiatomigen Basis, bestehend aus den Atomen $A$ und $B$ beschrieben werden. \\
-Dabei wird jedes Atom von drei Atomen des anderen Gitters umgeben, deren genaue Position durch die Nearest-Neighbour-Vektoren 
+Die Untergitter $A$ und $B$ besitzen dieselben primitiven Gittervektoren, sind jedoch um einen der drei Nearest-Neighbour-Vektoren $\vdelta_1$, $\vdelta_2$ und $\vdelta_3$ 
 \begin{align}
     \vd{1} &= \frac{a}{2} \begin{pmatrix}1 \\ \sqrt{3}\end{pmatrix} & \vd{2} &= \frac{a}{2} \begin{pmatrix}1 \\ -\sqrt{3}\end{pmatrix} & \vd{3} &= a \begin{pmatrix}-1 \\ 0\end{pmatrix}
     \label{eq:nn-vektoren}
 \end{align}
-beschrieben wird, wobei $a$ der Gitterabstand ist. 
+zueinander verschoben, wobei $a$ den Gitterabstand bezeichnet. Da die Nearest-Neighbour-Vektoren nicht als ganzzahlige lineare Kombination der primitiven Gittervektoren $\mb{a_1}$ und $\mb{a_2}$
+\begin{align}
+    \mb{a_1} &= \frac{a}{2} \begin{pmatrix}3 \\ \sqrt{3}\end{pmatrix} & \mb{a_2} &= \frac{a}{2} \begin{pmatrix}-3 \\ \sqrt{3}\end{pmatrix}
+\end{align}
+dargestellt werden können, muss das Bienenwabengitter also mit einer zweiatomigen Basis aus den Untergittern $A$ und $B$ beschrieben werden.
 
 
-\red{\textbf{IDEEN: Noch etwas zur Brillouin-Zone schreiben bzw. primtive Vektoren und reziproke. Ist noch allgemein zu Bienenwabengitter, aber sowas wie DOS ist schon graphen-spezifisch, sowie das Modell eigentlich..}}
-
-% \section{Tight-Binding-Modell}
+% \red{\textbf{IDEEN: Noch etwas zur Brillouin-Zone schreiben bzw. primtive Vektoren und reziproke. Ist noch allgemein zu Bienenwabengitter, aber sowas wie DOS ist schon graphen-spezifisch, sowie das Modell eigentlich..}}
 
 \section{BCS-Theorie}
+
+Eine der gängigsten Theorien zur Beschreibung von Supraleitung ist die von Bardeen, Cooper und Schrieffer (1957) entwickelte BCS-Theorie, die für die meisten konventionellen niedrigtemperatur-Supraleiter eine gute mikroskopische Beschreibung liefert~\cite{bardeen_theory_1957,tinkham_introduction_2004}. Das folgenden Kapitel soll hierbei eine Einführung in die Grundkonzepte, die Limitierung, sowie der hier verwendeten Darstellung der BCS-Theorie geben. 
+
+\subsection{Cooper-Paare}
+
+Der Schlüsselmechanismus bei der Ausbildung einer Supraleitenden Phase ist eine attraktive Wechselwirkung zweier Elektronen, die die Ausbildung eines neuen gebundenen Zustands, nämlich der sogenannten Cooper-Paare ermöglicht. Die Ursache der attraktiven Wechselwirkung mag aufgrund der Coulomb-Abstoßung zwischen den Elektronen zunächst kontraintuitiv erscheinen, kann in der BCS-Theorie aber durch die Kopplung der Elektronen mit den Phononen des Kristallgitters erklärt werden (für genauere Ausführung siehe~\cite{czycholl_theoretische_2016}). \\
+Diese Wechselwirkung ist allerdings nur in einem kleinen Energiefenster um die Fermi-Energie wirksam, da die Phononen 
+
+% Cooper-Paare sind aufgrund des gekoppelten Spins der beiden Elektronen Bosonen, das heißt Sie spüren keinen Pauli-Druck und somit kann mehr als ein Cooper-Paar den gleichen Quantenzustand besetzen. 
