@@ -10,6 +10,10 @@ import scipy.constants as const
 def get_E_DOS(E_D, num_points):
     E, DOS = np.genfromtxt("./DOS_3.csv", delimiter=",",skip_header=1, unpack=True)
     E = E + 1 # Reparametrisiere E dass Fermikante bei E = 0 liegt.
+    #DOS soll bei 0 liegen
+    DOS = DOS - DOS.min()
+    DOS = DOS - np.mean(DOS[np.isclose(E,0,atol=1e-2)])
+    
     #Make unique with means
     E_unique = np.unique(E)
     DOS = np.array([DOS[E==e].mean() for e in E_unique])
@@ -156,6 +160,7 @@ if __name__ == "__main__":
     """Test functions"""
     Theta_D = 262.3 #K Debye-Temperatur. 
     E_D = Theta_D * const.k / const.e #in eV
+    # E_D = 5
     
     E, DOS = get_E_DOS(E_D, 1000)
     plt.plot(E, DOS)

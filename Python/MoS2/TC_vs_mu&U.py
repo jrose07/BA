@@ -49,11 +49,11 @@ def get_T_C(U, mu, E_D, T_array, start):
 # E_D = 200e-3 #200meV
 Theta_D = 262.3 #K Debye-Temperatur. 
 E_D = Theta_D * const.k / const.e #in eV
-U = np.linspace(0,100,100) #eV
-mu = np.linspace(-2.5,2.5,100) #eV
-T = np.linspace(0,12000,100) #K
+U = np.linspace(0,100,10) #eV
+mu = np.linspace(0,0.04,10) #eV
+T = np.linspace(0,150,100) #K
 
-version = 5
+version = 6
 
 #Rechnung und plots
 t1= time.perf_counter()
