@@ -21,7 +21,7 @@ ax.set(
     xlabel=r"$T\, / \,K$",
     ylabel=r"$U_{\text{\min}} \, / \,t$"
 )
-fig.savefig("plots/U_min.pdf")
+fig.savefig("../plots/U_min.pdf")
 
 
 print(f"Hieran kann man erkennen, dass für erst bei einer kritischen Temperatur von ca. 1.5 K ein endliches U für eine Lösung von Delta verantwortlich ist, die anfängt ungleich null zu sein. Allerdings ist hierfür ein U von 80t also ca. 160eV nötig, was nicht realistisch ist.")

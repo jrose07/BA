@@ -12,14 +12,14 @@ import time
 
 def get_T_C(U, mu, E_D, T_array, start):
     U = np.asarray(U)
-    mu = np.asarray(mu)
+    E_D = np.asarray(E_D)
     T_array = np.asarray(T_array)
-    U_b, mu_b = np.meshgrid(U, mu, indexing='xy')
-    def T_C_scalar(u, m):
+    U_b, E_D_b = np.meshgrid(U, E_D, indexing='xy')
+    def T_C_scalar(u, e):
         deltas = []
         for T in T_array:
             try:
-                delta = get_delta(start=start, T = T, U = u, E_D = E_D, mu = m, iterations=5, num_points=1009)
+                delta = get_delta(start=start, T = T, U = u, E_D = e, mu = mu, iterations=5, num_points=1009)
             except (RuntimeError, OverflowError, ValueError):
                 delta = np.nan
             deltas.append(delta)
@@ -43,45 +43,46 @@ def get_T_C(U, mu, E_D, T_array, start):
         T_C = np.min(T_candidates)
         # print(T_C_theo, T_C)
         return T_C
-    return np.vectorize(T_C_scalar, otypes=[float])(U_b, mu_b)
+    return np.vectorize(T_C_scalar, otypes=[float])(U_b, E_D_b)
 
 
 """Ab hier richtige Rechnung"""
 
 #Params
-E_D = mev2t(200)
-U = np.linspace(0,mev2t(200e3),100)
-mu = np.linspace(-0.1,0.1,100)
-T = np.linspace(0,400,100)
+mu = 0.05 #t
+U = np.linspace(0,mev2t(
+    210e3),100)
+E_D = np.linspace(mev2t(150),mev2t(200),100)
+T = np.linspace(0,700,100)
 
-version = 20
+version = 3
 
 #Rechnung und plots
 t1= time.perf_counter()
 
 """Do Multiprocessing with AI hallucinations"""
 
-def worker_func(mu_chunk):
-    # keep full U for each worker, split only along mu to ensure consistent second axis
-    return get_T_C(U, mu_chunk, E_D, T, 1)
+def worker_func(E_D_chunk):
+    # keep full U for each worker, split only along E_D to reconstruct the full grid
+    return get_T_C(U, mu, E_D_chunk, T, 1)
 
 def main():
     # choose number of processes not exceeding number of mu chunks
     nproc = 8
-    mu_chunks = np.array_split(mu, nproc)
-    nproc = min(nproc, len(mu_chunks))
+    E_D_chunks = np.array_split(E_D, nproc)
+    nproc = min(nproc, len(E_D_chunks))
     with ProcessPoolExecutor(max_workers=nproc) as pool:
-        results = pool.map(worker_func, mu_chunks)
+        results = pool.map(worker_func, E_D_chunks)
 
     # concatenate along the mu axis (axis=0) to reconstruct full grid
     T_C = np.concatenate(list(results), axis=0)
 
     print(np.any(np.isnan(T_C)))
 
-    T_C_df = pd.DataFrame(T_C, index=mu, columns=t2mev(U)*1e-3)
-    T_C_df.index.name = r"$\mu / t$"
+    T_C_df = pd.DataFrame(T_C, index=t2mev(E_D), columns=t2mev(U)*1e-3)
+    T_C_df.index.name = r"$E_D / meV$"
     T_C_df.columns.name = r"$U / eV$"
-    T_C_df.to_csv(f"./data/TC_vs_mu&U_{version}.csv")
+    T_C_df.to_csv(f"./data/TC_vs_E_D&U_{version}.csv")
 
 
 
@@ -99,14 +100,15 @@ def main():
     # U_b, mu_b = np.meshgrid(U, mu, indexing='xy')
     # ax.plot(t2mev(U_b)*1e-3, mu_b, "b.")
 
-    colorbar = ax.contourf(t2mev(U)*1e-3, mu, T_C, levels=levels, cmap='Spectral')
+    colorbar = ax.contourf(t2mev(U)*1e-3, t2mev(E_D), T_C, levels=levels, cmap='Spectral')
     fig.colorbar(colorbar, ax=ax, label=r"$T_C \, / \, K$")
     ax.set(
         xlabel=r"$U \, / \, eV$",
-        ylabel=r"$\mu \, / \, t$"
+        ylabel=r"$E_D \, / \, meV$",
+        title=rf"$\mu = {mu:.2f} t$"
     )
     ax.set_facecolor(color='black')
-    fig.savefig(f"../plots/TC_vs_mu&U_{version}.pdf")
+    fig.savefig(f"../plots/TC_vs_E_D&U_{version}.pdf")
 
 if __name__ == "__main__":
     main()

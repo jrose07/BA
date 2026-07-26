@@ -1,5 +1,5 @@
-from graphenemodeling.graphene import _constants as _c
-from graphene import get_delta, func_DOS
+# from graphenemodeling.graphene import _constants as _c
+from graphene import *
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.constants import k as k_B
@@ -9,8 +9,9 @@ from uncertainties import ufloat, std_dev as stds, nominal_value as noms
 
 t = 2.7 # eV
 # t = _c.g0 / const.e
+print(t2mev(1)*1e-3)
 conv = t /const.e * 1e3 
-E_D = 0.2 / t # t
+E_D = mev2t(200) # t
 E = np.linspace(-E_D, E_D, 10001) # in t
 
 DOS = func_DOS(E)
@@ -40,14 +41,23 @@ print(f"Damit gilt DOS(epsilon) = abs( {m:.6f} 1/t^2 * epsilon + {b:.2f} 1/t")
 
 
 #Dasselbe nochmal mit eV:
+E_D = mev2t(200) # t
+E = np.linspace(-E_D, E_D, 10001) # in t
 
-m = m/(conv**2)
-b = b/(conv)
+DOS = func_DOS(E) # in 1/t
+
+#Umwandeln in eV Größen
+E = t2mev(E)  #eV
+DOS = DOS / (t2mev(1)) #1/eV
+
+result = linregress(E[E>0], DOS[E>0])
+m = ufloat(result.slope, result.stderr)
+b = ufloat(result.intercept, result.intercept_stderr)
 
 fig, ax = plt.subplots()
-ax.plot(E*conv, DOS/conv, label=f"E_D = {E_D*conv:.2f}meV")
-ax.plot(E[E>0]*conv, noms(m)*E[E>0]*conv+noms(b), label=f"Lineare Regression")
-ax.plot(E[E<0]*conv, -noms(m)*E[E<0]*conv + noms(b), label=f"Lineare Regression negativ")
+ax.plot(E, DOS, label=f"E_D = {t2mev(E_D):.2f}meV")
+ax.plot(E[E>0], noms(m)*E[E>0]+noms(b), label=f"Lineare Regression")
+ax.plot(E[E<0], -noms(m)*E[E<0] + noms(b), label=f"Lineare Regression negativ")
 ax.legend()
 ax.grid()
 ax.set(
@@ -59,4 +69,4 @@ fig.savefig("../plots/DOS_meV.pdf")
 
 
 print(f"Wie man sieht ist das DOS in dem Debye-Frequenz-Bereich komplett linear.\n")
-print(f"Damit gilt DOS(epsilon) = abs( {m} 1/(meV**2) * epsilon + {b} 1/meV")
+print(f"Damit gilt DOS(epsilon) = abs( {m} 1/(meV**2) * epsilon + {b} 1/meV bzw. A = m = {m/(1e-3)**2} 1/eV**2")

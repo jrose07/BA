@@ -110,10 +110,12 @@ def get_next_delta(delta, T, U, mu, E):
     """
     E_k = np.sqrt((E-mu)**2 + delta**2)
     DOS = func_DOS(E)
+    with np.errstate(divide='ignore', invalid='ignore'):
+        integrand = np.divide(DOS * delta, E_k, out=np.zeros_like(E_k, dtype=float), where=E_k != 0)
     if T==0:
-        integral = integrate.simpson(DOS*delta/E_k, x=E) 
+        integral = integrate.simpson(integrand, x=E) 
     else:
-        integral = integrate.simpson(DOS*delta/E_k * np.tanh(E_k/(2*k_b*T/t)), x=E)
+        integral = integrate.simpson(integrand * np.tanh(E_k/(2*k_b*T/t)), x=E)
     return U/2 * integral #Sollte in units of t sein, weil [DOS] = 1/t, [delta] = t, [E_k] = t und durch integration noch mal t -> [integral] = 1, [U] = t
 
 
