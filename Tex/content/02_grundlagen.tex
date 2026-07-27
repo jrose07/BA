@@ -1,6 +1,9 @@
 \chapter{Theoretische Grundlagen}\label{sec:grundlagen}
 
-In diesem Kapitel werden die theoretischen Grundlagen auf denen die Rechnungen in dieser Arbeit aufbauen dargelegt. Wichtig sind hierbei vorallem Vorüberlegungen zur Geometrie und elektronischen Eigenschaften des Bienenwabengitters, sowie die wichtigsten Punkte der konventiellen Theorie zu Supraleitung, der BCS-Theorie. \\
+In diesem Kapitel werden die für diese Arbeit besonders wichtigen theoretischen Grundlagen dargelegt. Diese sind vorallem Vorüberlegungen zur Geometrie und elektronischen Eigenschaften des Bienenwabengitters, sowie die wichtigsten Punkte der konventiellen Theorie zu Supraleitung, der BCS-Theorie.
+
+% \subsection{2. Quantisierung}
+% Ein ebenfalls wichtiger Punkt ist der 
 
 \section{Bienenwabengitter}
 
@@ -29,11 +32,75 @@ dargestellt werden können, muss das Bienenwabengitter also mit einer zweiatomig
 
 \section{BCS-Theorie}
 
-Eine der gängigsten Theorien zur Beschreibung von Supraleitung ist die von Bardeen, Cooper und Schrieffer (1957) entwickelte BCS-Theorie, die für die meisten konventionellen niedrigtemperatur-Supraleiter eine gute mikroskopische Beschreibung liefert~\cite{bardeen_theory_1957,tinkham_introduction_2004}. Das folgenden Kapitel soll hierbei eine Einführung in die Grundkonzepte, die Limitierung, sowie der hier verwendeten Darstellung der BCS-Theorie geben. 
+Eine der gängigsten Theorien zur Beschreibung von Supraleitung ist die von Bardeen, Cooper und Schrieffer (1957) entwickelte BCS-Theorie, die für die meisten konventionellen niedrigtemperatur-Supraleiter eine gute mikroskopische Beschreibung liefert~\cite{bardeen_theory_1957,tinkham_introduction_2004}. 
+Das folgenden Kapitel soll hierbei eine Einführung in die Grundkonzepte, die Limitierung, sowie der hier verwendeten Darstellung der BCS-Theorie geben. 
 
 \subsection{Cooper-Paare}
 
-Der Schlüsselmechanismus bei der Ausbildung einer Supraleitenden Phase ist eine attraktive Wechselwirkung zweier Elektronen, die die Ausbildung eines neuen gebundenen Zustands, nämlich der sogenannten Cooper-Paare ermöglicht. Die Ursache der attraktiven Wechselwirkung mag aufgrund der Coulomb-Abstoßung zwischen den Elektronen zunächst kontraintuitiv erscheinen, kann in der BCS-Theorie aber durch die Kopplung der Elektronen mit den Phononen des Kristallgitters erklärt werden (für genauere Ausführung siehe~\cite{czycholl_theoretische_2016}). \\
-Diese Wechselwirkung ist allerdings nur in einem kleinen Energiefenster um die Fermi-Energie wirksam, da die Phononen 
+Der Schlüsselmechanismus bei der Ausbildung einer Supraleitenden Phase ist eine attraktive Wechselwirkung zweier Elektronen, die die Ausbildung eines neuen gebundenen Zustands, nämlich der sogenannten Cooper-Paare ermöglicht. 
+Die Ursache der attraktiven Wechselwirkung mag aufgrund der Coulomb-Abstoßung zwischen den Elektronen zunächst kontraintuitiv erscheinen, kann in der BCS-Theorie aber durch die Kopplung der Elektronen mit den Phononen des Kristallgitters begründet werden. 
+% Anschaulich lässt sich dies anhand der unterschiedlichen Zeitskalen für Gitterschwingungen und Elektronenbewegungen in Metallen erklären.
+% Regt ein Leitungselektron eine Gitterschwingung an, bewegt es sich in der Zeit, in der die ausgelenkten Atomrümpfe zurückschwingen um ein Vielfaches der Gitterkonstante weiter, während die zurückschwingenden Atomrümpfe selbst ein weiteres Elektron anziehen können. 
+% Es kommt also in Summe zu einer effektiven (stark retardierten) Anziehung zwischen den beiden Elektronen. 
+% Diese Anziehung ist allerdings, da diese durch Phononen vermittelt wird, nur in einem von der maximalen Phononenfrequenz (Debye-Frequenz) $\omega_D$ des Systems begrenzten Energiefenster um die Fermi-Energie $E_F$ wirksam, sodass nur Elektronen mit Energien
+% \begin{align}
+%     E_F - \hbar \omega_D \leq \epsilon_\vk \leq E_F + \hbar \omega_D
+% \end{align}
+% Cooper-Paare bilden können. 
+% $\epsilon_\vk$ bezeichnet hierbei die Einteilchenenergie der Elektronen mit Impuls $\vk$.\\
+
+% Quantitativ lässt sich dies über eine kanonische Transformation der Elektron-Phonon-Wechselwirkung herleiten, die in der klassischen BCS-Theorie zu dem Hamiltonian 
+% \begin{align}
+%     \oH_{\text{e-e}} &= \sum_{\vk, \sigma}\epsilon_\vk \ocd{\vk, \sigma} \oc{\vk, \sigma} + \sum_{\vk, \vk', \mb{q}, \sigma, \sigma'} V_{\vk, \vk', \mb{q}} \ocd{\vk+\mb{q},\sigma} \ocd{\vk'-\mb{q},\sigma'} \oc{\vk',\sigma'} \oc{\vk,\sigma}
+% \end{align}
+% mit der Wechselwirkung
+% \begin{align}
+%     V_{\vk, \vk', \mb{q}} = \frac{2\hbar \omega_{\mb{q}} |g_{\mb{q}}|^2}{(\hbar \omega_{\mb{q}})^2 - (\epsilon_\vk - \epsilon_{\vk+\mb{q}})^2}
+% \end{align}
+% führt, die eine effektive Elektron-Elektron-Anziehung beschreibt.
+
+Um dies zu verstehen, betrachte man den Fröhlich-Hamiltonoperator 
+\begin{align}
+    \oH_{\text{F}} &= \sum_{\vk, \sigma} \epsilon_\vk \ofed{\vk, \sigma} \ofe{\vk, \sigma} + \sum_{\vq} \hbar \omega_{\vq} \op{b}^{\dagg}_{\vq, \sigma} \op{b}^{\pdagg}_{\vq, \sigma} + \sum_{\vk, \vq, \sigma} M(\vq) ( \obo{\vq} + \obod{\vq}) \ofed{\vk + \vq, \sigma} \ofe{\vk, \sigma} \, ,
+\end{align}
+der die Elektron-Phonon-Wechselwirkung des Systems beschreibt~\cite{czycholl_theoretische_2017}. 
+$\ofed{\alpha}$ und $\ofe{\beta}$ bezeichnen hierbei die in der zweiten Quantisierung formulierten fermionischen Erzeugungs- und Vernichtungsoperatoren für Elektronen in den Zuständen $\alpha$ bzw. $\beta$, während $\obod{\alpha}$ und $\obo{\beta}$ die entsprechenden Erzeugungs- und Vernichtungsoperatoren für Phononen, also Bosonen, darstellen. $\epsilon_\vk$ und $\hbar \omega_\vq$ bezeichnen die Einteilchen Elektronen- bzw. Phononenergien und $M(\vq)$ gibt die impulsabhängige Elektron-Phonon-Kopplungsstärke an. \\
+Die (fermionischen) bosonischen Operatoren erfüllen die (Anti-)Kommutatorrelationen
+\begin{align}
+    \anticommute{\ofe{\alpha}}{\ofed{\beta}} &= \delta_{\alpha, \beta} & \commute{\obo{\alpha}}{\obod{\beta}} &= \delta_{\alpha, \beta} \\
+    \anticommute{\ofe{\alpha}}{\ofe{\beta}} = \anticommute{\ofed{\alpha}}{\ofed{\beta}} &= 0 & \commute{\obo{\alpha}}{\obo{\beta}} = \commute{\obod{\alpha}}{\obod{\beta}}&= 0 \, ,
+\end{align}
+die in weiteren Teilen dieser Arbeit noch häufiger von Relevanz sein werden. \\
+Der Fröhlich-Hamiltonian kann nun mit einer unitären Trafo in führender Ordnung in das Bild einer effektiven Elektron-Elektron Wechselwirkung 
+\begin{align}
+    \oH_{e-e} &= \sum_{\vk, \mb{k'}, \vq}\sum_{\sigma, \sigma'} V_{\vk, \mb{k'}, \vq} \ofed{\vk + \vq, \sigma} \ofed{\mb{k'} - \vq, \sigma'} \ofe{\mb{k'}, \sigma'} \ofe{\vk, \sigma}
+\end{align}
+mit der Wechselwirkungsstärke 
+\begin{align}
+    V_{\vk, \mb{k'}, \vq} = \frac{\abs{M(\vq)}^2 \hbar \omega_\vq}{\abs{\Delta \epsilon}^2 - (\hbar \omega_\vq)^2}
+\end{align}
+gebracht werden. Diese Wechselwirkung ist für $\abs{\Delta \epsilon} = \abs{\epsilon_\vk - \epsilon_{\vk + \vq}} < \hbar \omega_\vq$ negativ, also anziehend, was genau die Voraussetzung für die Ausbildung von Cooper-Paaren ist \footnote{Die genaue Herleitung der effektiven Elektron-Elektron-Wechselwirkung aus dem Fröhlich-Hamiltonian ist in~\cite{czycholl_theoretische_2017} zu finden. }. Für größere Energieunterschiede wirkt die Wechselwirkung hingegen abstoßend und ist außerdem für $\Delta_E = \hbar \omega_\vq$ singulär, weswegen in neueren Ansätzen
+
+
+\vspace{5cm}
+Kontinuierlich so:
+blnldnald \\
+
+
+Wechselwirkung kann in verschiedene Fälle unterteilt werden: 
+s-wave, d-wave, etc.: (), BCS macht hier s-wave da
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/s_wave.png}
+    \caption{Schematische Darstellung von dem erlaubten $\vk$-Raumbereich, in dem Elektronen bei festen $\mb{K} = \mb{k'} + \vk$ paaren können~\cite{czycholl_theoretische_2017}. Der Überlapp beider Kreisscheiben ist der erlaubte Paarungsbereich.}
+    \label{fig:s_wave}
+\end{figure}
+
+Cooper Paare sind Bosonen mit Spin und Impuls $0$ und können damit für geringe Temperaturen ähnlich zur Bose-Einstein-Kondensation kollektive Effekte machen, in diesem Fall wegen Cooper-Instabilität Richtung bildung von vielen Cooper-Paaren.
 
 % Cooper-Paare sind aufgrund des gekoppelten Spins der beiden Elektronen Bosonen, das heißt Sie spüren keinen Pauli-Druck und somit kann mehr als ein Cooper-Paar den gleichen Quantenzustand besetzen. 
+
+% \subsection{Das Hubbard-Modell}
+
+
+\subsection{Limitierung der BCS-Theorie}
