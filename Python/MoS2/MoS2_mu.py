@@ -8,8 +8,8 @@ import scipy.constants as const
 """Because DOS is given in eV here everything will be calulcaled in eV"""
 
 def get_E_DOS(E_D, num_points):
-    E, DOS = np.genfromtxt("./DOS_3.csv", delimiter=",",skip_header=1, unpack=True)
-    E = E + 1 # Reparametrisiere E dass Fermikante bei E = 0 liegt.
+    E, DOS = np.genfromtxt("./DOS_TB.csv", delimiter=",",skip_header=1, unpack=True)
+    # E = E + 1 # Reparametrisiere E dass Fermikante bei E = 0 liegt.
     #DOS soll bei 0 liegen
     DOS = DOS - DOS.min()
     DOS = DOS - np.mean(DOS[np.isclose(E,0,atol=1e-2)])

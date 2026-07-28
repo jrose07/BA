@@ -53,7 +53,7 @@ U = np.linspace(0,100,10) #eV
 mu = np.linspace(0,0.04,10) #eV
 T = np.linspace(0,150,100) #K
 
-version = 6
+version = 1
 
 #Rechnung und plots
 t1= time.perf_counter()

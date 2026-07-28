@@ -309,9 +309,12 @@ if __name__ == "__main__":
           f"conduction bottom {wK[7]:.3f} eV)")
 
     # ---- DOS -----------------------------------------------------------
-    E_grid = np.linspace(E_MIN, E_MAX, 1400)
+    E_grid = np.linspace(E_MIN, E_MAX, 140000)
     dos_orb = compute_dos(PARAMS, E_grid, eta=ETA, nk=NK)
     dos_orb_shifted_E = E_grid - E0
+    
+    total_dos = dos_orb.sum(axis=0)
+    np.savetxt("../DOS_TB.csv", np.column_stack([E_grid, total_dos]), delimiter=",")
 
     total_dos_per_orbital = dos_orb.sum(axis=0) / 11.0   # paper's Eq.(21) norm.
     mo_dos = dos_orb[MO_IDX, :].sum(axis=0)
@@ -346,7 +349,7 @@ if __name__ == "__main__":
         ax.axvline(t, color="gray", lw=0.5)
 
     ax = axes[1]
-    ax.fill_betweenx(E_grid - E0, 0, total_dos_per_orbital,
+    ax.fill_betweenx(E_grid - E0, 0, total_dos_per_orbital*11,
                       color="lightgray", label="total (per orbital, Eq.21)")
     ax.plot(mo_dos, E_grid - E0, color="tab:red", lw=1.3, label="Mo atom")
     ax.plot(s_dos_total, E_grid - E0, color="tab:green", lw=1.3, ls="--",
