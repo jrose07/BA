@@ -38,10 +38,18 @@ Das folgenden Kapitel soll hierbei eine Einführung in die Grundkonzepte, die Li
 \subsection{Cooper-Paare}
 
 Der Schlüsselmechanismus bei der Ausbildung einer Supraleitenden Phase ist eine attraktive Wechselwirkung zweier Elektronen, die die Ausbildung eines neuen gebundenen Zustands, nämlich der sogenannten Cooper-Paare ermöglicht. 
-Die Ursache der attraktiven Wechselwirkung mag aufgrund der Coulomb-Abstoßung zwischen den Elektronen zunächst kontraintuitiv erscheinen, kann in der BCS-Theorie aber durch die Kopplung der Elektronen mit den Phononen des Kristallgitters begründet werden. 
-% Anschaulich lässt sich dies anhand der unterschiedlichen Zeitskalen für Gitterschwingungen und Elektronenbewegungen in Metallen erklären.
-% Regt ein Leitungselektron eine Gitterschwingung an, bewegt es sich in der Zeit, in der die ausgelenkten Atomrümpfe zurückschwingen um ein Vielfaches der Gitterkonstante weiter, während die zurückschwingenden Atomrümpfe selbst ein weiteres Elektron anziehen können. 
-% Es kommt also in Summe zu einer effektiven (stark retardierten) Anziehung zwischen den beiden Elektronen. 
+Diese Paare sind bosonische Quasiteilchen und können daher denselben Quantenzustand besetzten, was bei genügend niedrigen Temperaturen zur Ausbildung eines makroskopischen Quantenzustands führen kann. \\
+
+
+
+
+
+
+\subsection{Phononenvermittelte Elektron-Elektron-Wechselwirkung}
+Die Ursache der attraktiven Wechselwirkung mag aufgrund der Coulomb-Abstoßung zwischen den Elektronen zunächst kontraintuitiv erscheinen, kann in der BCS-Theorie aber durch die Kopplung der Elektronen mit den Phononen des Kristallgitters begründet werden. \\
+Anschaulich lässt sich dies anhand der unterschiedlichen Zeitskalen für Gitterschwingungen und Elektronenbewegungen in Metallen erklären.
+Regt ein Leitungselektron eine Gitterschwingung an, bewegt es sich in der Zeit, in der die ausgelenkten Atomrümpfe zurückschwingen um ein Vielfaches der Gitterkonstante weiter, während die zurückschwingenden Atomrümpfe selbst ein weiteres Elektron anziehen können. 
+Es kommt also in Summe zu einer effektiven (stark retardierten) Anziehung zwischen den beiden Elektronen. 
 % Diese Anziehung ist allerdings, da diese durch Phononen vermittelt wird, nur in einem von der maximalen Phononenfrequenz (Debye-Frequenz) $\omega_D$ des Systems begrenzten Energiefenster um die Fermi-Energie $E_F$ wirksam, sodass nur Elektronen mit Energien
 % \begin{align}
 %     E_F - \hbar \omega_D \leq \epsilon_\vk \leq E_F + \hbar \omega_D
@@ -55,11 +63,11 @@ Die Ursache der attraktiven Wechselwirkung mag aufgrund der Coulomb-Abstoßung z
 % \end{align}
 % mit der Wechselwirkung
 % \begin{align}
-%     V_{\vk, \vk', \mb{q}} = \frac{2\hbar \omega_{\mb{q}} |g_{\mb{q}}|^2}{(\hbar \omega_{\mb{q}})^2 - (\epsilon_\vk - \epsilon_{\vk+\mb{q}})^2}
+%     V_{\vk, \mb{k'}, \vq} = \frac{\abs{M(\vq)}^2 \hbar \omega_\vq}{\abs{\Delta \epsilon}^2 - (\hbar \omega_\vq)^2}
 % \end{align}
 % führt, die eine effektive Elektron-Elektron-Anziehung beschreibt.
 
-Um dies zu verstehen, betrachte man den Fröhlich-Hamiltonoperator 
+Um dies auch quantitativ zu verstehen, betrachte man den Fröhlich-Hamiltonoperator 
 \begin{align}
     \oH_{\text{F}} &= \sum_{\vk, \sigma} \epsilon_\vk \ofed{\vk, \sigma} \ofe{\vk, \sigma} + \sum_{\vq} \hbar \omega_{\vq} \op{b}^{\dagg}_{\vq, \sigma} \op{b}^{\pdagg}_{\vq, \sigma} + \sum_{\vk, \vq, \sigma} M(\vq) ( \obo{\vq} + \obod{\vq}) \ofed{\vk + \vq, \sigma} \ofe{\vk, \sigma} \, ,
 \end{align}
@@ -79,10 +87,20 @@ mit der Wechselwirkungsstärke
 \begin{align}
     V_{\vk, \mb{k'}, \vq} = \frac{\abs{M(\vq)}^2 \hbar \omega_\vq}{\abs{\Delta \epsilon}^2 - (\hbar \omega_\vq)^2}
 \end{align}
-gebracht werden. Diese Wechselwirkung ist für $\abs{\Delta \epsilon} = \abs{\epsilon_\vk - \epsilon_{\vk + \vq}} < \hbar \omega_\vq$ negativ, also anziehend, was genau die Voraussetzung für die Ausbildung von Cooper-Paaren ist\footnote{Die genaue Herleitung der effektiven Elektron-Elektron-Wechselwirkung aus dem Fröhlich-Hamiltonian ist in~\cite{czycholl_theoretische_2017} zu finden. }.
-Für größere Energieunterschiede wirkt die Wechselwirkung hingegen abstoßend und ist außerdem für $\Delta \epsilon = \hbar \omega_\vq$ singulär, weswegen in der BCS-Theorie nur Elektronen im Energiefenster $\abs{\Delta \epsilon} < \hbar \omega_\vq < \hbar \omega_D$ um die Fermi-Energie $E_F$ berücksichtigt werden, wobei $\omega_D$ die Debye-Frequenz des Systems bezeichnet. \\
+gebracht werden\footnote{Die genaue Herleitung der effektiven Elektron-Elektron-WEchselwirkung aus dem Fröhlich-Hamiltonian ist u.a. in~\cite{czycholl_theoretische_2017} zu finden. }. 
+Diese Wechselwirkung ist für $\abs{\Delta \epsilon} = \abs{\epsilon_\vk - \epsilon_{\vk + \vq}} < \hbar \omega_\vq$ negativ, also anziehend, was genau die Voraussetzung für die Ausbildung von Cooper-Paaren ist.
+Für größere Energieunterschiede wirkt die Wechselwirkung hingegen abstoßend und ist außerdem für $\Delta \epsilon = \hbar \omega_\vq$ singulär, weswegen in der BCS-Theorie nur Elektronen im Energiefenster $\abs{\Delta \epsilon} < \hbar \omega_\vq < \hbar \omega_D$ berüksichtig werden.
+Mit der Annahme, dass die Elektronen aus der Nähe der Fermi-Kante stammen ergibt sich damit die Bedingung
+\begin{align}
+    E_F - \hbar \omega_D \leq \epsilon_\vk \leq E_F + \hbar \omega_D
+\end{align}
+für die Ausbildung von Cooper-Paaren, die genau den phononübermittelnden Charakter der Wechselwirkung widerspiegelt. \\
+Bei der Bildung von Cooper-Paaren koppeln in diesem Bild also zwei Elektronen in den Zuständen $(\vk, \sigma)$ und $(\vk', \sigma')$ zu einem Paarzustand, wobei der Phononenimpuls $\vq$ übertragen wird und der Gesamtimpuls $\mb{K} = \vk + \vk'$ des Paars erhalten bleibt. 
+Um dieses Bild zu vereinfachen, wird in der BCS-Theorie angenommen, dass hauptsächlich nur Elektronen mit Gesamtspin $S = 0$ und Gesamtimpuls $\mb{K} = 0$ Cooper-Paare bilden. 
+Bardeen, Cooper und Schrieffer begründen diese Annahme zum einen damit, dass die Bildung von Paaren mit Gesamtspin $S = 1$, also Triplett-Kopplung durch Austauschterme in der Wechselwirkung energetisch benachteiligt wird\footnote{Alternativ könnte man dies auch so formulieren, dass in diesem Fall die Ortswellenfunktion $\Psi(\mb{r_1} - \mb{r_2})$ antisymmetrisch und daher insbesonders $\Psi(0) = 0$ sein muss, was die attraktive Wechselwirkung also unterdrückt.~\cite[225]{czycholl_theoretische_2017}}~\cite{bardeen_theory_1957}.
+Zum anderen ist die Menge an Zuständen $(\vk, \vk')$ die zu Paaren mit Gesamtimpuls $\mb{K}=0$ koppeln können deutlich größer als für $\mb{K} \neq 0$ (siehe \autoref{fig:s_wave}), weswegen die Zustände mit endlichen $\vq$ vernachlässigt werden können. 
 
-Weitere zentrale Annahmen der konventionellen BCS-Theorie ist die empirisch gut begründete Annahme, dass nur Elektronen mit entgegengesetztem Impuls und entgegengesetztem Spin, also $(\vk,\uparrow)$ und $(-\vk,\downarrow)$, zu Cooper-Paaren koppeln. Dies entspricht einem Spin-Singulett mit Gesamtspin $S=0$.
+% Weitere zentrale Annahmen der konventionellen BCS-Theorie ist die empirisch gut begründete Annahme, dass nur Elektronen mit entgegengesetztem Impuls und entgegengesetztem Spin, also $(\vk,\uparrow)$ und $(-\vk,\downarrow)$, zu Cooper-Paaren koppeln. Dies entspricht einem Spin-Singulett mit Gesamtspin $S=0$.
 % Eine weitere zentrale Annahme der konventionellen BCS-Theorie ist eine isotrope Paarung, also eine sogenannte \textit{s-wave}-Symmetrie des Ordnungsparameters. Dabei hängt die Energielücke nicht von der Richtung des Impulses auf der Fermi-Fläche ab, sodass näherungsweise
 % \begin{align}
 %     \Delta(\vk) \approx \Delta_0
@@ -93,11 +111,17 @@ Weitere zentrale Annahmen der konventionellen BCS-Theorie ist die empirisch gut 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{images/s_wave.png}
-    \caption{Schematische Darstellung von dem erlaubten $\vk$-Raumbereich, in dem Elektronen bei festen $\mb{K} = \mb{k'} + \vk$ paaren können~\cite{czycholl_theoretische_2017}. Der Überlapp beider Kreisscheiben ist der erlaubte Paarungsbereich.}
+    % \caption{Schematische Darstellung von dem erlaubten $\vk$-Raumbereich, in dem Elektronen bei festen $\mb{K} = \mb{k'} + \vk$ paaren können~\cite{czycholl_theoretische_2017}. Der Überlapp beider Kreisscheiben ist der erlaubte Paarungsbereich.}
+    \caption{Schematische Darstellung der erlaubten $(\vk, \vk')$ Zustände zur Bildung von Cooper-Paaren bei isotroper Dispersion. Beide Kreisringe haben den Radius $\mb{k}_\text{F}$ mit Dicke $\Delta \vk = \hbar \omega_\text{D}$ und der Überlapp beider Kreisringe gibt die erlaubten Zustände an. Für $\mb{K} \neq 0$ ist dies nur ein kleiner Teil des Kreisringes, für $\mb{K} = 0$ allerdings der gesamte Ring~\cite{czycholl_theoretische_2017}.}
     \label{fig:s_wave}
 \end{figure}
+Zusätzlich wird eine konstante negative Wechselwirkung $V_{\vk, \vk', \vq} = -V$ über alle erlaubten Zustände angenommen, sodass der klassische BCS-Hamiltonian die Form
+\begin{align}
+    \oH_{\text{BCS}} = \sum_{\vk} \epsilon_\vk \ofed{\vk, \sigma} \ofe{\vk, \sigma} - V \sum_{\vk, \vk'} \ofed{\vk', \up} \ofed{-\vk', \down} \ofe{-\vk, \down} \ofe{\vk, \up}
+\end{align}
+erhält. \\
 
-Cooper Paare sind Bosonen mit Spin und Impuls $0$ und können damit für geringe Temperaturen ähnlich zur Bose-Einstein-Kondensation kollektive Effekte machen, in diesem Fall wegen Cooper-Instabilität Richtung bildung von vielen Cooper-Paaren.
+
 
 % Cooper-Paare sind aufgrund des gekoppelten Spins der beiden Elektronen Bosonen, das heißt Sie spüren keinen Pauli-Druck und somit kann mehr als ein Cooper-Paar den gleichen Quantenzustand besetzen. 
 
