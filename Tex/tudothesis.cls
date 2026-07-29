@@ -14,7 +14,8 @@
   numbers=noenddot,       % no dot after figure/table number
   captions=tableheading,  % correct spacing for table headings
   titlepage=firstiscover, % symmetrical margins on titlepage
-  headings=normal         % size of chapter headings slightly smaller
+  headings=normal,         % size of chapter headings slightly smaller
+  oneside
 ]{scrbook}
 
 
