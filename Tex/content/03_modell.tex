@@ -1,55 +1,95 @@
 \chapter{Modell}\label{sec:modell}
 
-
+Das in dieser Arbeit verwendete Modell basiert auf dem Hubbard-Hamiltonian 
 \begin{align}
-    \oH = -t \sum_{\expval{\mb{R}, \mb{R'}}, \sigma} \ocd{\mb{R}, \sigma} \oc{\mb{R'}, \sigma} - U \sum_{\mb{R}} \sum_\oC \ocd{\mb{R}, \up} \oc{\mb{R},\up} \ocd{\mb{R},\down} \oc{\mb{R}, \down} \, ,
+    \oH_{\text{Hubbard}} &= U_C \sum_{\vec{R}} \on{\vec{R}, \up} \on{\vec{R}, \down} - t \sum_{\expval{\vec{R},\vec{R'}}, \sigma} \ofed{\vec{R}, \sigma} \ofe{\vec{R'}, \sigma} \, ,
 \end{align}
-untersucht. Das Hubbard-Modell beschreibt im Tight-Binding-Formalismus (TB)  
-mit Next-Neighbour-Hopping mit Hüpfparameter $t$ und effektiver Anziehung $U > 0$ verwendet. Die Summe über die Operatoren $\oC$ soll hier bedeuten, dass über $\oA$ und $\oB$-Type Operatoren summiert wird, und $\expval{\mb{R}, \mb{R'}}$ beschreibt, dass hier nur über nächste Nachbarn summiert wird.\\
-
-Im Bienenwabenitter ist der nächste Nachbar eines $\oA$-type Atoms immer ein $\oB$-type Atom (\red{TODO: referenziere $\delta$ aus Grundlagen}) und andersherum, sodass für den Hüpfterm gilt 
-\begin{equation}
-    \oHNN = -t \sum_{\mb{R}, \symbf{\delta}, \sigma} \oad{\mb{R}, \sigma} \ob{\mb{R} + \symbf{\delta}, \sigma} + h.c.
-\end{equation}
-
-Um in den $\vk$-Raum zu transformieren und die Translationsinvarianz des Systems auszunutzen wird im nächsten Schritt eine Fouriertrafo der Operatoren durchgeführt.
-
-\section{Fouriertrafo}
-
-Die Fouriertrafo der Operatoren wird mit 
+dass den in Gleichung~\eqref{eq:TB} eingeführten Tight-Binding Hamiltonian um eine Coulombabstoßung zweier Elektronen unterschiedlichen Spins auf dem gleichen Gitterplatz erweitert. 
+$\on{\alpha} = \ofed{\alpha} \ofe{\alpha}$ ist hier der fermionische Besetzungszahloperator des Zustands $\alpha$ und $U_C$ die (konstante) Coulombwechselwirkung. \\
+Um dieses Modell nun auf Supraleitung anwenden zu können, wird der Hubbard-Hamiltonian so modifiziert, dass es statt der Coulombabstoßung die in der BCS-Theorie grundlegende effektive Elektron-Elektron-Anziehung beschreibt, sowie auch die Untergitterstruktur des Bienenwabengitters berücksichtigt.
+Der modifizierte Hamiltonian lautet dann
 \begin{align}
-    \oc{\mb{R}} = \frac{1}{\sqrt{N}} \sum_{\vk} \oc{\vk} e^{\im \vk \cdot \mb{R}} & & \text{und} & & \ocd{\mb{R}} = \frac{1}{\sqrt{N}} \sum_{\vk} \ocd{\vk} e^{-\im \vk \cdot \mb{R}}
+    \oH = - t \sum_{\expval{\vec{R}, \vec{R'}}, \sigma} \sum_{\oC, \oC'}\ocd{\vec{R}, \sigma} \op{C'}^{\pdagg}_{\vec{R'}, \sigma} - U \sum_{\vec{R}} \sum_\oC \on{\oC, \vec{R}, \up} \on{\oC, \vec{R},\down}.
 \end{align}
-angesetzt. \\
-
-Der Nearest-Neighbour-Term wird damit zu 
+wobei nun $U > 0$ die effektive (konstante) Anziehungsstärke beschreibt und daher mit einem Minuszeichen versehen wird, aber für Einelektronenenergien $\epsilon_{\vk}$ außerhalb von 
 \begin{align}
-    \oHNN &= -t \sum_{\vk,\mb{q}, \sigma} \sum_{\symbf{\delta}} \oad{\mb{q}, \sigma}\obk \frac{1}{N}\sum_{\mb{R}} e^{\im \vk \cdot \symbf{\delta}} e^{\im \mb{R} \cdot (\vk - \mb{q})} + h.c.\\
-    &= \sum_{\vk, \sigma} \underbrace{\left(-t \sum_{\symbf{\delta}} e^{\im \vk \cdot \symbf{\delta}} \right)}_{:= f(\vk)} \oakd \obk + h.c. \\
+    E_\text{F} - \hbar \omega_{\text{D}} \leq \epsilon_\vk \leq E_\text{F} + \hbar \omega_\text{D}
+\end{align}
+null ist.
+Die allgemeinen fermionischen Operatoren $\ofed{}/\ofe{}$ werden durch Untergitter-spezifische Operatoren $\oad{}/\oa{}$ und $\obd{}/\ob{}$ ersetzt, die nur Elektronen auf dem jeweiligen Untergitter $A$ oder $B$ erzeugen, bzw.~vernichten. 
+% $\oC{}$ ist ein Platzhalter für entweder $\oA{}$ oder $\oB{}$ und 
+Die Summe über $\oC$ bedeutet, dass jeweils über $\oC = \oA$ und $\oC = \oB$ summiert wird. \\
+
+Da im Bienenwabengitter der nächste Nachbar von jedem $A$-Atom ein $B$-Atom ist und umgekehrt, kann der Hüpfterm im Hamiltonian mit den Nächsten-Nachbar-Vektoren $\vdelta$ aus Gleichung \eqref{eq:nn-vektoren} einfach umgeschrieben werden, sodass der Hamiltonian die Form
+\begin{align}
+    \oH &= \oHNN + \oHWW
+\end{align}
+mit
+\begin{align}
+    \oHNN &= - t \sum_{\vec{R}, \vdelta, \sigma} \oad{\vec{R}, \sigma} \ob{\vec{R} + \vdelta, \sigma} + h.c. & & \text{und} & & & \oHWW &= - U \sum_{\vec{R}} \sum_\oC \on{\oC, \vec{R}, \up} \on{\oC, \vec{R},\down}
+\end{align}
+annimmt. 
+In den nächsten Schritten wird hieraus eine Gleichung für den Ordnungsparameter $\Delta$ hergeleitet.
+
+\section{Fouriertransformation}
+
+Um in den $\vk$-Raum zu transformieren und die Translationsinvarianz des Systems auszunutzen wird zunächst eine Fouriertransformation der Operatoren durchgeführt.
+Dazu werden die Operatoren als Fourierreihe der Form
+\begin{align}
+    \oc{\vec{R}} = \frac{1}{\sqrt{N}} \sum_{\vk} \oc{\vk} e^{\im \vk \cdot \vec{R}} & & \text{und} & & \ocd{\vec{R}} = \frac{1}{\sqrt{N}} \sum_{\vk} \ocd{\vk} e^{-\im \vk \cdot \vec{R}}
+\end{align}
+geschrieben und in beide Hamiltonians respektiv eingesetzt. $N$ beschreibt die Anzahl an Gitterplätzen. \\
+Der Nearest-Neighbour-Term transformiert zu
+\begin{align}
+    \oHNN &= -t \sum_{\vk,\vq, \sigma} \sum_{\vdelta} \oad{\vq, \sigma}\obk \left(\frac{1}{N}\sum_{\vec{R}} e^{\im \vk \cdot \vdelta} e^{\im \vec{R} \cdot (\vk - \vq)}\right) + h.c.\\
+    &= \sum_{\vk, \sigma} \underbrace{\left(-t \sum_{\symbf{\delta}} e^{\im \vk \cdot \vdelta} \right)}_{:= f(\vk)} \oakd \obk + h.c. \\
     &= \sum_{\vk, \sigma} f(\vk) \oakd \obk + h.c.
 \end{align}
-unter Verwendung der Relation $\sum_{\mb{R}} e^{\im \mb{R} \cdot (\vk - \mb{q})} = N \cdot \delta_{\vk, \mb{q}}$ im ersten Schritt.
-
-Analog transformiert sich der Wechselwirkungsteil $\oHWW$ des Hamiltonians zu
+unter Verwendung der Relation $\sum_{\vec{R}} e^{\im \vec{R} \cdot (\vk - \vq)} = N \cdot \delta_{\vk, \vq}$ im ersten Schritt, die die Impulserhaltung des Systems gewährleistet.
+$f(\vk)$ kann für das Bienenwabengitter mit den Nächsten-Nachbar-Vektoren $\vdelta$ aus Gleichung~\eqref{eq:nn-vektoren} explizit als
 \begin{align}
-    \oHWW &= -U \sum_\oC \sum_{\mb{m}, \mb{n}, \mb{o}, \mb{p}} \ocd{\mb{m}, \up} \oc{\mb{n}, \up} \ocd{\mb{o}, \down} \oc{\mb{p}, \down} \underbrace{\left(\frac{1}{N^2} \sum_{\mb{R}} e^{\im \mb{R} \cdot \left(\mb{n}+\mb{p} - \mb{m} - \mb{o}\right)}\right)}_{= \frac{1}{N} \delta_{\mb{n} + \mb{p}, \mb{m} +\mb{o}}}\\
-    &= -\frac{U}{N} \sum_\oC \sum_{\mb{k}, \mb{k'}, \mb{q}} \ocd{\mb{k}+\mb{q}, \up} \oc{\vk, \up} \ocd{\mb{k'} - \mb{q}, \down} \oc{\mb{k'}, \down} \\
-    &= - \frac{U}{N} \sum_\oC  \sum_{\mb{k}, \mb{k'}, \mb{q}}\ocdu \ocdd \ocndd \ocndu~\label{eq:Hww} \, ,
+    f(\vk) = -t \sum_{\vdelta} e^{\im \vk \cdot \vdelta} = -t \left(\mathrm{exp}(-\im k_x a) + 2 \, \mathrm{exp}\left(\im k_x \frac{a}{2}\right) \cos\left(\frac{k_y a \sqrt{3}}{2}\right)\right) \label{eq:f(k)}
 \end{align}
-wobei vom ersten zum zweiten Schritt aufgrund der geforderten Impulserhaltung $\delta_{\mb{n} + \mb{p}, \mb{m} +\mb{o}}$ die Anzahl der Freiheitsgrade reduziert wurde. Es werden die neuen Impulse $\mb{k}, \mb{k'}, \mb{q}$ unter der Voraussetzung zu $\mb{m} = \mb{k + q}, \, \mb{o} = \mb{k' - q}, \, \mb{n = k}$ und $\mb{p = k'}$ gewählt. Vom zweiten auf den dritten Schritt werden die Antikommutatorrelationen $\anticommute{\oc{\alpha}}{\ocd{\beta}} = \delta_{\alpha, \beta}$ und $\anticommute{\oc{\alpha}}{\oc{\beta}} = 0$ angewandt, sodass der Wechselwirkungsteil die für die BCS-Theorie typische Form einer Wechselwirkung zwischen Cooper-Paaren, hier mit Impulsübertrag $\mb{q}$ zwischen den Impulsen $\mb{k}$ und $\mb{k'}$ erhält. \\
+angegeben werden. \\
+Der Wechselwirkungsteil $\oHWW$ transformiert analog zu
+\begin{align}
+    \oHWW &= -U \sum_\oC \sum_{\vec{m}, \vec{n}, \vec{o}, \vec{p}} \ocd{\vec{m}, \up} \oc{\vec{n}, \up} \ocd{\vec{o}, \down} \oc{\vec{p}, \down} \underbrace{\left(\frac{1}{N^2} \sum_{\vec{R}} e^{\im \vec{R} \cdot \left(\vec{n}+\vec{p} - \vec{m} - \vec{o}\right)}\right)}_{= \frac{1}{N} \delta_{\vec{n} + \vec{p}, \vec{m} +\vec{o}}}\\
+    &= -\frac{U}{N} \sum_\oC \sum_{\vk, \vec{k'}, \vq} \ocd{\vk+\vq, \up} \oc{\vk, \up} \ocd{\vec{k'} - \vq, \down} \oc{\vec{k'}, \down} \\
+    &= - \frac{U}{N} \sum_\oC  \sum_{\vk, \vec{k'}, \vq}\ocdu \ocdd \ocndd \ocndu~\label{eq:Hww} \, ,
+\end{align}
+wobei hier wieder im ersten Schritt Impulserhaltung, also $\vec{n} + \vec{p} =  \vec{m} +\vec{o}$ gewährleistet wird.
+Anhand dieser Bedingung wird die Anzahl an Freiheitsgraden reduziert, indem die neuen Impulse $\vk, \vk', \vq$ eingeführt werden, die zu den alten Impulsen in den Relationen
+\begin{align}
+    \vec{m} &= \vk + \vq & \vec{o} &= \vk' - \vq \\
+    \vec{n} &= \vk & \vec{p} &= \vk'
+\end{align}
+stehen. Es ist leicht erkenntlich, dass diese Wahl immernoch $\vec{n} + \vec{p} =  \vec{m} +\vec{o}$ erfüllt.
+Vom zweiten auf den dritten Schritt werden die Antikommutatorrelationen $\anticommute{\oc{\alpha}}{\ocd{\beta}} = \delta_{\alpha, \beta}$ und $\anticommute{\oc{\alpha}}{\oc{\beta}} = 0$ angewandt.
+Der Gesamthamiltonian im $\vk$-Raum lautet dann 
+\begin{align}
+    \oH &= \sum_{\vk, \sigma} f(\vk) \oakd \obk + h.c. - \frac{U}{N} \sum_{\vk, \vec{k'}, \vq} \sum_\oC \ocdu \ocdd \ocndd \ocndu \Theta(\hbar \omega_D - \abs{\epsilon_\vk}) \Theta(\hbar \omega_D - \abs{\epsilon_{\vk'}})\, ,
+\end{align}
+der im Vergleich mit dem BCS-Hamiltonian~\eqref{eq:BCS} die Bildung von Cooper-Paaren mit Singulett-Kopplung aber dafür endlichem Gesamtimpuls $\vec{K} = \vk + \vk'$ beschreibt. 
+Der zuvor implizit formulierte Cutoff der Wechselwirkung über die Einteilchenenergie $\epsilon_\vk$ ist hier nun explizit formuliert, wird aber in dem Rest der Arbeit in die Schreibweise 
+\begin{align}
+    \sump{\vk} &= \sum_{\vk} \Theta(\hbar \omega_D - \abs{\epsilon_\vk})
+\end{align}
+absorbiert.
+% sodass der Wechselwirkungsteil die für die BCS-Theorie typische Form einer Wechselwirkung zwischen Cooper-Paaren, hier mit Impulsübertrag $\vq$ zwischen den Impulsen $\vk$ und $\vec{k'}$ erhält. \\
 
-Für die BCS-Theorie ist es hier üblich $\mb{k} = -\mb{k'}$ zu wählen, da für den Großteil der Wechselwirkungen der Gesamtimpuls $\mb{K} = \vk + \mb{k'} = 0$ verschwindet (\red{Wenn ich das erwähnen will, kann ich diese Grafik für diese Überlegung aus dem Czycholl einfügen?}). Da dies für die Mean-Field-Näherung im nächsten Schritt allerdings keinen Unterschied macht, wird dieser Schritt hier einfacherhaltshalber nicht getan.
+% Für die BCS-Theorie ist es hier üblich $\vk = -\vec{k'}$ zu wählen, da für den Großteil der Wechselwirkungen der Gesamtimpuls $\vk = \vk + \vec{k'} = 0$ verschwindet (\red{Wenn ich das erwähnen will, kann ich diese Grafik für diese Überlegung aus dem Czycholl einfügen?}). Da dies für die Mean-Field-Näherung im nächsten Schritt allerdings keinen Unterschied macht, wird dieser Schritt hier einfacherhaltshalber nicht getan.
 
 \section{Mean-Field-Näherung}
 
-% Da die quartischen Terme in der Wechselwirkung nicht allgemein gelöst werden können, wird hier zur Vereinfachung eine Mean-Fiel-Näherung des Wechselwirkungsteils aus Gleichung~\eqref{eq:Hww} angewandt. Die Operatoren können gemäß des Wick Theorems zu 
-Da das Hubbard-Modell selbst im einfachsten 1-Band-Fall nicht für Dimension $d>1$ exakt gelöst werden kann (vgl.~\cite[17]{blumer_quanten-monte-carlo-untersuchungen_nodate}), muss an dieser Stelle also eine Näherung zur Vereinfachung des Wechselwirkungsteils aus Gleichung~\eqref{eq:Hww} angewandt werden. Üblicherweise wird hier eine Mean-Field-Näherung durchgeführt, welche für supraleitende Phasenübergänge im Vergleich zu anderen Phasenübergängen gut die experimentell gemessenen Abhängigkeiten der Ordnungsparameter von der Temperatur reproduziert~\cite[234]{czycholl_theoretische_Bd2}.\\
-Zuerst wird dazu der quadrilineare Term aus Gleichung~\eqref{eq:Hww} mithilfe des Wick Theorems in normalgeordnete Terme und Erwartungswerte zerlegt. Es gilt
+Da das Hubbard-Modell selbst im einfachsten 1-Band-Fall nicht für Dimension $d>1$ exakt gelöst werden kann (vgl.~\cite[17]{blumer_quanten-monte-carlo-untersuchungen_nodate}), muss an dieser Stelle eine Näherung zur Vereinfachung des Wechselwirkungsteils aus Gleichung~\eqref{eq:Hww} angewandt werden. 
+Wie in der BCS-Theorie üblich wird hier eine Mean-Field-Näherung durchgeführt, welche für supraleitende Phasenübergänge im Vergleich zu anderen Phasenübergängen gut die experimentell gemessenen Abhängigkeiten der Ordnungsparameter von der Temperatur reproduziert~\cite[234]{czycholl_theoretische_2017}.\\
+Zuerst wird dazu der quadrilineare Term aus dem Wechselwirkungsteil mithilfe des Wick Theorems in normalgeordnete Terme und Erwartungswerte zerlegt. 
+Es gilt
 \begin{align*}
     \ocdu \ocdd \ocndd \ocndu &= \,: \ocdu \ocdd \ocndd \ocndu :\\
-    &+ \, :\ocdu \ocdd : \underbrace{\expval{\ocndd \ocndu}}_{\propto \delta_{\mb{k}, -\mb{k'}}} + \expval{\ocdu \ocdd} : \ocndd \ocndu :\\
+    &+ \, :\ocdu \ocdd : \underbrace{\expval{\ocndd \ocndu}}_{\propto \delta_{\vk, -\vec{k'}}} + \expval{\ocdu \ocdd} : \ocndd \ocndu :\\
     &- \, : \ocdu \ocndd : \underbrace{\expval{\ocdd \ocndu}}_{= 0} - \expval{\ocdu \ocndd} : \ocdd \ocndu : \\
-    &+ \, : \ocdu \ocndu : \underbrace{\expval{\ocdd \ocndd}}_{\propto \delta_{\mb{q}, \mb{0}}} + \expval{\ocdu \ocndu} : \ocdd \ocndd : \\
+    &+ \, : \ocdu \ocndu : \underbrace{\expval{\ocdd \ocndd}}_{\propto \delta_{\vq, \vec{0}}} + \expval{\ocdu \ocndu} : \ocdd \ocndd : \\
     &+ \, \text{const.} \, ,
 \end{align*}
 wobei alle Terme hier schon normalgeordnet sind. Die eigentliche Mean-Field Näherung ist es hier nun, den quadrilinearen Term der Entwicklung zu vernachlässigen, sodass nur Hartree- und Fock-mäßige Ein-Teilchen-Wechselwirkungen mit einem gemittelten Feld übrig bleiben. Zusätzlich als besondere Eigenschaft der BCS-Theorie bleibt noch ein anomaler Erwartungswert übrig. Die Konstanten werden hierbei ebenfalls misachtet, die diese nur das allgemeine Energieniveau des Systems verschieben und die Dynamiken des Systems nicht beeinflussen. \\
@@ -57,18 +97,18 @@ wobei alle Terme hier schon normalgeordnet sind. Die eigentliche Mean-Field Näh
 In diesem Fall fällt außerdem der Fock Term aus der Expansion heraus, da hier antiparallele Spins miteinander koppeln, was die Drehimpulserhaltung verletzt. Es bleiben also nur Terme mit anomalen Erwartungswerten und Hartree Terme übrig, die im folgenden genauer untersucht werden. \\
 
 \textbf{Anomaler Erwartungswert} \\
-Der anomale Erwartungswert $\expval{\ocndd \ocndu}$ ist in der normaleitenden Phase des Festkörpers immer null, da dieser Paar-erzeugung und -vernichtung voraussetzt und damit die Teilchenzahlerhaltung verletzt. Gemäß der BCS-Theorie, sind diese Prozesse allerdings der Ursprung dafür, dass sich eine supraleitende Phase ausbilden kann, der Erwartungswert darf hier also nicht pauschal auf null gesetzt werden. Aufgrund der Impulserhaltung muss hier also gelten $\mb{k} = - \mb{k'}$. \\
+Der anomale Erwartungswert $\expval{\ocndd \ocndu}$ ist in der normaleitenden Phase des Festkörpers immer null, da dieser Paar-erzeugung und -vernichtung voraussetzt und damit die Teilchenzahlerhaltung verletzt. Gemäß der BCS-Theorie, sind diese Prozesse allerdings der Ursprung dafür, dass sich eine supraleitende Phase ausbilden kann, der Erwartungswert darf hier also nicht pauschal auf null gesetzt werden. Aufgrund der Impulserhaltung muss hier also gelten $\vk = - \vec{k'}$. \\
 Damit ergibt sich in der supraleitende Phase der wechselwirkende Teilhamiltonian
 \begin{align}
-    \oH_1 = -\frac{U}{N} \sum_\oC \sum_{\mb{k}, \mb{q}} \left[\ocdu \ocd{-(\mb{k + q}), \down} \expval{\oc{-\vk, \down} \ocndu} + \expval{\ocdu \ocd{-(\mb{k + q}), \down}} \oc{-\vk, \down} \ocndu\right] \, ,
+    \oH_1 = -\frac{U}{N} \sum_\oC \sum_{\vk, \vq} \left[\ocdu \ocd{-(\vec{k + q}), \down} \expval{\oc{-\vk, \down} \ocndu} + \expval{\ocdu \ocd{-(\vec{k + q}), \down}} \oc{-\vk, \down} \ocndu\right] \, ,
 \end{align}
-der nun mit der Indextrafo $\mb{k'} = \mb{k + q}$ und gleichzeitigem Indextausch $\mb{k'} \leftrightarrow \mb{k} $ im ersten Teil der Summe zu 
+der nun mit der Indextrafo $\vec{k'} = \vec{k + q}$ und gleichzeitigem Indextausch $\vec{k'} \leftrightarrow \vk $ im ersten Teil der Summe zu 
 \begin{align}
     \oH_1 = - \sum_\oC \Delta_\oC \sum_{\vk} \ocdup \ocddown + h.c.
 \end{align}
 mit den Ordnungsparametern
 \begin{align}
-    \Delta_\oC &= \frac{U}{N} \sum_{\mb{k'}} \expval{\oc{-\vk, \down} \ocndu} & & \text{und} & \Delta_{\oC}^{*} &= \frac{U}{N} \sum_{\mb{k'}} \expval{\ocdup, \ocddown}\label{eq:def_delta} \,
+    \Delta_\oC &= \frac{U}{N} \sum_{\vec{k'}} \expval{\oc{-\vk, \down} \ocndu} & & \text{und} & \Delta_{\oC}^{*} &= \frac{U}{N} \sum_{\vec{k'}} \expval{\ocdup, \ocddown}\label{eq:def_delta} \,
 \end{align}
 wird. Da das Bienenwabengitter symmetrisch unter Vertauschung von Gitter $A$ und $B$ ist, kann hier angenommen werden, dass für die Ordnungsparameter $\Delta_{\oA} = \Delta_{\oB} \equiv \Delta$ gilt. Zusätzlich kann die komplexe Phase vom Delta aufgrund der $U(1)$-Eichsymmetrie des Systems auf null gesetzt werden~\cite[272]{altland_condensed_2012}, also ist es hier kein Problem $\Delta$ der Einfachheit halber reel zu wählen. Damit kann dann $\oH_1$ weiter zu 
 \begin{align}
@@ -77,10 +117,10 @@ wird. Da das Bienenwabengitter symmetrisch unter Vertauschung von Gitter $A$ und
 vereinfacht werden. \\
 
 \textbf{Hartree-Term}\\
-Die Erwartungswerte $\expval{\ocdu \ocndu}$ und $\expval{\ocdu \ocndu}$ der beiden Hartree-Terme verletzen für $\mb{q} \neq 0$ die Impulserhaltung der Systems. Darum muss hier also nur der Beitrag der Hartree-Terme für $\mb{q} = 0$ betrachtet werden, denn für endliche Werte von $\mb{q}$ sind die Erwartungswerte null. \\
+Die Erwartungswerte $\expval{\ocdu \ocndu}$ und $\expval{\ocdu \ocndu}$ der beiden Hartree-Terme verletzen für $\vq \neq 0$ die Impulserhaltung der Systems. Darum muss hier also nur der Beitrag der Hartree-Terme für $\vq = 0$ betrachtet werden, denn für endliche Werte von $\vq$ sind die Erwartungswerte null. \\
 Damit ergibt sich der Hartree-Hamiltonian 
 \begin{align}
-    \oH_2 &= -\frac{U}{N} \sum_\oC \left[ \sum_{\vk, \mb{k'}} \left(\ocdup \ocup \expval{\ocd{\mb{k'}, \down} \oc{\mb{k'}, \down}} + \ocd{\vk, \down} \oc{\vk, \down} \expval{ \ocd{\mb{k', \up}} \oc{\mb{k'}, \up} } \right) \right] \, ,
+    \oH_2 &= -\frac{U}{N} \sum_\oC \left[ \sum_{\vk, \vec{k'}} \left(\ocdup \ocup \expval{\ocd{\vec{k'}, \down} \oc{\vec{k'}, \down}} + \ocd{\vk, \down} \oc{\vk, \down} \expval{ \ocd{\vec{k', \up}} \oc{\vec{k'}, \up} } \right) \right] \, ,
 \end{align}
 welcher unter der Einführung der spin- und gitter-abhängigen Besetzungszahl 
 \begin{equation}

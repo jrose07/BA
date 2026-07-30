@@ -117,11 +117,17 @@
 \def\obd#1{\op{B}^{\dagg}_{#1}}
 \def\on#1{\op{n}^{\pdagg}_{#1}}
 
+% Vector k
+\newcommand{\vk}{{\vec{k}}}
+\newcommand{\vq}{{\vec{q}}}
+\newcommand{\vdelta}{{\vec{\delta}}}
+\def\vd#1{{\vec{\delta}_{#1}}}
+
 % Custom to Superconductivity
-\newcommand{\ocdu}{\ocd{\mb{k}+\mb{q}, \uparrow}}
-\newcommand{\ocdd}{\ocd{\mb{k'} - \mb{q},\downarrow}}
-\newcommand{\ocndd}{\oc{\mb{k'}, \downarrow}}
-\newcommand{\ocndu}{\oc{\mb{k}, \uparrow}}
+\newcommand{\ocdu}{\ocd{\vk+\vq, \uparrow}}
+\newcommand{\ocdd}{\ocd{\vk' - \vq,\downarrow}}
+\newcommand{\ocndd}{\oc{\vk', \downarrow}}
+\newcommand{\ocndu}{\oc{\vk, \uparrow}}
 \newcommand{\ocdup}{\ocd{\vk, \up}}
 \newcommand{\ocddown}{\ocd{-\vk, \down}}
 \newcommand{\ocup}{\oc{\vk, \up}}
@@ -143,17 +149,17 @@
 
 
 % For Hopping terms
-\newcommand{\oakd}{\oad{\mb{k}, \sigma}}
-\newcommand{\oak}{\oa{\mb{k}, \sigma}}
-\newcommand{\obkd}{\obd{\mb{k}, \sigma}}
-\newcommand{\obk}{\ob{\mb{k}, \sigma}}
-\newcommand{\ockd}{\ocd{\mb{k}, \sigma}}
-\newcommand{\ock}{\oc{\mb{k}, \sigma}}
+\newcommand{\oakd}{\oad{\vk, \sigma}}
+\newcommand{\oak}{\oa{\vk, \sigma}}
+\newcommand{\obkd}{\obd{\vk, \sigma}}
+\newcommand{\obk}{\ob{\vk, \sigma}}
+\newcommand{\ockd}{\ocd{\vk, \sigma}}
+\newcommand{\ock}{\oc{\vk, \sigma}}
 % For Hubbard Terms
-% \newcommand{\ocdur}{\ocd{\mb{k}+\mb{q}, \uparrow}}
+% \newcommand{\ocdur}{\ocd{\vk+\mb{q}, \uparrow}}
 % \newcommand{\ocddr}{\ocd{\mb{k'} - \mb{q},\downarrow}}
 % \newcommand{\ocnddr}{\oc{\mb{k'}, \downarrow}}
-% \newcommand{\ocndur}{\oc{\mb{k}, \uparrow}}
+% \newcommand{\ocndur}{\oc{\vk, \uparrow}}
 
 % For Fermionic and bosonic Operators
 \def\ofe#1{\op{c}^{\pdagg}_{#1}}
@@ -161,26 +167,27 @@
 \def\obo#1{\op{b}^{\pdagg}_{#1}}
 \def\obod#1{\op{b}^{\dagg}_{#1}}
 
-% Vector k
-\newcommand{\vk}{\mb{k}}
-\newcommand{\vq}{\mb{q}}
-\newcommand{\vdelta}{\symbf{\delta}}
-\def\vd#1{\symbf{\delta}_{#1}}
 % Up and down
 \newcommand{\up}{\uparrow}
 \newcommand{\down}{\downarrow}
 
+% Restricted Sum
+\def\sump#1{\sideset{}{'}\sum_{#1}}
+% \def\sump#1{\sum_{#1}^{\prime}
+% \newcommand{\sumpk}{\sideset{}{'}\sum_{\vec{k}}}
+% \newcommand{\sumpk}{\sum_{\vec{k}}'}
 
 
 
-\newcommand{\ophioned}{\symbf{\varphi}^{\dagg}_{1, \mb{k}}}
-\newcommand{\ophione}{\symbf{\varphi}^{\pdagg}_{1, \mb{k}}}
-\newcommand{\ophitwod}{\symbf{\varphi}^{\dagg}_{2, \mb{k}}}
-\newcommand{\ophitwo}{\symbf{\varphi}^{\pdagg}_{2, \mb{k}}}
-\newcommand{\ophithreed}{\symbf{\varphi}^{\dagg}_{3, \mb{k}}}
-\newcommand{\ophithree}{\symbf{\varphi}^{\pdagg}_{3, \mb{k}}}
-\newcommand{\ophifourd}{\symbf{\varphi}^{\dagg}_{4, \mb{k}}}
-\newcommand{\ophifour}{\symbf{\varphi}^{\pdagg}_{4, \mb{k}}}
+
+\newcommand{\ophioned}{\symbf{\varphi}^{\dagg}_{1, \vk}}
+\newcommand{\ophione}{\symbf{\varphi}^{\pdagg}_{1, \vk}}
+\newcommand{\ophitwod}{\symbf{\varphi}^{\dagg}_{2, \vk}}
+\newcommand{\ophitwo}{\symbf{\varphi}^{\pdagg}_{2, \vk}}
+\newcommand{\ophithreed}{\symbf{\varphi}^{\dagg}_{3, \vk}}
+\newcommand{\ophithree}{\symbf{\varphi}^{\pdagg}_{3, \vk}}
+\newcommand{\ophifourd}{\symbf{\varphi}^{\dagg}_{4, \vk}}
+\newcommand{\ophifour}{\symbf{\varphi}^{\pdagg}_{4, \vk}}
 
 % spin operators in direction
 \newcommand{\oS}{\op{S}}

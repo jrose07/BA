@@ -1,18 +1,17 @@
 \chapter{Theoretische Grundlagen}\label{sec:grundlagen}
 
-In diesem Kapitel werden die für diese Arbeit besonders wichtigen theoretischen Grundlagen dargelegt. Diese sind vorallem Vorüberlegungen zur Geometrie und elektronischen Eigenschaften des Bienenwabengitters, sowie die wichtigsten Punkte der konventiellen Theorie zu Supraleitung, der BCS-Theorie.
-
-% \subsection{2. Quantisierung}
-% Ein ebenfalls wichtiger Punkt ist der 
+In diesem Kapitel werden die für diese Arbeit besonders wichtigen theoretischen Grundlagen dargelegt. 
+Diese sind vorallem Vorüberlegungen zur Geometrie und elektronischen Eigenschaften des Bienenwabengitters, sowie die wichtigsten Punkte der konventiellen Theorie zu Supraleitung, der BCS-Theorie.
 
 \section{Bienenwabengitter}
 
-Das Bienenwabengitter ist eine zweidimensionale Gitterstruktur, deren Elemente in einem hexagonalen Muster angeordnet sind. Ein prominentes Beispiel für ein Material mit Bienenwabenstruktur ist das kohlenstoffbasierte \textit{Graphen}~\cite{castro_neto_electronic_2009} bzw. die Monolayer des Graphits, aber  auch in Übergangsmetall-Dichalkogeniden (TMDs) wie \textit{MoS2} oder \textit{MoSe2} kommt diese Struktur vor. \\
+Das Bienenwabengitter ist eine zweidimensionale Gitterstruktur, deren Elemente in einem hexagonalen Muster angeordnet sind. 
+Ein prominentes Beispiel für ein Material mit Bienenwabenstruktur ist das kohlenstoffbasierte \textit{Graphen}~\cite{castro_neto_electronic_2009} bzw. die Monolayer des Graphits, aber  auch in Übergangsmetall-Dichalkogeniden (TMDs) wie \textit{MoS2} oder \textit{MoSe2} kommt diese Struktur vor. \\
 Das Gitter selbst muss im Gegensatz zu einem einfachen hexagonalen Gitter durch gegeneinander verschobene Untergitter $A$ und $B$ beschrieben werden, die jeweils eine hexagonale Struktur aufweisen, siehe Abbildung \autoref{fig:gitter}.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{images/gitter.png}
-    \caption{Skizze des Bienenwabengitters mit den Untergittern $A$ und $B$. Ebenfalls zu sehen sind die primitiven Gittervektoren $\mb{a}_1$ und $\mb{a}_2$, sowie die nearest-neighbor Vektoren $\symbf{\delta}_1$, $\symbf{\delta}_2$ und $\symbf{\delta}_3$~\cite{castro_neto_electronic_2009}.}
+    \caption{Skizze des Bienenwabengitters mit den Untergittern $A$ und $B$. Ebenfalls zu sehen sind die primitiven Gittervektoren $\vec{a}_1$ und $\vec{a}_2$, sowie die nearest-neighbor Vektoren $\vd{1}$, $\vd{2}$ und $\vd{3}$~\cite{castro_neto_electronic_2009}.}
     \label{fig:gitter}
 \end{figure}
 
@@ -21,12 +20,26 @@ Die Untergitter $A$ und $B$ besitzen dieselben primitiven Gittervektoren, sind j
     \vd{1} &= \frac{a}{2} \begin{pmatrix}1 \\ \sqrt{3}\end{pmatrix} & \vd{2} &= \frac{a}{2} \begin{pmatrix}1 \\ -\sqrt{3}\end{pmatrix} & \vd{3} &= a \begin{pmatrix}-1 \\ 0\end{pmatrix}
     \label{eq:nn-vektoren}
 \end{align}
-zueinander verschoben, wobei $a$ den Gitterabstand bezeichnet. Da die Nearest-Neighbour-Vektoren nicht als ganzzahlige lineare Kombination der primitiven Gittervektoren $\mb{a_1}$ und $\mb{a_2}$
+zueinander verschoben, wobei $a$ den Gitterabstand bezeichnet. 
+Da die Nearest-Neighbour-Vektoren nicht als ganzzahlige lineare Kombination der primitiven Gittervektoren $\vec{a_1}$ und $\vec{a_2}$
 \begin{align}
-    \mb{a_1} &= \frac{a}{2} \begin{pmatrix}3 \\ \sqrt{3}\end{pmatrix} & \mb{a_2} &= \frac{a}{2} \begin{pmatrix}-3 \\ \sqrt{3}\end{pmatrix}
+    \vec{a_1} &= \frac{a}{2} \begin{pmatrix}3 \\ \sqrt{3}\end{pmatrix} & \vec{a_2} &= \frac{a}{2} \begin{pmatrix}-3 \\ \sqrt{3}\end{pmatrix}
 \end{align}
-dargestellt werden können, muss das Bienenwabengitter also mit einer zweiatomigen Basis aus den Untergittern $A$ und $B$ beschrieben werden.
-
+dargestellt werden können, muss das Bienenwabengitter also mit einer zweiatomigen Basis aus den Untergittern $A$ und $B$ beschrieben werden.\\
+Als quantenmechanische Beschreibung der elektronischen Struktur des Gitters wird ein Tight-Binding-Modell (TB) verwendet. 
+Dabei wird angenommen, dass Elektronen stark an ihr zugehöriges Gitteratom gebunden werden, da dessen Atomorbitale nur schwach mit den Orbitalen benachbarter Atome überlappen. 
+Die Elektronen sind also in einem Gitterplatz lokalisiert, können jedoch mit einer bestimmten Wahrscheinlichkeit zu einem anderen Gitterplatz tunneln (\glqq hopping \grqq)~\cite{ashcroft_solid_1976}. 
+Der verwendete Tight-Binding-Hamiltonoperator lautet
+\begin{align}
+    \oH_\text{TB} &= -t \sum_{\expval{\vec{R}, \vec{R'}}, \sigma} \ofed{\vec{R}, \sigma} \ofe{\vec{R'}, \sigma} \label{eq:TB}\, ,
+\end{align}
+wobei hier nur ein Elektronorbital und Nearest-Neighbour-Hopping-Terme berücksichtigt werden, mit $\expval{\vec{R}, \vec{R'}}$ ist die Summe über alle möglichen Gittervektoren $\vec{R}$ und jeweiligen Nachbarn $\vec{R'}$ gemeint. $t$ ist die in einer Energie-Einheit gemessene Hopping-Wahrscheinlichkeit und $\ofed{\vec{R}, \sigma}$ und $\ofe{\vec{R'}, \sigma}$ sind die in der zweiten Quantisierung formulierten Erzeugungs- und Vernichtungsoperatoren für Elektronen mit Spin $\sigma$ an den Gitterplätzen $\vec{R}$ bzw. $\vec{R'}$.
+Die fermionischen Operatoren erfüllen die Antikommutatorrelationen
+\begin{align}
+    \anticommute{\ofe{\alpha}}{\ofed{\beta}} &= \delta_{\alpha \beta} & \text{und} & &
+    \anticommute{\ofe{\alpha}}{\ofe{\beta}} = \anticommute{\ofed{\alpha}}{\ofed{\beta}} &= 0 \label{eq:anticommute}\, ,
+\end{align}
+mit $\anticommute{\op{A}}{\op{B}} = \op{A} \op{B} + \op{B} \op{A}$.
 
 % \red{\textbf{IDEEN: Noch etwas zur Brillouin-Zone schreiben bzw. primtive Vektoren und reziproke. Ist noch allgemein zu Bienenwabengitter, aber sowas wie DOS ist schon graphen-spezifisch, sowie das Modell eigentlich..}}
 
@@ -54,20 +67,15 @@ Um dies auch quantitativ zu verstehen, betrachte man den Fröhlich-Hamiltonopera
     \oH_{\text{F}} &= \sum_{\vk, \sigma} \epsilon_\vk \ofed{\vk, \sigma} \ofe{\vk, \sigma} + \sum_{\vq} \hbar \omega_{\vq} \op{b}^{\dagg}_{\vq, \sigma} \op{b}^{\pdagg}_{\vq, \sigma} + \sum_{\vk, \vq, \sigma} M(\vq) ( \obo{\vq} + \obod{\vq}) \ofed{\vk + \vq, \sigma} \ofe{\vk, \sigma} \, ,
 \end{align}
 der die Elektron-Phonon-Wechselwirkung des Systems beschreibt~\cite{czycholl_theoretische_2017}. 
-$\ofed{\alpha}$ und $\ofe{\beta}$ bezeichnen hierbei die in der zweiten Quantisierung formulierten fermionischen Erzeugungs- und Vernichtungsoperatoren für Elektronen in den Zuständen $\alpha$ bzw. $\beta$, während $\obod{\alpha}$ und $\obo{\beta}$ die entsprechenden Erzeugungs- und Vernichtungsoperatoren für Phononen, also Bosonen, darstellen. $\epsilon_\vk$ und $\hbar \omega_\vq$ bezeichnen die Einteilchen Elektronen- bzw. Phononenergien und $M(\vq)$ gibt die impulsabhängige Elektron-Phonon-Kopplungsstärke an. \\
-Die (fermionischen) bosonischen Operatoren erfüllen die (Anti-)Kommutatorrelationen
-\begin{align}
-    \anticommute{\ofe{\alpha}}{\ofed{\beta}} &= \delta_{\alpha, \beta} & \commute{\obo{\alpha}}{\obod{\beta}} &= \delta_{\alpha, \beta} \\
-    \anticommute{\ofe{\alpha}}{\ofe{\beta}} = \anticommute{\ofed{\alpha}}{\ofed{\beta}} &= 0 & \commute{\obo{\alpha}}{\obo{\beta}} = \commute{\obod{\alpha}}{\obod{\beta}}&= 0 \, ,
-\end{align}
-die in weiteren Teilen dieser Arbeit noch häufiger von Relevanz sein werden. \\
+$\ofed{\alpha}$ und $\ofe{\beta}$ sind die fermionischen Erzeugungs- und Vernichtungsoperatoren für Elektronen in den Zuständen $\alpha$ bzw. $\beta$, während $\obod{\alpha}$ und $\obo{\beta}$ die entsprechenden Erzeugungs- und Vernichtungsoperatoren für Phononen, also Bosonen, darstellen. 
+$\epsilon_\vk$ und $\hbar \omega_\vq$ bezeichnen die Einteilchen Elektronen- bzw. Phononenergien und $M(\vq)$ gibt die impulsabhängige Elektron-Phonon-Kopplungsstärke an. \\
 Der Fröhlich-Hamiltonian kann nun mit einer unitären Trafo in führender Ordnung in das Bild einer effektiven Elektron-Elektron Wechselwirkung 
 \begin{align}
-    \oH_{e-e} &= \sum_{\vk, \mb{k'}, \vq}\sum_{\sigma, \sigma'} V_{\vk, \mb{k'}, \vq} \ofed{\vk + \vq, \sigma} \ofed{\mb{k'} - \vq, \sigma'} \ofe{\mb{k'}, \sigma'} \ofe{\vk, \sigma}
+    \oH_{e-e} &= \sum_{\vk, \vec{k'}, \vq}\sum_{\sigma, \sigma'} V_{\vk, \vec{k'}, \vq} \ofed{\vk + \vq, \sigma} \ofed{\vec{k'} - \vq, \sigma'} \ofe{\vec{k'}, \sigma'} \ofe{\vk, \sigma}
 \end{align}
 mit der Wechselwirkungsstärke 
 \begin{align}
-    V_{\vk, \mb{k'}, \vq} = \frac{\abs{M(\vq)}^2 \hbar \omega_\vq}{\abs{\Delta \epsilon}^2 - (\hbar \omega_\vq)^2}
+    V_{\vk, \vec{k'}, \vq} = \frac{\abs{M(\vq)}^2 \hbar \omega_\vq}{\abs{\Delta \epsilon}^2 - (\hbar \omega_\vq)^2}
 \end{align}
 gebracht werden~\cite{czycholl_theoretische_2017}. 
 Diese Wechselwirkung ist für $\abs{\Delta \epsilon} = \abs{\epsilon_\vk - \epsilon_{\vk + \vq}} < \hbar \omega_\vq$ negativ, also anziehend, was genau die Voraussetzung für die Ausbildung von Cooper-Paaren ist.
@@ -78,21 +86,22 @@ Mit der Annahme, dass die Elektronen aus der Nähe der Fermi-Kante stammen ergib
 \end{align}
 für die Ausbildung von Cooper-Paaren, die genau den phononübermittelnden Charakter der Wechselwirkung widerspiegelt. \\
 
-Bei der Bildung von Cooper-Paaren koppeln in diesem Bild also zwei Elektronen in den Zuständen $(\vk, \sigma)$ und $(\vk', \sigma')$ zu einem Paarzustand, wobei der Phononenimpuls $\vq$ übertragen wird und der Gesamtimpuls $\mb{K} = \vk + \vk'$ des Paars erhalten bleibt. 
-Um dieses Bild zu vereinfachen, wird in der BCS-Theorie angenommen, dass hauptsächlich nur Elektronen mit Gesamtspin $S = 0$ und Gesamtimpuls $\mb{K} = 0$ Cooper-Paare bilden. 
-Bardeen, Cooper und Schrieffer begründen diese Annahme zum einen damit, dass die Bildung von Paaren mit Gesamtspin $S = 1$, also Triplett-Kopplung durch Austauschterme in der Wechselwirkung energetisch benachteiligt wird\footnote{Alternativ könnte man dies auch so formulieren, dass in diesem Fall die Ortswellenfunktion $\Psi(\mb{r_1} - \mb{r_2})$ antisymmetrisch und daher insbesonders $\Psi(0) = 0$ sein muss, was die attraktive Wechselwirkung also unterdrückt~\cite[225]{czycholl_theoretische_2017}.}~\cite{bardeen_theory_1957}.
-Zum anderen ist die Menge an Zuständen $(\vk, \vk')$ die zu Paaren mit Gesamtimpuls $\mb{K}=0$ koppeln können deutlich größer als für $\mb{K} \neq 0$ (siehe \autoref{fig:s_wave}), weswegen die Zustände mit endlichen $\vq$ vernachlässigt werden können. 
+Bei der Bildung von Cooper-Paaren koppeln in diesem Bild also zwei Elektronen in den Zuständen $(\vk, \sigma)$ und $(\vk', \sigma')$ zu einem Paarzustand, wobei der Phononenimpuls $\vq$ übertragen wird und der Gesamtimpuls $\vec{K} = \vk + \vk'$ des Paars erhalten bleibt. 
+Um dieses Bild zu vereinfachen, wird in der BCS-Theorie angenommen, dass hauptsächlich nur Elektronen mit Gesamtspin $S = 0$ und Gesamtimpuls $\vec{K} = 0$ Cooper-Paare bilden. 
+Bardeen, Cooper und Schrieffer begründen diese Annahme zum einen damit, dass die Bildung von Paaren mit Gesamtspin $S = 1$, also Triplett-Kopplung durch Austauschterme in der Wechselwirkung energetisch benachteiligt wird\footnote{Alternativ könnte man dies auch so formulieren, dass in diesem Fall die Ortswellenfunktion $\Psi(\vec{r_1} - \vec{r_2})$ antisymmetrisch und daher insbesonders $\Psi(0) = 0$ sein muss, was die attraktive Wechselwirkung also unterdrückt~\cite[225]{czycholl_theoretische_2017}.}~\cite{bardeen_theory_1957}.
+Zum anderen ist die Menge an Zuständen $(\vk, \vk')$ die zu Paaren mit Gesamtimpuls $\vec{K}=0$ koppeln können deutlich größer als für $\vec{K} \neq 0$ (siehe \autoref{fig:s_wave}), weswegen die Zustände mit endlichen $\vec{K}$ vernachlässigt werden können. 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.35\textwidth]{images/s_wave.png}
-    \caption{Erlaubte $(\vk, \vk')$ Zustände zur Bildung von Cooper-Paaren bei isotroper Dispersion. Beide Kreisringe haben den Radius $\mb{k}_\text{F}$ mit Dicke $\Delta \vk = \hbar \omega_\text{D}$ und der Überlapp beider Kreisringe gibt die erlaubten Zustände an. Für $\mb{K} \neq 0$ ist dies nur ein kleiner Teil des Kreisringes, für $\mb{K} = 0$ allerdings der gesamte Ring~\cite{czycholl_theoretische_2017}.}
+    \includegraphics[width=0.4\textwidth]{images/s_wave.png}
+    \caption{Erlaubte $(\vk, \vk')$ Zustände zur Bildung von Cooper-Paaren bei isotroper Dispersion. Beide Kreisringe haben den Radius $\vec{k}_\text{F}$ mit Dicke $\Delta \vk = \hbar \omega_\text{D}$ und der Überlapp beider Kreisringe gibt die erlaubten Zustände an. Für $\vec{K} \neq 0$ ist dies nur ein kleiner Teil des Kreisringes, für $\vec{K} = 0$ allerdings der gesamte Ring~\cite{czycholl_theoretische_2017}.}
     \label{fig:s_wave}
 \end{figure}
 
 Zusätzlich wird eine konstante negative Wechselwirkung $V_{\vk, \vk'} = -V$ über alle erlaubten Zustände angenommen, sodass der klassische BCS-Hamiltonian die Form
 \begin{align}
     \oH_{\text{BCS}} = \sum_{\vk} \epsilon_\vk \ofed{\vk, \sigma} \ofe{\vk, \sigma} - V \sum_{\vk, \vk'}\ofed{\vk', \up} \ofed{-\vk', \down} \ofe{-\vk, \down} \ofe{\vk, \up} \Theta(\hbar \omega_D - \abs{\epsilon_\vk}) \Theta(\hbar \omega_D - \abs{\epsilon_{\vk'}})
+    \label{eq:BCS}
 \end{align}
 mit der Heaviside-Funktion $\Theta(x)$ annimmt.
 
