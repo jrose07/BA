@@ -136,6 +136,18 @@ if __name__ == "__main__":
     U = 9.4 #eV 
     U = 9.4*const.e/t
 
+    E_D = 5
+    E = np.linspace(-E_D, E_D,10000)
+    DOS = func_DOS(E)
+    fig, ax = plt.subplots()
+    ax.plot(E, DOS)
+    ax.grid()
+    ax.set(
+           xlabel=r"$E \, / \, t$",
+           ylabel=r"$\text{DOS} \, / \, t^{-1}$"
+    )
+    plt.show()
+
     print(f"t = {t/const.e:.2f}eV von Graphenemodeling")
     print(f"Debye Energien für Graphen sind ca. {1800*k_b/const.e*1e3:.2f} - {2300*k_b/const.e*1e3:.2f} meV, also 0.05- 0.07t")
     print(f"Delta Werte sind im Bereich ca. 1-10 meV")
