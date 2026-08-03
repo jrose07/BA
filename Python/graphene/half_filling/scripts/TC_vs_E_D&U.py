@@ -9,6 +9,7 @@ import scipy.constants as const
 # Schreibe eine Funktion die für ein T_array einfach die kritische Temperatur T_C (In Abhängigkeit von U,E_D, A) zurückgibt  
 
 t = 2.7 * const.e #J (t = 2.7eV)
+version = 2
 
 def get_T_C(U, E_D, T_array, start):
     U = np.asarray(U)
@@ -34,7 +35,7 @@ def get_T_C(U, E_D, T_array, start):
     return np.vectorize(T_C_scalar, otypes=[float])(U_b, E_D_b)
 
 from graphene import mev2t
-U = np.linspace(75,110,10)
+U = np.linspace(0,110,10)
 E_D = np.linspace(mev2t(150),mev2t(200),10)
 T = np.linspace(1,700,100)
 
@@ -56,4 +57,4 @@ ax.set(
 )
 ax.set_facecolor(color='black')
 ax.legend()
-fig.savefig("../plots/T_C_with_delta_2.pdf")
+fig.savefig(f"../plots/T_C_vs_E_D&U{version}.pdf")

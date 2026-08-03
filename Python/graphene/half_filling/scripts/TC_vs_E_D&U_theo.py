@@ -2,13 +2,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 # from graphene import get_delta
 from graphenemodeling.graphene import _constants as _c
-# import pandas as pd
+import pandas as pd
 import scipy.constants as const
 from scipy.optimize import newton
 
 # def E_D_theo(U, T_C, A):
 #     return 2*const.k*T_C*np.arccosh(np.exp(1/(2*U*A*const.k*T_C)))
 t = 2.7*const.e
+version = 2
 
 def y_func(y, U, A, E_D):
     y = float(y)
@@ -54,8 +55,8 @@ def solve_with_y(U, A, E_D, start):
 
 from graphene import mev2t, t2mev
 A = 0.184080 #(1/t^2)
-U = np.linspace(75,110,100)
-E_D = np.linspace(mev2t(150),mev2t(200),100)
+U = np.linspace(0,110,200)
+E_D = np.linspace(mev2t(150),mev2t(200),200)
 
 T_C = solve_with_y(U, A, E_D, start=0.07*t/(2*const.k*10))
 
@@ -84,4 +85,13 @@ ax.set(
 )
 ax.legend()
 ax.set_facecolor(color='black')
-fig.savefig("../plots/T_C_theo_1.pdf")
+fig.savefig(f"../plots/T_C_vs_E_D&U_theo{version}.pdf")
+
+
+
+
+#Save as df
+T_C_df = pd.DataFrame(T_C, index=t2mev(E_D), columns=t2mev(U)*1e-3)
+T_C_df.index.name = r"$E_D / meV$"
+T_C_df.columns.name = r"$U / eV$"
+T_C_df.to_csv(f"./data/TC_vs_E_D&U_theo{version}.csv")

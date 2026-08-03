@@ -353,8 +353,7 @@ Zuerst wird der Spezialfall halber Füllung betrachtet, da in diesem Fall die Se
 Halbe Füllung bedeutet, dass sich auf jedem Gitterplatz im Mittel nur ein Elektron befindet. 
 In dem verwendete Tight-Binding-Modell ist das genau dann der Fall, wenn alle Zustände bis zu $E = 0$ gefüllt sind, also die Fermienergie verschwindet. 
 Dies bedeutet konkret, dass das chemische Potential $\mu$ in diesem Speziafall ebenfalls verschwinden muss, da es die zuvor schon auf null gesetzte Fermienergie $E_F$ verschiebt.
-% Dazu wird das chemische Potential $\mu_{\oC, \sigma}$ auf null gesetzt, was der Wahl des Fermi-Niveaus $E_F = 0$ entspricht. Da es sich bei der Wahl von $E_F = 0$ um die Symmetrieachse der Energiezustände handelt, ist das Gitter damit genau zur Hälfte gefüllt. \\
-% den Hamiltonian $\oHeff$
+
 Für $\mu = 0 $ ergibt sich damit die vereinfachte Matrix
 \begin{align}
     \dul{h} = \begin{pmatrix} 0 & -f^*(\vk) & \Delta & 0 \\ -f(\vk) & 0 & 0 & \Delta \\ \Delta & 0 & 0 & f^*(\vk) \\ 0 & \Delta & f(\vk) & 0 \end{pmatrix} \, ,
@@ -378,8 +377,7 @@ ergibt sich die diagonale Form
 \begin{align}
     \dul{h}_\text{diag} = \dul{U}^\dagger \dul{h} \dul{U} = \begin{pmatrix} E_\vk & 0 & 0 & 0 \\ 0 & E_\vk & 0 & 0 \\ 0 & 0 & -E_\vk & 0 \\ 0 & 0 & 0 & -E_\vk \end{pmatrix} \, .
 \end{align}
-% wobei die Energieeigenwerte $E_\vk$ die aus der BCS-Theorie bekannten Energieniveaus
-% darstellen. 
+
 $\epsilon_\vk = \pm \abs{f(\vk)}$ sind die Energiebänder des Bienenwabengitters im normalleitenden Grundzustand, für $\Delta = 0$ wird also die normale Bandstruktur zurückgewonnen.
 
 Für den Hamiltonian gilt dann 
@@ -387,19 +385,11 @@ Für den Hamiltonian gilt dann
     \oHeff &= \sump{\vk} \vopsid \dul{h} \, \vopsi = \sump{\vk} \underbrace{\vopsid \dul{U}}_{=: \vophid} \, \underbrace{\dul{U}^\dagg \dul {h} \, \dul{U}}_{= \dul{h}_\text{diag}} \, \underbrace{\dul{U}^\dagg \vopsi}_{=: \vophi} = \sump{\vk} \vophid \dul{h}_\text{diag} \, \vophi \\
     &= \sump{\vk} E_\vk \left(\ophioned \ophione + \ophitwod \ophitwo - \ophithreed \ophithree - \ophifourd \ophifour \right) \, ,
 \end{align}
-% Neben der Hamilton-Matrix $\dul{h}$ werden ebenfalls die Nambu-Spinoren $\vopsi$ und $\vopsid$ über 
 mit den Quasiteilchen-Spinoren 
 \begin{align}
     \vophi = \dul{U}^\dagger \vopsi & & \text{und} & & \vophid = \vopsid \dul{U} \, .
 \end{align}
-% in die Quasiteilchenbasis transformiert, sodass der Hamiltonian in der Form 
-% \begin{align}
-%     \oHeff &= \sum_\vk E_\vk \left(\ophioned \ophione + \ophitwod \ophitwo - \ophithreed \ophithree - \ophifourd \ophifour \right)
-% \end{align}
-% mit den Quasiteilchenoperatoren $\ophione, \ophitwo, \ophithree$ und $\ophifour$ geschrieben werden kann. \\
-% Damit hat der Hamiltonian nun die Form eines wechselwirkungsfreien Systems, sodass die Fermi-Dirac-Statistik zur Berechnung der anomalen Erwartungswerte verwendet werden kann. \\
 In dieser Quasiteilchenbasis ist der Hamiltonian nun diagonal und formell wechselwirkungsfrei.
-% mit den Quasiteilchenenergien $E_\vk$
 Für die Berechnung der Erwartungswerte der Quasiteilchenbesetzungszahlen kann daher die Fermi-Dirac-Funktion $F(E) = \frac{1}{e^{\beta E} + 1}$ mit der reziproken Temperatur $\beta = \sfrac{1}{k_B T}$ und Boltzmann-Konstante $k_B$ verwendet werden.
 Damit gilt
 \begin{align}
@@ -454,46 +444,7 @@ in die Integralform
 umgeschrieben, wobei der Energiecutoff $\hbar \omega_D$ nun wieder explizit berücksichtigt wird.
 
 Numerische Lösungen bzw. graphische Darstellungen der Selbstkonsistenzgleichung~\eqref{eq:gap_eq_half_filling_integral} werden in Kapitel~\ref{sec:ergebnisse} gezeigt.
-% Um nun die Selbstkonsistenzgleichung für $\Delta$ zu erhalten, wird die Definition von $\Delta$ in der Quasiteilchenbasis ausgedrückt, denn dort sind die Erwartungswerte der Quasiteilchenoperatoren bekannt. Starten wir also zunächst mit der Definition von $\Delta$ aus~\eqref{eq:def_delta}
 
-% \begin{equation}
-%     \Delta = \frac{U}{N} \sum_\vk \expval{\oa{-\vk, \down} \oa{\vk, \up}} = \frac{U}{N} \sum_\vk \expval{\ob{-\vk, \down} \ob{\vk, \up}} \, ,
-% \end{equation}
-% dann ist erkenntlich, dass nun die Operatoren $\oA$ und $\oB$ in Abhängigkeit von den Quasiteilchenoperatoren $\ophi_i$ ausgedrückt werden müssen. Dazu betrachte die Inverse Trafo 
-% \begin{align}
-%     \opsi = \dul{U} \ophi = \frac{1}{\sqrt{2}}\begin{pmatrix} 
-%         \ophione - \ophithree \\ 
-%         -\frac{f}{E_\vk} \ophione + \frac{\Delta}{E_\vk} \ophitwo - \frac{f}{E_\vk} \ophithree - \frac{\Delta}{E_\vk} \ophifour \\
-%         \frac{\Delta}{E_\vk} \ophione + \frac{f^{*}}{E_\vk}  \ophitwo + \frac{\Delta}{E_\vk} \ophithree - \frac{f^{*}}{E_\vk}  \ophifour\\
-%         \ophitwo + \ophifour \end{pmatrix} = \begin{pmatrix}
-%             \oadup \\  \obdup \\ \oadown \\ \obdown
-%         \end{pmatrix}\, ,
-% \end{align}
-% und setze in die Definition von $\Delta$, die inverse Trafo von $\opsi$, als auch von $\opsid$ ein. \\
-% Damit ergibt sich für $\Delta_\oA$ und $\Delta_\oB$ die Form
-% \begin{align}
-%     \Delta = \frac{U}{2N} \sum_\vk \frac{\Delta}{E_\vk} \left(\expval{\ophi_{1/2, \vk} \ophid_{1/2, \vk}} - \expval{\ophi_{3/4, \vk} \ophid_{3/4, \vk}}\right) + \sum_{\substack{i, j \\ i \neq j}} A_{ij} \expval{\ophi_{i, \vk} \ophid_{j, \vk}}\, ,
-% \end{align}
-% mit 
-% \begin{align}
-%     \ophi_{1/2, \vk} &= \begin{cases}
-%         \ophione & \text{für } \Delta_\oA\\
-%         \ophitwo & \text{für } \Delta_\oB
-%     \end{cases} & & \text{und} & & & \ophi_{3/4, \vk} &= \begin{cases}
-%         \ophithree & \text{für } \Delta_\oA\\
-%         \ophifour & \text{für } \Delta_\oB
-%     \end{cases} \, .
-% \end{align}
-% $A_{ij} \in \realnumbers$ sind reelle Koeffizienten, die sich aus der Inversen Trafo ergeben. Für die gemischten Erwartungswerte $\expval{\ophi_{i, \vk} \ophid_{j, \vk}}$ mit $i \neq j$ gilt allerdings $\expval{\ophi_{i, \vk} \ophid_{j, \vk}} = 0$, da diese Operatoren unterschiedliche Quasiteilchen erzeugen und vernichten, diese in der Quasiteilchenbasis aber nicht miteinander wechselwirken. Gleichzeitig gilt im Fall $i = j$
-% \begin{equation}
-%     \expval{\ophi_{i, \vk} \ophid_{i, \vk}} = 1 - \expval{\ophid_{i, \vk} \ophi_{i, \vk}} = 1 - f(E_{i, \vk}) = 1 - \frac{1}{e^{\beta E_{i, \vk}} + 1} \, ,
-% \end{equation}
-% mit der Fermifunktion $f(E_{i, \vk})$ und der Inversen Temperatur $\beta = 1/k_B T$. Damit vereinfacht sich die Selbstkonsistenzgleichung für $\Delta$ zu
-% \begin{align}
-%     \Delta &= \frac{U}{2N} \sum_\vk \frac{\Delta}{E_\vk} \left( f(-E_\vk) - f(E_\vk) \right) \\
-%     &= \frac{U}{2N} \sum_\vk \frac{\Delta}{E_\vk} \tanh\left(\frac{\beta E_\vk}{2}\right) \, ,
-% \end{align}
-% unter Ausnutzung der Relation $f(-E_\vk) = 1 - f(E_\vk)$ und der Definition der hyperbolischen Tangensfunktion $\tanh(x) = 1 - 2/(e^{2x} + 1)$. \\
 
 \section{Selbstkonsistenz bei beliebiger Füllung}
 
@@ -506,22 +457,23 @@ diagonalisiert werden.
 % Da diese 
 
 
-\red{beschreibung von diagonalisierung}
-Dazu schreibe $\dul{h}$ als Blockmatrix
-\begin{align}
-    \dul{h} = \begin{pmatrix}
-        \dul{M} & \Delta \onematrix \\
-        \Delta \onematrix & -\dul{M}
-    \end{pmatrix} & & \text{mit} & & \dul{M} = \begin{pmatrix}
-        \mu & - f^* \\
-        -f & \mu
-    \end{pmatrix}
-\end{align}
-um.
-$\dul{M}$ wird nun durch 
+% \red{beschreibung von diagonalisierung}
+% Dazu schreibe $\dul{h}$ als Blockmatrix
+% \begin{align}
+%     \dul{h} = \begin{pmatrix}
+%         \dul{M} & \Delta \onematrix \\
+%         \Delta \onematrix & -\dul{M}
+%     \end{pmatrix} & & \text{mit} & & \dul{M} = \begin{pmatrix}
+%         \mu & - f^* \\
+%         -f & \mu
+%     \end{pmatrix}
+% \end{align}
+% um.
+% $\dul{M}$ wird nun durch 
 
-\red{ende beschreibung}
+% \red{ende beschreibung}
 
+Es ergibt sich die Unitäre Trafo-Matrix 
 \begin{align}
     \dul{U} = \frac{1}{2} \begin{pmatrix}
         -\frac{\Delta}{N_1} e^{-\im \varphi} \quad & -\frac{\Delta}{N_2} e^{-\im \varphi} \quad & -\frac{\Delta}{N_3} e^{-\im \varphi} \quad & -\frac{\Delta}{N_4} e^{-\im \varphi} \\[0.3em]
@@ -533,18 +485,45 @@ $\dul{M}$ wird nun durch
 mit 
 \begin{align}
     \lambda_\pm &= \mu \pm \abs{f(\vk)}, & E_\pm &= \sqrt{\lambda_{\pm}^2 + \Delta^2}, \\
-    N_{1,2} &= \sqrt{E_+(E_+ \mp \lambda_+)}, & N_{3,4} &= \sqrt{E_-(E_- \mp \lambda_-)} \, .
+    N_{1,2} &= \sqrt{E_+(E_+ \mp \lambda_+)}, & N_{3,4} &= \sqrt{E_-(E_- \mp \lambda_-)} \, \\
+    \varphi &= \arg(f(\vk)) \, , & e^{-\im \varphi} &= \frac{f^*(\vk)}{\abs{f(\vk)}} \, ,
 \end{align}
+und der Diagonalmatrix 
+\begin{align}
+    \dul{h}_\text{diag} = \dul{U}^\dagg \dul{h} \dul{U} =\text{diag}(E_+, -E_+, E_-, -E_-) \, .
+\end{align}
+% \begin{pmatrix}
+%         E_+ & 0 & 0 & 0 \\ 
+%         0 & -E_+ & 0 & 0 \\ 
+%         0 & 0 & E_- & 0 \\ 
+%         0 & 0 & 0 & -E_-
+%     \end{pmatrix}
 
 Damit hat der Hamiltonian in Quasiteilchenbasis die Form
 \begin{align}
     \oHeff &= \sump{\vk}E_+\left(\ophioned \ophione - \ophitwod \ophitwo\right) + E_- \left(\ophithreed \ophithree - \ophifourd \ophifour\right)
 \end{align}
-und mit~\eqref{eq:Delta_rho} folgt 
+und mit der zuvor hergeleiteten Gleichung für $\Delta$~\eqref{eq:Delta_rho} folgt 
 \begin{align}
     \Delta &= \frac{U}{N} \sump{\vk} \sum_l u_{1l} u_{3l}^* (1 - F(E_l)) \\
     &= \frac{U \Delta}{4N} \sump{\vk}\Bigg[\left(\frac{E_+ - \lambda_+}{{N_1}^2}\right)\left(1 - F(E_+)\right) + \left(\frac{-E_+ - \lambda_+}{{N_2}^2}\right)\left(1 - F(-E_+)\right) \\
     &+ \left(\frac{E_- - \lambda_-}{{N_3}^2}\right)\left(1 - F(E_-)\right) + \left(\frac{-E_- - \lambda_-}{{N_4}^2}\right)\left(1 - F(-E_-)\right)\Bigg] \notag \\
-    &= \frac{U \Delta}{4N} \sump{\vk} \left[\frac{1}{E_+} \left(F(-E_+) - F(E_+)\right) + \frac{1}{E_-} \left(F(-E_-) - F(E_-)\right) \right] \\ \notag \\
+    &= \frac{U \Delta}{4N} \sump{\vk} \left[\frac{F(-E_+) - F(E_+)}{E_+} + \frac{F(-E_-) - F(E_-)}{E_-} \right] \\ \notag \\
     \Longrightarrow  \Delta &= \frac{U}{4N} \sump{\vk} \left[\frac{\Delta}{E_+} \tanh\left(\frac{\beta E_+}{2}\right) + \frac{\Delta}{E_-} \tanh\left(\frac{\beta E_-}{2}\right)\right] \, .
 \end{align}
+
+% \sqrt{(\epsilon_{\vk, +} - \mu)^2 + \Delta^2}
+% \sqrt{(\epsilon_{\vk, -} - \mu)^2 + \Delta^2}
+
+% Wie zuvor kann die Summe über $\vk$ mithilfe der Zustandsdichte $\rho$ in eine Integralform umgeschrieben werden.
+Im Vergleich zum Spezialfall halber Füllung~\eqref{eq:gap_eq_half_filling} tauchen hier nun beide Quasiteilchenenergien $E_\pm$ auf, da diese nun nicht nur von den Einteilchenenergien $\epsilon_\pm = \pm \abs{f(\vk)}$, sondern auch vom chemischen Potential $\mu$ abhängen und somit nicht mehr entartet bezüglich $\epsilon_\pm$ sind.
+Dies ist allerdings kein Hinderniss bei der Formulierung der Selbstkonsistenz über die Zustandsdichte $\rho(\epsilon)$, da für $E_\pm$ 
+\begin{align}
+    E_\pm = \sqrt{(\epsilon_{\mp} - \mu)^2 + \Delta^2} \, ,
+\end{align}
+gilt.
+Für die Gesamt-Zustandsdichte gilt $\rho(\epsilon) = (\rho(\epsilon_+) + \rho(\epsilon_-))/2$, sodass die Selbstkonsistenzgleichung für beliebige Füllung in Integralform
+\begin{align}
+    \Delta = \frac{U}{2} \int_{-\hbar \omega_D}^{\hbar \omega_D} d\epsilon \, \rho(\epsilon) \frac{\Delta}{\sqrt{(\epsilon - \mu)^2 + \Delta^2}} \tanh\left(\frac{\beta \sqrt{(\epsilon - \mu)^2 + \Delta^2}}{2}\right) \label{eq:gap_eq_arbitrary_filling_integral}
+\end{align}
+lautet und insbesondere für $\mu = 0$ wieder die Selbstkonsistenzgleichung~\eqref{eq:gap_eq_half_filling_integral} für halbe Füllung zurückliefert.

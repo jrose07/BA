@@ -1,1 +1,43 @@
 \chapter{Ergebnisse}\label{sec:ergebnisse}
+
+% Die Selbstkonsistenzgleichung für 
+Um die in~\autoref{sec:modell} hergeleiteten Selbstkonsistenzgleichungen~\eqref{eq:gap_eq_half_filling_integral} bzw.~\eqref{eq:gap_eq_arbitrary_filling_integral} zu lösen wird eine Kombination aus Fixpunktiteration und Newtonverfahren verwendet.
+Die dafür erforderliche Zustandsdichte $\rho(\epsilon)$ wird ebenfalls numerisch über die in Ref.~\cite{hanisch_lattice_1997} hergeleitete Formel berechnet (siehe~\autoref{fig:dos}).
+Für die numerische Berechnung wird das Python-Paket \textit{scipy}~\cite{virtanen_scipy_2020} verwendet. 
+Plots werden mit \textit{matplotlib}~\cite{hunter_matplotlib_2007} erstellt.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Plots/DOS_complete.pdf}
+    \caption{Zustandsdichte $\rho(E)$ (oder DOS für engl. \textit{Density of States}) des Bienenwabengitters, berechnet nach der Formel in Ref.~\cite{hanisch_lattice_1997}. Energie $E$ ist in Einheiten des Hoppingparameters $t$ angegeben, die DOS damit in Einheiten von $t^{-1}$. Die DOS ist symmetrisch um $E=0$ und hat eine Van-Hove-Singularität bei $E = \pm t$.}
+    \label{fig:dos}
+\end{figure}
+
+% \section{Vorbereitung und Methodik}
+
+% Wie DOS berechnet?~\cite{hanisch_lattice_1997}
+
+% Welche numerischen Methoden? -> Fipunkt + Newton
+
+\section{Supraleitung bei halber Füllung}\label{sec:ergebnisse_half_filling}
+
+
+Plots: Halbe Füllung zuerst
+-> T vs Delta
+-> debye und U vs Tc
+
+-> Uc ausgerechnet (Rechnung der kritischen Kopplungskonstante)
+-> Tc direkt ausrechnen Formel
+
+
+\section{Supraleitung bei beliebiger Füllung}\label{sec:ergebnisse_arbitrary_filling}
+Nicht halbe Füllung
+-> debye fest, U und  mu vs Tc
+
+Uc ausgerechnet Formel
+
+\section{Vergleich für verschiedene Materialien}\label{sec:ergebnisse_materialien}
+
+Parameter (t, debye, U)
+
+Gängige supraleitung (s-wave, d-wave)
