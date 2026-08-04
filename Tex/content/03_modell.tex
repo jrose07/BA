@@ -120,7 +120,7 @@ lautet.
 Da das Hubbard-Modell selbst im einfachsten 1-Band-Fall nicht für Dimension $1< d < \infty$ exakt gelöst werden kann (vgl.~\cite{hanisch_lattice_1997,blumer_quanten-monte-carlo-untersuchungen_nodate}), muss an dieser Stelle eine Näherung zur Vereinfachung des Wechselwirkungsteils aus Gleichung~\eqref{eq:H_vor_MF} angewandt werden. 
 Wie in der BCS-Theorie üblich wird hier eine Mean-Field-Näherung durchgeführt, welche für supraleitende Phasenübergänge im Vergleich zu anderen Phasenübergängen gut die experimentell gemessenen Abhängigkeiten des Ordnungsparameters von der Temperatur reproduziert~\cite[234]{czycholl_theoretische_2017}.\\
 
-Dazu wird der quartische Term aus Gleichung~\eqref{eq:H_vor_MF} wie folgt umgeschrieben~\cite{ring_nuclear_1980}:
+Dazu wird der quartische Term aus Gleichung~\eqref{eq:H_vor_MF} über das Wick-Theorem~\cite{ring_nuclear_1980} folgt umgeschrieben:
 % \ocd{\vk', \up} \ocd{-\vk', \down} \oc{-\vk, \down} \oc{\vk, \up} &= \, : \ocd{\vk', \up} \ocd{-\vk', \down} \oc{-\vk, \down} \oc{\vk, \up}: \label{eq:2TT}\\
 % &+ \expval{\ocd{\vk', \up} \ocd{-\vk', \down}} :\oc{-\vk, \down} \oc{\vk, \up}: + \expval{\oc{-\vk, \down} \oc{\vk, \up}} :\ocd{\vk', \up} \ocd{-\vk', \down}: \label{eq:anomal} \\
 % &- \expval{\ocd{\vk', \up} \oc{-\vk, \down}} :\ocd{-\vk', \down} \oc{\vk, \up}: - \expval{\ocd{-\vk', \down} \oc{\vk, \up}} :\ocd{\vk', \up} \oc{-\vk, \down}:\label{eq:fock}\\
@@ -139,8 +139,8 @@ Dies ist genau die bekannte Mean-Field-Näherung, die ein Vielteilchenproblem au
 Die Konstante ist ebenfalls vernachlässigbar, da sie nur eine Verschiebung der Gesamtenergie bewirkt und für die Dynamik des Systems irrelevant ist. \\
 
 Von den verbleibenden Einteilchentermen lassen sich die Beiträge~\eqref{eq:hartree} und~\eqref{eq:fock} den klassichen Hartree- und Fock-Termen der Hartree-Fock-Näherung zuordnen: 
-Der Hartree-Term~\eqref{eq:hartree} koppelt mit den Erwartungswerten $\expval{\ocdu \ocndu}$ bzw. $\expval{\ocdd \ocndd}$ aufgrund der angenommenen Impulserhaltung des Systems (also $\vq = 0$) die Besetzungszahlen der Elektronen mit gleichem Spin, während der Fock-Term~\eqref{eq:fock} über die Erwartungswerte $\expval{\ocdu \ocdd}$ und $\expval{\ocdd \ocndu}$ eine Austauschkopplung beider Spins beschreibt.
-Da die Fock-Terme allerdings die Drehimpulserhaltung des Systems verletzen, fallen Sie im folgenden weg.
+\red{Der Hartree-Term~\eqref{eq:hartree} koppelt mit den Erwartungswerten $\expval{\ocdu \ocndu}$ bzw. $\expval{\ocdd \ocndd}$ aufgrund der angenommenen Impulserhaltung des Systems (also $\vq = 0$) die Besetzungszahlen der Elektronen mit gleichem Spin, während der Fock-Term~\eqref{eq:fock} über die Erwartungswerte $\expval{\ocdu \ocdd}$ und $\expval{\ocdd \ocndu}$ eine Austauschkopplung beider Spins beschreibt.
+Da die Fock-Terme allerdings die Drehimpulserhaltung des Systems verletzen, fallen Sie im folgenden weg.}
 
 Zusätzlich zu den bekannten Hartree- und Fock-Termen gibt es mit~\eqref{eq:anomal} einen weiteren, für die BCS-Theorie zentralen Beitrag: 
 Er enthält die anomale Erwartungswerte $\expval{\ocdu \ocdd}$ bzw. $\expval{\ocndd \ocndu}$, also Erwartungswerte der Paarerzeugung(-vernichtung) von Cooper-Paaren mit Gesamtimpuls $\vec{K} = \vk + \vk'$. Da diese Erwartungswerte die Teilchenzahlerhaltung verletzten, sind sie in der normalleitenden Phase des Systems immer null, für die supraleitende Phase sind sie allerdings aufgrund der makroskopischen Kohärenz der Cooper-Paare endlich, sie fungieren also als Ordnungsparameter der supraleitenden Phase.
@@ -524,6 +524,7 @@ Dies ist allerdings kein Hinderniss bei der Formulierung der Selbstkonsistenz ü
 gilt.
 Für die Gesamt-Zustandsdichte gilt $\rho(\epsilon) = (\rho(\epsilon_+) + \rho(\epsilon_-))/2$, sodass die Selbstkonsistenzgleichung für beliebige Füllung in Integralform
 \begin{align}
-    \Delta = \frac{U}{2} \int_{-\hbar \omega_D}^{\hbar \omega_D} d\epsilon \, \rho(\epsilon) \frac{\Delta}{\sqrt{(\epsilon - \mu)^2 + \Delta^2}} \tanh\left(\frac{\beta \sqrt{(\epsilon - \mu)^2 + \Delta^2}}{2}\right) \label{eq:gap_eq_arbitrary_filling_integral}
+    \Delta = \frac{U}{2} \int_{\mu -\hbar \omega_D}^{\mu + \hbar \omega_D} d\epsilon \, \rho(\epsilon) \frac{\Delta}{\sqrt{(\epsilon - \mu)^2 + \Delta^2}} \tanh\left(\frac{\beta \sqrt{(\epsilon - \mu)^2 + \Delta^2}}{2}\right) \label{eq:gap_eq_arbitrary_filling_integral}
 \end{align}
-lautet und insbesondere für $\mu = 0$ wieder die Selbstkonsistenzgleichung~\eqref{eq:gap_eq_half_filling_integral} für halbe Füllung zurückliefert.
+lautet und insbesondere für $\mu = 0$ wieder die Selbstkonsistenzgleichung~\eqref{eq:gap_eq_half_filling_integral} für halbe Füllung zurückliefert. 
+Da ein endliches $\mu$ die Fermienergie um $\mu$ verschiebt, muss hier nun über $\mu \pm \hbar \omega_D$ integriert werden.
