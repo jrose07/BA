@@ -84,7 +84,7 @@ Anhand dieser Bedingung wird die Anzahl an Freiheitsgraden reduziert, indem die 
 \end{align*}
 stehen. Es ist leicht erkenntlich, dass diese Wahl immernoch $\vec{n} + \vec{p} =  \vec{m} +\vec{o}$ erfüllt.
 Vom zweiten auf den dritten Schritt werden die Antikommutatorrelationen $\anticommute{\oc{\alpha}}{\ocd{\beta}} = \delta_{\alpha, \beta}$ und $\anticommute{\oc{\alpha}}{\oc{\beta}} = 0$ angewandt.
-Der Wechselwirkungsterm beschreibt jetzt im Vergleich mit dem BCS-Hamiltonian~\eqref{eq:BCS} die Bildung von Cooper-Paaren mit Singulett-Kopplung aber dafür endlichem Gesamtimpuls $\vec{K} = \vk + \vk'$ und kann nun mit dem zuvor implizit formulierte Cutoff~\eqref{eq:cutoff} über die Einteilchenenergie $\epsilon_\vk$ nun explizit formuliert werden, sodass der Hamiltonian die Form
+Der Wechselwirkungsterm beschreibt jetzt im Vergleich mit dem BCS-Hamiltonian~\eqref{eq:BCS} die Bildung von Cooper-Paaren mit Singulett-Kopplung aber dafür endlichem Gesamtimpuls $\vec{K} = \vk + \vk'$ und kann nun mit dem zuvor implizit in der Definition von $U$ formulierte Cutoff~\eqref{eq:cutoff} über die Einteilchenenergie $\epsilon_\vk$ explizit formuliert werden, sodass der Hamiltonian die Form
 \begin{align}
     \oHWW &= - \frac{U}{N} \sum_{\vk, \vk', \vq} \sum_\oC \ocdu \ocdd \ocndd \ocndu \Theta(\hbar \omega_D - \abs{\epsilon_\vk - E_\text{F}}) \Theta(\hbar \omega_D - \abs{\epsilon_{\vk'} - E_\text{F}}) 
 \end{align}
@@ -120,7 +120,7 @@ lautet.
 Da das Hubbard-Modell selbst im einfachsten 1-Band-Fall nicht für Dimension $1< d < \infty$ exakt gelöst werden kann (vgl.~\cite{hanisch_lattice_1997,blumer_quanten-monte-carlo-untersuchungen_nodate}), muss an dieser Stelle eine Näherung zur Vereinfachung des Wechselwirkungsteils aus Gleichung~\eqref{eq:H_vor_MF} angewandt werden. 
 Wie in der BCS-Theorie üblich wird hier eine Mean-Field-Näherung durchgeführt, welche für supraleitende Phasenübergänge im Vergleich zu anderen Phasenübergängen gut die experimentell gemessenen Abhängigkeiten des Ordnungsparameters von der Temperatur reproduziert~\cite[234]{czycholl_theoretische_2017}.\\
 
-Dazu wird der quartische Term aus Gleichung~\eqref{eq:H_vor_MF} über das Wick-Theorem~\cite{ring_nuclear_1980} folgt umgeschrieben:
+Dazu wird der quartische Term aus Gleichung~\eqref{eq:H_vor_MF} über das Wick-Theorem~\cite{ring_nuclear_1980} wiefolgt umgeschrieben:
 % \ocd{\vk', \up} \ocd{-\vk', \down} \oc{-\vk, \down} \oc{\vk, \up} &= \, : \ocd{\vk', \up} \ocd{-\vk', \down} \oc{-\vk, \down} \oc{\vk, \up}: \label{eq:2TT}\\
 % &+ \expval{\ocd{\vk', \up} \ocd{-\vk', \down}} :\oc{-\vk, \down} \oc{\vk, \up}: + \expval{\oc{-\vk, \down} \oc{\vk, \up}} :\ocd{\vk', \up} \ocd{-\vk', \down}: \label{eq:anomal} \\
 % &- \expval{\ocd{\vk', \up} \oc{-\vk, \down}} :\ocd{-\vk', \down} \oc{\vk, \up}: - \expval{\ocd{-\vk', \down} \oc{\vk, \up}} :\ocd{\vk', \up} \oc{-\vk, \down}:\label{eq:fock}\\
@@ -133,14 +133,14 @@ Dazu wird der quartische Term aus Gleichung~\eqref{eq:H_vor_MF} über das Wick-T
     &+ \expval{\ocdu \ocndu} :\ocdd \ocndd: + \expval{\ocdd \ocndd} :\ocdu \ocndu:\label{eq:hartree}\\
     &+ \text{const.}
 \end{align}
-wobei ``$: \dots :$'' für die Normalordnung der Operatoren steht, im folgenden aber weggelassen wird, da alle Terme bereits normalgeordnet sind.
+wobei ``$: \dots :$'' für die Normalordnung der Operatoren steht, im Folgenden aber weggelassen wird, da alle Terme bereits normalgeordnet sind.
 Der bis dahin exakte Term wird nun genähert, indem der ursprüngliche, schwer zu behandelnde Zweiteilchenterm~\eqref{eq:2TT} vernachlässigt wird. 
 Dies ist genau die bekannte Mean-Field-Näherung, die ein Vielteilchenproblem auf ein effektives Einteilchenproblem reduziert.
-Die Konstante ist ebenfalls vernachlässigbar, da sie nur eine Verschiebung der Gesamtenergie bewirkt und für die Dynamik des Systems irrelevant ist. \\
+Die Konstante ist ebenfalls vernachlässigbar, da sie nur eine Verschiebung der Gesamtenergie bewirkt und daher für die Dynamik des Systems irrelevant ist. \\
 
 Von den verbleibenden Einteilchentermen lassen sich die Beiträge~\eqref{eq:hartree} und~\eqref{eq:fock} den klassichen Hartree- und Fock-Termen der Hartree-Fock-Näherung zuordnen: 
-\red{Der Hartree-Term~\eqref{eq:hartree} koppelt mit den Erwartungswerten $\expval{\ocdu \ocndu}$ bzw. $\expval{\ocdd \ocndd}$ aufgrund der angenommenen Impulserhaltung des Systems (also $\vq = 0$) die Besetzungszahlen der Elektronen mit gleichem Spin, während der Fock-Term~\eqref{eq:fock} über die Erwartungswerte $\expval{\ocdu \ocdd}$ und $\expval{\ocdd \ocndu}$ eine Austauschkopplung beider Spins beschreibt.
-Da die Fock-Terme allerdings die Drehimpulserhaltung des Systems verletzen, fallen Sie im folgenden weg.}
+Der Hartree-Term~\eqref{eq:hartree} koppelt mit Erwartungswerten $\expval{\ocdu \ocndu}$ bzw. $\expval{\ocdd \ocndd}$ aufgrund der angenommenen Impulserhaltung des Systems (also $\vq = 0$) die Besetzungszahlen der Elektronen mit gleichem Spin, während der Fock-Term~\eqref{eq:fock} über die Erwartungswerte $\expval{\ocdu \ocdd}$ und $\expval{\ocdd \ocndu}$ eine Austauschkopplung beider Spins beschreibt.
+Da die Fock-Terme allerdings die Drehimpulserhaltung des Systems verletzen, fallen Sie im folgenden weg.
 
 Zusätzlich zu den bekannten Hartree- und Fock-Termen gibt es mit~\eqref{eq:anomal} einen weiteren, für die BCS-Theorie zentralen Beitrag: 
 Er enthält die anomale Erwartungswerte $\expval{\ocdu \ocdd}$ bzw. $\expval{\ocndd \ocndu}$, also Erwartungswerte der Paarerzeugung(-vernichtung) von Cooper-Paaren mit Gesamtimpuls $\vec{K} = \vk + \vk'$. Da diese Erwartungswerte die Teilchenzahlerhaltung verletzten, sind sie in der normalleitenden Phase des Systems immer null, für die supraleitende Phase sind sie allerdings aufgrund der makroskopischen Kohärenz der Cooper-Paare endlich, sie fungieren also als Ordnungsparameter der supraleitenden Phase.

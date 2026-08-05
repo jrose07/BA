@@ -9,6 +9,6 @@
     "*": true,
     "plaintext": true,
     "markdown": true,
-    "latex": true
+    "latex": false
   }
 }
