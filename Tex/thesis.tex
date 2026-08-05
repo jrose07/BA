@@ -125,6 +125,82 @@
 \DefineBibliographyStrings{german}{andothers = {{et\,al\adddot}}}  % replace u.a. with et al.
 
 
+
+% Benes Biber
+
+% % Literaturverzeichnis
+% \usepackage[backend=biber, style=numeric, giveninits=true]{biblatex}
+
+% % Quellendatenbank
+% \addbibresource{lit.bib}
+
+% % Hyperlinks im Dokument
+% \usepackage[
+%   german,
+%   unicode,        % Unicode in PDF-Attributen erlauben
+%   pdfusetitle,    % Titel, Autoren und Datum als PDF-Attribute
+%   pdfcreator={},  % ┐ PDF-Attribute säubern
+%   pdfproducer={}, % ┘
+%   hidelinks,
+% ]{hyperref}
+
+% %\addbibresource{programme.bib}
+% % Formatierung der Felder anpassen
+% \DeclareFieldFormat{title}{\mkbibbold{#1}}
+% \DeclareFieldFormat{year}{\mkbibbold{#1}}
+% \DeclareFieldFormat{doi}{\mkbibbold{DOI: #1}}
+
+% \DeclareFieldFormat{doi}{%
+%   \mkbibbold{DOI:}%
+%   \addcolon\space
+%   \ifhyperref
+%     {\href{https://doi.org/#1}{\nolinkurl{#1}}} % Klickbarer Link
+%     {\nolinkurl{#1}} % Nur DOI anzeigen, falls hyperref nicht aktiv
+% }
+
+
+% \DefineBibliographyStrings{german}{
+%   andothers = {et\addabbrvspace al\adddot},
+% }
+% % Bibliografie-Driver anpassen
+% \DeclareBibliographyDriver{article}{%
+%   \printnames{author}%
+%   \addcomma\space
+%   \printfield{title}%
+%   \adddot\space
+%   \printfield[journaltitle]{journaltitle}%
+%   \space
+%   \printfield{volume}%
+%   \addcomma\space
+%   \printfield{pages}%
+%   \space
+%   (\printfield{year})%
+%   \adddot\space
+%   \printfield{doi}%
+%   \finentry
+% }
+% \DeclareNameAlias{sortname}{family-given}
+
+% % Stelle sicher, dass \cite die Zahl in eckigen Klammern ausgibt
+% \DeclareCiteCommand{\cite}
+%   {\usebibmacro{prenote}}
+%   {\usebibmacro{citeindex}%
+%    \printtext[bibhyperref]{%
+%      [\printfield{labelnumber}] % Gibt die Nummer in eckigen Klammern aus
+%    }}
+%   {\multicitedelim}
+%   {\usebibmacro{postnote}}
+
+
+
+% Ende Benes
+
+
+
+
+
+
+
 % Last packages, do not change order or insert new packages after these ones
 \usepackage[pdfusetitle, unicode, linkbordercolor=tugreen, citebordercolor=tugreen]{hyperref}
 \usepackage{bookmark}

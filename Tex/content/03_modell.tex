@@ -117,7 +117,8 @@ lautet.
 
 \section{Mean-Field-Näherung}
 
-Da das Hubbard-Modell selbst im einfachsten 1-Band-Fall nicht für Dimension $1< d < \infty$ exakt gelöst werden kann (vgl.~\cite{hanisch_lattice_1997,blumer_quanten-monte-carlo-untersuchungen_nodate}), muss an dieser Stelle eine Näherung zur Vereinfachung des Wechselwirkungsteils aus Gleichung~\eqref{eq:H_vor_MF} angewandt werden. 
+% Da das Hubbard-Modell selbst im einfachsten 1-Band-Fall nicht für Dimension $1< d < \infty$ exakt gelöst werden kann (vgl.~\cite{hanisch_lattice_1997}), muss an dieser Stelle eine Näherung zur Vereinfachung des Wechselwirkungsteils aus Gleichung~\eqref{eq:H_vor_MF} angewandt werden. 
+Da das Hubbard-Modell für Dimensionen $1 < d < \infty$ noch nicht exakt gelöst werden kann (vgl.~\cite{hanisch_lattice_1997}), wird an dieser Stelle eine Näherung zur Vereinfachung des Wechselwirkungsteils aus Gleichung~\eqref{eq:H_vor_MF} angewandt.
 Wie in der BCS-Theorie üblich wird hier eine Mean-Field-Näherung durchgeführt, welche für supraleitende Phasenübergänge im Vergleich zu anderen Phasenübergängen gut die experimentell gemessenen Abhängigkeiten des Ordnungsparameters von der Temperatur reproduziert~\cite[234]{czycholl_theoretische_2017}.\\
 
 Dazu wird der quartische Term aus Gleichung~\eqref{eq:H_vor_MF} über das Wick-Theorem~\cite{ring_nuclear_1980} wiefolgt umgeschrieben:
@@ -138,9 +139,12 @@ Der bis dahin exakte Term wird nun genähert, indem der ursprüngliche, schwer z
 Dies ist genau die bekannte Mean-Field-Näherung, die ein Vielteilchenproblem auf ein effektives Einteilchenproblem reduziert.
 Die Konstante ist ebenfalls vernachlässigbar, da sie nur eine Verschiebung der Gesamtenergie bewirkt und daher für die Dynamik des Systems irrelevant ist. \\
 
-Von den verbleibenden Einteilchentermen lassen sich die Beiträge~\eqref{eq:hartree} und~\eqref{eq:fock} den klassichen Hartree- und Fock-Termen der Hartree-Fock-Näherung zuordnen: 
-Der Hartree-Term~\eqref{eq:hartree} koppelt mit Erwartungswerten $\expval{\ocdu \ocndu}$ bzw. $\expval{\ocdd \ocndd}$ aufgrund der angenommenen Impulserhaltung des Systems (also $\vq = 0$) die Besetzungszahlen der Elektronen mit gleichem Spin, während der Fock-Term~\eqref{eq:fock} über die Erwartungswerte $\expval{\ocdu \ocdd}$ und $\expval{\ocdd \ocndu}$ eine Austauschkopplung beider Spins beschreibt.
-Da die Fock-Terme allerdings die Drehimpulserhaltung des Systems verletzen, fallen Sie im folgenden weg.
+Von den verbleibenden Einteilchentermen lassen sich die Beiträge~\eqref{eq:hartree} und~\eqref{eq:fock} den klassichen Hartree- und Fock-Termen der Hartree-Fock-Näherung zuordnen~\cite{czycholl_theoretische_2016,bruus_manybody_2004}: 
+% Der Hartree-Term~\eqref{eq:hartree} koppelt mit Erwartungswerten $\expval{\ocdu \ocndu}$ bzw. $\expval{\ocdd \ocndd}$ aufgrund der angenommenen Impulserhaltung des Systems (also $\vq = 0$) die Besetzungszahlen der Elektronen mit gleichem Spin.
+Der Hartree-Term~\eqref{eq:hartree} beschreibt hier eine direkte Kopplung der Elektronendichte gleicher Spins mit den mittleren Felder entgegengesetzten Spins $\expval{\ocdu \ocndu}$ bzw. $\expval{\ocdd \ocndd}$. 
+Aufgrund der angenommenen Impulserhaltung muss hier $\vq=0$ gelten.
+Der Fock-Term~\eqref{eq:fock} beschreibt hier über die Erwartungswerte $\expval{\ocdu \ocdd}$ und $\expval{\ocdd \ocndu}$ eine Austauschkopplung beider Spins.
+Da ein Drehimpulserhaltendes System angenommen wird, sind diese Erwartungswerte allerdings null und der Fock-Term fällt in diesem Fall weg.
 
 Zusätzlich zu den bekannten Hartree- und Fock-Termen gibt es mit~\eqref{eq:anomal} einen weiteren, für die BCS-Theorie zentralen Beitrag: 
 Er enthält die anomale Erwartungswerte $\expval{\ocdu \ocdd}$ bzw. $\expval{\ocndd \ocndu}$, also Erwartungswerte der Paarerzeugung(-vernichtung) von Cooper-Paaren mit Gesamtimpuls $\vec{K} = \vk + \vk'$. Da diese Erwartungswerte die Teilchenzahlerhaltung verletzten, sind sie in der normalleitenden Phase des Systems immer null, für die supraleitende Phase sind sie allerdings aufgrund der makroskopischen Kohärenz der Cooper-Paare endlich, sie fungieren also als Ordnungsparameter der supraleitenden Phase.
