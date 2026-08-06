@@ -1,6 +1,220 @@
-\chapter{Ein Anhangskapitel}
+% \chapter{Diagonalisierung von $\dul{h}$ bei beliebiger Füllung}~\label{sec:anhang_a}
 
-% Hier könnte ein Anhang stehen, falls Sie z.\,B.\ Code, Konstruktionszeichnungen oder Ähnliches mit in die Arbeit bringen wollen.
-% Im Normalfall stehen jedoch alle Ihre Resultate im Hauptteil der Bachelorarbeit und ein Anhang ist überflüssig.
+% Die Matrix $\dul{h}$~\eqref{eq:h_nothalf} besitzt die Blockstruktur
+% \begin{align}
+%     \dul{h} &= \begin{pmatrix}
+%         \dul{M} & \Delta \onematrix \\
+%         \Delta \onematrix & -\dul{M}
+%     \end{pmatrix} & \text{mit} & & \dul{M} &= \begin{pmatrix}
+%         \mu & -f^*(\vk) \\
+%         -f(\vk) & \mu
+%     \end{pmatrix} \, .
+% \end{align}
+% Diese spezielle Struktur kann nun ausgenutzt werden, um das Eigenwertproblem einer $4 \times 4$-Matrix auf das einiger $2 \times 2$-Matrizen zu reduzieren.
+% Im Folgenden werden Matrizen der Übersichtlichkeit halber fett markiert, also $\dul{A} \rightarrow \mb{A}$.
+
+% Es sei $\mUM$ die unitäre Trafo, die $\mM$ diagonalisiert, für die also
+% \begin{align}
+%     \mM_\diag &= \diag(\lambda_+, \lambda_-) = \mUM^\dagg  \mM \, \mUM
+% \end{align}
+% gilt.
+% Dann kann $\mh$ mit $\mW = \diag(\mUM, \mUM)$ wiefolgt transformiert werden:
+% \begin{align}
+%     \mhp &= \mW^\dagg \mh \, \mW \\
+%     &= \begin{pmatrix}
+%         \mUM^\dagg & 0 \\ 0 & \mUM^\dagg
+%     \end{pmatrix} \cdot \begin{pmatrix}
+%         \mM & \Delta \mone \\ \Delta \mone & -\mM
+%     \end{pmatrix} \cdot \begin{pmatrix}
+%         \mUM & 0 \\ 0 & \mUM
+%     \end{pmatrix} \\
+%     &= \begin{pmatrix}
+%         \mUM^\dagg \mM \, \mUM & \Delta \mone \\ \Delta \mone &-\mUM^\dagg \mM \, \mUM 
+%     \end{pmatrix} \\
+%     &= \begin{pmatrix}
+%         \lambda_+ & 0 & \Delta & 0 \\
+%         0 & \lambda_- & 0 & \Delta \\
+%         \Delta & 0 & -\lambda_+ & 0 \\
+%         0 & \Delta & 0 & -\lambda_-
+%     \end{pmatrix} \, .
+% \end{align} 
+% Diese transformierte Matrix $\mhp$ kann wiederum durch gleichzeitigem Tausch der zweiten und dritten Zeile und Spalte in eine Blockstruktur gebracht werden. 
+% Dieser Tausch wird formell als weitere unitäre Trafo 
+% \begin{align}
+%     \mhpp &= \mP^\dagg \mhp \mP = \begin{pmatrix}
+%         \lambda_+ & \Delta & 0 & 0 \\
+%         \Delta & - \lambda_+ & 0 & 0 \\
+%         0 & 0 & \lambda_- & \Delta \\
+%         0 & 0 & \Delta & -\lambda_-
+%     \end{pmatrix} = \begin{pmatrix}
+%         \mBp & 0 \\
+%         0 & \mBm
+%     \end{pmatrix}
+% \end{align}
+% mit der Permutationsmatrix 
+% \begin{align}
+%     \mP &= \begin{pmatrix}
+%         1 & 0 & 0 & 0 \\
+%         0 & 0 & 1 & 0 \\
+%         0 & 1 & 0 & 0 \\
+%         0 & 0 & 0 & 1
+%     \end{pmatrix}
+% \end{align}
+% beschrieben.
+
+% % In dieser Form können nun $\mBpm$ unabhängig voneinander mit $\mUpm$ diagonalisiert werden und damit $\mhpp$ ergibt sich schließlich 
+
+% Diagonalisieren die unitären Transformationen $\mUpm$ nun die beiden Blockmatrizen $\mBpm$, wird $\mhpp$ mit $\mWp = \diag(\mBp, \mBm)$ diagonal. 
+% Es gilt 
+% \begin{align}
+%     \mhpp_\diag &= \mWp^\dagg \mhpp \mWp = \diag(\mUp^\dagg \mBp \mUp, \mUm^\dagg \mBm \mUm) = \diag(E_+^{(1)}, E_+^{(2)}, E_-^{(1)}, E_-^{(2)}) \, ,
+% \end{align}
+% mit den Eigenwerten $E_{\pm}^{(1/2)}$ von $\mBpm$.
+
+% Zusammengefasst gilt also 
+% \begin{align}
+%     \mh_\diag = \mWp^\dagg \mP^\dagg \mW^\dagg \mh \mW \mP \mWp = (\mW \mP \mWp)^\dagg \mh \, (\mW \mP \mWp) = \diag(E_+^{(1)}, E_+^{(2)}, E_-^{(1)}, E_-^{(2)}) \, ,
+% \end{align}
+% also ist die gesuchte Trafo $\mU = \mW \mP \mWp$.
+
+% Es ist leicht nachgerechnet, dass 
+% \begin{align}
+%     \mUM &= \frac{1}{\sqrt{2}}\begin{pmatrix}
+%         -e^{-\im \varphi} & e^{-\im \varphi} \\ 1 & 1
+%     \end{pmatrix} & \text{mit} & & \lambda_\pm &= \mu \pm \abs{f(\vk)} 
+% \end{align}
+% die Matrix $\mM$ diagonalisiert, während $\mBpm$ durch die Matrizen 
+% \begin{align}
+%     \mUp &= \frac{1}{\sqrt{2}}\begin{pmatrix}
+%         \frac{\Delta}{N_1} & \frac{\Delta}{N_2} \\
+%         \frac{E_+ - \lambda_+}{N_1} & \frac{-E_+ - \lambda_+}{N_2}
+%     \end{pmatrix} & \text{mit} & & N_{1,2} &= \sqrt{E_+(E_+ \mp \lambda_+)}
+% \end{align}
+% und 
+% \begin{align}
+%     \mUm &= \frac{1}{\sqrt{2}}\begin{pmatrix}
+%         \frac{\Delta}{N_3} & \frac{\Delta}{N_4} \\
+%         \frac{E_- - \lambda_-}{N_3} & \frac{-E_- - \lambda_-}{N_4}
+%     \end{pmatrix} & \text{mit} & & N_{3,4} &= \sqrt{E_-(E_- \mp \lambda_-)}
+% \end{align}
+% und $E_\pm = \sqrt{\lambda_\pm^2 + \Delta^2}$ in ihre Eigenwerte $E_{+}^{(1/2)} = \pm E_+$, sowie $E_-^{(1/2)} = \pm E_-$ zerlegt werden.
 
 
+
+
+\chapter{Diagonalisierung von $\dul{h}$ bei beliebiger Füllung}\label{sec:anhang_a}
+
+Die Matrix $\dul{h}$~\eqref{eq:h_nothalf} besitzt die Blockstruktur
+\begin{align}
+    \dul{h} &= \begin{pmatrix}
+        \dul{M} & \Delta \onematrix \\
+        \Delta \onematrix & -\dul{M}
+    \end{pmatrix} & \text{mit} & & \dul{M} &= \begin{pmatrix}
+        \mu & -f^*(\vk) \\
+        -f(\vk) & \mu
+    \end{pmatrix} 
+\end{align}
+und es wird die Matrix $\dul{U}$ gesucht, die $\dul{h}$ diagonalisiert.
+Diese Struktur lässt sich gezielt ausnutzen, um das Eigenwertproblem der $4\times4$-Matrix $\dul h$ auf mehrere $2\times2$-Probleme zurückzuführen, die sich unabhängig voneinander lösen lassen. Der Übersichtlichkeit halber werden Matrizen im Folgenden fett markiert, also $\dul{A} \rightarrow \mb{A}$.
+
+% \paragraph{Schritt 1 -- Diagonalisierung von $\mM$.}
+Es sei $\mUM$ die unitäre Transformation, die $\mM$ diagonalisiert, für die also
+\begin{align}
+    \mM_\diag &= \diag(\lambda_+, \lambda_-) = \mUM^\dagg  \mM \, \mUM
+\end{align}
+gilt. 
+Wendet man diese Transformation mit $\mW = \diag(\mUM, \mUM)$ auf die Diagonalblöcke $\mM$ an, so bleibt die Blockstruktur von $\mh$ erhalten, während die Diagonalblöcke selbst diagonal werden:
+\begin{align}
+    \mhp &= \mW^\dagg \mh \, \mW \\
+    &= \begin{pmatrix}
+        \mUM^\dagg & 0 \\ 0 & \mUM^\dagg
+    \end{pmatrix} \cdot \begin{pmatrix}
+        \mM & \Delta \mone \\ \Delta \mone & -\mM
+    \end{pmatrix} \cdot \begin{pmatrix}
+        \mUM & 0 \\ 0 & \mUM
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+        \mUM^\dagg \mM \, \mUM & \Delta \mone \\ \Delta \mone &-\mUM^\dagg \mM \, \mUM 
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+        \lambda_+ & 0 & \Delta & 0 \\
+        0 & \lambda_- & 0 & \Delta \\
+        \Delta & 0 & -\lambda_+ & 0 \\
+        0 & \Delta & 0 & -\lambda_-
+    \end{pmatrix} \, .
+\end{align}
+
+% \paragraph{Schritt 2 -- Umsortierung in echte Blockdiagonalform.}
+% In $\mhp$ sind nun zwar die Diagonalblöcke diagonal, über die $\Delta$-Terme koppeln aber weiterhin Zustand $1$ mit $3$ sowie Zustand $2$ mit $4$. 
+In $\mhp$ sind nun zwar die Diagonalblöcke diagonal, aber aufgrund der $\Delta$-Terme ergibt sich noch keine echte diagonale Form.
+Vertauscht man allerdings gleichzeitig die zweite und dritte Zeile bzw.\ Spalte, zerfällt $\mhp$ in eine blockdiagonale Form. 
+Dieser Tausch entspricht formal einer weiteren unitären Transformation mit der Permutationsmatrix
+\begin{align}
+    \mP &= \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix} \, ,
+\end{align}
+und liefert
+\begin{align}
+    \mhpp &= \mP^\dagg \mhp \mP = \begin{pmatrix}
+        \lambda_+ & \Delta & 0 & 0 \\
+        \Delta & - \lambda_+ & 0 & 0 \\
+        0 & 0 & \lambda_- & \Delta \\
+        0 & 0 & \Delta & -\lambda_-
+    \end{pmatrix} = \begin{pmatrix}
+        \mBp & 0 \\
+        0 & \mBm
+    \end{pmatrix} \, .
+\end{align}
+
+% \paragraph{Schritt 3 -- Diagonalisierung der Blöcke.}
+Die Blockmatrizen $\mBp$ und $\mBm$ lassen sich nun unabhängig voneinander diagonalisieren. Werden $\mBpm$ durch die unitären Transformationen $\mUpm$ diagonalisiert, so wird $\mhpp$ mit $\mWp = \diag(\mUp, \mUm)$ diagonal:
+\begin{align}
+    \mhpp_\diag &= \mWp^\dagg \mhpp \mWp = \diag(\mUp^\dagg \mBp \mUp, \mUm^\dagg \mBm \mUm) = \diag(E_+^{(1)}, E_+^{(2)}, E_-^{(1)}, E_-^{(2)}) \, ,
+\end{align}
+mit den Eigenwerten $E_{\pm}^{(1/2)}$ von $\mBpm$.
+
+% \paragraph{Ergebnis.}
+Da jede der drei Transformationen $\mW$, $\mP$ und $\mWp$ unitär ist, ist auch ihr Produkt unitär, und es gilt insgesamt
+\begin{align}
+    \mh_\diag = \mWp^\dagg \mP^\dagg \mW^\dagg \mh \mW \mP \mWp = (\mW \mP \mWp)^\dagg \mh \, (\mW \mP \mWp) = \diag(E_+^{(1)}, E_+^{(2)}, E_-^{(1)}, E_-^{(2)}) \, ,
+\end{align}
+die gesuchte Transformation ist also $\mU = \mW \mP \mWp$.
+
+Durch direktes Nachrechnen findet man für die einzelnen Bausteine explizit
+\begin{align}
+    \mUM &= \frac{1}{\sqrt{2}}\begin{pmatrix}
+        -e^{-\im \varphi} & e^{-\im \varphi} \\ 1 & 1
+    \end{pmatrix} & \text{mit} & & \lambda_\pm &= \mu \pm \abs{f(\vk)} \, ,
+\end{align}
+sowie die Matrizen $\mUpm$, die $\mBpm$ in ihre Eigenwerte $E_{+}^{(1/2)} = \pm E_+$ bzw.\ $E_-^{(1/2)} = \pm E_-$ (mit $E_\pm = \sqrt{\lambda_\pm^2 + \Delta^2}$) zerlegen:
+\begin{align}
+    \mUp &= \frac{1}{\sqrt{2}}\begin{pmatrix}
+        \frac{\Delta}{N_1} & \frac{\Delta}{N_2} \\
+        \frac{E_+ - \lambda_+}{N_1} & \frac{-E_+ - \lambda_+}{N_2}
+    \end{pmatrix} & \text{mit} & & N_{1,2} &= \sqrt{E_+(E_+ \mp \lambda_+)} \, ,
+\end{align}
+\begin{align}
+    \mUm &= \frac{1}{\sqrt{2}}\begin{pmatrix}
+        \frac{\Delta}{N_3} & \frac{\Delta}{N_4} \\
+        \frac{E_- - \lambda_-}{N_3} & \frac{-E_- - \lambda_-}{N_4}
+    \end{pmatrix} & \text{mit} & & N_{3,4} &= \sqrt{E_-(E_- \mp \lambda_-)} \, .
+\end{align}
+
+Werden diese Matrizen dann gemäß $\mU = \mW \mP \mWp$ ausmultipliziert ergibt sich schließlich, die in Gleichung~\eqref{eq:U_nothalf} angegebene unitäre Gesamttrafo 
+\begin{align}
+    \mU = \frac{1}{2} \begin{pmatrix}
+        -\frac{\Delta}{N_1} e^{-\im \varphi} \quad & -\frac{\Delta}{N_2} e^{-\im \varphi} \quad & -\frac{\Delta}{N_3} e^{-\im \varphi} \quad & -\frac{\Delta}{N_4} e^{-\im \varphi} \\[0.3em]
+        \frac{\Delta}{N_1} & \frac{\Delta}{N_2} & \frac{\Delta}{N_3} & \frac{\Delta}{N_4} \\[0.3em]
+        \left(\frac{-E_+ + \lambda_+}{N_1}\right)e^{-\im \varphi} \quad & \left(\frac{E_+ + \lambda_+}{N_2}\right)e^{-\im \varphi} \quad & \left(\frac{E_- - \lambda_-}{N_3}\right)e^{-\im \varphi} \quad & \left(\frac{-E_- - \lambda_-}{N_4}\right)e^{-\im \varphi} \\[0.3em]
+        \frac{E_+ - \lambda_+}{N_1} & \frac{-E_+ - \lambda_+}{N_2} & \frac{E_- - \lambda_-}{N_3} & \frac{-E_- - \lambda_-}{N_4}
+    \end{pmatrix}
+\end{align}
+mit der Diagonalmatrix
+\begin{align}
+    \mh_\diag = \text{diag}(E_+, -E_+, E_-, -E_-)
+\end{align}
+aus Gleichung~\eqref{eq:h_diag_nothalf}.

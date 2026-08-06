@@ -355,8 +355,8 @@ Das Problem der Diagonalisierung reduziert sich damit auf die Diagonalisierung d
 % In diesem Spezialfall wird die effektive Fermienergie des Systems $E_{F, \eff, \oC} = E_F - \mu_{\oC}$ auf null gesetzt. Wie bereits in \red{ref zu DOS von Bienenwabenitter} gezeigt, sind die Energiezustände um die Energie  $E_\text{symm} = 0$ symmetrisch verteilt, weshalb also bei der Wahl von $E_F = E_\text{symm} = 0$ das Gitter genau zur Hälfte gefüllt ist. \\
 Zuerst wird der Spezialfall halber Füllung betrachtet, da in diesem Fall die Selbstkonsistenzgleichung für $\Delta$ am einfachsten hergeleitet werden kann. 
 Halbe Füllung bedeutet, dass sich auf jedem Gitterplatz im Mittel nur ein Elektron befindet. 
-In dem verwendete Tight-Binding-Modell ist das genau dann der Fall, wenn alle Zustände bis zu $E = 0$ gefüllt sind, also die Fermienergie verschwindet. 
-Dies bedeutet konkret, dass das chemische Potential $\mu$ in diesem Speziafall ebenfalls verschwinden muss, da es die zuvor schon auf null gesetzte Fermienergie $E_F$ verschiebt.
+In dem verwendeten Tight-Binding-Modell ist das genau dann der Fall, wenn alle Zustände bis zu $E = 0$ gefüllt sind, also die Fermienergie verschwindet. 
+Dies bedeutet konkret, dass das chemische Potential $\mu$ in diesem Spezialfall ebenfalls verschwinden muss, da es die zuvor schon auf null gesetzte Fermienergie $E_F$ verschiebt.
 
 Für $\mu = 0 $ ergibt sich damit die vereinfachte Matrix
 \begin{align}
@@ -455,36 +455,18 @@ Numerische Lösungen bzw. graphische Darstellungen der Selbstkonsistenzgleichung
 Nachdem im Spezialfall halber Füllung die Selbstkonsistenzgleichung für $\Delta$ hergeleitet wurde, wird nun der allgemeinere Fall beliebiger Füllung betrachtet.
 Es muss diesmal also 
 \begin{align}
-    \dul{h} = \begin{pmatrix} \mu & -f^*(\vk) & \Delta & 0 \\ -f(\vk) & \mu & 0 & \Delta \\ \Delta & 0 & -\mu & f^*(\vk) \\ 0 & \Delta & f(\vk) & -\mu \end{pmatrix}
+    \dul{h} = \begin{pmatrix} \mu & -f^*(\vk) & \Delta & 0 \\ -f(\vk) & \mu & 0 & \Delta \\ \Delta & 0 & -\mu & f^*(\vk) \\ 0 & \Delta & f(\vk) & -\mu \end{pmatrix}~\label{eq:h_nothalf}
 \end{align}
 diagonalisiert werden.
-% Da diese 
-
-
-% \red{beschreibung von diagonalisierung}
-% Dazu schreibe $\dul{h}$ als Blockmatrix
-% \begin{align}
-%     \dul{h} = \begin{pmatrix}
-%         \dul{M} & \Delta \onematrix \\
-%         \Delta \onematrix & -\dul{M}
-%     \end{pmatrix} & & \text{mit} & & \dul{M} = \begin{pmatrix}
-%         \mu & - f^* \\
-%         -f & \mu
-%     \end{pmatrix}
-% \end{align}
-% um.
-% $\dul{M}$ wird nun durch 
-
-% \red{ende beschreibung}
-
-Es ergibt sich die Unitäre Trafo-Matrix 
+Um dieses Vorhaben zu vereinfachen, kann, wie in Anhang~\ref{sec:anhang_a} gezeigt wird, die Blockstruktur von $\dul{h}$ zur Diagonalisierung ausgenutzt werden.
+Es ergibt sich die unitäre Trafo-Matrix 
 \begin{align}
     \dul{U} = \frac{1}{2} \begin{pmatrix}
         -\frac{\Delta}{N_1} e^{-\im \varphi} \quad & -\frac{\Delta}{N_2} e^{-\im \varphi} \quad & -\frac{\Delta}{N_3} e^{-\im \varphi} \quad & -\frac{\Delta}{N_4} e^{-\im \varphi} \\[0.3em]
         \frac{\Delta}{N_1} & \frac{\Delta}{N_2} & \frac{\Delta}{N_3} & \frac{\Delta}{N_4} \\[0.3em]
         \left(\frac{-E_+ + \lambda_+}{N_1}\right)e^{-\im \varphi} \quad & \left(\frac{E_+ + \lambda_+}{N_2}\right)e^{-\im \varphi} \quad & \left(\frac{E_- - \lambda_-}{N_3}\right)e^{-\im \varphi} \quad & \left(\frac{-E_- - \lambda_-}{N_4}\right)e^{-\im \varphi} \\[0.3em]
         \frac{E_+ - \lambda_+}{N_1} & \frac{-E_+ - \lambda_+}{N_2} & \frac{E_- - \lambda_-}{N_3} & \frac{-E_- - \lambda_-}{N_4}
-    \end{pmatrix}
+    \end{pmatrix}~\label{eq:U_nothalf}
 \end{align}
 mit 
 \begin{align}
@@ -494,7 +476,7 @@ mit
 \end{align}
 und der Diagonalmatrix 
 \begin{align}
-    \dul{h}_\text{diag} = \dul{U}^\dagg \dul{h} \dul{U} =\text{diag}(E_+, -E_+, E_-, -E_-) \, .
+    \dul{h}_\text{diag} = \dul{U}^\dagg \dul{h} \dul{U} =\text{diag}(E_+, -E_+, E_-, -E_-)~\label{eq:h_diag_nothalf} \, .
 \end{align}
 % \begin{pmatrix}
 %         E_+ & 0 & 0 & 0 \\ 
