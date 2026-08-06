@@ -40,18 +40,37 @@ def bracket(f, blo, bhi, args, blo_min=1e-30, bhi_max=1e30):
 
 
 def I_exact(mu, E_D, beta_c):
-    F_parts = F(E_D + mu, beta_c) + F(E_D - mu, beta_c) - 2*F(mu, beta_c)
-    with np.errstate(divide='ignore', invalid='ignore'):
-        if mu == 0:
-            G_parts = 0.0
-        else:
-            G_parts = 2*G(mu, beta_c) + G(E_D - mu, beta_c) - G(E_D + mu, beta_c)
-    return F_parts + mu * G_parts
- 
+    #Nur für mu < 1 gut (Ist eine lineare Regression xD)
+    mu = abs(mu)
+    if mu < E_D:
+        F_parts = 2*F(E_D, beta_c) - 2*F(mu, beta_c)
+        with np.errstate(divide='ignore', invalid='ignore'):
+            if mu == 0:
+                G_parts = 0.0
+            else:
+                G_parts = 2*mu*G(mu, beta_c)
+        return F_parts + G_parts
+    else:
+        with np.errstate(divide='ignore', invalid='ignore'):
+            if mu == 0:
+                G_parts = 0.0
+            else:
+                G_parts = 2*mu*G(E_D, beta_c)
+        return G_parts
+    
+    # with np.errstate(divide='ignore', invalid='ignore'):
+    #     rho_0 = func_DOS(mu)
+    #     if mu == 0:
+    #         G_parts = 0.0
+    #     else:
+    #         G_parts = 2*G(E_D, beta_c)
+    # return rho_0*G_parts
+
 print(1/mev2t(const.k * 1000 / const.e * 1e3))
 
 def solve_Tc_exact(mu, ED, U, A, blo=1e-4, bhi=1.0):
-    UA = U*A
+    UA = U*A # Only for mu<1
+    # UA = U #With rho_0
     def gap_eq(beta_c):
         return UA/2 * I_exact(mu, ED, beta_c) - 1.0
     
@@ -82,9 +101,9 @@ def get_T_C(U, mu, E_D):
 #Params
 E_D = mev2t(200) # t
 U = np.linspace(0,mev2t(20e3),200) # t
-mu = np.linspace(0,0.1,200) # t
+mu = np.linspace(0,0.7,200) # t
 
-version = 4
+version = 2
 
 #Rechnung und plots
 t1= time.perf_counter()
@@ -129,13 +148,14 @@ def main():
 
     print(np.nanmax(T_C), np.max(T_C))
 
-    colorbar = ax.contourf(t2mev(U)*1e-3, mu, T_C_masked, levels=levels, cmap='Spectral')
+    colorbar = ax.contourf(t2mev(U)*1e-3, mu, T_C_masked, levels=levels, cmap='Spectral_r')
     fig.colorbar(colorbar, ax=ax, label=r"$T_C \, / \, K$")
     ax.set(
         xlabel=r"$U \, / \, eV$",
         ylabel=r"$\mu \, / \, t$"
     )
-    ax.set_facecolor(color='black')
+    # ax.set_facecolor(color='black')
+    ax.set_facecolor(color='#5C51A3')
     fig.savefig(f"../plots/TC_vs_mu&U_theo_{version}.pdf")
 
 if __name__ == "__main__":

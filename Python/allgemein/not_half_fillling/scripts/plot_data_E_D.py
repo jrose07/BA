@@ -51,7 +51,7 @@ positive_values = positive_mask.compressed()
 
 """WHen T_C = 0 should be plotted"""
 levels = np.linspace(np.nanmin(T_C_masked), np.nanmax(T_C_masked), 100)
-colorbar = ax.contourf(U, E_D, T_C_masked, levels=levels, cmap='inferno')
+colorbar = ax.contourf(U, E_D, T_C_masked, levels=levels, cmap='Spectral_r')
 
 
 """Plot U_C"""
@@ -93,7 +93,8 @@ ax.set(
     xlim=[np.min(U),np.max(U)],
     title=rf"$\mu = {mu:.2f}W$"
 )
-ax.set_facecolor(color='black')
+# ax.set_facecolor(color='black')
+ax.set_facecolor(color='#5C51A3')
 ax.legend()
 # fig.savefig(f"../plots/TC_vs_mu&U_6.pdf")
 plt.show()

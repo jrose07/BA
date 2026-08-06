@@ -4,28 +4,34 @@ from graphene_mu import *
 import scipy.constants as const
 
 mu = 0.06834170854271357 # t
-mu = 0.0683417
+mu = mev2t(0.19e3) # t
 print(t2mev(mu))
 E_D = mev2t(200) # t
 
 
-T = np.linspace(0, 80, 100)  #K
-U = np.linspace(mev2t(4e3), mev2t(100e3), 10)
+T = np.linspace(0,150, 1000)  #K
+U = np.linspace(mev2t(25e3), mev2t(150e3), 10)
+# U = mev2t(20e3)
 
-fig, ax = plt.subplots()
+U = np.asarray(U)
+fig, ax = plt.subplots(layout='tight')
 for u in U:
     deltas = np.array([])
     for elem in T:
-            deltas = np.append(deltas, get_delta(U=u, T=elem, E_D=E_D, mu=mu, iterations=5, start=1, num_points=1009))
+            deltas = np.append(deltas, get_delta(U=u, T=elem, E_D=E_D, mu=mu, iterations=5, start=1, num_points=10009))
     
     #Determine T_C
     abs_deltas = np.abs(deltas)
     min_abs_delta = np.nanmin(abs_deltas)
-    mask = np.isclose(abs_deltas, min_abs_delta, rtol=1e-10)
+    mask = np.isclose(abs_deltas, min_abs_delta, rtol=1e-12)
     if not np.any(mask):
         T_C = np.nan
     T_C = np.min(T[mask])
     color = np.random.rand(3,)
+    mask_zero = np.logical_or(~mask, T == T_C)
+    # mask_zero = True
+    # T = T[mask_zero]
+    # deltas = deltas[mask_zero]
     line, = ax.plot(T, t2mev(deltas)*1e-3, label=rf"$U = $ {t2mev(u)*1e-3:.2f} eV $\,$ T_C = {T_C:.3g} K", color=color)
     mark, = ax.plot(T_C, 0, "x", color=color)
     
@@ -37,8 +43,9 @@ for u in U:
 ax.set(
     ylabel=r"$\Delta / eV$",
     xlabel=r"$T [K]$", 
-    ylim = [0,1e-6],
-    title=rf"$\mu = {mu:.0f}t \; E_D = {t2mev(E_D):.0f} meV$"
+    xscale='log',
+    # ylim = [0,1e-6],
+    title=rf"$\mu = {t2mev(mu)*1e-3:.2f}eV, \; E_D = {t2mev(E_D):.0f} meV$"
 )
 ax.grid()
 # sort legend entries by T_C (highest first)
@@ -52,4 +59,5 @@ if 'legend_items' in locals() and len(legend_items) > 0:
 else:
     ax.legend(loc='upper left', bbox_to_anchor=(1, 1))
 fig.tight_layout()
-fig.savefig(f"../plots/mu_{mu:.0f}t_Debye_{E_D*100:.0f}mev.pdf")
+fig.savefig(f"../plots/mu_{t2mev(mu):.0f}mev_Debye_{E_D*100:.0f}mev.pdf")
+# plt.show()

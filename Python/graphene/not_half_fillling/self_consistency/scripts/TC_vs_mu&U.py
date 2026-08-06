@@ -50,11 +50,11 @@ def get_T_C(U, mu, E_D, T_array, start):
 
 #Params
 E_D = mev2t(200)
-U = np.linspace(0,mev2t(200e3),100)
-mu = np.linspace(-0.1,0.1,100)
-T = np.linspace(0,400,100)
+U = np.linspace(0,mev2t(220e3),100)
+mu = np.linspace(-3,3,100)
+T = np.linspace(0,37000,100)
 
-version = 20
+version = "6"
 
 #Rechnung und plots
 t1= time.perf_counter()
@@ -99,13 +99,14 @@ def main():
     # U_b, mu_b = np.meshgrid(U, mu, indexing='xy')
     # ax.plot(t2mev(U_b)*1e-3, mu_b, "b.")
 
-    colorbar = ax.contourf(t2mev(U)*1e-3, mu, T_C, levels=levels, cmap='Spectral')
+    colorbar = ax.contourf(t2mev(U)*1e-3, t2mev(mu)*1e-3, T_C, levels=levels, cmap='Spectral_r')
     fig.colorbar(colorbar, ax=ax, label=r"$T_C \, / \, K$")
     ax.set(
         xlabel=r"$U \, / \, eV$",
-        ylabel=r"$\mu \, / \, t$"
+        ylabel=r"$\mu \, / \, eV$"
     )
-    ax.set_facecolor(color='black')
+    # ax.set_facecolor(color='black')
+    ax.set_facecolor(color='#5C51A3')
     fig.savefig(f"../plots/TC_vs_mu&U_{version}.pdf")
 
 if __name__ == "__main__":

@@ -49,13 +49,13 @@ def get_T_C(U, mu, E_D, T_array, start):
 """Ab hier richtige Rechnung"""
 
 #Params
-mu = 0.05 #t
-U = np.linspace(0,mev2t(
-    210e3),100)
+mu = mev2t(2700)#t
+U = np.linspace(mev2t(0e3),mev2t(
+    10e3),100)
 E_D = np.linspace(mev2t(150),mev2t(200),100)
-T = np.linspace(0,700,100)
+T = np.linspace(0,1700,100)
 
-version = 3
+version = 1
 
 #Rechnung und plots
 t1= time.perf_counter()
@@ -100,14 +100,16 @@ def main():
     # U_b, mu_b = np.meshgrid(U, mu, indexing='xy')
     # ax.plot(t2mev(U_b)*1e-3, mu_b, "b.")
 
-    colorbar = ax.contourf(t2mev(U)*1e-3, t2mev(E_D), T_C, levels=levels, cmap='Spectral')
+    colorbar = ax.contourf(t2mev(U)*1e-3, t2mev(E_D), T_C, levels=levels, cmap='Spectral_r')
     fig.colorbar(colorbar, ax=ax, label=r"$T_C \, / \, K$")
     ax.set(
         xlabel=r"$U \, / \, eV$",
         ylabel=r"$E_D \, / \, meV$",
-        title=rf"$\mu = {mu:.2f} t$"
+        title=rf"$\mu = {t2mev(mu)*1e-3:.2f} eV$"
     )
-    ax.set_facecolor(color='black')
+    # ax.set_facecolor(color='black')
+    ax.set_facecolor(color='#5C51A3')
+
     fig.savefig(f"../plots/TC_vs_E_D&U_{version}.pdf")
 
 if __name__ == "__main__":
