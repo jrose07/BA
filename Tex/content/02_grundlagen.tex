@@ -6,34 +6,35 @@ Diese sind vorallem Vorüberlegungen zur Geometrie und elektronischen Eigenschaf
 \section{Bienenwabengitter}
 
 Das Bienenwabengitter ist eine zweidimensionale Gitterstruktur, deren Elemente in einem hexagonalen Muster angeordnet sind. 
-Ein prominentes Beispiel für ein Material mit Bienenwabenstruktur ist das kohlenstoffbasierte \textit{Graphen}~\cite{castro_neto_electronic_2009} bzw. die Monolayer des Graphits, aber  auch in Übergangsmetall-Dichalkogeniden (TMDs) wie \textit{MoS2} oder \textit{MoSe2} kommt diese Struktur vor. \\
-Das Gitter selbst muss im Gegensatz zu einem einfachen hexagonalen Gitter durch gegeneinander verschobene Untergitter $A$ und $B$ beschrieben werden, die jeweils eine hexagonale Struktur aufweisen, siehe Abbildung \autoref{fig:gitter}.
+Ein prominentes Beispiel für ein Material mit Bienenwabenstruktur ist das kohlenstoffbasierte \textit{Graphen}~\cite{castro_neto_electronic_2009} bzw. die Monolagen des Graphits, aber  auch in Übergangsmetall-Dichalkogeniden (TMDs) wie $\mathrm{MoS}_2$ oder $\mathrm{MoSe}_2$ kommt diese Struktur vor. \\
+Das Gitter selbst muss im Gegensatz zu einem einfachen hexagonalen Gitter durch gegeneinander verschobene Untergitter $A$ und $B$ beschrieben werden, die jeweils eine hexagonale Struktur aufweisen, siehe \autoref{fig:gitter}.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{images/gitter.png}
-    \caption{Skizze des Bienenwabengitters mit den Untergittern $A$ und $B$. Ebenfalls zu sehen sind die primitiven Gittervektoren $\vec{a}_1$ und $\vec{a}_2$, sowie die nearest-neighbor Vektoren $\vd{1}$, $\vd{2}$ und $\vd{3}$~\cite{castro_neto_electronic_2009}.}
+    \caption{Skizze des Bienenwabengitters mit den Untergittern $A$ und $B$. Ebenfalls zu sehen sind die primitiven Gittervektoren $\vec{a}_1$ und $\vec{a}_2$, sowie die Nächste-Nachbar-Vektoren $\vd{1}$, $\vd{2}$ und $\vd{3}$. Die Grafik wurde aus Ref.~\cite{castro_neto_electronic_2009} übernommen.}
     \label{fig:gitter}
 \end{figure}
 
-Die Untergitter $A$ und $B$ besitzen dieselben primitiven Gittervektoren, sind jedoch um einen der drei Nearest-Neighbour-Vektoren $\vdelta_1$, $\vdelta_2$ und $\vdelta_3$ 
+Die Untergitter $A$ und $B$ besitzen dieselben primitiven Gittervektoren, sind jedoch um einen der drei Nächste-Nachbar-Vektoren $\vdelta_1$, $\vdelta_2$ und $\vdelta_3$ 
 \begin{align}
     \vd{1} &= \frac{a}{2} \begin{pmatrix}1 \\ \sqrt{3}\end{pmatrix} & \vd{2} &= \frac{a}{2} \begin{pmatrix}1 \\ -\sqrt{3}\end{pmatrix} & \vd{3} &= a \begin{pmatrix}-1 \\ 0\end{pmatrix}
     \label{eq:nn-vektoren}
 \end{align}
 zueinander verschoben, wobei $a$ den Gitterabstand bezeichnet. 
-Da die Nearest-Neighbour-Vektoren nicht als ganzzahlige lineare Kombination der primitiven Gittervektoren $\vec{a_1}$ und $\vec{a_2}$
+Da die Nächste-Nachbar-Vektoren nicht als ganzzahlige lineare Kombination der primitiven Gittervektoren $\vec{a_1}$ und $\vec{a_2}$
 \begin{align}
-    \vec{a_1} &= \frac{a}{2} \begin{pmatrix}3 \\ \sqrt{3}\end{pmatrix} & \vec{a_2} &= \frac{a}{2} \begin{pmatrix}-3 \\ \sqrt{3}\end{pmatrix}
+    \vec{a}_1 &= \frac{a}{2} \begin{pmatrix}3 \\ \sqrt{3}\end{pmatrix} & \vec{a}_2 &= \frac{a}{2} \begin{pmatrix}-3 \\ \sqrt{3}\end{pmatrix}
 \end{align}
 dargestellt werden können, muss das Bienenwabengitter also mit einer zweiatomigen Basis aus den Untergittern $A$ und $B$ beschrieben werden.\\
 Als quantenmechanische Beschreibung der elektronischen Struktur des Gitters wird ein Tight-Binding-Modell (TB) verwendet. 
-Dabei wird angenommen, dass Elektronen stark an ihr zugehöriges Gitteratom gebunden werden, da dessen Atomorbitale nur schwach mit den Orbitalen benachbarter Atome überlappen. 
-Die Elektronen sind also in einem Gitterplatz lokalisiert, können jedoch mit einer bestimmten Wahrscheinlichkeit zu einem anderen Gitterplatz tunneln (\glqq hopping \grqq)~\cite{ashcroft_solid_1976}. 
+Dabei wird angenommen, dass Elektronen stark an ihr zugehöriges Gitteratom gebunden sind, da dessen Atomorbitale nur schwach mit den Orbitalen benachbarter Atome überlappen. 
+Die Elektronen sind also in einem Gitterplatz lokalisiert, können jedoch mit einer bestimmten Wahrscheinlichkeit zu einem anderen Gitterplatz tunneln (auch \glqq hüpfen\grqq  genannt)~\cite{ashcroft_solid_1976}. 
 Der verwendete Tight-Binding-Hamiltonoperator lautet
 \begin{align}
-    \oH_\text{TB} &= -t \sum_{\expval{\vec{R}, \vec{R'}}, \sigma} \ofed{\vec{R}, \sigma} \ofe{\vec{R'}, \sigma} \label{eq:TB}\, ,
+    \oH_\text{TB} &= -t \sum_{\expval{\vec{R}, \vec{R}'}, \sigma} \ofed{\vec{R}, \sigma} \ofe{\vec{R}', \sigma} \label{eq:TB}\, ,
 \end{align}
-wobei hier nur ein Elektronorbital und Nearest-Neighbour-Hopping-Terme berücksichtigt werden, mit $\expval{\vec{R}, \vec{R'}}$ ist die Summe über alle möglichen Gittervektoren $\vec{R}$ und jeweiligen Nachbarn $\vec{R'}$ gemeint. $t$ ist die in einer Energie-Einheit gemessene Hopping-Wahrscheinlichkeit und $\ofed{\vec{R}, \sigma}$ und $\ofe{\vec{R'}, \sigma}$ sind die in der zweiten Quantisierung formulierten Erzeugungs- und Vernichtungsoperatoren für Elektronen mit Spin $\sigma$ an den Gitterplätzen $\vec{R}$ bzw. $\vec{R'}$.
+wobei hier nur ein Elektronorbital und Nächste-Nachbar-Hüpf-Terme berücksichtigt werden, mit $\expval{\vec{R}, \vec{R}'}$ ist die Summe über alle möglichen Gittervektoren $\vec{R}$ und jeweiligen Nachbarn $\vec{R}'$ gemeint.
+Die in einer Energie-Einheit gemessene Hüpf-Wahrscheinlichkeit wird  durch den Hüpfparameter $t$ beschrieben und $\ofed{\vec{R}, \sigma}$ und $\ofe{\vec{R}', \sigma}$ sind die in der zweiten Quantisierung formulierten Erzeugungs- und Vernichtungsoperatoren für Elektronen mit Spin $\sigma$ an den Gitterplätzen $\vec{R}$ bzw. $\vec{R}'$.
 Die fermionischen Operatoren erfüllen die Antikommutatorrelationen
 \begin{align}
     \anticommute{\ofe{\alpha}}{\ofed{\beta}} &= \delta_{\alpha \beta} & \text{und} & &
@@ -50,7 +51,7 @@ Das folgenden Kapitel soll hierbei eine Einführung in die Grundkonzepte, die Li
 
 \subsection{Cooper-Paare}
 
-Der Schlüsselmechanismus bei der Ausbildung einer supraleitenden Phase ist eine attraktive Wechselwirkung zweier Elektronen, die die Bildung eines neuen gebundenen Zustands, nämlich der sogenannten Cooper-Paare ermöglicht. 
+Der Schlüsselmechanismus bei der Ausbildung einer supraleitenden Phase ist eine attraktive Wechselwirkung zweier Elektronen, die die Bildung  neuer gebundener Zustände, nämlich der sogenannten Cooper-Paare ermöglicht. 
 Aufgrund ihres ganzzahligen Gesamtspins besitzen Cooper-Paare bosonischen Charakter und können unterhalb einer kritischen Temperatur einen gemeinsamen makroskopisch kohärenten Quantenzustand ausbilden.
 Dieser wird durch den komplexen Ordnungsparameter $\Delta$ beschrieben, dessen Betrag im Rahmen der BCS-Theorie gleichzeitig die Energielücke für die Anregung eines einzelnes Quasiteilchens aus dem kondensierten Grundzustand bestimmt (vgl. Abschnitt~\ref{sec:modell}).
 Es lässt sich zeigen, dass dieser makroskopische Quantenzustand genau die Eigenschaften einer supraleitenden Phase erfüllt, siehe dazu z.\,B. Ref.~\cite{tinkham_introduction_2004}.
@@ -60,31 +61,56 @@ Es lässt sich zeigen, dass dieser makroskopische Quantenzustand genau die Eigen
 Die Ursache der attraktiven Wechselwirkung mag aufgrund der Coulomb-Abstoßung zwischen den Elektronen zunächst kontraintuitiv erscheinen, kann in der BCS-Theorie aber durch die Kopplung der Elektronen mit den Phononen des Kristallgitters begründet werden. \\
 
 Anschaulich lässt sich dies anhand der unterschiedlichen Zeitskalen für Gitterschwingungen und Elektronenbewegungen in Metallen erklären.
-Regt ein Leitungselektron eine Gitterschwingung an, bewegt es sich in der Zeit, in der die ausgelenkten Atomrümpfe zurückschwingen um ein Vielfaches der Gitterkonstante weiter, während die zurückschwingenden Atomrümpfe selbst ein weiteres Elektron anziehen können. 
-Es kommt also in Summe zu einer effektiven (stark retardierten) Anziehung zwischen den beiden Elektronen. \\
+Regt ein Leitungselektron eine Gitterschwingung an bewegt es sich in der Zeit, in der die ausgelenkten Atomrümpfe zurückschwingen um mehrere Gitterkonstanten weiter, während es am Auslenkungsort eine positive Polarisierungsblase hinterlässt die selbst weitere Elektronen anzieht. 
+Es kommt also in Summe zu einer effektiven (stark retardierten) Anziehung zwischen den Elektronen (vgl. ~\cite[218]{czycholl_theoretische_2017},~\cite[266]{altland_condensed_2012}). \\
 Um dies auch quantitativ zu verstehen, betrachte man den Fröhlich-Hamiltonoperator 
 \begin{align}
     \oH_{\text{F}} &= \sum_{\vk, \sigma} \epsilon_\vk \ofed{\vk, \sigma} \ofe{\vk, \sigma} + \sum_{\vq} \hbar \omega_{\vq} \op{b}^{\dagg}_{\vq, \sigma} \op{b}^{\pdagg}_{\vq, \sigma} + \sum_{\vk, \vq, \sigma} M(\vq) ( \obo{\vq} + \obod{\vq}) \ofed{\vk + \vq, \sigma} \ofe{\vk, \sigma} \, ,
 \end{align}
 der die Elektron-Phonon-Wechselwirkung des Systems beschreibt~\cite{czycholl_theoretische_2017}. 
-$\ofed{\alpha}$ und $\ofe{\beta}$ sind die fermionischen Erzeugungs- und Vernichtungsoperatoren für Elektronen in den Zuständen $\alpha$ bzw. $\beta$, während $\obod{\alpha}$ und $\obo{\beta}$ die entsprechenden Erzeugungs- und Vernichtungsoperatoren für Phononen, also Bosonen, darstellen. 
-$\epsilon_\vk$ und $\hbar \omega_\vq$ bezeichnen die Einteilchen Elektronen- bzw. Phononenergien und $M(\vq)$ gibt die impulsabhängige Elektron-Phonon-Kopplungsstärke an. \\
+% $\ofed{\alpha}$ und $\ofe{\beta}$ sind die fermionischen Erzeugungs- und Vernichtungsoperatoren für Elektronen in den Zuständen $\alpha$ bzw. $\beta$, während $\obod{\alpha}$ und $\obo{\beta}$ die entsprechenden Erzeugungs- und Vernichtungsoperatoren für Phononen, also Bosonen, darstellen. 
+Die fermionischen Erzeugungs- bzw. Vernichtsungsoperatoren für Elektronen in den Zuständen $\alpha$ bzw. $\beta$ sind durch $\ofed{\alpha}$ und $\ofe{\beta}$ gegeben, während $\obod{\alpha}$ und $\obo{\beta}$ die entsprechenden bosonischen Erzeugungs- und Vernichtungsoperatoren für Phononen darstellen.
+Die Einteilchenenergien der Elektronen bzw. Phononen sind durch $\epsilon_\vk$ und $\hbar \omega_\vq$ gegeben und $M(\vq)$ gibt die impulsabhängige Elektron-Phonon-Kopplungsstärke an. \\
 Der Fröhlich-Hamiltonian kann nun mit einer unitären Trafo in führender Ordnung in das Bild einer effektiven Elektron-Elektron Wechselwirkung 
 \begin{align}
-    \oH_{e-e} &= \sum_{\vk, \vec{k'}, \vq}\sum_{\sigma, \sigma'} V_{\vk, \vec{k'}, \vq} \ofed{\vk + \vq, \sigma} \ofed{\vec{k'} - \vq, \sigma'} \ofe{\vec{k'}, \sigma'} \ofe{\vk, \sigma}
+    \oH_{e-e} &= \sum_{\vk, \vec{k}', \vq}\sum_{\sigma, \sigma'} V_{\vk, \vec{k}', \vq} \ofed{\vk + \vq, \sigma} \ofed{\vec{k}' - \vq, \sigma'} \ofe{\vec{k}', \sigma'} \ofe{\vk, \sigma}
 \end{align}
 mit der Wechselwirkungsstärke 
 \begin{align}
-    V_{\vk, \vec{k'}, \vq} = \frac{\abs{M(\vq)}^2 \hbar \omega_\vq}{\abs{\Delta \epsilon}^2 - (\hbar \omega_\vq)^2}
+    V_{\vk, \vec{k}', \vq} = \frac{\abs{M(\vq)}^2 \hbar \omega_\vq}{\abs{\Delta \epsilon}^2 - (\hbar \omega_\vq)^2}
 \end{align}
 gebracht werden~\cite{czycholl_theoretische_2017}. 
-Diese Wechselwirkung ist für $\abs{\Delta \epsilon} = \abs{\epsilon_\vk - \epsilon_{\vk + \vq}} < \hbar \omega_\vq$ negativ, also anziehend, was genau die Voraussetzung für die Ausbildung von Cooper-Paaren ist.
-Für größere Energieunterschiede wirkt die Wechselwirkung hingegen abstoßend und ist außerdem für $\Delta \epsilon = \hbar \omega_\vq$ singulär, weswegen in der BCS-Theorie nur Elektronen im Energiefenster $\abs{\Delta \epsilon} < \hbar \omega_\vq < \hbar \omega_D$ berüksichtig werden.
-Mit der Annahme, dass die Elektronen aus der Nähe der Fermi-Kante stammen ergibt sich damit die Bedingung
+Diese Wechselwirkung ist für $\abs{\Delta \epsilon} \coloneqq \abs{\epsilon_\vk - \epsilon_{\vk + \vq}} < \hbar \omega_\vq$ negativ, also anziehend, was genau die Voraussetzung für die Ausbildung von Cooper-Paaren ist.
+% Für größere Energieunterschiede wirkt die Wechselwirkung hingegen abstoßend und ist außerdem für $\Delta \epsilon = \hbar \omega_\vq$ singulär, weswegen in der BCS-Theorie nur Elektronen im Energiefenster $\abs{\Delta \epsilon} < \hbar \omega_\vq < \hbar \omega_D$ berüksichtigt werden.
+Für größere Energieunterschiede wirkt die Wechselwirkung hingegen abstoßend und ist außerdem für $\Delta \epsilon = \hbar \omega_\vq$ singulär. 
+Da allerdings aufgrund des Pauli-Verbots davon ausgegangen werden kann, dass die gestreuten Elektronen vor allem aus der Nähe der Fermi-Energie stammen und damit hauptsächlich Beiträge mit kleinen Energiedifferenzen $\Delta \epsilon < \hbar \omega_\vq$ wichtig sind, kann der repulsive Teil der Wechselwirkung mit $\Delta \epsilon \geq \hbar \omega_\vq$ vernachlässigt werden~\cite{bardeen_theory_1957}.
+Es wird also formell der Cutoff $\abs{\Delta \epsilon} < \hbar \omega_\vq < \hbar \omega_D$ mit der Debye-Frequenz $\omega_D$ eingeführt, innerhalb der die Wechselwirkung rein anziehend ist.
+
+Alternativerweise ist es ebenfalls möglich eine rein attraktive Wechselwirkung ohne Singularitäten direkt über andere kontinuierliche Trafos zu erhalten (siehe Ref.~\cite{krull_enhanced_2012}). 
+Die Begründung zur Einführung des Cutoffs ist allerdings in diesem Fall dieselbe.
+
+% Es ergibt sich dadurch eine effektive Elektron-Elektron Anziehung, die in dem Energiefenster
+% \begin{align}
+%     E_F - \hbar \omega_D \leq \epsilon_\vk \leq E_F + \hbar \omega_D \, ,
+% \end{align}
+% mit der Debye-Frequenz $\omega_D$ um die Fermienergie herum ungleich null ist.
+
+% Diese so begründete, attraktive Wechselwirkung kann auch, wie in Ref.~\cite{krull_enhanced_2012} gezeigt, direkt über alternative Trafos der Elektron-Phonon-Wechselwirkung mit einer rein attraktiven Wechselwirkung gezeigt werden.  
+
+% Diese Problematik wird klassicherweise über das Argument gelöst, dass vorallem Elektronen aus der Näher der Fermi-Kante wechselwirken und aufgrund des Pauli-Prinzips hauptsächlich mit kleinen Energiedifferenzen $\Delta_\epsilon$ streuen.
+% Diese Problematik kann allerdings aufgelöst werden, da davon ausgegangen wird, dass die gestreuten Elektronen aus der Näher der Fermi-Kante kommen. 
+
+% Aufgrund des Pauli-Verbots ergeben sich darum vorallem kleine Energiedifferenzen $\Delta \epsilon < \hbar \omega_\vq$, bei der die Wechselwirkung ja attraktiv ist, der repulsive Teil kann also vernachlässigt werden~\cite{bardeen_theory_1957}.
+% Diese Problematik kann allerdings einerseits über 
+
+% weswegen in der BCS-Theorie nur Elektronen im Energiefenster $\abs{\Delta \epsilon} < \hbar \omega_\vq < \hbar \omega_D$ berücksichtigt werden.
+
+% Es wurde also gezeigt, dass aus der Elektron-Phonon-Wechselwirkung
+Es entsteht also eine effektive phononübermittelnde Anziehung, die in dem Energiefenster
 \begin{align}
     E_F - \hbar \omega_D \leq \epsilon_\vk \leq E_F + \hbar \omega_D
 \end{align}
-für die Ausbildung von Cooper-Paaren, die genau den phononübermittelnden Charakter der Wechselwirkung widerspiegelt. \\
+um die Fermienergie herum für die Ausbildung von Cooper-Paaren sorgt\footnote{Diese Bedingung ergibt sich aus der Cutoff-Bedingung $\abs{\Delta \epsilon} = \abs{\epsilon_\vk - \epsilon_{\vk'}} < \hbar \omega_D$, für die Vereinfachung, dass $\epsilon_{\vk'} = E_F$ ist. Dies ist auch vernünftig, da die gestreuten Elektronen ja aus der Nähe der Fermikante kommen sollen.}.
 
 Bei der Bildung von Cooper-Paaren koppeln in diesem Bild also zwei Elektronen in den Zuständen $(\vk, \sigma)$ und $(\vk', \sigma')$ zu einem Paarzustand, wobei der Phononenimpuls $\vq$ übertragen wird und der Gesamtimpuls $\vec{K} = \vk + \vk'$ des Paars erhalten bleibt. 
 Um dieses Bild zu vereinfachen, wird in der BCS-Theorie angenommen, dass hauptsächlich nur Elektronen mit Gesamtspin $S = 0$ und Gesamtimpuls $\vec{K} = 0$ Cooper-Paare bilden. 

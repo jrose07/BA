@@ -105,6 +105,12 @@
 % This is needed so that PDFs with Version >1.5 can be included
 \pdfvariable minorversion=7
 
+
+% Better vectors
+\usepackage[a]{esvect}
+\DeclareRobustCommand{\vec}[1]{\vv{#1}}
+% \usepackage{scalerel}
+% \renewcommand{\vec}[1]{\stretchto{\vector(1,0){10}}{4pt}\hspace{-0.2em}#1}
 %------------------------------------------------------------------------------
 %---------------------- customize list environments ---------------------------
 %------------------------------------------------------------------------------
