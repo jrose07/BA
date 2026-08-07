@@ -61,7 +61,7 @@ Es lässt sich zeigen, dass dieser makroskopische Quantenzustand genau die Eigen
 Die Ursache der attraktiven Wechselwirkung mag aufgrund der Coulomb-Abstoßung zwischen den Elektronen zunächst kontraintuitiv erscheinen, kann in der BCS-Theorie aber durch die Kopplung der Elektronen mit den Phononen des Kristallgitters begründet werden. \\
 
 Anschaulich lässt sich dies anhand der unterschiedlichen Zeitskalen für Gitterschwingungen und Elektronenbewegungen in Metallen erklären.
-Regt ein Leitungselektron eine Gitterschwingung an bewegt es sich in der Zeit, in der die ausgelenkten Atomrümpfe zurückschwingen um mehrere Gitterkonstanten weiter, während es am Auslenkungsort eine positive Polarisierungsblase hinterlässt die selbst weitere Elektronen anzieht. 
+Regt ein Leitungselektron eine Gitterschwingung an bewegt es sich in der Zeit, in der die ausgelenkten Atomrümpfe zurückschwingen um mehrere Gitterkonstanten weiter, während es eine positive Polarisierungsblase hinterlässt die selbst weitere Elektronen anzieht. 
 Es kommt also in Summe zu einer effektiven (stark retardierten) Anziehung zwischen den Elektronen (vgl. ~\cite[218]{czycholl_theoretische_2017},~\cite[266]{altland_condensed_2012}). \\
 Um dies auch quantitativ zu verstehen, betrachte man den Fröhlich-Hamiltonoperator 
 \begin{align}
@@ -73,7 +73,7 @@ Die fermionischen Erzeugungs- bzw. Vernichtsungsoperatoren für Elektronen in de
 Die Einteilchenenergien der Elektronen bzw. Phononen sind durch $\epsilon_\vk$ und $\hbar \omega_\vq$ gegeben und $M(\vq)$ gibt die impulsabhängige Elektron-Phonon-Kopplungsstärke an. \\
 Der Fröhlich-Hamiltonian kann nun mit einer unitären Trafo in führender Ordnung in das Bild einer effektiven Elektron-Elektron Wechselwirkung 
 \begin{align}
-    \oH_{e-e} &= \sum_{\vk, \vec{k}', \vq}\sum_{\sigma, \sigma'} V_{\vk, \vec{k}', \vq} \ofed{\vk + \vq, \sigma} \ofed{\vec{k}' - \vq, \sigma'} \ofe{\vec{k}', \sigma'} \ofe{\vk, \sigma}
+    \oH_{e-e} &= \sum_{\vk, \vec{k}', \vq}\sum_{\sigma, \sigma'} V_{\vk, \vec{k}', \vq} \ofed{\vk + \vq, \sigma} \ofed{\vec{k}' - \vq, \sigma'} \ofe{\vec{k}', \sigma'} \ofe{\vk, \sigma}~\label{eq:H_ee}
 \end{align}
 mit der Wechselwirkungsstärke 
 \begin{align}
@@ -82,11 +82,10 @@ mit der Wechselwirkungsstärke
 gebracht werden~\cite{czycholl_theoretische_2017}. 
 Diese Wechselwirkung ist für $\abs{\Delta \epsilon} \coloneqq \abs{\epsilon_\vk - \epsilon_{\vk + \vq}} < \hbar \omega_\vq$ negativ, also anziehend, was genau die Voraussetzung für die Ausbildung von Cooper-Paaren ist.
 % Für größere Energieunterschiede wirkt die Wechselwirkung hingegen abstoßend und ist außerdem für $\Delta \epsilon = \hbar \omega_\vq$ singulär, weswegen in der BCS-Theorie nur Elektronen im Energiefenster $\abs{\Delta \epsilon} < \hbar \omega_\vq < \hbar \omega_D$ berüksichtigt werden.
-Für größere Energieunterschiede wirkt die Wechselwirkung hingegen abstoßend und ist außerdem für $\Delta \epsilon = \hbar \omega_\vq$ singulär. 
-Da allerdings aufgrund des Pauli-Verbots davon ausgegangen werden kann, dass die gestreuten Elektronen vor allem aus der Nähe der Fermi-Energie stammen und damit hauptsächlich Beiträge mit kleinen Energiedifferenzen $\Delta \epsilon < \hbar \omega_\vq$ wichtig sind, kann der repulsive Teil der Wechselwirkung mit $\Delta \epsilon \geq \hbar \omega_\vq$ vernachlässigt werden~\cite{bardeen_theory_1957}.
-Es wird also formell der Cutoff $\abs{\Delta \epsilon} < \hbar \omega_\vq < \hbar \omega_D$ mit der Debye-Frequenz $\omega_D$ eingeführt, innerhalb der die Wechselwirkung rein anziehend ist.
-
-Alternativerweise ist es ebenfalls möglich eine rein attraktive Wechselwirkung ohne Singularitäten direkt über andere kontinuierliche Trafos zu erhalten (siehe Ref.~\cite{krull_enhanced_2012}). 
+Für größere Energieunterschiede wirkt die Wechselwirkung hingegen abstoßend und ist außerdem für $\Delta \epsilon = \pm \hbar \omega_\vq$ singulär. 
+Da allerdings aufgrund des Pauli-Verbots davon ausgegangen werden kann, dass die gestreuten Elektronen vor allem aus der Nähe der Fermi-Energie stammen und damit hauptsächlich Beiträge mit kleinen Energiedifferenzen $\abs{\Delta \epsilon} < \hbar \omega_\vq$ wichtig sind, kann der repulsive Teil der Wechselwirkung mit $\abs{\Delta \epsilon} \geq \hbar \omega_\vq$ vernachlässigt werden.
+Es wird also formell der Cutoff $\abs{\Delta \epsilon} < \hbar \omega_\vq \leq \hbar \omega_D$ mit der Debye-Frequenz $\omega_D$ eingeführt, innerhalb der die Wechselwirkung rein anziehend ist~\cite{czycholl_theoretische_2017}.
+Alternativerweise ist es ebenfalls möglich eine rein attraktive Wechselwirkung ohne Singularitäten direkt über andere kontinuierliche Trafos zu erhalten~\cite{krull_enhanced_2012}. 
 Die Begründung zur Einführung des Cutoffs ist allerdings in diesem Fall dieselbe.
 
 % Es ergibt sich dadurch eine effektive Elektron-Elektron Anziehung, die in dem Energiefenster
@@ -106,13 +105,18 @@ Die Begründung zur Einführung des Cutoffs ist allerdings in diesem Fall diesel
 % weswegen in der BCS-Theorie nur Elektronen im Energiefenster $\abs{\Delta \epsilon} < \hbar \omega_\vq < \hbar \omega_D$ berücksichtigt werden.
 
 % Es wurde also gezeigt, dass aus der Elektron-Phonon-Wechselwirkung
-Es entsteht also eine effektive phononübermittelnde Anziehung, die in dem Energiefenster
+Mit der zuvor begründeten Annahme, dass die gestreuten Elektronen aus der Nähe der Fermikante kommen ergibt sich also eine effektive phononenvermittelte Anziehung, die in dem Energiefenster
 \begin{align}
     E_F - \hbar \omega_D \leq \epsilon_\vk \leq E_F + \hbar \omega_D
 \end{align}
-um die Fermienergie herum für die Ausbildung von Cooper-Paaren sorgt\footnote{Diese Bedingung ergibt sich aus der Cutoff-Bedingung $\abs{\Delta \epsilon} = \abs{\epsilon_\vk - \epsilon_{\vk'}} < \hbar \omega_D$, für die Vereinfachung, dass $\epsilon_{\vk'} = E_F$ ist. Dies ist auch vernünftig, da die gestreuten Elektronen ja aus der Nähe der Fermikante kommen sollen.}.
+um die Fermienergie herum die Ausbildung von Cooper-Paaren ermöglicht.
+Die bisher noch nicht betrachtete Coulombabstoßung wirkt dieser Anziehung zwar entgegen, allerdings nur schwach, da sie in Metallen einerseits abgeschirmt und andererseits durch ihren instantanen Charakter stark unterdrückt wird~\cite{morel_calculation_1962,althuser_collective_2025}. 
+Diese Abschwächung der Supraleitung kann also in guter Näherung vernachlässigt werden und wird deswegen in dieser Arbeit nicht weiter mitbehandelt.
 
-Bei der Bildung von Cooper-Paaren koppeln in diesem Bild also zwei Elektronen in den Zuständen $(\vk, \sigma)$ und $(\vk', \sigma')$ zu einem Paarzustand, wobei der Phononenimpuls $\vq$ übertragen wird und der Gesamtimpuls $\vec{K} = \vk + \vk'$ des Paars erhalten bleibt. 
+
+
+% \footnote{Diese Bedingung ergibt sich aus der Cutoff-Bedingung $\abs{\Delta \epsilon} = \abs{\epsilon_\vk - \epsilon_{\vk + \vq}} < \hbar \omega_D$, für die Vereinfachung, dass $\epsilon_{\vk'} = E_F$ ist. Dies ist auch vernünftig, da die gestreuten Elektronen ja aus der Nähe der Fermikante kommen sollen.}
+Betrachte man nun wieder die Form der erhaltenen Elektron-Elektron-Wechselwirkung~\eqref{eq:H_ee}, koppeln in diesem Bild also zwei Elektronen in den Zuständen $(\vk, \sigma)$ und $(\vk', \sigma')$ zu einem Paarzustand, wobei der Phononenimpuls $\vq$ übertragen wird und der Gesamtimpuls $\vec{K} = \vk + \vk'$ des Paars erhalten bleibt. 
 Um dieses Bild zu vereinfachen, wird in der BCS-Theorie angenommen, dass hauptsächlich nur Elektronen mit Gesamtspin $S = 0$ und Gesamtimpuls $\vec{K} = 0$ Cooper-Paare bilden. 
 Bardeen, Cooper und Schrieffer begründen diese Annahme zum einen damit, dass die Bildung von Paaren mit Gesamtspin $S = 1$, also Triplett-Kopplung durch Austauschterme in der Wechselwirkung energetisch benachteiligt wird\footnote{Alternativ könnte man dies auch so formulieren, dass in diesem Fall die Ortswellenfunktion $\Psi(\vec{r_1} - \vec{r_2})$ antisymmetrisch und daher insbesonders $\Psi(0) = 0$ sein muss, was die attraktive Wechselwirkung also unterdrückt~\cite[225]{czycholl_theoretische_2017}.}~\cite{bardeen_theory_1957}.
 Zum anderen ist die Menge an Zuständen $(\vk, \vk')$ die zu Paaren mit Gesamtimpuls $\vec{K}=0$ koppeln können deutlich größer als für $\vec{K} \neq 0$ (siehe \autoref{fig:s_wave}), weswegen die Zustände mit endlichen $\vec{K}$ vernachlässigt werden können. 
@@ -124,12 +128,15 @@ Zum anderen ist die Menge an Zuständen $(\vk, \vk')$ die zu Paaren mit Gesamtim
     \label{fig:s_wave}
 \end{figure}
 
-Zusätzlich wird eine konstante negative Wechselwirkung $V_{\vk, \vk'} = -V$ über alle erlaubten Zustände angenommen, sodass der klassische BCS-Hamiltonian die Form
+Insgesamt koppeln im BCS-Kanal also nur die Zustände $(\vk, \up)$ und $(-\vk, \down)$ miteinander.
+Der BCS-Hamiltonian ergibt sich dann, wenn die Elektron-Elektron-Wechselwirkung~\eqref{eq:H_ee} auf den BCS-Kanal beschränkt wird und zusätzlich der Einfachheit halber eine konstante anziehende Wechselwirkung $V_{\vk, \vk'} = -\frac{V}{N}$ über alle erlaubten Zustände angenommen wird.
+Damit bekommt der klassische BCS-Hamiltonian die Form
 \begin{align}
-    \oH_{\text{BCS}} = \sum_{\vk} \epsilon_\vk \ofed{\vk, \sigma} \ofe{\vk, \sigma} - V \sum_{\vk, \vk'}\ofed{\vk', \up} \ofed{-\vk', \down} \ofe{-\vk, \down} \ofe{\vk, \up} \Theta(\hbar \omega_D - \abs{\epsilon_\vk}) \Theta(\hbar \omega_D - \abs{\epsilon_{\vk'}})
+    \oH_{\text{BCS}} = \sum_{\vk} \epsilon_\vk \ofed{\vk, \sigma} \ofe{\vk, \sigma} - \frac{V}{N} \sum_{\vk, \vk'}\ofed{\vk', \up} \ofed{-\vk', \down} \ofe{-\vk, \down} \ofe{\vk, \up} \Theta(\hbar \omega_D - \abs{\epsilon_\vk}) \Theta(\hbar \omega_D - \abs{\epsilon_{\vk'}})
     \label{eq:BCS}
 \end{align}
-mit der Heaviside-Funktion $\Theta(x)$ annimmt.
+mit der Heaviside-Funktion $\Theta(x)$.
+Der Faktor $N$ steht für die Anzahl an Gitterplätzen und rührt daher, dass der BCS-Term andernfalls aufgrund der Summe über $\vk$ und $\vk'$ mit $N^2$ wachsen würde, was unphysikalisch wäre.
 
 \subsection{Limitierung der BCS-Theorie}
 Die BCS-Theorie kann als mikroskopische Theorie der Supraleitung die Eigenschaften konventionelle Supraleiter wie z. B. Aluminium, Blei oder Quecksilber gut beschreiben~\cite{webb_superconductivity_2015}. 

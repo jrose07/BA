@@ -108,9 +108,8 @@
 
 % Better vectors
 \usepackage[a]{esvect}
-\DeclareRobustCommand{\vec}[1]{\vv{#1}}
-% \usepackage{scalerel}
-% \renewcommand{\vec}[1]{\stretchto{\vector(1,0){10}}{4pt}\hspace{-0.2em}#1}
+% \DeclareRobustCommand{\vec}[1]{\vv{#1}}
+
 %------------------------------------------------------------------------------
 %---------------------- customize list environments ---------------------------
 %------------------------------------------------------------------------------
@@ -126,6 +125,7 @@
   autolang=hyphen, % load hyphenation rules for if language of bibentry is not
                    % german, has to be loaded with \setotherlanguages
                    % in the references.bib use langid={en} for english sources
+  sorting=none
 ]{biblatex}
 \addbibresource{references.bib}  % the bib file to use
 \DefineBibliographyStrings{german}{andothers = {{et\,al\adddot}}}  % replace u.a. with et al.
@@ -140,15 +140,6 @@
 % % Quellendatenbank
 % \addbibresource{lit.bib}
 
-% % Hyperlinks im Dokument
-% \usepackage[
-%   german,
-%   unicode,        % Unicode in PDF-Attributen erlauben
-%   pdfusetitle,    % Titel, Autoren und Datum als PDF-Attribute
-%   pdfcreator={},  % ┐ PDF-Attribute säubern
-%   pdfproducer={}, % ┘
-%   hidelinks,
-% ]{hyperref}
 
 % %\addbibresource{programme.bib}
 % % Formatierung der Felder anpassen
