@@ -8,6 +8,8 @@ from concurrent.futures import ProcessPoolExecutor
 
 import time
 
+"""Es soll TC in abhängigkeit von mu und U ohne contour plotten."""
+
 
 def get_T_C(U, mu, E_D, T_array, start):
     U = np.asarray(U)
@@ -18,15 +20,11 @@ def get_T_C(U, mu, E_D, T_array, start):
         deltas = []
         for T in T_array:
             try:
-                delta = get_delta(start=start, T = T, U = u, E_D = E_D, mu = m, iterations=5, num_points=1009)
+                delta = get_delta(start=start, T = T, U = u, E_D = E_D, mu = m, iterations=4, num_points=1009)
             except (RuntimeError, OverflowError, ValueError):
                 delta = np.nan
             deltas.append(delta)
         deltas = np.asarray(deltas)
-        delta_0 = deltas[-1]
-        tol = delta_0 / 100
-        T_C_theo = 2*t2mev(delta_0)*1e-3*const.e/(const.k*3.52)
-        # print(T_C_theo)
         abs_deltas = np.abs(deltas)
         # handle all-NaN or empty cases robustly
         if abs_deltas.size == 0 or np.all(np.isnan(abs_deltas)):
@@ -49,11 +47,12 @@ def get_T_C(U, mu, E_D, T_array, start):
 
 #Params
 E_D = mev2t(200)
-U = np.linspace(0,mev2t(5e3),100)
-mu = np.array([mev2t(0e3), mev2t(0.1e3), mev2t(-0.1e3)]) # t
-T = np.linspace(0,0.2,1000)
+U = np.linspace(0,mev2t(2e3),100)
+mu = np.array([mev2t(2.6e3), mev2t(2.7e3), mev2t(2.8e3)]) # t
+# mu = np.linspace(mev2t(0.4e3), mev2t(2.8e3), 5)
+T = np.linspace(0,100,1000)
 
-version = "2"
+version = "3"
 
 #Rechnung und plots
 t1= time.perf_counter()
@@ -78,8 +77,8 @@ def main():
     print(np.any(np.isnan(T_C)))
 
     T_C_df = pd.DataFrame(T_C, index=mu, columns=t2mev(U)*1e-3)
-    T_C_df.index.name = r"$\mu / t$"
-    T_C_df.columns.name = r"$U / eV$"
+    T_C_df.index.name = r"$\mu / [t]$"
+    T_C_df.columns.name = r"$U / [eV]$"
     T_C_df.to_csv(f"./data/TC_vs_mu&U_fine_{version}.csv")
 
 
@@ -97,11 +96,11 @@ def main():
         mu_eV = t2mev(mu_val)*1e-3
         valid = np.isfinite(T_C[i])
         if np.any(valid):
-            ax.plot(U_eV[valid], T_C[i][valid], label=rf"$\mu = {mu_eV:.3f}$ eV")
+            ax.plot(U_eV[valid], T_C[i][valid], label=rf"$\mu = {mu_eV:.2f}$ eV")
 
     ax.set(
-        xlabel=r"$U \, / \, eV$",
-        ylabel=r"$T_C \, / \, K$"
+        xlabel=r"$U \, / \, [eV]$",
+        ylabel=r"$T_C \, / \, [K]$"
     )
     # ax.set_facecolor(color='#5C51A3')
     ax.legend()

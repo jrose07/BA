@@ -83,7 +83,7 @@ def get_T_C(U, mu, E_D):
 # mu = np.linspace(0,0.1,200) # t
 mu = mev2t(0.16*1e3) #t
 mu = 0 # t
-E_D = np.linspace(mev2t(150), mev2t(200), 400) # t
+E_D = np.linspace(mev2t(0), mev2t(1e3), 400) # t
 U = np.linspace(0,mev2t(300e3),400) # t
 
 version = 1

@@ -42,7 +42,7 @@ def newton_func(delta, U, T, E_D, mu, num_points):
     E_debye: Debye-Energy in units of t
     returns list of delta for each iteration in units of t
     """
-    x = np.linspace(-E_D, E_D, num_points)
+    x = np.linspace(-E_D+mu, mu+E_D, num_points)
     DOS = func_DOS(x)
     mask = np.logical_and(DOS < np.inf, x != 0)
     x = x[mask]
@@ -85,7 +85,7 @@ def integral(delta, U, T, E_D, mu, num_points):
     U, T, E_D: scalar
     returns integral of DOS and Self_consistency
     """
-    x = np.linspace(-E_D, E_D, num_points)
+    x = np.linspace(-E_D+mu, mu+E_D, num_points)
     DOS = func_DOS(x)
     mask = np.logical_and(DOS < np.inf, x != 0)
     x = x[mask]
@@ -129,7 +129,7 @@ def fixpunkt_algo(start, T, U, E_D, mu, iterations, num_points):
     E_debye: Debye-Energy in units of t
     returns list of delta for each iteration in units of t
     """
-    x = np.linspace(-E_D, E_D, num_points)
+    x = np.linspace(-E_D+mu, E_D+mu, num_points)
     DOS = func_DOS(x) #in units of 1/t
     #Bei x = 1 ist DOS unendlich -> Filtere Punkte heraus
     mask = np.logical_and(DOS < np.inf, x != 0)

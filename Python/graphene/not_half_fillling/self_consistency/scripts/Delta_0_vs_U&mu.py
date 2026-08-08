@@ -6,11 +6,12 @@ import scipy.constants as const
 T = 0
 # print(t2mev(mu))
 E_D = mev2t(200) # t
-version = "2"
+version = "4"
 
 U = np.linspace(mev2t(0e3), mev2t(2e3), 1000)
 # , mev2t(180), mev2t(170),
-mu = np.array([mev2t(2.6e3), mev2t(2.7e3), mev2t(2.8e3)]) # t
+mu = np.array([mev2t(2.5e3),mev2t(2.6e3), mev2t(2.7e3), mev2t(2.8e3),mev2t(2.9e3)]) # t
+# mu = np.array([mev2t(0.6e3), mev2t(0.8e3), mev2t(1e3)]) # t
 
 delta_max = np.array([])
 fig, ax = plt.subplots(layout='tight')
@@ -47,8 +48,8 @@ for m in mu:
 print(delta_max, np.max(delta_max))
 delta_max = np.max(delta_max)
 ax.set(
-    xlabel=r"$\Delta_0 \, / \, meV$",
-    ylabel=r"$U \, / \, eV$", 
+    xlabel=r"$\Delta_0 \, / \, [meV]$",
+    ylabel=r"$U \, / \, [eV]$", 
     # xlim=[0, t2mev(delta_max)],
     ylim=[np.min(t2mev(U)*1e-3),np.max(t2mev(U)*1e-3)],
     # xscale='log',

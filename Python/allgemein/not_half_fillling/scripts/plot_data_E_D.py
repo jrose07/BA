@@ -8,8 +8,11 @@ A = 0.184080 # 1/t^2
 mu = t2mev(0.05)*1e-3 #eV
 print(mu)
 half_filling = True
+# mu = t2mev(0.1)*1e-3 
 mu = 0
 version = "_theo2"
+safe = True
+levels = 100
 
 if half_filling == True:
     csv_path = Path(rf"/home/jrose/Dokumente/Uni/SoSe26/BA_Git/Python/graphene/half_filling/scripts/data/TC_vs_E_D&U{version}.csv")
@@ -50,8 +53,12 @@ positive_values = positive_mask.compressed()
 # colorbar = ax.contourf(U, t2mev(mu)*1e-3, positive_mask, levels=levels, cmap='Spectral_r')
 
 """WHen T_C = 0 should be plotted"""
-levels = np.linspace(np.nanmin(T_C_masked), np.nanmax(T_C_masked), 100)
-colorbar = ax.contourf(U, E_D, T_C_masked, levels=levels, cmap='Spectral_r')
+levels = np.linspace(np.nanmin(T_C_masked), np.nanmax(T_C_masked), levels)
+cbar = ax.contourf(U, E_D, T_C_masked, levels=levels, cmap='Spectral_r')
+# cbar.ax.tick_params(
+#     labelsize=10,
+#     direction="in"
+# )
 
 
 """Plot U_C"""
@@ -83,18 +90,47 @@ if np.any(valid_zero):
 # if np.any(mask):
     # ax.plot(U_C[mask], E_D_arr[mask])
 # print(U_C)
-ax.plot(U_C, E_D, label=r"$U_C$")
+ax.plot(U_C, E_D, "r-", label=r"$U_C$")
 
 
-fig.colorbar(colorbar, ax=ax, label=r"$T_C \, / \, [K\cdot\frac{W}{eV}]$")
+fig.colorbar(cbar, ax=ax, label=r"$T_C \, / \, [K\cdot\frac{W}{eV}]$")
 ax.set(
-    xlabel=r"$U \, / \, W$",
-    ylabel=r"$E_D \, / \, W$",
+    xlabel=r"$U \, / \, [W]$",
+    ylabel=r"$E_D \, / \, [W]$",
     xlim=[np.min(U),np.max(U)],
     title=rf"$\mu = {mu:.2f}W$"
 )
 # ax.set_facecolor(color='black')
+
+
+ax.tick_params(
+    which="major",
+    direction="in",
+    length=5,
+    width=0.9,
+    labelsize=10,
+    top=True,
+    right=True
+)
+
+ax.tick_params(
+    which="minor",
+    direction="in",
+    length=3,
+    width=0.7,
+    top=True,
+    right=True
+)
+
+ax.minorticks_on()
+
+for spine in ax.spines.values():
+    spine.set_linewidth(0.9)
+
+
+
 ax.set_facecolor(color='#5C51A3')
 ax.legend()
-# fig.savefig(f"../plots/TC_vs_mu&U_6.pdf")
+if safe == True:
+    fig.savefig(f"../plots/TC_vs_E_D&U{version}.pdf")
 plt.show()

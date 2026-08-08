@@ -1,15 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
-# from graphene import get_delta
 from graphenemodeling.graphene import _constants as _c
 import pandas as pd
 import scipy.constants as const
 from scipy.optimize import newton
 
-# def E_D_theo(U, T_C, A):
-#     return 2*const.k*T_C*np.arccosh(np.exp(1/(2*U*A*const.k*T_C)))
-t = 2.7*const.e
-version = 2
+t = 2.7*const.e #J
 
 def y_func(y, U, A, E_D):
     y = float(y)
@@ -54,34 +50,28 @@ def solve_with_y(U, A, E_D, start):
     return T_C
 
 from graphene import mev2t, t2mev
-A = 0.184080 #(1/t^2)
-U = np.linspace(0,110,200)
-E_D = np.linspace(mev2t(150),mev2t(200),200)
+A = 0.184080 # 1/t^2
+U = np.linspace(mev2t(0),mev2t(250e3),200) # t
+E_D = np.linspace(mev2t(0),mev2t(1e3),200) # t
+version = 3
 
 T_C = solve_with_y(U, A, E_D, start=0.07*t/(2*const.k*10))
 
 #Überprüfe mit Kritischen Wechselwirkungen U_C
-U_C = 1/(A*E_D)
-#C plotten
-# U_arr = np.asarray(U)
-# E_D_arr = np.asarray(E_D)
-# U_b, E_D_b = np.meshgrid(U_arr, E_D_arr, indexing='xy')
-# C = 1/(A*U_b*E_D_b)
-
-conv = _c.g0 / const.e * 1e3
+U_C = 1/(A*E_D) # t
 
 levels = np.linspace(np.nanmin(T_C), np.nanmax(T_C), 10)
 T_C_masked = np.ma.masked_invalid(T_C)
 fig, ax = plt.subplots()
-colorbar = ax.contourf(U*conv*1e-3, E_D*conv, T_C_masked, levels=levels, cmap='viridis')
+colorbar = ax.contourf(t2mev(U)*1e-3, t2mev(E_D), T_C_masked, levels=levels, cmap='viridis')
 # colorbar = ax.contourf(U_arr*conv*1e-3, E_D_arr*conv, C)
-ax.plot(U_C*conv*1e-3, E_D*conv, label=r"$U_C$")
-fig.colorbar(colorbar, ax=ax, label=r"$T_C \, / \, K$")
+ax.plot(t2mev(U_C)*1e-3, t2mev(E_D), label=r"$U_C$")
+fig.colorbar(colorbar, ax=ax, label=r"$T_C \, / \, [K]$")
 ax.set(
-    xlabel=r"$U \, / \, eV$",
-    ylabel=r"$E_D \, / \, meV$"
-    # xlim=[np.min(t2mev(U)*1e-3), np.max(t2mev(U)*1e-3)],
-    # ylim=[np.min(t2mev(E_D)), np.max(t2mev(E_D))]
+    xlabel=r"$U \, / \, [eV]$",
+    ylabel=r"$E_D \, / \, [meV]$",
+    xlim=[np.min(t2mev(U)*1e-3), np.max(t2mev(U)*1e-3)],
+    ylim=[np.min(t2mev(E_D)), np.max(t2mev(E_D))]
 )
 ax.legend()
 ax.set_facecolor(color='black')

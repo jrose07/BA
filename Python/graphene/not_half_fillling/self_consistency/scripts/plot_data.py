@@ -4,114 +4,194 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-A = 0.02525098 #1/eV**2
-E_D = 200e-3 #eV
+
+# ============================================================
+# Parameters
+# ============================================================
+
+A = 0.02525098       # 1/eV**2
+E_D = 200e-3         # eV
+
+print(f"U_C = {1/(A*E_D)} eV")
 
 version = "2"
-safe = False
+safe = True
 
-csv_path = Path(rf"./data/TC_vs_mu&U_{version}.csv")
-data = pd.read_csv(csv_path, header=None)
-U = pd.to_numeric(data.iloc[0, 1:], errors="coerce").to_numpy() #eV
-mu = pd.to_numeric(data.iloc[1:, 0], errors="coerce").to_numpy() # in t
-mu = t2mev(mu)*1e-3 # t -> eV
-T_C = data.iloc[1:, 1:].apply(pd.to_numeric, errors="coerce").to_numpy()
+
+# ============================================================
+# Load data
+# ============================================================
+
+csv_path = Path(
+    rf"./data/TC_vs_mu&U_{version}.csv"
+)
+
+data = pd.read_csv(
+    csv_path,
+    header=None
+)
+
+U = pd.to_numeric(
+    data.iloc[0, 1:],
+    errors="coerce"
+).to_numpy()  # eV
+
+mu = pd.to_numeric(
+    data.iloc[1:, 0],
+    errors="coerce"
+).to_numpy()  # t
+
+mu = t2mev(mu) * 1e-3  # t -> eV
+
+T_C = data.iloc[1:, 1:].apply(
+    pd.to_numeric,
+    errors="coerce"
+).to_numpy()  # K
+
+
+# ============================================================
+# Safety fallback
+# ============================================================
 
 if np.isnan(U).all():
-    # Ensure U is a range if all values are NaN
     U = np.arange(T_C.shape[1])
 
+
+# ============================================================
+# Mask invalid values
+# ============================================================
+
 T_C_masked = np.ma.masked_invalid(T_C)
-fig, ax = plt.subplots(layout="tight")
-
-"""Plot The underlying mesh"""
-# U_b, mu_b = np.meshgrid(U, mu, indexing='xy')
-# ax.plot(t2mev(U_b)*1e-3, mu_b, "b.")
-"""
-good cmaps: ['Spectral', 'jet', 'inferno', 'viridis', 'Spectral_r', ]
-"""
-zero_mask = np.ma.masked_where(T_C_masked != 0, T_C_masked)
-positive_mask = np.ma.masked_where(T_C_masked <= 0, T_C_masked)
-positive_values = positive_mask.compressed()
-
-"""When T_C = 0 shouldnt be plotted"""
-# levels = np.linspace(np.nanmin(positive_values), np.nanmax(positive_values), 100)
-# colorbar = ax.contourf(U, t2mev(mu)*1e-3, positive_mask, levels=levels, cmap='Spectral_r')
-
-"""WHen T_C = 0 should be plotted"""
-levels = np.linspace(np.nanmin(T_C_masked), np.nanmax(T_C_masked), 100)
-colorbar = ax.contourf(U, mu, T_C_masked, levels=levels, cmap='Spectral_r')
 
 
-# """Plot U_C"""
-# # Compute U_C for each mu safely and vectorized
-# mu_arr = np.append(np.linspace(mu.min(), mu.max(), 1000), 0)
-# U_C = np.full(mu_arr.shape, 0, dtype=float)
+# ============================================================
+# Figure
+# ============================================================
 
-# # valid where mu is nonzero and more than E_D (avoid divide-by-zero / log issues)
-# valid = (mu_arr != 0) & (mu_arr > E_D) 
-# valid = np.logical_or(valid, mu_arr < -E_D)
-# if np.any(valid):
-#     m = mu_arr[valid]
-#     # use m in the formula (was mistakenly using the full mu array inside the loop)
-#     with np.errstate(divide='ignore', invalid='ignore'):
-#         arg = m**2 /(m**2 - E_D**2)
-#         Uvals = 2 / (A *np.abs(m) * np.log(arg))
-#     # keep only finite results
-#     Uvals[~np.isfinite(Uvals)] = np.nan
-#     U_C[valid] = Uvals
-    
-# mask = np.logical_and(np.isfinite(U_C), mu_arr!=0)
-# if np.any(mask):
-#     ax.plot(U_C[mask], mu_arr[mask], "r-", label=r"$U_C$")
-
-# mask_zero = mu_arr == 0
-# if np.any(mask_zero):
-#     U_C[mask_zero] = 1/(A*E_D)
-
-# # print(U_C, mu_arr)
-# # plot only finite pairs
-# if np.any(mask_zero):
-#     ax.hlines(0,xmin=0,xmax=U_C[mask_zero], color="red")
-#     ax.plot(U_C[mask_zero], 0, "r.")
-
-
-fig.colorbar(colorbar, ax=ax, label=r"$T_C \, / \, K$")
-ax.set(
-    xlabel=r"$U \, / \, eV$",
-    ylabel=r"$\mu \, / \, eV$",
-    xlim=[np.min(U),np.max(U)]
+fig, ax = plt.subplots(
+    figsize=(7.0, 5.2),
+    layout="tight"
 )
-ax.set_facecolor(color='#5C51A3')
-# ax.legend()
-if safe == True:
-    fig.savefig(f"../plots/nice_plots/TC_vs_mu&U_{version}.pdf")
-plt.show()
 
 
+# ============================================================
+# Colormap / background
+# ============================================================
+
+cmap = "Spectral_r"
+
+# Color used for masked / invalid regions
+ax.set_facecolor("#5C51A3")
 
 
-"""Mache noch einen Plot für ein bestimmtes mu."""
+# ============================================================
+# Main imshow plot
+# ============================================================
 
-fig, ax = plt.subplots(layout="tight")
-num = 10
-mu_targets = [np.percentile(mu, i * 100 / num) for i in range(num)]
-mu_targets = t2mev(np.array([0,0.04,0.05, 0.06, 0.1]))*1e-3
-mu_targets = np.array([2.2, 2.4, 2.6, 2.7, 2.8, 3.0, 3.2]) # eV
-
-for m in mu_targets:
-    mask = np.abs(mu - m) == np.min(np.abs(mu - m))
-    T_C_mu = T_C[mask][0]
-    T_C_mu[np.isnan(T_C_mu)] = 0
-    U_grenz = np.max(U[np.isclose(T_C_mu, 0)])
-    line, = ax.plot(U, T_C_mu, label=rf"$\mu = {m:.2f}$ eV, $U_G= ${U_grenz:.2f} eV")
-    ax.plot(U_grenz, 0, marker="x", color=line.get_color())
-
-ax.set(
-    xlabel=r"$U \, / \, eV$",
-    ylabel=r"$T_C \, / \, K$",
-    title=r"$T_C(U)$ für verschiedene $\mu$",
+image = ax.imshow(
+    T_C_masked,
+    extent=[
+        np.min(U),
+        np.max(U),
+        np.min(mu),
+        np.max(mu)
+    ],
+    origin="lower",
+    aspect="auto",
+    cmap=cmap,
+    interpolation="bicubic"
 )
-ax.grid()
-ax.legend()
+
+
+# ============================================================
+# Colorbar
+# ============================================================
+
+cbar = fig.colorbar(
+    image,
+    ax=ax,
+    pad=0.025,
+    fraction=0.046
+)
+
+cbar.set_label(
+    r"$T_C\, / \, [K]$",
+    fontsize=12
+)
+
+cbar.ax.tick_params(
+    labelsize=10,
+    direction="in"
+)
+
+
+# ============================================================
+# Axes
+# ============================================================
+
+ax.set_xlabel(
+    r"$U\, / \,[eV]$",
+    fontsize=12
+)
+
+ax.set_ylabel(
+    r"$\mu\, / \,[eV]$",
+    fontsize=12
+)
+
+ax.set_xlim(
+    np.min(U),
+    np.max(U)
+)
+
+ax.set_ylim(
+    np.min(mu),
+    np.max(mu)
+)
+
+
+# ============================================================
+# Tick appearance
+# ============================================================
+
+ax.tick_params(
+    which="major",
+    direction="in",
+    length=5,
+    width=0.9,
+    labelsize=10,
+    top=True,
+    right=True
+)
+
+ax.tick_params(
+    which="minor",
+    direction="in",
+    length=3,
+    width=0.7,
+    top=True,
+    right=True
+)
+
+ax.minorticks_on()
+
+
+# ============================================================
+# Spines
+# ============================================================
+
+for spine in ax.spines.values():
+    spine.set_linewidth(0.9)
+
+
+# ============================================================
+# Save / show
+# ============================================================
+
+if safe:
+    fig.savefig(
+        f"../plots/nice_plots/TC_vs_mu&U_{version}.pdf",
+        bbox_inches="tight"
+    )
+
 plt.show()
