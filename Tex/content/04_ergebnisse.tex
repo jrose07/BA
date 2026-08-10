@@ -1,15 +1,16 @@
 \chapter{Ergebnisse}\label{sec:ergebnisse}
 
-Um die in~\autoref{sec:modell} hergeleiteten Selbstkonsistenzgleichungen~\eqref{eq:gap_eq_half_filling_integral} bzw.~\eqref{eq:gap_eq_arbitrary_filling_integral} zu lösen wird eine Kombination aus Fixpunktiteration und Newtonverfahren verwendet.
-Die dafür erforderliche Zustandsdichte $\rho(\epsilon)$ wird ebenfalls numerisch über die in Ref.~\cite{hanisch_lattice_1997} hergeleitete Formel berechnet (siehe~Abbildung~\ref{fig:dos}).
+% Um die in~\autoref{sec:modell} hergeleiteten Selbstkonsistenzgleichungen~\eqref{eq:gap_eq_half_filling_integral} bzw.~\eqref{eq:gap_eq_arbitrary_filling_integral} zu lösen, wird
+Zur Lösung der in~\autoref{sec:modell} hergeleiteten Selbstkonsistenzgleichungen~\eqref{eq:gap_eq_half_filling_integral} bzw.~\eqref{eq:gap_eq_arbitrary_filling_integral}, wird eine Kombination aus Fixpunktiteration und Newtonverfahren verwendet.
+Die dafür erforderliche Zustandsdichte $\rho(\epsilon)$ wird ebenfalls numerisch über die in Ref.~\cite{hanisch_lattice_1997} hergeleitete Formel berechnet (siehe~Abbildung~\ref{fig:DOS}).
 Für die numerische Berechnung wird das Python-Paket \textit{scipy}~\cite{virtanen_scipy_2020} verwendet. 
 Plots werden mit \textit{matplotlib}~\cite{hunter_matplotlib_2007} erstellt.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{Plots/DOS_complete.pdf}
-    \caption{Zustandsdichte $\rho(E)$ (oder DOS für engl. \textit{Density of States}) des Bienenwabengitters, berechnet nach der Formel in Ref.~\cite{hanisch_lattice_1997}. Energie $E$ ist in Einheiten des Hoppingparameters $t$ angegeben, die DOS damit in Einheiten von $t^{-1}$. Die DOS ist symmetrisch um $E=0$ und hat eine Van-Hove-Singularität bei $E = \pm t$. Die Bandbreite $W$ beträgt $6t$ und die Zustandsdichte verschwindet an den Dirac-Punkten ($E=0$).}
-    \label{fig:dos}
+    \caption{Zustandsdichte $\rho(E)$ (oder DOS  für engl. \textit{Density of States}) des Bienenwabengitters, berechnet nach der Formel in Ref.~\cite{hanisch_lattice_1997}. Energie $E$ ist in Einheiten des Hoppingparameters $t$ angegeben, die DOS  damit in Einheiten von $t^{-1}$. Die DOS  ist symmetrisch um $E=0$ und hat eine Van-Hove-Singularität (VHS) bei $E = \pm t$. Die Bandbreite $W$ beträgt $6t$ und die DOS verschwindet an den Dirac-Punkten ($E=0$).}
+    \label{fig:DOS}
 \end{figure}
 
 
@@ -21,9 +22,9 @@ Plots werden mit \textit{matplotlib}~\cite{hunter_matplotlib_2007} erstellt.
 Es werden zunächst die allgemeinen Abhängigkeiten der kritischen Temperatur $T_C$ bzw. des Ordnungsparameters $\Delta$ von den Parametern Temperatur $T$, Wechselwirkungsstärke $U$, Debye-Energie $E_D = \hbar \omega_D$ und chemischem Potential $\mu$ geklärt.
 
 Abbildung~\ref{fig:delta_vs_TndU} zeigt mit dem Plot links, dass $\Delta$ wie erwartet oberhalb einer kritischen Temperatur $T_C$ verschwindet und einen für die BCS-Theorie aufgrund der Mean-Field-Näherung typischen Kurvenverlauf, bestehend aus exponentiellem Plateau und Wurzelverhalten in der Nähe von $T_C$, aufweist~\cite{bardeen_theory_1957,tinkham_introduction_2004,czycholl_theoretische_2017}. 
-Ebenfalls ist erkenntlich, dass die Dotierung $\mu$ die kritische Temperatur $T_C$ im Vergleich zum undotierten Fall $\mu = 0$ deutlich erhöhen kann. 
-Der Plot rechts zeigt, dass im dotierten Regime bereits eine minimale Wechselwirkungen $U$ ausreicht, damit ein Ordnungsparameter $\Delta_0 \coloneqq \Delta(T=0)$ ausgebildet wird. 
-Für $U \rightarrow 0$ existiert ein asymptotischer Übergang gegen Null, während erkennbar ist, dass $\Delta_0$ im undotierten Fall tatsächlich erst oberhalb einer kritischen Kopplung $U_C$ endlich wird.
+Ebenfalls ist erkenntlich, dass das eine endliche Verschiebung des chemischen Potentials $\mu$ die kritische Temperatur $T_C$ im Vergleich zum undotierten Fall $\mu = 0$ deutlich erhöhen kann. 
+Der Plot rechts zeigt, dass im dotierten Regime bereits eine minimale Wechselwirkung $U$ ausreicht, damit ein Ordnungsparameter $\Delta_0 \coloneqq \Delta(T=0)$ ausgebildet wird. 
+Für $U \rightarrow 0$ geht $\Delta_0$ asymptotisch gegen Null, während erkennbar ist, dass $\Delta_0$ im undotierten Fall tatsächlich erst oberhalb einer kritischen Kopplung $U_C$ von null verschieden wird.
 
 
 \begin{figure}[htb]
@@ -53,48 +54,48 @@ Um diesen kritischen Punkt analytisch genauer zu untersuchen, wird die Selbstkon
     1 = \frac{U}{2} \int_{-E_D}^{E_D} \frac{\rho(\epsilon)}{\sqrt{\epsilon^2 + \Delta_0^2}} \, d\epsilon~\label{eq:U_C_berechnen}
 \end{align}
 
-Da das Integral über die Zustandsdichte im Allgemeinen nicht analytisch lösbar ist, bedarf es hier einer geeigneten Näherung. 
-Klassischerweise wird die Zustandsdichte oft einfach mit der Begründung, dass sie sich über das Intervall $[-E_D , E_D]$ kaum ändert als konstant $\rho(\epsilon) \approx \rho(E_F) = \rho(0)$ angenommen.
+Da sich das Integral über die DOS im Allgemeinen nicht analytisch lösen lässt, bedarf es hier einer geeigneten Näherung. 
+Klassischerweise wird die DOS oft einfach mit der Begründung, dass sie sich über das Intervall $[-E_D , E_D]$ kaum ändert als konstant $\rho(\epsilon) \approx \rho(E_F) = \rho(0)$ angenommen.
 Diese Näherung führt genau zu dem asymptotischen Verhalten, das in~Abbildung~\ref{fig:delta_vs_TndU} abseits von halber Füllung beobachtet wird~\cite{czycholl_theoretische_2017}.
-Da die Zustandsdichte aber bei halber Füllung am Energienullpunkt verschwindet, kann diese Näherung hier nicht durchgeführt werden. 
-Dies stellt allerdings kein Problem dar, denn die Näherung wäre wie bereits erwähnt zur Beschreibung der kritischen Kopplung auch nicht ausreichend.
+Da die DOS aber bei halber Füllung am Energienullpunkt verschwindet, kann diese Näherung hier nicht durchgeführt werden. 
+% Dies stellt allerdings kein Problem dar, denn die Näherung wäre wie bereits erwähnt zur Beschreibung der kritischen Kopplung auch nicht ausreichend.
+Dies stellt allerdings kein Problem dar, da die konstante Näherung der DOS zur Beschreibung einer kritischen Kopplung ohnehin nicht ausreichen würde.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.48\textwidth]{Plots/DOS.pdf}
-    \caption{Vergleich der DOS des Bienenwabengitters mit einer linearen Regression im Bereich $[-E_D, E_D]$ für $E_D = \qty{0.02}{W}$. Die Regression liefert $A \approx \qty{6.6447}{W^{-2}}$.}
+    \caption{Vergleich der DOS  des Bienenwabengitters mit einer linearen Regression im Bereich $[-E_D, E_D]$ für $E_D = \qty{0.02}{W}$. Die lineare Regression liefert $A \approx \qty{6.6447}{W^{-2}}$.}
     \label{fig:DOS_regress}
 \end{figure}
 
-Stattdessen wird aufgrund der besonderen Form der Zustandsdichte am  Dirac-Punkt, die Näherung $\rho(\epsilon) \approx A \cdot \abs{\epsilon}$ verwendet, die für $E_D \ll W$ eine gute Übereinstimmung liefert (siehe~Abbildung~\ref{fig:DOS_regress}).
+Stattdessen wird aufgrund der besonderen Form der DOS am Dirac-Punkt, die Näherung $\rho(\epsilon) \approx A \cdot \abs{\epsilon}$ verwendet, die für $E_D \ll W$ eine gute Übereinstimmung liefert (siehe~Abbildung~\ref{fig:DOS_regress}).
 Für die meisten Festkörper ist die Bedingung $E_D \ll W$ bzw. $E_D/W \ll 1$ gut erfüllt, dennoch sollte diese bei einer konkreten Behandlung eines Materials konkret überprüft werden.
-Die lineare Regression liefert $A \approx \qty{6.6447}{W^{-2}}$, dessen Genauigkeit aber sicherlich von $E_D$ abhängt.
+Die lineare Regression liefert $A \approx \qty{6.6447}{W^{-2}}$.
+Die Genaugkeit dieses Werts hängt jedoch ebenfalls von dem Verhältnis $E_D/W$ ab und ist hier für $E_D/W = 0.02$ berechnet worden.
+% Die Genauigkeit dieser Näherung aber sicherlich von $E_D$ abhängt.
 Eingesetzt in das Integral~\eqref{eq:U_C_berechnen} ergibt sich 
 \begin{align}
     1 &= \frac{UA}{2} \int_{-E_D}^{E_D} \frac{\abs{\epsilon}}{\sqrt{\epsilon^2 + \Delta_0^2}} \, d\epsilon = UA \int_{0}^{E_D} \frac{\epsilon}{\sqrt{\epsilon^2 + \Delta_0^2}} \, d\epsilon = UA\left(\sqrt{E_D^2 + \Delta_0^2} - \Delta_0\right) \\
     &\implies U(\Delta_0) = \frac{1}{A\left(\sqrt{E_D^2 + \Delta_0^2} - \Delta_0\right)}~\label{eq:U_C}
 \end{align}
 und mit $U_C = \lim_{\Delta_0 \rightarrow 0} U(\Delta_0)$ erhält man $U_C = 1/(AE_D)$. 
-Für $\mu \neq 0$ verschwindet die kritische Kopplung, was für $\abs{\mu} \gg E_D$ klar ist, da die DOS dort sehr groß ist und die Näherung $\rho(\epsilon) \approx \rho(\mu)$ dort wieder gut geeignet ist~\cite{czycholl_theoretische_2017}.
-Für eine schwache Ferminiveauverschiebung $\mu \sim E_D$ ist dies nicht so offensichtlich, im Anhang~\ref{sec:anhang_b} kann aber anhand der linearen Näherung der Zustandsdichte gezeigt werden, dass für alle $\mu \neq 0$ eine logarithmische Divergenz für das Verschwinden der kritischen Kopplung sorgt.
-Es reicht also nicht, dass die Zustandsdichte an der Fermi-Energie klein ist, sondern das Verschwinden von $\rho(\mu)$ ist ausschlaggebend für die Ausbildung des quantenkritischen Punkts.
+Für $\mu \neq 0$ verschwindet die kritische Kopplung, was für $\abs{\mu} \gg E_D$ klar ist, da die DOS  dort sehr groß ist und die Näherung $\rho(\epsilon) \approx \rho(\mu)$ dort wieder gut geeignet ist~\cite{czycholl_theoretische_2017}.
+Für eine schwache Ferminiveauverschiebung $\mu \sim E_D$ ist dies nicht so offensichtlich, im Anhang~\ref{sec:anhang_b} kann aber anhand der linearen Näherung der DOS gezeigt werden, dass für jedes $\mu \neq 0$ eine logarithmische Divergenz auftritt, sodass die kritische Kopplung verschwindet.
+Es reicht also nicht, dass die DOS an der Fermi-Energie klein ist, sondern das Verschwinden von $\rho(\mu)$ ist ausschlaggebend für die Ausbildung des quantenkritischen Punkts.
 
 
 
 
 \subsection{Abhängigkeit von den Parametern \texorpdfstring{$U$, $E_D$ und $\mu$}{U, E_D und mu}}
 
-Die Teilabbildung (a) aus Abbildung~\ref{fig:ALLG_ABH} zeigt bei halber Füllung, dass der zurvor hergeleitete hyperbolische Verlauf von $U_C$~\eqref{eq:U_C} gut von der Numerik bestätigt wird. 
+Die Teilabbildung (a) aus Abbildung~\ref{fig:ALLG_ABH} zeigt bei halber Füllung, dass der zuvor hergeleitete hyperbolische Verlauf von $U_C$~\eqref{eq:U_C} gut von der Numerik bestätigt wird. 
 Für kleine Debye-Energien $E_D$ ist also eine sehr große Kopplung nötig, während für große $E_D$ nur eine geringe Kopplung vonnöten ist, um ein endliches $\Delta_0$ auszubilden.
 In Teilabbildung (b) ist der leicht dotierte Fall ($\mu = 0.02W$) zu sehen, der nun keine kritische Kopplung mehr aufweist. 
-Trotzdem ist der supraleitende Bereich im Vergleich zu (a) nicht nennenswert \glqq größer\grqq{}, da zwar endliche aber dennoch sehr kleine Ordnungsparameter außerhalb des zuvor normalleitenden Bereichs ausgebildet werden.
-
-Die Teilabbildungen (c) und (d) zeigen für $\Delta_0$ und $T_C$ die gleiche Struktur, was darauf schließen lässt, dass diese direkt proportional zueinander sind, wie in der BCS-Theorie üblich~\cite{czycholl_theoretische_2017}.
-Des Weiteren lässt sich erkennen, dass $\Delta_0$ im Bereich $\abs{\mu} < 0.05 \, W$ wie zu erwarten war stark unterdrückt wird, außerhalb davon aber stark mit der Dotierung anwächst.
-Sein Maximum befindet sich bei den Van-Hove-Singularitäten (VHS) bei $\mu = \pm W/6$, wo sogar für $U< 1W$ in den Plots noch endliche $\Delta_0$ erkennbar sind.
-% Genauerere Aussagen müssten allerdings an konkreten Beispielen mit bekanntem $W$, $E_D$, etc. diskutiert werden, es kann jedoch 
-% Genauerere quantitative Aussagen ergeben erst im Vergleich mit Materialparametern Sinn, für die Ausbildung von $s$-wave Supraleitung scheinen die VHS aber am vielversprechendsten zu sein.
-
+Er unterscheidet sich nicht sonderlich von Fall (a), da die Ordnungsparameter mit $U<U_C$ zwar endlich, aber dennoch klein sind, was in dieser Grafik nicht aufgelöst werden kann.
+% Trotzdem ist der supraleitende Bereich im Vergleich zu (a) nicht nennenswert \glqq größer\grqq{}, da zwar endliche aber dennoch sehr kleine Ordnungsparameter außerhalb des zuvor normalleitenden Bereichs ausgebildet werden.
+Die Teilabbildungen (c) und (d) zeigen für $\Delta_0$ und $T_C$ ähnliche Abhängigkeiten, was auf eine näherungsweise Proportionalität schließen lässt, wie in der BCS-Theorie mit dem universellen Verhältnis $2\Delta_0/(k_B T_C) = \num{3.53}$ erwartet wird~\cite{czycholl_theoretische_2017}.
+Des Weiteren lässt sich erkennen, dass $\Delta_0$ im Bereich $\abs{\mu} < 0.05 \, W$ wie zu erwarten war stark unterdrückt wird, außerhalb davon aber stark mit dem chemischen Potential anwächst.
+Sein Maximum befindet sich bei den Van-Hove-Singularitäten (VHS) bei $\mu = \pm t = \pm W/6$, wo sogar für $U< 1W$ in den Plots noch endliche $\Delta_0$ erkennbar sind.
 
 \begin{figure}[htb]
     \centering
@@ -110,8 +111,6 @@ Sein Maximum befindet sich bei den Van-Hove-Singularitäten (VHS) bei $\mu = \pm
         \caption{}
     \end{subfigure}
     
-    % \vspace{0.4em}
-    
     \begin{subfigure}{0.35\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Plots/DELTA0_vs_mu&U_1.pdf}
@@ -124,11 +123,13 @@ Sein Maximum befindet sich bei den Van-Hove-Singularitäten (VHS) bei $\mu = \pm
         \caption{}
     \end{subfigure}
     \caption{
-        Die Abhängigkeiten des Ordnungsparameters $\Delta_0 \equiv \Delta(T = 0)$ bzw.\ der kritischen Temperatur $T_C$
-        von Wechselwirkung $U$ und Debye-Energie $E_D$ in den Teilabbildungen~(a) und~(b) bzw.\
-        vom chemischem Potential $\mu$ in den Teilabbildungen~(c) und~(d).
-        Für $\mu = 0$ ist die kritische Kopplung $U_C = 1/(AE_D)$ miteingezeichnet; das festgehaltene $\mu$ (oben) bzw.\ $E_D$ (unten)
-        wird im Abbildungstitel angegeben.
+        % Die Abhängigkeiten des Ordnungsparameters $\Delta_0 \equiv \Delta(T = 0)$ bzw.\ der kritischen Temperatur $T_C$
+        % von Wechselwirkung $U$ und Debye-Energie $E_D$ in den Teilabbildungen~(a) und~(b) bzw.\
+        % vom chemischem Potential $\mu$ in den Teilabbildungen~(c) und~(d).
+        % Für $\mu = 0$ ist die kritische Kopplung $U_C = 1/(AE_D)$ miteingezeichnet; das festgehaltene $\mu$ (oben) bzw.\ $E_D$ (unten)
+        % wird im Abbildungstitel angegeben.
+        (a) und (b) zeigen die Abhängigkeit des Ordnungsparameters $\Delta_0$ von Kopplung $U$ und Debye-Energie $E_D$, einmal für $\mu=0$ (a) und einmal für $\mu = \qty{0.02}{W}$ (b).
+        (c) und (d) vergleichen bei $E_D = \qty{12}{\milli W}$ die Abhängigkeiten von $U$ und $\mu$ von $\Delta_0$ (c) und kritischer Temperatur $T_C$ (d). In allen Teilabbildungen wird für die kritische Kopplung $U_C$ für $\mu = 0$ eingezeichnet.
     }
     \label{fig:ALLG_ABH}
 \end{figure}
@@ -145,35 +146,88 @@ Sein Maximum befindet sich bei den Van-Hove-Singularitäten (VHS) bei $\mu = \pm
 % um zu prüfen, ob realistische Bedingungen für s-wave-Supraleitung erreichbar sind.
 Nachdem in Abschnitt~\ref{sec:allgemein} zunächst nur allgemeine Aussagen über die Abängigkeiten der für Supraleitung relevanten Größen getroffen wurden, wird nun konkret Graphen betrachtet um zu prüfen, ob realistische Bedingungen für $s$-wave Supraleitung erreichbar sind.
 
-\subsection{Materialparameter für Graphen}\label{sec:graphen_parameter}
+% \subsection{Materialparameter für Graphen}\label{sec:graphen_parameter}
 % - Hopping-Parameter t (Quelle, typ. ~2.7-2.9 eV)
 % - daraus W = 6t
 % - Debye-Energie E_D für Graphen (Quelle, Phonon-Debye-Temperatur/-Energie)
 % - Umrechnung E_D/W -> Check: erfüllt Graphen die Näherung E_D << W aus Abschnitt~\ref{sec:allgemein}?
-Für Graphen wird üblicherweise ein Hüpfparameter von $t=\qty{2.7}{eV}$ gewählt, der die $\pi$ und $\pi^*$ Bänder beschreibt~\cite{castro_neto_electronic_2009, kundu_tight_2009,peres_colloquium_2010}.
+Für Graphen wird üblicherweise ein Hüpfparameter von $t=\qty{2.7}{eV}$ gewählt, der die $\pi$- und $\pi^*$-Bänder beschreibt~\cite{castro_neto_electronic_2009, kundu_tight_2009,peres_colloquium_2010}.
 Damit ergibt sich eine Bandbreite von $W = 6 t = \qty{16.2}{eV}$, während die Debye-Temperatur von Graphen je nach Mode im Bereich von $\Theta_D = \num{1287} - \qty{2300}K$ liegt~\cite{tewary_singular_2009}.
 Das entspricht einer Debye-Energie von $E_D \approx \num{110} - \qty{198}{meV}$, wobei hier als Best-Case-Abschätzung $E_D \approx \qty{200}{\milli\electronvolt}$ gewählt wird.
 Das Verhältnis zwischen Debye-Energie und Bandbreite ergibt sich damit zu $E_D/W \approx \num{12.33e-3}$, was sogar noch unter dem in Abbildung~\ref{fig:DOS_regress} gewählten Verhältnis liegt, wofür die lineare Regression bereits ausgezeichnet war. 
 
-\subsection{Einschränkung der Kopplungsstärke \texorpdfstring{$U$}{U}}\label{sec:graphen_U}
+% \subsection{Einschränkung der Kopplungsstärke \texorpdfstring{$U$}{U}}\label{sec:graphen_U}
 % - was U physikalisch repräsentiert (effektive attraktive WW, z.B. aus Elektron-Phonon-Kopplung)
 % - Literaturwerte/Abschätzungen für U bzw. für die Elektron-Phonon-Kopplungskonstante λ
 % - daraus abgeleiteter Bereich U/W, mit dem im Folgenden gerechnet wird
+Die Kopplungsstärke $U$ ist in der BCS-Theorie ein phänomenologischer Modellparameter, d.h.\ sie wird quantitativ nicht über die zugrundeliegende Elektron-Phonon-Wechselwirkung bestimmt sondern meist aus experimentellen Daten gefittet, sodass die Lücke $\Delta$ der BCS-Rechnung und des Experiments übereinstimmen. 
+Tatsächliche \textit{ab initio} Rechnungen sind prinzipiell möglich, siehe dazu z.B.\ Refs.~\cite{giustino_electron-phonon_2017,morel_calculation_1962}, gehen aber weit über die BCS-Theorie hinaus und werden dementsprechend hier nicht betrachtet.
+Es wird also auf den Vergleich mit experimentellen Daten zurückgegriffen. 
+% Die Autoren in Ref.~\cite{ludbrook_evidence_2015} zeigen, dass in $\mathrm{Li}$-dotiertem Graphen eine Bandlücke von $\Delta = \qty{0.9(0.2)}{meV}$ bei $T=\qty{3.5}{\kelvin}$ gemessen wurde, 
+Herrera et al.\ sagen in Ref.~\cite{herrera_topological_2024} bei $\mathrm{Tb}$-dotiertem Graphen anhand von experimentellen Daten mithilfe von numerischen Methoden eine kritische Temperatur von bis zu $T_C = \qty{600}{\milli\kelvin}$ voraus.
+Es wird hierbei ungefähr bis zur VHS dotiert, was in dem hier verwendeten Modell einem chemischen Potential von $\mu \approx \qty{2.7}{eV}$ entsprechen würde.
+Aufgrund dieser starken Dotierung beobachten die Autoren von Ref.~\cite{herrera_topological_2024} allerdings ein Abflachen der Energiebänder und dadurch eine vergrößerte VHS, was dazu führt, dass die VHS dort nur bei $\mu = \qty{1.55}{eV}$ liegt.
+Etwaige Vergleiche mit dem Modell in dieser Arbeit sind also mit Vorsicht zu genießen.
+% Des Weiteren kann $U$ im Vergleich zu der in Ref.~\cite{wehling_strength_2011} für das Hubbard-Modell in Graphen berechneten effektiven Coulombabstoßung $U_\text{rep} = \qty{9.3}{eV}$, betrachtet werden. 
+% Da sich $U$ in der gleichen Größenordnung $1 - \qty{10}{eV}$ befinden sollte, können zumindest Kopplungen die weitaus über diesem Wert liegen ausgeschlossen werden.
+Der Vergleich mit der im Hubbard-Modell für Graphen bestimmten effektiven Coulombabstoßung $U_\text{rep} = \qty{9.3}{eV}$ aus Ref.~\cite{wehling_strength_2011} liefert des Weiteren eine grobe obere Orientierung für die Energiskala von $U$. 
+Kopplungen $U$, die deutlich oberhalb dieser Energieskala liegen, erscheinen damit zumindest als wenig plausibel.
 
-\subsection{Realistische Dotierung für \texorpdfstring{$s$}{s}-wave-Supraleitung}\label{sec:graphen_dotierung}
+
+\subsection{Realistische Bedingungen für Supraleitung in Graphen}\label{sec:graphen_dotierung}
 % - U_C(E_D) aus Gl.~\eqref{eq:U_C} mit den Graphen-Parametern ausgewertet
 % - für den U-Bereich aus~\ref{sec:graphen_U}: bei welchem mu wird Delta_0/T_C nennenswert?
 % - Rückumrechnung der VHS-Dotierung mu = W/6 in reale Einheiten (eV bzw. Ladungsträgerdichte n)
 % - Vergleich mit gemessenen/berichteten T_C-Werten dotierter Graphen-Systeme, falls vorhanden
 % - Fazit: ist die nötige Dotierung experimentell erreichbar?
+Es wird zum einen überprüft, wie stark die Kopplung in Graphen sein müsste, damit bei halber Füllung bzw.\ schwacher Dotierung eine supraleitende Bandlücke entsteht. 
+% Zum anderen soll eine Aussage darüber getätigt werden, bei welcher Dotierungsstärke $\mu$ aufgrund der ungefähren Einschränkung von $U$ Supraleitung erwartbar wäre und dabei besonders die VHS betrachtet werden. 
+Zum anderen soll eine Aussage darüber getätigt werden, für welche Dotierungsstärke $\mu$ innerhalb des abgeschätzten Bereichs von $U$ mit besonderem Augenmerk auf die VHS, Supraleitung zu erwarten ist.
+
+Abbildung~\ref{fig:TC_Graphen_color} zeigt die kritische Temperatur $T_C$ als Funktion von $U$ und $\mu$. 
+Die Teilabbildung (a) zeigt zusätzlich eine Detailansicht des Bereichs um die VHS, während Teilabbildung (b) den Bereich um den quantenkritischen Punkt bei $\mu = 0$ genauer darstellt.
+%  Bereichs   auf die VHS und auf den kritischen Punkt $U_C$ dargestellt. 
+Es ist zu erkennen, dass an der VHS bereits bei kleinen Kopplungen von ca. $\qty{1}{eV}$ verhältnismäßig große kritische Temperaturen auftreten, während dies bei halber Füllung erst ab einer kritischen Kopplung von $U_C \approx \qty{198}{eV}$ der Fall ist, was deutlich über dem realistischen Bereich von $U$ liegt. 
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Plots/Plot_zusammen2.pdf}
+        \caption{}
+    \end{subfigure}
+    % \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Plots/Plot_zusammen4.pdf}
+        \caption{}
+    \end{subfigure}
+    \caption{Kritische Temperatur $T_C$ in Abhängigkeit von Kopplung $U$ und Dotierungsstärke $\mU$. In Teilabbildung (a) ist eine Detailansicht des Bereichs um die VHS dargestellt und in (b) um den Bereich des quantenkritischen Punkts.}
+    \label{fig:TC_Graphen_color}
+\end{figure}
+
+Etwas genauer wird der Bereich um die VHS in Abbildung~\ref{fig:U_VHS} dargestellt. 
+Um einen Vergleich zu experimentellen Daten zu ziehen, könnte nun mit Ref.~\cite{herrera_topological_2024} verglichen werden.
+Es ist zu erkennen, dass an der VHS die kritische Temperatur von $T_C = \qty{0.6}{K}$ in einem Bereich von $U \approx \num{0.5} - \qty{1.1}{eV}$ vorhergesagt wird, was dementsprechend damit ein realistischer Bereich wäre.
+Es sei hier nur bemerkt, dass diese Einschränkung wie bereits erwähnt mit Vorsicht zu genießen ist und kleine Änderungen von $U$ nach oben bereits große Änderungen in $T_C$ bewirken.
 
 
-
-
-
-
-\section{Vergleich für verschiedene Materialien}\label{sec:materials}
-
-Parameter (t, debye, U)
-
-Gängige supraleitung (s-wave, d-wave)
+% Geht man davon aus, dass in Ref.~\cite{herrera_topological_2024} tatsächlich in diesem $\mu$-Bereich gemessen wurde, kann $U$ auf diesen Bereich beschränkt und Supraleitung abseits der VHS verneint werden.
+% mit Ref.~\cite{herrera_topological_2024} wäre $U$ damit auf diesen Bereich beschränkt und Supraleitung abseits der VHS wäre nur serh schwach. 
+% Dies wäre also im Vergleich mit Ref.~\cite{herrera_topological_2024} unter Vernachlässigung der veränderten Bandstruktur eine 
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.38\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Plots/TC_vs_mu&U_fine_8.pdf}
+        % \caption{}
+    \end{subfigure}
+    % \hfill
+    \begin{subfigure}{0.38\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Plots/TC_vs_mu&U_fine_7.pdf}
+        % \caption{}
+    \end{subfigure}
+    \caption{Kritische Temperatur $T_C$ in Abhängigkeit von $U$ um die VHS herum. Links ist der Gesamtverlauf zu sehen und rechts ein Zoom auf den Bereich bis maximal $T_C = \qty{1}{K}$.}
+    \label{fig:U_VHS}
+\end{figure}
