@@ -213,9 +213,9 @@ Für $N \rightarrow \infty$ bleibt dieser Term aufgrund der Vorfaktors $\frac{1}
 Der durch den Hartree-Term entstehendende Beitrag ist also im Vergleich verschwindend gering.
 
 Zusätzlich zu den bekannten Hartree- und Fock-Termen gibt es mit~\eqref{eq:anomal} einen weiteren, für die BCS-Theorie zentralen Beitrag: 
-Er enthält die anomale Erwartungswerte $\expval{\ocdu \ocdd}$ bzw. $\expval{\ocndd \ocndu}$, also Erwartungswerte der Paarerzeugung(-vernichtung) von Cooper-Paaren mit dem in \autoref{fig:s_wave} begründeten Gesamtimpuls $\vec{K} = 0$. 
+Er enthält die anomale Erwartungswerte $\expval{\ocdu \ocdd}$ bzw. $\expval{\ocndd \ocndu}$, also Erwartungswerte der Paarerzeugung(-vernichtung) von Cooper-Paaren mit dem in Abbildung~\ref{fig:s_wave} begründeten Gesamtimpuls $\vec{K} = 0$. 
 Da diese Erwartungswerte die Teilchenzahlerhaltung verletzten, sind sie in der normalleitenden Phase des Systems immer null, für die supraleitende Phase sind sie allerdings aufgrund der makroskopischen Kohärenz der Cooper-Paare endlich, sie fungieren also als Ordnungsparameter der supraleitenden Phase.
-% Da in dieser Arbeit $s$-wave, also konventionelle Supraleitung nach der BCS-Theorie betrachtet wird, muss außerdem nach dem Argument aus \autoref{fig:s_wave} $\vk = -\vk$ gelten, damit der Gesamtimpuls der Cooper-Paare verschwindet.
+% Da in dieser Arbeit $s$-wave, also konventionelle Supraleitung nach der BCS-Theorie betrachtet wird, muss außerdem nach dem Argument aus Abbildung~\ref{fig:s_wave} $\vk = -\vk$ gelten, damit der Gesamtimpuls der Cooper-Paare verschwindet.
 % Diese erhalten zwar die Teilchenzahl nicht und würden im normalleitenden Fall daher wegfallen, sind aber natürlich für die Ausbildung einer supraleitenden Phase von zentraler Bedeutung und verschwinden dort keinesfalls.
 % Diese Erwartungswerte fungieren also als Ordnungsparameter der supraleitenden Phase.
 
@@ -426,13 +426,11 @@ Das Problem der Diagonalisierung reduziert sich damit auf die Diagonalisierung d
 
 
 
-\section{Selbstkonsistenz bei halber Füllung}
+\section{Selbstkonsistenz im Spezialfall halber Füllung}
 
 % Um erst einmal ohne größeren Aufwand Aussagen zur Charakteristik der Supraleitung im Bienenwabengitter zu machen, beschäftigen wir uns zuerst mit dem möglichst einfachen Spezialfall, nämlich dem Fall halber Füllung. \\
 % In diesem Spezialfall wird die effektive Fermienergie des Systems $E_{F, \eff, \oC} = E_F - \mu_{\oC}$ auf null gesetzt. Wie bereits in \red{ref zu DOS von Bienenwabenitter} gezeigt, sind die Energiezustände um die Energie  $E_\text{symm} = 0$ symmetrisch verteilt, weshalb also bei der Wahl von $E_F = E_\text{symm} = 0$ das Gitter genau zur Hälfte gefüllt ist. \\
 Zuerst wird der Spezialfall halber Füllung betrachtet, da in diesem Fall die Selbstkonsistenzgleichung für $\Delta$ am einfachsten hergeleitet werden kann. 
-% Halbe Füllung bedeutet, dass sich auf jedem Gitterplatz im Mittel nur ein Elektron befindet. 
-% In dem verwendeten Tight-Binding-Modell ist das genau dann der Fall, wenn alle Zustände bis zu $E = 0$ gefüllt sind, also die Fermienergie verschwindet. 
 Wie bereits in \autoref{subsec:Bienenwabengitter} argumentiert, liegt halbe Füllung genau dann vor, wenn alle Zustände bis zur Energie $E=0$ gefüllt sind, also die Fermienergie verschwindet.
 Dies bedeutet konkret, dass das chemische Potential $\mu$ in diesem Spezialfall ebenfalls verschwinden muss, da es die zuvor schon auf null gesetzte Fermienergie $E_F$ verschiebt.
 
@@ -441,30 +439,28 @@ Für $\mu = 0 $ ergibt sich damit die vereinfachte Matrix
     \dul{h} = \begin{pmatrix} 0 & -f^*(\vk) & \Delta & 0 \\ -f(\vk) & 0 & 0 & \Delta \\ \Delta & 0 & 0 & f^*(\vk) \\ 0 & \Delta & f(\vk) & 0 \end{pmatrix} \, ,
 \end{align}
 die es nun zu diagonalisieren gilt. 
-Gesucht ist also eine unitäre Trafo $\dul{U}$, sodass $\dul{h}_\text{diag} = \dul{U}^\dagger \dul{h} \dul{U}$ gilt. 
+Gesucht ist also eine unitäre Trafo $\dul{U}$, sodass $\dul{h}_\text{diag} = \dul{U}^\dagger \dul{h} \, \dul{U}$ gilt. 
 Diese Trafo wird durch die Lösung des Eigenwertproblems $\dul{h} \, \vec{v}_i = E_i \, \vec{v}_i$ bestimmt, wobei die Eigenvektoren $\vec{v}_i$ die Spalten der Trafo-Matrix $\dul{U}$ bilden.
-Die Lösung des Eigenwertproblems liefert die Eigenwerte 
+
+Die Lösung des Eigenwertproblems liefert 
 \begin{align}
-    E_\vk = \pm \sqrt{\Delta^2 + \abs{f(\vk)}^2} \, ,
+    \dul{h}_\text{diag} = \dul{U}^\dagger \dul{h} \, \dul{U} = \diag(E_\vk, E_\vk, - E_\vk, - E_\vk)\, .
 \end{align}
-und mit der zugehörigen unitären Trafo-Matrix\footnote{Es sei hier nur erwähnt, dass bei der Bestimmung der unitären Matrix $\dul{U}$ aufgrund der entarteten Eigenwerte $E_\vk$ darauf geachtet werden muss, dass die berechneten Eigenvektoren orthogonal zueinander sind. Ist dies nicht der Fall muss gegebenfalls ein Gram-Schmidt-Verfahren durchgeführt werden um die Trafo-Matrix unitär zu machen.}
+mit der zugehörigen unitären Trafo-Matrix\footnote{Es sei hier nur erwähnt, dass bei der Bestimmung der unitären Matrix $\dul{U}$ aufgrund der entarteten Eigenwerte $E_\vk$ darauf geachtet werden muss, dass die berechneten Eigenvektoren orthogonal zueinander sind. Ist dies nicht der Fall muss gegebenfalls ein Gram-Schmidt-Verfahren durchgeführt werden um die Trafo-Matrix unitär zu machen.}
 \begin{align}
     \dul{U} = \frac{1}{\sqrt{2}}\begin{pmatrix} 
         1 & 0 & -1 & 0 \\ 
         -\frac{f}{E_\vk} & \frac{\Delta}{E_\vk} & - \frac{f}{E_\vk} & - \frac{\Delta}{E_\vk} \\
         \frac{\Delta}{E_\vk} & \frac{f^{*}}{E_\vk}  & \frac{\Delta}{E_\vk} & - \frac{f^{*}}{E_\vk} \\
-        0 & 1 & 0 & 1 \end{pmatrix}
+        0 & 1 & 0 & 1 \end{pmatrix} \, ,
 \end{align}
-ergibt sich die diagonale Form
-\begin{align}
-    \dul{h}_\text{diag} = \dul{U}^\dagger \dul{h} \dul{U} = \begin{pmatrix} E_\vk & 0 & 0 & 0 \\ 0 & E_\vk & 0 & 0 \\ 0 & 0 & -E_\vk & 0 \\ 0 & 0 & 0 & -E_\vk \end{pmatrix} \, .
-\end{align}
-
-Die Energiebänder des Bienenwabengitters im normalleitenden Grundzustand werden für $\Delta \rightarrow 0$ zurückgewonnen und ergeben sich zu
+und den Eigenwerten $E_\vk = \pm \sqrt{\Delta^2 + \abs{f(\vk)}^2}$.
+Für $\Delta \rightarrow 0$ werden die Energiebänder des Bienenwabengitters im normalleitenden Grundzustand zurückgewonnen.
+Für sie gilt mit der Definition von $f(\vk)$ aus Gleichung~\eqref{eq:f(k)}:
 \begin{align}
     \epsilon_{\vk} = \pm \abs{f(\vk)} = \pm t \sqrt{3 + 2 \cos(\sqrt{3} k_y a) + 4 \cos(\sqrt{3} k_y a/2) \cos(3 k_x a/2)}~\label{eq:dispersion} \, ,
 \end{align}
-dessen Eigenschaften in \autoref{subsec:Bienenwabengitter} qualitativ genauer diskutiert werden.
+und werden in \autoref{subsec:Bienenwabengitter} qualitativ genauer diskutiert.
 
 Für den Hamiltonian gilt dann 
 \begin{align}
@@ -570,7 +566,7 @@ mit
 \end{align}
 und der Diagonalmatrix 
 \begin{align}
-    \dul{h}_\text{diag} = \dul{U}^\dagg \dul{h} \dul{U} =\text{diag}(E_+, -E_+, E_-, -E_-)~\label{eq:h_diag_nothalf} \, .
+    \dul{h}_\text{diag} = \dul{U}^\dagg \dul{h} \, \dul{U} =\text{diag}(E_+, -E_+, E_-, -E_-)~\label{eq:h_diag_nothalf} \, .
 \end{align}
 % \begin{pmatrix}
 %         E_+ & 0 & 0 & 0 \\ 
