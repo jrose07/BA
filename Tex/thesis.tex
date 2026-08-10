@@ -92,8 +92,18 @@
 % allow figures to be placed in the running text by default:
 \usepackage{scrhack}
 \usepackage{float}
-\floatplacement{figure}{htbp}
+\floatplacement{figure}{htb}
 \floatplacement{table}{htbp}
+
+% \renewcommand{\topfraction}{0.9}
+% \renewcommand{\textfraction}{0.07}
+% \renewcommand{\floatpagefraction}{0.8}
+% \setcounter{topnumber}{3}
+% \setcounter{bottomnumber}{2}
+% \setcounter{totalnumber}{4}
+
+
+
 
 % keep figures and tables in the section
 \usepackage[section, below]{placeins}
@@ -104,6 +114,10 @@
 % Set the PDF Version of this document to 1.7 (1.4 is the current default)
 % This is needed so that PDFs with Version >1.5 can be included
 \pdfvariable minorversion=7
+
+\usepackage{wrapfig}
+% 
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
 
 
 % Better vectors
@@ -247,6 +261,7 @@
 \appendix
 % Hier beginnt der Anhang, nummeriert in lateinischen Buchstaben
 \input{content/a_anhang.tex}
+\input{content/b_anhang.tex}
 
 \backmatter
 \printbibliography
