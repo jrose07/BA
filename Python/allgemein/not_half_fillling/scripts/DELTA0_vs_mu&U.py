@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib import ticker
 import numpy as np
 import pandas as pd
 from functools import partial
@@ -25,11 +26,11 @@ def get_Delta_0(U, mu, E_D, start):
 """Ab hier richtige Rechnung"""
 
 #Params
-E_D = mev2t(200)
+E_D = mev2t(200) # t
 U = np.linspace(mev2t(0e3),mev2t(250e3),100) # t
 mu = np.linspace(-3,3,100) # t
 
-version = "0"
+version = "1"
 
 #Rechnung und plots
 t1= time.perf_counter()
@@ -65,7 +66,9 @@ def main():
     dt = t2-t1
     print(f"{np.floor((t2-t1)/60)} mins {((dt/60 - np.floor(dt/60))*60):.2f} sec")
     print(np.nanmin(Delta0/6), np.nanmax(Delta0/6))
-    levels = np.linspace(np.nanmin(Delta0/6), np.nanmax(Delta0/6), 100)
+    vmin = np.nanmin(Delta0/6)
+    vmax = np.nanmax(Delta0/6)
+    levels = ticker.MaxNLocator(nbins=100, steps=[1, 2, 2.5, 4, 5, 10]).tick_values(vmin, vmax)
     fig, ax = plt.subplots()
 
     """Plot The underlying mesh"""
@@ -73,11 +76,97 @@ def main():
     # ax.plot(t2mev(U_b)*1e-3, mu_b, "b.")
 
     colorbar = ax.contourf(U/6, mu/6, Delta0/6, levels=levels, cmap='Spectral_r')
-    fig.colorbar(colorbar, ax=ax, label=r"$\Delta_0 \, / \, [W]$")
-    ax.set(
-        xlabel=r"$U \, / \, [W]$",
-        ylabel=r"$\mu \, / \, [W]$"
+    cbar = fig.colorbar(colorbar, ax=ax, label=r"$\Delta_0 \, / \, [W]$")
+    cbar.locator = ticker.MaxNLocator(nbins=10, steps=[1, 2, 2.5, 4, 5, 10])
+    cbar.update_ticks()
+    # ax.set(
+    #     xlabel=r"$U \, / \, [W]$",
+    #     ylabel=r"$\mu \, / \, [W]$"
+    # )
+
+    #Critical U: 
+    # E_D = E_D / 6 # W
+    A = 0.184080       # 1/t^2
+    A = A * 6**2        #1/W^2
+    U_C = 1 / (A * (E_D/6))
+
+    ax.axvline(
+        U_C,
+        color="red",
+        linestyle="--",
+        linewidth=1.2,
+        alpha=0.85,
+        zorder=5
     )
+
+    ax.plot(
+        U_C,
+        0,
+        marker="x",
+        markersize=8,
+        markeredgewidth=2,
+        color="red",
+        zorder=6
+    )
+
+    ax.annotate(
+        r"$U_C$",
+        xy=(U_C, 0),
+        xytext=(7, 10),
+        textcoords="offset points",
+        color="red",
+        fontsize=11,
+        ha="left",
+        va="bottom"
+    )
+    
+    
+    
+    
+    ax.set_xlabel(
+    r"$U\,/\,[W]$",
+    fontsize=12
+    )
+
+    ax.set_ylabel(
+        r"$\mu\,/\,[W]$",
+        fontsize=12
+    )
+
+    ax.set_xlim(
+        np.min(U/6),
+        np.max(U/6)
+    )
+
+    ax.set_ylim(
+        np.min(mu/6),
+        np.max(mu/6)
+    )
+
+    ax.tick_params(
+        which="major",
+        direction="in",
+        length=5,
+        width=0.9,
+        labelsize=10,
+        top=True,
+        right=True
+    )
+
+    ax.tick_params(
+        which="minor",
+        direction="in",
+        length=3,
+        width=0.7,
+        top=True,
+        right=True
+    )
+
+    ax.minorticks_on()
+
+    for spine in ax.spines.values():
+        spine.set_linewidth(0.9)
+
     # ax.set_facecolor(color='black')
     ax.set_facecolor(color='#5C51A3')
     fig.savefig(f"../plots/DELTA0_vs_mu&U_{version}.pdf")

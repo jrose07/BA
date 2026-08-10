@@ -10,12 +10,12 @@ E_D = mev2t(200) # t
 mu = np.linspace(0,0.7,5) # t
 # mu = np.array([0.4,0.5])
 safe = True
-version="0"
+version="1"
 
 
 
 fig, ax = plt.subplots()
-for m in mu:
+for idx, m in enumerate(mu):
     deltas = np.array([])
     for elem in T:
             deltas = np.append(deltas, get_delta(U=U, T=elem, E_D=E_D, mu=m, iterations=5, start=1, num_points=10009)) # t
@@ -30,8 +30,8 @@ for m in mu:
     if not np.any(mask):
         T_C = np.nan
     T_C = np.min(T_scaled[mask])
-    color = np.random.rand(3,)
-    ax.plot(T_scaled, deltas, label=rf"$\mu = $ {m_scaled:.2f} W $\,$ $T_C = {T_C:.3g}$" + r"$ \, K \cdot \frac{W}{eV}$", color=color)
+    color = f"C{idx % 10}"
+    ax.plot(T_scaled, deltas, label=rf"$\mu = $ {m_scaled*1e3:.0f} mW $\,$ $T_C = {T_C:.0f}$" + r"$ \, K \cdot \frac{W}{eV}$", color=color)
     ax.plot(T_C, 0, "x", color=color)
     print(f"mu = {m_scaled}")
     print(deltas)
@@ -40,7 +40,7 @@ for m in mu:
 ax.set(
     ylabel=r"$\Delta \, / \, [W]$",
     xlabel=r"$T \, / \, [K \cdot \frac{W}{eV}]$", 
-    title=rf"$U = {U/6:.2f} W \; E_D = {E_D/6*1e3:.2f} mW$"
+    title=rf"$U = {U/6:.1f} W \; E_D = {E_D/6*1e3:.0f} mW$"
 )
 ax.grid()
 # sort legend entries by T_C (highest first)

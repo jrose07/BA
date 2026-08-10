@@ -3,14 +3,16 @@ from allgemein_mu import *
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib import ticker
 
 A = 0.184080 # 1/t^2
 mu = t2mev(0.05)*1e-3 #eV
 print(mu)
 half_filling = True
 # mu = t2mev(0.1)*1e-3 
+# mu = t2mev(0.1)*1e-3
 mu = 0
-version = "_theo2"
+version = "_theo3"
 safe = True
 levels = 100
 
@@ -36,7 +38,7 @@ if np.isnan(U).all():
     U = np.arange(T_C.shape[1])
 
 T_C_masked = np.ma.masked_invalid(T_C)
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(layout='tight')
 
 """Plot The underlying mesh"""
 # U_b, mu_b = np.meshgrid(U, mu, indexing='xy')
@@ -53,12 +55,14 @@ positive_values = positive_mask.compressed()
 # colorbar = ax.contourf(U, t2mev(mu)*1e-3, positive_mask, levels=levels, cmap='Spectral_r')
 
 """WHen T_C = 0 should be plotted"""
-levels = np.linspace(np.nanmin(T_C_masked), np.nanmax(T_C_masked), levels)
-cbar = ax.contourf(U, E_D, T_C_masked, levels=levels, cmap='Spectral_r')
-# cbar.ax.tick_params(
-#     labelsize=10,
-#     direction="in"
-# )
+# levels = np.linspace(np.nanmin(T_C_masked), np.nanmax(T_C_masked), levels)
+vmin = np.nanmin(T_C)
+vmax = np.nanmax(T_C)
+levels = ticker.MaxNLocator(nbins=100, steps=[1, 2, 2.5, 4, 5, 10]).tick_values(vmin, vmax)
+colorbar = ax.contourf(U, E_D, T_C_masked, levels=levels, cmap='Spectral_r')
+cbar = fig.colorbar(colorbar, ax=ax, label=r"$T_C \, / \, [K\cdot\frac{W}{eV}]$")
+cbar.locator = ticker.MaxNLocator(nbins=10, steps=[1, 2, 2.5, 4, 5, 10])
+cbar.update_ticks()
 
 
 """Plot U_C"""
@@ -93,7 +97,6 @@ if np.any(valid_zero):
 ax.plot(U_C, E_D, "r-", label=r"$U_C$")
 
 
-fig.colorbar(cbar, ax=ax, label=r"$T_C \, / \, [K\cdot\frac{W}{eV}]$")
 ax.set(
     xlabel=r"$U \, / \, [W]$",
     ylabel=r"$E_D \, / \, [W]$",

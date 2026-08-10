@@ -12,9 +12,9 @@ import pandas as pd
 A = 0.184080       # 1/t^2
 E_D = mev2t(200)   # t
 
-version = "0"
+version = "6"
 safe = True
-critical = False
+critical = True
 inferno = False
 
 
@@ -79,8 +79,9 @@ if np.isnan(U).all():
 T_C_masked = np.ma.masked_invalid(T_C)
 
 fig, ax = plt.subplots(
-    figsize=(7.0, 5.2),
-    constrained_layout=True
+    # figsize=(7.0, 5.2),
+    layout='tight'
+    # constrained_layout=True
 )
 
 # Colormap
@@ -197,6 +198,9 @@ ax.set_ylim(
     np.max(mu)
 )
 
+ax.set_title(
+    rf"$E_D = {E_D*1e3:.0f}mW$"
+)
 ax.tick_params(
     which="major",
     direction="in",
@@ -218,6 +222,8 @@ ax.tick_params(
 
 ax.minorticks_on()
 
+
+
 for spine in ax.spines.values():
     spine.set_linewidth(0.9)
 
@@ -233,7 +239,7 @@ if safe:
 
     fig.savefig(
         output_path,
-        bbox_inches="tight"
+        # bbox_inches="tight"
     )
 
 plt.show()

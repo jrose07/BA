@@ -6,11 +6,12 @@ import scipy.constants as const
 T = 0
 # print(t2mev(mu))
 E_D = mev2t(200) # t
-version = "4"
+version = "0"
 
-U = np.linspace(mev2t(0e3), mev2t(2e3), 1000)
+U = np.linspace(mev2t(0e3), mev2t(5e3), 1000)
 # , mev2t(180), mev2t(170),
-mu = np.array([mev2t(2.5e3),mev2t(2.6e3), mev2t(2.7e3), mev2t(2.8e3),mev2t(2.9e3)]) # t
+# mu = np.array([mev2t(2.5e3),mev2t(2.6e3), mev2t(2.7e3), mev2t(2.8e3),mev2t(2.9e3)]) # t
+mu = np.linspace(mev2t(2.5e3), mev2t(2.9e3), 5)
 # mu = np.array([mev2t(0.6e3), mev2t(0.8e3), mev2t(1e3)]) # t
 
 delta_max = np.array([])
@@ -52,7 +53,7 @@ ax.set(
     ylabel=r"$U \, / \, [eV]$", 
     # xlim=[0, t2mev(delta_max)],
     ylim=[np.min(t2mev(U)*1e-3),np.max(t2mev(U)*1e-3)],
-    # xscale='log',
+    xscale='log',
     # yscale='log',
     # ylim = [0,1e-6],
     title=rf"$E_D = {t2mev(E_D):.0f} meV$"

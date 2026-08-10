@@ -50,9 +50,9 @@ E_D = mev2t(200)
 U = np.linspace(0,mev2t(2e3),100)
 mu = np.array([mev2t(2.6e3), mev2t(2.7e3), mev2t(2.8e3)]) # t
 # mu = np.linspace(mev2t(0.4e3), mev2t(2.8e3), 5)
-T = np.linspace(0,100,1000)
+T = np.linspace(0,15,1000)
 
-version = "3"
+version = "4"
 
 #Rechnung und plots
 t1= time.perf_counter()
@@ -103,7 +103,7 @@ def main():
         ylabel=r"$T_C \, / \, [K]$"
     )
     # ax.set_facecolor(color='#5C51A3')
-    ax.legend()
+    ax.legend(loc='upper left', bbox_to_anchor=(1, 1))
     ax.grid()
     fig.savefig(f"../plots/TC_vs_mu&U_fine_{version}.pdf")
 

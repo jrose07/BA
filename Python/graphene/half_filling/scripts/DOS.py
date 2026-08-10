@@ -21,7 +21,7 @@ DOS = DOS*6 #1/W
 
 # Lineare Regression des DOS in diesem Limit:
 result = linregress(E[E>0], DOS[E>0])
-m = ufloat(result.slope, result.stderr)
+m = ufloat(result.slope, result.stderr) #
 b = ufloat(result.intercept, result.intercept_stderr)
 
 # print(m, b)
@@ -35,14 +35,14 @@ ax.grid()
 ax.set(
     xlabel=r"$E \, / \, [W]$",
     ylabel=r"DOS $ \, / \, [1/W]$",
-    title=rf"$E_D = {E_D/6*1e3:.2f} mW$"
+    title=rf"$E_D = {E_D/6:.2f} W$"
 )
 
 fig.savefig("../plots/DOS.pdf")
 
 
 print(f"Wie man sieht ist das DOS in dem Debye-Frequenz-Bereich komplett linear.\n")
-print(f"Damit gilt DOS(epsilon) = abs( {m:.6f} 1/t^2 * epsilon + {b:.2f} 1/t")
+print(f"Damit gilt DOS(epsilon) = abs( {m:.6f} 1/W^2 * epsilon + {b:.2f} 1/W")
 
 
 #Dasselbe nochmal mit eV:
