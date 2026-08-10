@@ -1,46 +1,177 @@
+% % \chapter{Berechnung von $U_C$ im Falle leichter Dotierung}\label{sec:anhang_b}
+
+% % % Es soll gezeigt werden, dass $U_C$ für alle $\abs{\mu} < E_D$ in der  die Näherung $\rho(\epsilon) \approx A \abs{\epsilon}$ gilt, verschwindet, solange $\mu \neq 0$ gilt.
+% % Es soll gezeigt werden, dass für alle $\abs{\mu} \neq 0$, für die die Näherung $\rho(\epsilon) \approx A \abs{\epsilon}$ gilt, die kritische Kopplung $U_C$ verschwindet.
+% % Dazu betrachte die Selbstkonsistenzgleichung für beliebige Füllung~\eqref{eq:gap_eq_arbitrary_filling_integral} bei $T= 0$ und für $\Delta \neq 0$:
+% % \begin{align}
+% %     1 = \frac{UA}{2} \int_{\mu - E_D}^{\mu + E_D} \frac{\abs{\epsilon}}{\sqrt{(\epsilon - \mu)^2 + \Delta_0^2}} \, d\epsilon = \frac{UA}{2} \int_{-E_D}^{E_D} \frac{\abs{\xi + \mu}}{\sqrt{\xi^2 + \Delta_0^2}} \,  d\xi
+% % \end{align}
+% % mit $\xi = \epsilon - \mu$.
+% % Es gilt also 
+% % \begin{align}
+% %     U(\Delta_0) = \frac{2}{A\cdot F(\Delta_0)}
+% % \end{align}
+% % mit 
+% % \begin{align}
+% %     F(\Delta_0) &= \int_{-E_D}^{E_D} \frac{\abs{\xi + \mu}}{\sqrt{\xi^2 + \Delta_0^2}} \,  d\xi \, .
+% % \end{align}
+
+% % Das Integral wird per Fallunterscheidung unter der Annahme $\abs{\mu} < E_D$ aufgeteilt:
+% % \begin{align}
+% %     F(\Delta_0) &= -\int_{-E_D}^{-\mu} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}} \, d\xi + \int_{-\mu}^{E_D} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}}\, d\xi = g(-E_D) + g(E_D) \, ,
+% % \end{align}
+% % und mit 
+% % \begin{align}
+% %     g(x) = \int_{-\mu}^{x} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}}\, d\xi = \sqrt{x^2 + \Delta_0^2} - \sqrt{\mu^2 + \Delta_0^2} + \mu \left(\operatorname{arsinh}\left(\frac{x}{\Delta_0}\right) - \operatorname{arsinh}\left(\frac{-\mu}{\Delta_0}\right)\right) \, ,
+% % \end{align}
+% % ergibt sich 
+% % \begin{align}
+% %     F(\Delta_0) &= 2\left(\sqrt{E_D^2 + \Delta_0^2} - \sqrt{\mu^2 + \Delta_0^2}\right) + \mu \left[\operatorname{arsinh}\left(\frac{E_D}{\Delta_0}\right) + \operatorname{arsinh}\left(\frac{-E_D}{\Delta_0}\right) - 2 \operatorname{arsinh}\left(\frac{-\mu}{\Delta_0}\right)  \right] \, .
+% % \end{align}
+% % Da die kritische Kopplung $U_C$ über den Limes $\Delta_0 \rightarrow 0$ von $U$ definiert ist, verschwindet $U_C$ genau dann, wenn $F(\Delta_0)$ divergiert. 
+% % Die Wurzelterme in $F(\Delta_0)$ konvergieren einfach gegen eine Konstante, weswegen also nur noch die Konvergenz des $\arsinh$-Terms überprüft werden muss.
+
+
+% % Aufgrund der Punktsymmetrie von $\arsinh$ kann dieser jedoch stark vereinfacht werden, da somit $\arsinh(E_D/\Delta_0) + \arsinh(-E_D/\Delta_0) = 0$ gilt und nur $-2\mu \arsinh(-\mu/\Delta_0)$ übrig bleibt.
+% % Für $\Delta_0 \rightarrow 0$ divergiert das Argument und der übrigbleibende $\arsinh$ divergiert daher ebenfalls logarithmisch.
+% % Für $\mu = 0$ entfällt diese logarithmische Divergenz und $F(\Delta_0) \rightarrow F(0) = 2E_D$, man erhält also das Ergebnis aus~\eqref{eq:U_C}.
+% % Für $\abs{\epsilon} > E_D$ muss nur das Integral
+% % \begin{align}
+% %     F(\Delta_0) = \operatorname{sgn}(\mu) \int_{-E_D}^{E_D} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}}\, d\xi
+% % \end{align}
+% % gelöst werden und es ergibt sich analog zu 
+% % \begin{align}
+% %     F(\Delta_0) = \abs{\mu} \left(\arsinh\left(\frac{E_D}{\Delta_0}\right) - \arsinh\left(\frac{-E_D}{\Delta_0}\right)\right) \, .
+% % \end{align}
+% % Damit ist gezeigt, dass die kritische Kopplung, außer bei $\mu = 0$ verschwindet.
+
+
+% \chapter{Berechnung von $U_C$ im Falle leichter Dotierung}\label{sec:anhang_b}
+
+% Es soll gezeigt werden, dass für alle $\mu \neq 0$, für die die Näherung $\rho(\epsilon) \approx A \abs{\epsilon}$ gilt, die kritische Kopplung $U_C$ verschwindet.
+
+% \section*{Ausgangsgleichung}
+
+% Dazu betrachte die Selbstkonsistenzgleichung für beliebige Füllung~\eqref{eq:gap_eq_arbitrary_filling_integral} bei $T = 0$ und für $\Delta_0 \neq 0$:
+% \begin{align}
+% 1 = \frac{UA}{2} \int_{\mu - E_D}^{\mu + E_D} \frac{\abs{\epsilon}}{\sqrt{(\epsilon - \mu)^2 + \Delta_0^2}} \, d\epsilon
+%   = \frac{UA}{2} \int_{-E_D}^{E_D} \frac{\abs{\xi + \mu}}{\sqrt{\xi^2 + \Delta_0^2}} \, d\xi \, ,
+% \end{align}
+% mit $\xi = \epsilon - \mu$. Daraus folgt
+% \begin{align}
+%     U(\Delta_0) = \frac{2}{A \cdot F(\Delta_0)}, \qquad
+%     F(\Delta_0) = \int_{-E_D}^{E_D} \frac{\abs{\xi + \mu}}{\sqrt{\xi^2 + \Delta_0^2}} \, d\xi \, .
+% \end{align}
+% Da $U_C := \lim_{\Delta_0 \to 0} U(\Delta_0)$, gilt $U_C = 0$ genau dann, wenn $F(\Delta_0)$ für $\Delta_0 \to 0$ divergiert. Zur Auswertung des Betrags werden zwei Fälle unterschieden.
+
+% \section*{Fall 1: $\abs{\mu} < E_D$}
+
+% Hier wechselt $\xi + \mu$ im Integrationsintervall bei $\xi = -\mu \in (-E_D, E_D)$ das Vorzeichen:
+% \begin{align}
+%     F(\Delta_0) &= -\int_{-E_D}^{-\mu} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}} \, d\xi
+%                + \int_{-\mu}^{E_D} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}}\, d\xi \, .
+% \end{align}
+% Mit der Stammfunktion
+% \begin{align}
+%     g(x) = \int_{-\mu}^{x} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}}\, d\xi
+%     = \sqrt{x^2 + \Delta_0^2} - \sqrt{\mu^2 + \Delta_0^2}
+%     + \mu \left[\operatorname{arsinh}\!\left(\frac{x}{\Delta_0}\right) - \operatorname{arsinh}\!\left(\frac{-\mu}{\Delta_0}\right)\right]
+% \end{align}
+% lässt sich $F$ als $F(\Delta_0) = g(-E_D)\big|_{\text{gespiegelt}} + g(E_D) = g(E_D) - g(-E_D)$ schreiben, was auf
+% \begin{align}
+%     F(\Delta_0) = 2\left(\sqrt{E_D^2 + \Delta_0^2} - \sqrt{\mu^2 + \Delta_0^2}\right)
+%     + \mu \left[\operatorname{arsinh}\!\left(\frac{E_D}{\Delta_0}\right) + \operatorname{arsinh}\!\left(\frac{-E_D}{\Delta_0}\right) - 2\operatorname{arsinh}\!\left(\frac{-\mu}{\Delta_0}\right)\right]
+% \end{align}
+% führt. Wegen der Punktsymmetrie von $\operatorname{arsinh}$ gilt $\operatorname{arsinh}(E_D/\Delta_0) + \operatorname{arsinh}(-E_D/\Delta_0) = 0$, sodass
+% \begin{align}
+%     F(\Delta_0) = 2\left(\sqrt{E_D^2 + \Delta_0^2} - \sqrt{\mu^2 + \Delta_0^2}\right)
+%     + 2\mu \operatorname{arsinh}\!\left(\frac{\mu}{\Delta_0}\right) \, .
+% \end{align}
+
+% \paragraph{Grenzwert $\Delta_0 \to 0$.} Die Wurzelterme konvergieren gegen die endliche Konstante $2(E_D - \abs{\mu})$. Der verbleibende Term verhält sich für $\Delta_0 \to 0$ wie
+% \begin{align}
+%     2\mu \operatorname{arsinh}\!\left(\frac{\mu}{\Delta_0}\right) \sim 2\abs{\mu} \ln\!\left(\frac{2\abs{\mu}}{\Delta_0}\right) \xrightarrow{\Delta_0 \to 0} \infty \quad \text{für } \mu \neq 0 \, ,
+% \end{align}
+% da $\operatorname{arsinh}(x) \approx \ln(2x)$ für $x \to \infty$. Für $\mu \neq 0$ divergiert $F(\Delta_0)$ also logarithmisch, und damit ist $U_C = 0$.
+
+% Für $\mu = 0$ entfällt dieser Term vollständig, und man erhält den endlichen Grenzwert
+% \begin{align}
+%     F(0) = 2 E_D \, ,
+% \end{align}
+% also das bekannte Ergebnis aus~\eqref{eq:U_C}.
+
+% \section*{Fall 2: $\abs{\mu} \geq E_D$}
+
+% In diesem Fall liegt $-\mu$ außerhalb des Integrationsintervalls $[-E_D, E_D]$, sodass $\xi + \mu$ dort sein Vorzeichen nicht wechselt: Für $\mu > 0$ ist $\xi + \mu \geq \mu - E_D \geq 0$, für $\mu < 0$ entsprechend $\xi + \mu \leq 0$. Es gilt also durchgehend $\abs{\xi + \mu} = \operatorname{sgn}(\mu)\,(\xi + \mu)$, und
+% \begin{align}
+%     F(\Delta_0) = \operatorname{sgn}(\mu) \int_{-E_D}^{E_D} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}}\, d\xi \, .
+% \end{align}
+% Der $\xi$-Anteil des Integranden ist ungerade und trägt über das symmetrische Intervall nicht bei; es bleibt
+% \begin{align}
+%     \int_{-E_D}^{E_D} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}}\, d\xi
+%     = \mu \left[\operatorname{arsinh}\!\left(\frac{E_D}{\Delta_0}\right) - \operatorname{arsinh}\!\left(\frac{-E_D}{\Delta_0}\right)\right]
+%     = 2\mu \operatorname{arsinh}\!\left(\frac{E_D}{\Delta_0}\right) \, ,
+% \end{align}
+% sodass
+% \begin{align}
+%     F(\Delta_0) = 2\abs{\mu} \operatorname{arsinh}\!\left(\frac{E_D}{\Delta_0}\right) \, .
+% \end{align}
+
+% \paragraph{Grenzwert $\Delta_0 \to 0$.} Da in diesem Fall stets $\abs{\mu} \geq E_D > 0$, also $\mu \neq 0$ gilt, und $\operatorname{arsinh}(E_D/\Delta_0) \to \infty$ für $\Delta_0 \to 0$, divergiert $F(\Delta_0)$ auch hier logarithmisch. Damit folgt wieder $U_C = 0$.
+
+% \section*{Fazit}
+
+% In beiden Fällen divergiert $F(\Delta_0)$ für $\Delta_0 \to 0$ logarithmisch, sobald $\mu \neq 0$ ist; die kritische Kopplung $U_C = 2/(A \lim_{\Delta_0 \to 0} F(\Delta_0))$ verschwindet also für jede von Null verschiedene chemische Potentiallage. Nur im Spezialfall $\mu = 0$ bleibt $F(0) = 2E_D$ endlich, und es ergibt sich das endliche $U_C$ aus~\eqref{eq:U_C}.
+
 \chapter{Berechnung von $U_C$ im Falle leichter Dotierung}\label{sec:anhang_b}
 
-Es soll gezeigt werden, dass $U_C$ für alle $\abs{\mu} < E_D$ in der Näherung $\rho(\epsilon) \approx A \abs{\epsilon}$ verschwindet, für die $\mu \neq 0$ gilt.
-Dazu betrachte die Selbstkonsistenzgleichung für beliebige Füllung~\eqref{eq:gap_eq_arbitrary_filling_integral} bei $T= 0$ und für $\Delta \neq 0$:
+Es soll gezeigt werden, dass für alle $\mu \neq 0$, für die die Näherung $\rho(\epsilon) \approx A \abs{\epsilon}$ gilt, die kritische Kopplung $U_C$ verschwindet.
+
+Dazu betrachte die Selbstkonsistenzgleichung für beliebige Füllung~\eqref{eq:gap_eq_arbitrary_filling_integral} bei $T= 0$ und für $\Delta_0 \neq 0$:
 \begin{align}
-    1 = \frac{UA}{2} \int_{\mu - E_D}^{\mu + E_D} \frac{\abs{\epsilon}}{\sqrt{(\epsilon - \mu)^2 + \Delta_0^2}} \, d\epsilon = \frac{UA}{2} \int_{-E_D}^{E_D} \frac{\abs{\xi + \mu}}{\sqrt{\xi^2 + \Delta_0^2}} \,  d\xi
+1 = \frac{UA}{2} \int_{\mu - E_D}^{\mu + E_D} \frac{\abs{\epsilon}}{\sqrt{(\epsilon - \mu)^2 + \Delta_0^2}} \, d\epsilon = \frac{UA}{2} \int_{-E_D}^{E_D} \frac{\abs{\xi + \mu}}{\sqrt{\xi^2 + \Delta_0^2}} \,  d\xi
 \end{align}
-mit $\xi = \epsilon - \mu$.
-Es gilt also 
+mit $\xi = \epsilon - \mu$. Es gilt also
 \begin{align}
     U(\Delta_0) = \frac{2}{A\cdot F(\Delta_0)}
 \end{align}
-mit 
+mit
 \begin{align}
     F(\Delta_0) &= \int_{-E_D}^{E_D} \frac{\abs{\xi + \mu}}{\sqrt{\xi^2 + \Delta_0^2}} \,  d\xi \, .
 \end{align}
+Da die kritische Kopplung $U_C$ über den Limes $\Delta_0 \rightarrow 0$ von $U$ definiert ist, verschwindet $U_C$ genau dann, wenn $F(\Delta_0)$ divergiert. Zur Auswertung des Betrags im Integranden werden zwei Fälle unterschieden.
 
-Das Integral wird per Fallunterscheidung unter der Annahme $\abs{\mu} < E_D$ aufgeteilt:
+\subsubsection{Fall $\abs{\mu} < E_D$}
+
+Das Integral wird per Fallunterscheidung aufgeteilt:
 \begin{align}
     F(\Delta_0) &= -\int_{-E_D}^{-\mu} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}} \, d\xi + \int_{-\mu}^{E_D} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}}\, d\xi = g(-E_D) + g(E_D) \, ,
 \end{align}
-und mit 
+und mit
 \begin{align}
-    g(x) = \int_{-\mu}^{x} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}}\, d\xi = \sqrt{x^2 + \Delta_0^2} - \sqrt{\mu^2 + \Delta_0^2} + \mu \left(\operatorname{arsinh}\left(\frac{x}{\Delta_0}\right) - \operatorname{arsinh}\left(\frac{-\mu}{\Delta_0}\right)\right) \, ,
+    g(x) = \int_{-\mu}^{x} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}}\, d\xi = \sqrt{x^2 + \Delta_0^2} - \sqrt{\mu^2 + \Delta_0^2} + \mu \left(\operatorname{arsinh}\left(\frac{x}{\Delta_0}\right) - \operatorname{arsinh}\left(\frac{-\mu}{\Delta_0}\right)\right)
 \end{align}
-ergibt sich 
+ergibt sich
 \begin{align}
-    F(\Delta_0) &= 2\sqrt{E_D^2 + \Delta_0^2} - \sqrt{\mu^2 + \Delta_0^2} + \mu \left[\operatorname{arsinh}\left(\frac{E_D}{\Delta_0}\right) + \operatorname{arsinh}\left(\frac{-E_D}{\Delta_0}\right) - 2 \operatorname{arsinh}\left(\frac{-\mu}{\Delta_0}\right)  \right] \, .
+    F(\Delta_0) &= 2\left(\sqrt{E_D^2 + \Delta_0^2} - \sqrt{\mu^2 + \Delta_0^2}\right) + \mu \left[\operatorname{arsinh}\left(\frac{E_D}{\Delta_0}\right) + \operatorname{arsinh}\left(\frac{-E_D}{\Delta_0}\right) - 2 \operatorname{arsinh}\left(\frac{-\mu}{\Delta_0}\right)  \right] \, .
 \end{align}
-Da die kritische Kopplung $U_C$ über den Limes $\Delta_0 \rightarrow 0$ von $U$ definiert ist, verschwindet $U_C$ genau dann, wenn $F(\Delta_0)$ divergiert. 
 Die Wurzelterme in $F(\Delta_0)$ konvergieren einfach gegen eine Konstante, weswegen also nur noch die Konvergenz des $\arsinh$-Terms überprüft werden muss.
 
-Aufgrund der Punktsymmetrie von $\arsinh$ kann dieser jedoch stark vereinfacht werden, da somit $\arsinh(E_D/\Delta_0) + \arsinh(-E_D/\Delta_0) = 0$ gilt und nur $-2\mu \arsinh(-\mu/\Delta_0)$ übrig bleibt.
-Für $\Delta_0 \rightarrow 0$ divergiert das Argument und der übrigbleibende $\arsinh$ divergiert daher ebenfalls logarithmisch.
+Aufgrund der Punktsymmetrie von $\arsinh$ kann dieser jedoch stark vereinfacht werden, da somit $\arsinh(E_D/\Delta_0) + \arsinh(-E_D/\Delta_0) = 0$ gilt und nur $-2\mu \arsinh(-\mu/\Delta_0)$ übrig bleibt. Für $\Delta_0 \rightarrow 0$ divergiert das Argument und der übrigbleibende $\arsinh$ divergiert daher ebenfalls logarithmisch.
+
 Für $\mu = 0$ entfällt diese logarithmische Divergenz und $F(\Delta_0) \rightarrow F(0) = 2E_D$, man erhält also das Ergebnis aus~\eqref{eq:U_C}.
-Damit ist gezeigt, dass die kritische Kopplung, außer bei $\mu = 0$ verschwindet.
 
+\subsubsection{Fall $\abs{\mu} \geq E_D$}
 
-% Tatsächlich divergiert jeder der $\arsinh$-Terme für sich aufgrund des $\Delta_0$ im Nenner des Arguments. 
-% Aufaddiert bzw.\ subtrahiert könnten sich diese Divergenzen allerdings aufheben, weswegen der $\arsinh$-Term nun genauer untersucht wird. 
-% Für große Argumente $x>0$ gilt $\arsinh(x) \rightarrow \ln(2x)$, und für $x<0$ $\arsinh(x) \rightarrow -\ln(2\abs{x})$.
-% Damit wird der $\arsinh$-Term, über die $\ln$-Regeln vereinfacht, im Limes zu 
-% \begin{align}
-%     \ln\left(\left(\frac{2E_D}{\Delta_0}\right) \cdot \left(\frac{\Delta_0}{2E_D}\right) \cdot \left(\frac{2\mu}{\Delta_0}\right)^2\right) \, .
-% \end{align}
-% wird.
+In diesem Fall ändert $\xi + \mu$ im Integrationsintervall $[-E_D, E_D]$ das Vorzeichen nicht mehr, sodass nur noch das Integral
+\begin{align}
+    F(\Delta_0) = \operatorname{sgn}(\mu) \int_{-E_D}^{E_D} \frac{\xi + \mu}{\sqrt{\xi^2 + \Delta_0^2}}\, d\xi
+\end{align}
+gelöst werden muss. Analog zum vorherigen Fall ergibt sich
+\begin{align}
+    F(\Delta_0) = \abs{\mu} \left(\operatorname{arsinh}\left(\frac{E_D}{\Delta_0}\right) - \operatorname{arsinh}\left(\frac{-E_D}{\Delta_0}\right)\right) = 2\abs{\mu} \left(\arsinh\left(\frac{E_D}{\Delta_0}\right)\right)
+\end{align}
+
+was für $\Delta_0 \rightarrow 0$ ebenfalls logarithmisch divergiert, solange $\mu \neq 0$ ist.
+
+Damit ist gezeigt, dass die kritische Kopplung, außer bei $\mu = 0$, verschwindet.
