@@ -14,14 +14,23 @@ U = np.linspace(mev2t(0e3), mev2t(300e3), 100)
 mu = np.array([mev2t(0e3), mev2t(0.1e3), mev2t(0.2e3), mev2t(0.3e3)]) # t
 
 
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.labelsize": 13,
+    # "ytick.labelsize": 20,
+    # "xtick.labelsize": 20,
+    "axes.titlesize": 15,
+})
 fig, ax = plt.subplots(layout='tight')
+# ax.tick_params(axis='both', labelsize=14)
+# ax.label
 for m in mu:
     deltas = np.array([])
     for elem in U:
         deltas = np.append(deltas, get_delta(U=elem, T=T, E_D=E_D, mu=m, iterations=5, start=1, num_points=10009))
 
     color = plt.rcParams['axes.prop_cycle'].by_key()['color'][len(ax.lines) % len(plt.rcParams['axes.prop_cycle'].by_key()['color'])]
-    lbl = rf"$\mu = {m/6*1e3:.0f} mW$"
+    lbl = rf"$\mu = {m/6:.3f} W$"
     ax.plot(U/6, deltas/6, label=lbl, color=color)
 
         # Store the mu = 0 curve
@@ -73,7 +82,7 @@ ax.set(
     # xscale='log',
     # yscale='log',
     # ylim = [0,1e-6],
-    title=rf"$E_D = {E_D/6*1e3:.0f} mW$"
+    title=rf"$E_D = {E_D/6:.3f} W$"
 )
 ax.grid()
 ax.legend(loc='upper left', bbox_to_anchor=(1, 1))

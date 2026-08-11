@@ -7,15 +7,23 @@ from mpl_toolkits.axes_grid1.inset_locator import mark_inset
 
 from graphene_mu import t2mev
 
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.labelsize": 15,
+    "ytick.labelsize": 15,
+    "xtick.labelsize": 15,
+    "axes.titlesize": 20,
+})
 
+cbar_labelsize = 15
 # ============================================================
 # Files
 # ============================================================
 
-file_large = "data/TC_vs_mu&U_0.csv"
-file_zoom = "data/TC_vs_mu&U_4.csv"
-version = "2"
-
+file_large = "data/TC_vs_mu&U_6.csv"
+file_zoom = "data/TC_vs_mu&U_7.csv"
+version = "4"
+critical = True
 
 # ============================================================
 # Load CSV files
@@ -135,6 +143,44 @@ im = ax.imshow(
     rasterized=True
 )
 
+if critical == True:
+    # Critical
+    E_D = 0.2 #eV
+    A = 0.02525098 
+    U_C = 1 / (A * E_D)
+
+    ax.axvline(
+        U_C,
+        color="red",
+        linestyle="--",
+        linewidth=1.2,
+        alpha=0.85,
+        zorder=5
+    )
+
+    ax.plot(
+        U_C,
+        0,
+        marker="x",
+        markersize=8,
+        markeredgewidth=2,
+        color="red",
+        zorder=6
+    )
+
+    ax.annotate(
+        r"$U_C$",
+        xy=(U_C, 0),
+        xytext=(7, 10),
+        textcoords="offset points",
+        color="red",
+        fontsize=11,
+        ha="left",
+        va="bottom"
+    )
+
+
+
 
 # ============================================================
 # Main axis labels
@@ -161,7 +207,7 @@ cbar = fig.colorbar(
 
 cbar.set_label(
     r"$T_C \,/\, [\mathrm{K}]$",
-    fontsize=10
+    fontsize=cbar_labelsize
 )
 
 
@@ -214,6 +260,38 @@ im_zoom = axins.imshow(
     interpolation="bicubic",
     rasterized=True
 )
+if critical == True:
+    U_C = 1 / (A * E_D)
+
+    axins.axvline(
+        U_C,
+        color="red",
+        linestyle="--",
+        linewidth=1.2,
+        alpha=0.85,
+        zorder=5
+    )
+
+    axins.plot(
+        U_C,
+        0,
+        marker="x",
+        markersize=8,
+        markeredgewidth=2,
+        color="red",
+        zorder=6
+    )
+
+    axins.annotate(
+        r"$U_C$",
+        xy=(U_C, 0),
+        xytext=(7, 10),
+        textcoords="offset points",
+        color="red",
+        fontsize=11,
+        ha="left",
+        va="bottom"
+    )
 
 
 # ============================================================
@@ -268,7 +346,7 @@ cbar_zoom = fig.colorbar(
 
 cbar_zoom.set_label(
     r"$T_C \,/\, [\mathrm{K}]$",
-    fontsize=8
+    fontsize=cbar_labelsize - 5
 )
 
 cbar_zoom.ax.tick_params(

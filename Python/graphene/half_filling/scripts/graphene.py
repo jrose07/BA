@@ -135,16 +135,20 @@ if __name__ == "__main__":
     conv = t /const.e * 1e3 #from [t] -> [meV]
     U = 9.4 #eV 
     U = 9.4*const.e/t
-
+    plt.rcParams.update({
+        "font.size": 15,
+        "axes.labelsize": 15,
+        "axes.titlesize": 13,
+    })
     E_D = 5
     E = np.linspace(-E_D, E_D,10000)
     DOS = func_DOS(E)
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(layout='tight')
     ax.plot(E, DOS)
     ax.grid()
     ax.set(
-           xlabel=r"$E \, / \, t$",
-           ylabel=r"$\text{DOS} \, / \, t^{-1}$"
+           xlabel=r"$E \, / \, [t]$",
+           ylabel=r"$\text{DOS} \, / \, [1/t]$"
     )
     plt.show()
 

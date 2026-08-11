@@ -50,11 +50,11 @@ def get_T_C(U, mu, E_D, T_array, start):
 
 #Params
 E_D = mev2t(200)
-U = np.linspace(0,mev2t(220e3),100)
-mu = np.linspace(-3,3,100)
-T = np.linspace(0,37000,100)
+U = np.linspace(mev2t(180e3),mev2t(205e3),100)
+mu = np.linspace(-mev2t(0.25e3),mev2t(0.25e3),100)
+T = np.linspace(0,1500,100)
 
-version = "6"
+version = "7"
 
 #Rechnung und plots
 t1= time.perf_counter()

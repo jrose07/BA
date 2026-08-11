@@ -14,6 +14,13 @@ version="1"
 
 
 
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.labelsize": 13,
+    # "ytick.labelsize": 20,
+    # "xtick.labelsize": 20,
+    "axes.titlesize": 15,
+})
 fig, ax = plt.subplots()
 for idx, m in enumerate(mu):
     deltas = np.array([])
@@ -31,7 +38,7 @@ for idx, m in enumerate(mu):
         T_C = np.nan
     T_C = np.min(T_scaled[mask])
     color = f"C{idx % 10}"
-    ax.plot(T_scaled, deltas, label=rf"$\mu = $ {m_scaled*1e3:.0f} mW $\,$ $T_C = {T_C:.0f}$" + r"$ \, K \cdot \frac{W}{eV}$", color=color)
+    ax.plot(T_scaled, deltas, label=rf"$\mu = $ {m_scaled:.2f} W $\,$ $T_C = {T_C:.0f}$" + r"$ \, K \cdot \frac{W}{eV}$", color=color)
     ax.plot(T_C, 0, "x", color=color)
     print(f"mu = {m_scaled}")
     print(deltas)
@@ -40,7 +47,7 @@ for idx, m in enumerate(mu):
 ax.set(
     ylabel=r"$\Delta \, / \, [W]$",
     xlabel=r"$T \, / \, [K \cdot \frac{W}{eV}]$", 
-    title=rf"$U = {U/6:.1f} W \; E_D = {E_D/6*1e3:.0f} mW$"
+    title=rf"$U = {U/6:.1f} W \; E_D = {E_D/6:.3f} W$"
 )
 ax.grid()
 # sort legend entries by T_C (highest first)

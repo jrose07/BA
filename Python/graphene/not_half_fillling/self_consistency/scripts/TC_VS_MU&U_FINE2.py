@@ -7,6 +7,13 @@ from concurrent.futures import ProcessPoolExecutor
 
 import time
 
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.labelsize": 15,
+    "ytick.labelsize": 15,
+    "xtick.labelsize": 15,
+    "axes.titlesize": 20,
+})
 
 # ============================================================
 # Parameter
@@ -16,26 +23,26 @@ E_D = mev2t(200)
 
 U = np.linspace(
     0,
-    mev2t(2e3),
+    mev2t(0.5e3),
     100
 )
 
 mu = np.array([
-    mev2t(0.5e3),
-    mev2t(0.6e3),
-    mev2t(0.7e3),
-    mev2t(0.8e3),
-    mev2t(0.9e3),
-    mev2t(1e3),
-    # mev2t(2.5e3),
-    # mev2t(2.6e3),
-    # mev2t(2.7e3),
-    # mev2t(2.8e3),
-    # mev2t(2.9e3)
+    # mev2t(0.5e3),
+    # mev2t(0.6e3),
+    # mev2t(0.7e3),
+    # mev2t(0.8e3),
+    # mev2t(0.9e3),
+    # mev2t(1e3),
+    mev2t(2.5e3),
+    mev2t(2.6e3),
+    mev2t(2.699e3),
+    mev2t(2.8e3),
+    mev2t(2.9e3)
 ])
 
 # Maximale Temperatur für den ERSTEN groben Scan
-T_MAX = 0.1
+T_MAX = 1
 
 # Anzahl grober Temperaturpunkte
 N_COARSE = 50
@@ -70,7 +77,7 @@ ITERATIONS = 4
 NUM_POINTS = 1009
 START = 1
 
-version = "5"
+version = "9"
 
 
 # ============================================================
@@ -424,6 +431,8 @@ def main():
     ax.set(
         xlabel=r"$U \, / \, [eV]$",
         ylabel=r"$T_C \, / \, [K]$",
+        # ylim=[-0.1, 0.2]#K
+        # xlim = []
         # ylim=[-0.1, 15.0]
     )
 

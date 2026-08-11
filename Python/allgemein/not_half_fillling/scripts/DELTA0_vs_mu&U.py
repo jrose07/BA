@@ -10,6 +10,13 @@ from concurrent.futures import ProcessPoolExecutor
 Hierbei ist diesmal E_D eine Konstante und zwar die Größtmöglkiche (es geht darum was maximal in Graphen möglich ist -> E_D = 0.07t)"""
 import time
 
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.labelsize": 15,
+    "ytick.labelsize": 15,
+    "xtick.labelsize": 15,
+    "axes.titlesize": 20,
+})
 
 def get_Delta_0(U, mu, E_D, start):
     U = np.asarray(U)
@@ -27,7 +34,7 @@ def get_Delta_0(U, mu, E_D, start):
 
 #Params
 E_D = mev2t(200) # t
-U = np.linspace(mev2t(0e3),mev2t(250e3),100) # t
+U = np.linspace(mev2t(0e3),15*6,100) # t
 mu = np.linspace(-3,3,100) # t
 
 version = "1"
@@ -120,7 +127,7 @@ def main():
         va="bottom"
     )
     
-    
+    ax.set_title(rf"$E_D = {E_D/6:.3f}W$")
     
     
     ax.set_xlabel(

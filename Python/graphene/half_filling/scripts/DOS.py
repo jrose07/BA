@@ -7,6 +7,13 @@ import scipy.constants as const
 from scipy.stats import linregress
 from uncertainties import ufloat, std_dev as stds, nominal_value as noms
 
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.labelsize": 13,
+    "ytick.labelsize": 15,
+    "xtick.labelsize": 15,
+    "axes.titlesize": 15,
+})
 t = 2.7 # eV
 print(t2mev(1)*1e-3)
 conv = t /const.e * 1e3 
@@ -28,9 +35,9 @@ b = ufloat(result.intercept, result.intercept_stderr)
 
 fig, ax = plt.subplots()
 ax.plot(E, DOS, label=rf"DOS")
-ax.plot(E[E>0], noms(m)*E[E>0]+noms(b), "r-", label=f"Lineare Regression")
-ax.plot(E[E<0], -noms(m)*E[E<0] + noms(b), "r-")
-ax.legend()
+ax.plot(E[E>0], noms(m)*E[E>0]+noms(b), "r--", label=f"Lineare Regression")
+ax.plot(E[E<0], -noms(m)*E[E<0] + noms(b), "r--")
+ax.legend(fontsize=15)
 ax.grid()
 ax.set(
     xlabel=r"$E \, / \, [W]$",

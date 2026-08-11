@@ -4,6 +4,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.labelsize": 15,
+    "ytick.labelsize": 15,
+    "xtick.labelsize": 15,
+    "axes.titlesize": 20,
+})
 
 # ============================================================
 # Parameters
@@ -199,7 +206,7 @@ ax.set_ylim(
 )
 
 ax.set_title(
-    rf"$E_D = {E_D*1e3:.0f}mW$"
+    rf"$E_D = {E_D:.3f}W$"
 )
 ax.tick_params(
     which="major",

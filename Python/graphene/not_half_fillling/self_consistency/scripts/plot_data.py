@@ -5,6 +5,15 @@ import numpy as np
 import pandas as pd
 
 
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.labelsize": 15,
+    "ytick.labelsize": 15,
+    "xtick.labelsize": 15,
+    "axes.titlesize": 20,
+})
+
+
 # ============================================================
 # Parameters
 # ============================================================
@@ -14,8 +23,8 @@ E_D = 200e-3         # eV
 
 print(f"U_C = {1/(A*E_D)} eV")
 
-version = "2"
-safe = True
+version = "6"
+safe = False
 
 
 # ============================================================
@@ -101,6 +110,48 @@ image = ax.imshow(
     cmap=cmap,
     interpolation="bicubic"
 )
+
+
+#  Critical
+U_C = 1 / (A * E_D)
+
+ax.axvline(
+    U_C,
+    color="red",
+    linestyle="--",
+    linewidth=1.2,
+    alpha=0.85,
+    zorder=5
+)
+
+ax.plot(
+    U_C,
+    0,
+    marker="x",
+    markersize=8,
+    markeredgewidth=2,
+    color="red",
+    zorder=6
+)
+
+ax.annotate(
+    r"$U_C$",
+    xy=(U_C, 0),
+    xytext=(7, 10),
+    textcoords="offset points",
+    color="red",
+    fontsize=11,
+    ha="left",
+    va="bottom"
+)
+
+
+
+
+
+
+
+
 
 
 # ============================================================
