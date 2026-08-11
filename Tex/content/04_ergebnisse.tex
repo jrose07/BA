@@ -45,7 +45,7 @@ Es werden zunächst die allgemeinen Abhängigkeiten der kritischen Temperatur $T
 Abbildung~\ref{fig:delta_vs_TndU} zeigt mit dem Plot links, dass $\Delta$ wie erwartet oberhalb einer kritischen Temperatur $T_C$ verschwindet und einen für die BCS-Theorie aufgrund der Mean-Field-Näherung typischen Kurvenverlauf, bestehend aus exponentiellem Plateau und Wurzelverhalten in der Nähe von $T_C$, aufweist~\cite{bardeen_theory_1957,tinkham_introduction_2004,czycholl_theoretische_2017}. 
 Ebenfalls ist erkenntlich, dass das eine endliche Verschiebung des chemischen Potentials $\mu$ die kritische Temperatur $T_C$ im Vergleich zum undotierten Fall $\mu = 0$ deutlich erhöhen kann. 
 Der Plot rechts zeigt, dass im dotierten Regime bereits eine minimale Wechselwirkung $U$ ausreicht, damit ein Ordnungsparameter $\Delta_0 \coloneqq \Delta(T=0)$ ausgebildet wird. 
-Für $U \rightarrow 0$ geht $\Delta_0$ asymptotisch gegen Null, während erkennbar ist, dass $\Delta_0$ im undotierten Fall tatsächlich erst oberhalb einer kritischen Kopplung $U_C$ von null verschieden wird.
+Für $U \rightarrow 0$ geht $\Delta_0$ exponentiell fallend gegen Null, während erkennbar ist, dass $\Delta_0$ im undotierten Fall tatsächlich erst oberhalb einer kritischen Kopplung $U_C$ von null verschieden wird.
 
 
 \begin{figure}[htb]
@@ -63,7 +63,7 @@ Für $U \rightarrow 0$ geht $\Delta_0$ asymptotisch gegen Null, während erkennb
         \includegraphics[width=\textwidth]{Plots/Delta_vs_U&mu_0.pdf}
         % \label{fig:delta_vs_u_mu}
     \end{subfigure}
-    \caption{Abhängigkeiten des Ordnungsparameters $\Delta$ für verschiedene Dotierungsstärken $\mu$ in Einheiten der Bandbreite $W$. Links in Abhängigkeit von der Temperatur $T$ bei festen Parametern $U = \qty{3.3}{W}$ und $E_D = \qty{12}{\milli W}$ und rechts für verschiedene Kopplungsstärken $U$ bei $T= 0$ und $E_D = \qty{12}{\milli W}$ . Der Ordnungsparameter verschwindet oberhalb einer kritischen Temperatur $T_C$, die stark von $\mu$ abhängig ist und geht bei endlichem $\mu$ für kleine $U$ asymptotisch gegen null. Für $\mu = 0$ bildet sich ein endliches $\Delta_0$ erst oberhalb der kritischen Kopplung $U_C = \qty{12.3}{\milli W}$  aus.}
+    \caption{Abhängigkeiten des Ordnungsparameters $\Delta$ für verschiedene Dotierungsstärken $\mu$ in Einheiten der Bandbreite $W$. Links in Abhängigkeit von der Temperatur $T$ bei festen Parametern $U = \qty{3.3}{W}$ und $E_D = \qty{12e-3}{W}$ und rechts für verschiedene Kopplungsstärken $U$ bei $T= 0$ und $E_D = \qty{12e-3}{W}$ . Der Ordnungsparameter verschwindet oberhalb einer kritischen Temperatur $T_C$, die stark von $\mu$ abhängig ist und geht bei endlichem $\mu$ für kleine $U$ exponentiell fallend gegen null. Für $\mu = 0$ bildet sich ein endliches $\Delta_0$ erst oberhalb der kritischen Kopplung $U_C = \qty{12.3}{W}$  aus.}
     \label{fig:delta_vs_TndU}
 \end{figure}
 
@@ -77,7 +77,7 @@ Um diesen kritischen Punkt analytisch genauer zu untersuchen, wird die Selbstkon
 
 Da sich das Integral über die DOS im Allgemeinen nicht analytisch lösen lässt, bedarf es hier einer geeigneten Näherung. 
 Klassischerweise wird die DOS oft einfach mit der Begründung, dass sie sich über das Intervall $[-E_D , E_D]$ kaum ändert als konstant $\rho(\epsilon) \approx \rho(E_F) = \rho(0)$ angenommen.
-Diese Näherung führt genau zu dem asymptotischen Verhalten, das in~Abbildung~\ref{fig:delta_vs_TndU} abseits von halber Füllung beobachtet wird~\cite{czycholl_theoretische_2017}.
+Diese Näherung führt genau zu dem exponentiell fallendem Verhalten, das in~Abbildung~\ref{fig:delta_vs_TndU} abseits von halber Füllung beobachtet wird~\cite{czycholl_theoretische_2017}.
 Da die DOS aber bei halber Füllung am Energienullpunkt verschwindet, kann diese Näherung hier nicht durchgeführt werden. 
 % Dies stellt allerdings kein Problem dar, denn die Näherung wäre wie bereits erwähnt zur Beschreibung der kritischen Kopplung auch nicht ausreichend.
 Dies stellt allerdings kein Problem dar, da die konstante Näherung der DOS zur Beschreibung einer kritischen Kopplung ohnehin nicht ausreichen würde.
@@ -91,7 +91,7 @@ Dies stellt allerdings kein Problem dar, da die konstante Näherung der DOS zur 
 
 Stattdessen wird aufgrund der besonderen Form der DOS am Dirac-Punkt, die Näherung $\rho(\epsilon) \approx A \cdot \abs{\epsilon}$ verwendet, die für $E_D \ll W$ eine gute Übereinstimmung liefert (siehe~Abbildung~\ref{fig:DOS_regress}).
 Für die meisten Festkörper ist die Bedingung $E_D \ll W$ bzw. $E_D/W \ll 1$ gut erfüllt, dennoch sollte diese bei einer konkreten Behandlung eines Materials konkret überprüft werden.
-Die lineare Regression liefert $A \approx \qty{6.6447}{W^{-2}}$.
+Die lineare Regression liefert die Steigung $A \approx \qty{6.6447}{W^{-2}}$.
 Die Genaugkeit dieses Werts hängt jedoch ebenfalls von dem Verhältnis $E_D/W$ ab und ist hier für $E_D/W = 0.02$ berechnet worden.
 % Die Genauigkeit dieser Näherung aber sicherlich von $E_D$ abhängt.
 Eingesetzt in das Integral~\eqref{eq:U_C_berechnen} ergibt sich 
@@ -160,7 +160,7 @@ Sein Maximum befindet sich bei den Van-Hove-Singularitäten (VHS) bei $\mu = \pm
     \end{subfigure}
     \caption{
         (a) und (b) zeigen die Abhängigkeit des Ordnungsparameters $\Delta_0$ von Kopplung $U$ und Debye-Energie $E_D$, einmal für $\mu=0$ (a) und einmal für $\mu = \qty{0.02}{W}$ (b).
-        (c) und (d) vergleichen bei $E_D = \qty{12}{\milli W}$ die Abhängigkeiten von $U$ und $\mu$ von $\Delta_0$ (c) und kritischer Temperatur $T_C$ (d). In allen Teilabbildungen wird für die kritische Kopplung $U_C$ für $\mu = 0$ eingezeichnet.
+        (c) und (d) vergleichen bei $E_D = \qty{12e-3}{W}$ die Abhängigkeiten von $U$ und $\mu$ von $\Delta_0$ (c) und kritischer Temperatur $T_C$ (d). Die kritische Temperatur wird über die Selbstkonsistenzgleichung bei endlicher Temperatur berechnet.  In allen Teilabbildungen wird für die kritische Kopplung $U_C$ für $\mu = 0$ eingezeichnet.
     }
     \label{fig:ALLG_ABH}
 \end{figure}
