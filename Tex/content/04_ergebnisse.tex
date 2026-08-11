@@ -1,6 +1,12 @@
 \chapter{Ergebnisse}\label{sec:ergebnisse}
 
-% Um die in~\autoref{sec:modell} hergeleiteten Selbstkonsistenzgleichungen~\eqref{eq:gap_eq_half_filling_integral} bzw.~\eqref{eq:gap_eq_arbitrary_filling_integral} zu lösen, wird
+
+
+
+
+
+
+
 Zur Lösung der in~\autoref{sec:modell} hergeleiteten Selbstkonsistenzgleichungen~\eqref{eq:gap_eq_half_filling_integral} bzw.~\eqref{eq:gap_eq_arbitrary_filling_integral}, wird eine Kombination aus Fixpunktiteration und Newtonverfahren verwendet.
 Die dafür erforderliche Zustandsdichte $\rho(\epsilon)$ wird ebenfalls numerisch über die in Ref.~\cite{hanisch_lattice_1997} hergeleitete Formel berechnet (siehe~Abbildung~\ref{fig:DOS}).
 Für die numerische Berechnung wird das Python-Paket \textit{scipy}~\cite{virtanen_scipy_2020} verwendet. 
@@ -15,7 +21,22 @@ Plots werden mit \textit{matplotlib}~\cite{hunter_matplotlib_2007} erstellt.
 
 
 
-% Allgemeine Parameterabhängigkeiten von \texorpdfstring{$\Delta_0$}{Delta0} und \texorpdfstring{$T_C$}{TC}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Parameterabhängigkeiten von Ordnungsparameter und kritischer Temperatur}\label{sec:allgemein}
 
@@ -86,61 +107,98 @@ Es reicht also nicht, dass die DOS an der Fermi-Energie klein ist, sondern das V
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{Abhängigkeit von den Parametern \texorpdfstring{$U$, $E_D$ und $\mu$}{U, E_D und mu}}
 
 Die Teilabbildung (a) aus Abbildung~\ref{fig:ALLG_ABH} zeigt bei halber Füllung, dass der zuvor hergeleitete hyperbolische Verlauf von $U_C$~\eqref{eq:U_C} gut von der Numerik bestätigt wird. 
 Für kleine Debye-Energien $E_D$ ist also eine sehr große Kopplung nötig, während für große $E_D$ nur eine geringe Kopplung vonnöten ist, um ein endliches $\Delta_0$ auszubilden.
 In Teilabbildung (b) ist der leicht dotierte Fall ($\mu = 0.02W$) zu sehen, der nun keine kritische Kopplung mehr aufweist. 
 Er unterscheidet sich nicht sonderlich von Fall (a), da die Ordnungsparameter mit $U<U_C$ zwar endlich, aber dennoch klein sind, was in dieser Grafik nicht aufgelöst werden kann.
-% Trotzdem ist der supraleitende Bereich im Vergleich zu (a) nicht nennenswert \glqq größer\grqq{}, da zwar endliche aber dennoch sehr kleine Ordnungsparameter außerhalb des zuvor normalleitenden Bereichs ausgebildet werden.
 Die Teilabbildungen (c) und (d) zeigen für $\Delta_0$ und $T_C$ ähnliche Abhängigkeiten, was auf eine näherungsweise Proportionalität schließen lässt, wie in der BCS-Theorie mit dem universellen Verhältnis $2\Delta_0/(k_B T_C) = \num{3.53}$ erwartet wird~\cite{czycholl_theoretische_2017}.
 Des Weiteren lässt sich erkennen, dass $\Delta_0$ im Bereich $\abs{\mu} < 0.05 \, W$ wie zu erwarten war stark unterdrückt wird, außerhalb davon aber stark mit dem chemischen Potential anwächst.
 Sein Maximum befindet sich bei den Van-Hove-Singularitäten (VHS) bei $\mu = \pm t = \pm W/6$, wo sogar für $U< 1W$ in den Plots noch endliche $\Delta_0$ erkennbar sind.
 
 \begin{figure}[htb]
     \centering
-    \begin{subfigure}{0.35\textwidth}
+    \begin{subfigure}{0.38\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Plots/DELTA0_vs_E_D&U_0.pdf}
         \caption{}
     \end{subfigure}
     % \hfill
-    \begin{subfigure}{0.35\textwidth}
+    \begin{subfigure}{0.38\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Plots/DELTA0_vs_E_D&U_1.pdf}
         \caption{}
     \end{subfigure}
-    
-    \begin{subfigure}{0.35\textwidth}
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.38\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Plots/DELTA0_vs_mu&U_1.pdf}
         \caption{}
     \end{subfigure}
     % \hfill
-    \begin{subfigure}{0.35\textwidth}
+    \begin{subfigure}{0.38\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Plots/TC_vs_mu&U_6.pdf}
         \caption{}
     \end{subfigure}
     \caption{
-        % Die Abhängigkeiten des Ordnungsparameters $\Delta_0 \equiv \Delta(T = 0)$ bzw.\ der kritischen Temperatur $T_C$
-        % von Wechselwirkung $U$ und Debye-Energie $E_D$ in den Teilabbildungen~(a) und~(b) bzw.\
-        % vom chemischem Potential $\mu$ in den Teilabbildungen~(c) und~(d).
-        % Für $\mu = 0$ ist die kritische Kopplung $U_C = 1/(AE_D)$ miteingezeichnet; das festgehaltene $\mu$ (oben) bzw.\ $E_D$ (unten)
-        % wird im Abbildungstitel angegeben.
         (a) und (b) zeigen die Abhängigkeit des Ordnungsparameters $\Delta_0$ von Kopplung $U$ und Debye-Energie $E_D$, einmal für $\mu=0$ (a) und einmal für $\mu = \qty{0.02}{W}$ (b).
         (c) und (d) vergleichen bei $E_D = \qty{12}{\milli W}$ die Abhängigkeiten von $U$ und $\mu$ von $\Delta_0$ (c) und kritischer Temperatur $T_C$ (d). In allen Teilabbildungen wird für die kritische Kopplung $U_C$ für $\mu = 0$ eingezeichnet.
     }
     \label{fig:ALLG_ABH}
 \end{figure}
 
-% In einer realistischen Beschreibung ist die Kopplung üblicherweise recht klein im Vergleich zur Bandbreite, es lässt sich also hier schon erkennen, dass besonders der bis zur VHS dotierte Fall im Bienenwabenitter für mögliche Supraleitung interessant ist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 \section{Konventionelle Supraleitung in Graphen}\label{sec:graphen}
+
 Nachdem in Abschnitt~\ref{sec:allgemein} zunächst nur allgemeine Aussagen über die Abängigkeiten der für Supraleitung relevanten Größen getroffen wurden, wird nun konkret Graphen betrachtet um zu prüfen, ob realistische Bedingungen für $s$-wave Supraleitung erreichbar sind.
+Andere Materialien mit Bienenwabengitter, wie das eingangs erwähnte $\mathrm{MoS_2}$, eignen sich für eine analoge Betrachtung dagegen nicht ohne Weiteres:
+Andere Materialien mit Bienenwabengitter, wie das eingangs erwähnte $\mathrm{MoS_2}$, eignen sich für eine analoge Betrachtung dagegen nicht ohne Weiteres:
+Zwar lassen sich mit $W \approx 12 - \qty{18}{eV}$~\cite{shahriari_band_2018} und einer Debye-Temperatur von $\Theta_D \approx \qty{262.3}{K}$~\cite{peng_thermal_2016} (entsprechend $E_D \approx \qty{22.6}{meV}$) konkrete Parameter zur Berechnung der supraleitenden Lücke angeben, allerdings sind die beiden Untergitter in $\mathrm{MoS_2}$ durch unterschiedliche Atome (Mo bzw.\ S) besetzt und mehrere Atomorbitale tragen zur elektronischen Struktur bei, sodass erst Tight-Binding-Modelle mit bis zu elf Bändern~\cite{jalilvand_multi-band_2020, shahriari_band_2018} eine ausreichend genaue Beschreibung liefern.
+So ergibt sich für $\mathrm{MoS_2}$ beispielsweise statt eines Dirac-Punktes eine endliche Bandlücke.
+Das in dieser Arbeit verwendete Ein-Orbital-Modell kann diese Eigenschaft prinzipiell nicht abbilden und wird im Folgenden daher nur auf Graphen angewendet.
 
 Für Graphen wird üblicherweise ein Hüpfparameter von $t=\qty{2.7}{eV}$ gewählt, der die $\pi$- und $\pi^*$-Bänder beschreibt~\cite{castro_neto_electronic_2009, kundu_tight_2009,peres_colloquium_2010}.
 Damit ergibt sich eine Bandbreite von $W = 6 t = \qty{16.2}{eV}$, während die Debye-Temperatur von Graphen je nach Mode im Bereich von $\Theta_D = \num{1287} - \qty{2300}K$ liegt~\cite{tewary_singular_2009}.
@@ -153,36 +211,33 @@ Für konventionelle Supraleiter kann $U$ anhand von $U = -1/\left(\ln\left(\sfra
 Die Bandlücke $\Delta$ liegt für die meisten konventionellen Supraleiter im einstelligen $\mathrm{meV}$-Bereich~\cite{croitoru_phonon_2015,czycholl_theoretische_2016}, für Niob beispielsweise ergibt sich mit $\Delta_0 = \qty{1.43}{\milli\electronvolt}$, $E_D = \qty{23}{meV}$~\cite{zarea_effects_2023} und $\rho_0 \approx \qty{2.07}{\per\electronvolt}$~\cite{anderson_self-consistent_1973} ein $U \approx \qty{0.14}{eV}$.
 Es ist zu erwarten, dass $U$ in Graphen nicht um mehrere Größenordnungen von diesem Wert abweicht, für genauere Abschätzungen sind allerdings experimentelle Daten vonnöten.
 Zum Beispiel liefern Herrera et al.\ \cite{herrera_topological_2024} explizite Vorhersagen für die kritische Temperatur in stark $\mathrm{Tb}$-dotiertem Graphen.
-% Abseits dieser groben Abschätzung liefern Herrera et al.\ ~\cite{herrera_topological_2024} konkrete .
 Sie sagen bei einer Dotierung bis zur VHS, eine kritische Temperatur von bis zu $T_C = \qty{600}{\milli\kelvin}$ voraus.
 In diesem Tight-Binding Modell entspräche dies einem chemischen Potential von $\mu = t = \qty{2.7}{eV}$, Herrera et al.\ berichten allerdings nur von einer Ferminiveauverschiebung um $\qty{1.55}{eV}$ bei gleichzeitigem Abflachen der Energiebänder und Vergrößerung der VHS.
 Diese Effekte werden in dem Modell in dieser Arbeit nicht behandelt, ein Vergleich im nächsten Abschnitt ist unter Vorbehalt allerdings trotzdem möglich.
 
-% Es wird hierbei ungefähr bis zur VHS dotiert, was in dem hier verwendeten Modell einem chemischen Potential von $\mu \approx \qty{2.7}{eV}$ entsprechen würde.
-% Aufgrund dieser starken Dotierung beobachten die Autoren von Ref.~\cite{herrera_topological_2024} allerdings ein Abflachen der Energiebänder und dadurch eine vergrößerte VHS, was dazu führt, dass die VHS dort nur bei $\mu = \qty{1.55}{eV}$ liegt.
-% Etwaige Vergleiche mit dem Modell in dieser Arbeit sind also mit Vorsicht zu genießen.
-% % Neben dieser Abschätzung kann außerdem ein direkter Vergleich mit experimentell gemessenen Werten erfolgen.
-% Neben dieser groben Abschätzungen können für Graphen aber auch anhand von experimentell gemessenen Daten 
-% % Die Autoren in Ref.~\cite{ludbrook_evidence_2015} zeigen, dass in $\mathrm{Li}$-dotiertem Graphen eine Bandlücke von $\Delta = \qty{0.9(0.2)}{meV}$ bei $T=\qty{3.5}{\kelvin}$ gemessen wurde, 
 
-% Der Vergleich mit der im Hubbard-Modell für Graphen bestimmten effektiven Coulombabstoßung $U_\text{rep} = \qty{9.3}{eV}$ aus Ref.~\cite{wehling_strength_2011} liefert des Weiteren eine grobe obere Orientierung für die Energiskala von $U$. 
-% Kopplungen $U$, die deutlich oberhalb dieser Energieskala liegen, erscheinen damit zumindest als wenig plausibel.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \subsection{Realistische Bedingungen für Supraleitung in Graphen}\label{sec:graphen_dotierung}
-% - U_C(E_D) aus Gl.~\eqref{eq:U_C} mit den Graphen-Parametern ausgewertet
-% - für den U-Bereich aus~\ref{sec:graphen_U}: bei welchem mu wird Delta_0/T_C nennenswert?
-% - Rückumrechnung der VHS-Dotierung mu = W/6 in reale Einheiten (eV bzw. Ladungsträgerdichte n)
-% - Vergleich mit gemessenen/berichteten T_C-Werten dotierter Graphen-Systeme, falls vorhanden
-% - Fazit: ist die nötige Dotierung experimentell erreichbar?
+
 Es soll zum einen überprüft werden, wie stark die Kopplung in Graphen sein müsste, damit bei halber Füllung bzw.\ schwacher Dotierung eine supraleitende Bandlücke entsteht. 
 Zum anderen soll eine Aussage darüber getätigt werden, für welche Dotierungsstärke $\mu$ innerhalb des abgeschätzten Bereichs von $U$ mit besonderem Augenmerk auf die VHS, Supraleitung zu erwarten ist.
 
-Abbildung~\ref{fig:TC_Graphen_color} zeigt die kritische Temperatur $T_C$ als Funktion von $U$ und $\mu$. 
-Die Teilabbildung (a) zeigt zusätzlich eine Detailansicht des Bereichs um die VHS, während Teilabbildung (b) den Bereich um den quantenkritischen Punkt bei $\mu = 0$ genauer darstellt.
-%  Bereichs   auf die VHS und auf den kritischen Punkt $U_C$ dargestellt. 
-Es ist zu erkennen, dass an der VHS bei Kopplungen in der für konventionelle Supraleiter typischen Größenordnung von ca. $\qty{1}{eV}$ verhältnismäßig große kritische Temperaturen auftreten, während dies bei halber Füllung erst ab einer kritischen Kopplung von $U_C \approx \qty{198}{eV}$ der Fall ist, was deutlich über dem realistischen Bereich von $U$ liegt.
-Damit kann konventionelle Supraleitung im undotierten Fall ausgeschlossen werden.
 
 \begin{figure}[htb]
     \centering
@@ -191,43 +246,39 @@ Damit kann konventionelle Supraleitung im undotierten Fall ausgeschlossen werden
         \includegraphics[width=\textwidth]{Plots/Plot_zusammen2.pdf}
         \caption{}
     \end{subfigure}
-    % \hfill
+    \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Plots/Plot_zusammen4.pdf}
         \caption{}
     \end{subfigure}
-    \caption{Kritische Temperatur $T_C$ in Abhängigkeit von Kopplung $U$ und Dotierungsstärke $\mU$. In Teilabbildung (a) ist eine Detailansicht des Bereichs um die VHS dargestellt und in (b) um den Bereich des quantenkritischen Punkts.}
-    \label{fig:TC_Graphen_color}
-\end{figure}
-
-Etwas genauer wird der Bereich um die VHS in Abbildung~\ref{fig:U_VHS} dargestellt. 
-% Um einen Vergleich zu experimentellen Daten zu ziehen, könnte nun mit Ref.~\cite{herrera_topological_2024} verglichen werden.
-% Es ist zu erkennen, dass an der VHS die kritische Temperatur von $T_C = \qty{0.6}{K}$ in einem Bereich von $U \approx \num{0.5} - \qty{1.1}{eV}$ vorhergesagt wird, was dementsprechend damit ein realistischer Bereich wäre.
-% Es sei hier nur bemerkt, dass diese Einschränkung wie bereits erwähnt mit Vorsicht zu genießen ist und kleine Änderungen von $U$ nach oben bereits große Änderungen in $T_C$ bewirken.
-Der bereits erwähnte Vergleich zu Ref.~\cite{herrera_topological_2024} zeigt, dass die vorhergesagte kritische Temperatur $T_C = \qty{600}{\milli\kelvin}$ für $U$ in dem Bereich $\num{0.5} - \qty{1.1}{eV}$ reproduziert wird, was eine vergleichbare Größenordnung wie die abgeschätzte Kopplungsstärke in Niob aufweist. 
-% Im Rahmen dieser ungefähren Abschätzung wäre 
-Es ist anhand dieser Abschätzung also nicht auszuschließen, dass (stark) dotiertes Graphen konventionelle Supraleitung zeigen kann.
-
-% Außerdem scheint und die Dotierung bis zur VHS unter der Annahme starrer Bänder 
-
-
-% Geht man davon aus, dass in Ref.~\cite{herrera_topological_2024} tatsächlich in diesem $\mu$-Bereich gemessen wurde, kann $U$ auf diesen Bereich beschränkt und Supraleitung abseits der VHS verneint werden.
-% mit Ref.~\cite{herrera_topological_2024} wäre $U$ damit auf diesen Bereich beschränkt und Supraleitung abseits der VHS wäre nur serh schwach. 
-% Dies wäre also im Vergleich mit Ref.~\cite{herrera_topological_2024} unter Vernachlässigung der veränderten Bandstruktur eine 
-\begin{figure}[htb]
-    \centering
+    \\
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Plots/TC_vs_mu&U_fine_8.pdf}
-        % \caption{}
+        \caption{}
     \end{subfigure}
-    % \hfill
+    \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Plots/TC_vs_mu&U_fine_7.pdf}
-        % \caption{}
+        \caption{}
     \end{subfigure}
-    \caption{Kritische Temperatur $T_C$ in Abhängigkeit von $U$ um die VHS herum. Links ist der Gesamtverlauf zu sehen und rechts ein Zoom auf den Bereich bis maximal $T_C = \qty{1}{K}$.}
-    \label{fig:U_VHS}
+    \caption{Kritische Temperatur $T_C$ in Abhängigkeit von Kopplung $U$ und chemischem Potential $\mu$. In Teilabbildung (a) ist eine Detailansicht des Bereichs um die VHS dargestellt und in (b) um den Bereich des quantenkritischen Punkts. In (c) und (d) ist der Gesamtverlauf um die VHS herum zu sehen, wobei (d) eine Vergrößerung auf den Bereich bis maximal $T_C = \qty{1}{K}$ darstellt.}
+    \label{fig:TC_Graphen}
 \end{figure}
+
+% In Abbildung~\ref{fig:TC_Graphen} ist dargestellt, wie sich $T_C$ als Funktion von $U$ und $\mu$ ändert. 
+% Die Teilabbildung (a) zeigt zusätzlich eine Detailansicht des Bereichs um die VHS, während Teilabbildung (b) den Bereich um den quantenkritischen Punkt bei $\mu = 0$ genauer darstellt.
+Abbildung~\ref{fig:TC_Graphen} zeigt die kritische Temperatur $T_C$ in Abhängigkeit von $U$ und $\mu$. 
+Teilabbildung (a) stellt den Gesamtverlauf um die VHS dar, mit einer Detailansicht des unmittelbaren VHS-Bereichs, während Teilabbildung (b) entsprechend den Gesamtverlauf mit einer Detailansicht um den quantenkritischen Punkt bei $\mu = 0$ zeigt.
+In den Teilabbildungen (c) und (d) sind jeweils Schnitte $T_C(U)$ für feste $\mu$ um die VHS herum zu sehen, wobei in (d) eine Vergrößerung auf den Bereich bis maximal $T_C = \qty{1}{K}$ zu sehen ist.
+
+Es ist zu erkennen, dass an der VHS bei Kopplungen in der für konventionelle Supraleiter typischen Größenordnung von ca. $\qty{0.1}{eV}$ verhältnismäßig große kritische Temperaturen auftreten, während dies bei halber Füllung erst ab einer kritischen Kopplung von $U_C \approx \qty{198}{eV}$ der Fall ist, was deutlich über dem realistischen Bereich von $U$ liegt.
+Damit kann konventionelle Supraleitung im undotierten Fall ausgeschlossen werden.
+
+Der Vergleich mit Ref.~\cite{herrera_topological_2024} zeigt, dass die dort vorhergesagte kritische Temperatur $T_C = \qty{600}{\milli\kelvin}$, hier für $U$ in dem Bereich $\num{0.5} - \qty{1.1}{eV}$ reproduziert wird (siehe Teilabbildungen (c) und (d)).
+Dieser Wert liegt über dem für Niob abgeschätzten Wert, allerdings in einer vergleichbaren Größenordnung und ist damit nicht unbedingt unrealistisch. 
+Anhand dieser Abschätzung ist also nicht auszuschließen, dass (stark) dotiertes Graphen konventionelle Supraleitung zeigen kann.
+Diese Beobachtung ist ebenfalls durch Ludbrook et al.\ \cite{ludbrook_evidence_2015} gestützt, die in Li-dotiertem Graphen bei $T = \qty{3.5}{K}$ eine Bandlücke von $\Delta = \qty{0.9}{meV}$ experimentell bestätigen konnten.
+Hierbei wäre ein ebenfalls eine genauerer Vergleich mit einem direkten Wert des chemischen Potentials $\mu$ interessant, das allerdings nicht direkt angegeben wurde.

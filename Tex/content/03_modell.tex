@@ -1,8 +1,8 @@
 \chapter{Modell}\label{sec:modell}
 
 Das in dieser Arbeit verwendete Modell basiert auf dem Nächste-Nachbar-TB-Modell aus Gleichung~\eqref{eq:TB} und der BCS-Wechselwirkung aus Gleichung~\eqref{eq:BCS}. 
-Diese werden so modifiziert, dass die Untergitterstruktur des Bienenwabengitters berücksichtigt und eine Verschiebung $\mu$ der Fermi-Energie zugelassen wird.
-Der modifizierte Hamiltonian lautet damit 
+Diese werden so modifiziert, dass die Untergitterstruktur des Bienenwabengitters berücksichtigt wird.
+Zusätzlich wird noch ein Term zur Berücksichtigung eines chemischer Potentials $\mu$ hinzugefügt, womit der modifizierte Hamiltonian dann lautet:
 \begin{align}
     \oH = \oHNN + \oH_{\mu} + \oHWW 
 \end{align}
@@ -13,7 +13,7 @@ mit
     \oHWW &=  - \frac{U}{N} \sump{\vk, \vk'} \sum_\oC  \ocdu \ocdd \ocndd \ocndu \, .
 \end{align}
 
-Dabei werden die allgemeinen fermionischen Operatoren $\ofed{}/\ofe{}$  durch die Untergitter-spezifischen Operatoren $\oad{}/\oa{}$ und $\obd{}/\ob{}$ ersetzt, die nur Elektronen auf dem jeweiligen Untergitter $A$ oder $B$ erzeugen, bzw.~vernichten. 
+Dabei werden die allgemeinen fermionischen Operatoren $\ofe{}$  durch die Untergitter-spezifischen Operatoren $\oa{}$ bzw.\ $\ob{}$ ersetzt, die nur Elektronen auf dem jeweiligen Untergitter $A$ oder $B$ erzeugen, bzw.~vernichten. 
 Die Summe über $\oC$ bedeutet, dass jeweils über $\oC = \oA$ und $\oC = \oB$ summiert wird. 
 % Es fällt auf, dass 
 
@@ -192,7 +192,7 @@ Als Vorbereitung für die Näherung wird der quartische Term aus Gleichung~\eqre
     &+ \text{const.} \, ,
 \end{align}
 wobei ``$: \dots :$'' für die Normalordnung der Operatoren steht.
-Im Folgenden wird diese allerdings weggelassen, da für die Normalordnung von bilinearen Termen $: \ofe{}\ofe{}: = \ofe{}\ofe{} - \expval{\ofe{} \ofe{}} $ gilt~\cite{kehrein_flow_2006} und $\expval{\ofe{}\ofe{}}$ einfach in die Konstante absorbiert werden kann.
+Im Folgenden wird diese allerdings weggelassen, da für die Normalordnung von bilinearen Termen $: \op{c}\op{c}: = \op{c}\op{c} - \expval{\op{c} \op{c}} $ gilt~\cite{kehrein_flow_2006} und $\expval{\op{c} \op{c}}$ einfach in die Konstante absorbiert werden kann.
 Der bis dahin exakte Term wird nun genähert, indem der normalgeordnete Zweiteilchenterm~\eqref{eq:2TT} als klein angenommen und dementsprechend vernachlässigt wird. 
 Dies ist genau die bekannte Mean-Field-Näherung, die ein Vielteilchenproblem auf ein effektives Einteilchenproblem reduziert~\cite[66]{bruus_manybody_2004}.
 Die Konstante ist ebenfalls vernachlässigbar, da sie nur eine Verschiebung der Gesamtenergie bewirkt und daher für die Dynamik des Systems irrelevant ist. \\
@@ -472,7 +472,7 @@ mit den Quasiteilchen-Spinoren
     \vophi = \dul{U}^\dagger \vopsi & & \text{und} & & \vophid = \vopsid \dul{U} \, .
 \end{align}
 In dieser Quasiteilchenbasis ist der Hamiltonian nun diagonal und formell wechselwirkungsfrei.
-Für die Berechnung der Erwartungswerte der Quasiteilchenbesetzungszahlen kann daher die Fermi-Dirac-Funktion $F(E) = \frac{1}{e^{\beta E} + 1}$ mit der reziproken Temperatur $\beta = \sfrac{1}{k_B T}$ und Boltzmann-Konstante $k_B$ verwendet werden.
+Für die Berechnung der Erwartungswerte der Quasiteilchenbesetzungszahlen kann daher die Fermi-Dirac-Funktion $F(E) = (e^{\beta E} + 1)^{-1}$ mit der reziproken Temperatur $\beta = \sfrac{1}{k_B T}$ und Boltzmann-Konstante $k_B$ verwendet werden.
 Damit gilt
 \begin{align}
     \Phi_{ij} := \expval{\vophi \cdot \vophid}_{ij} = \expval{\ophi_{i, \vk} \ophid_{j, \vk}} &= \expval{1 -\ophid_{j, \vk}  \ophi_{i, \vk}} = (1 - F(E_i))\delta_{ij} \, ,
@@ -512,7 +512,7 @@ was mit $F(-x) = 1 - F(x)$ und $\tanh(x) = 1 - 2/(e^{2x} + 1)$  schließlich zu
 \end{align}
 wird.
 
-Dies ist die typische BCS-Gap-Gleichung für den Ordnungsparameter $\Delta$~\cite{czycholl_theoretische_2017}. 
+Dies ist die typische BCS-Selbstkonsistenzgleichung für den Ordnungsparameter $\Delta$~\cite{czycholl_theoretische_2017}. 
 Das ist erstaunlich, da von einem bipartiten Gitter mit zwei unterschiedlichen Energiebändern ausgegangen wurde, die klassische BCS-Rechnung jedoch nur ein Energieband berücksichtigt. \\
 % Dass hier nur der scheinbare Beitrag des Energiebandes $E_\vk$ auftaucht liegt an der Annahme halber Füllung, bei der sich die Energiebänder $\epsilon_\vk = \pm \abs{f(\vk)}$ nur um ein Vorzeichen unterscheiden und in der Quasiteilchenergie $E_\vk = \sqrt{\Delta^2 + \abs{f(\vk)}^2}$ nur der Betrag relevant ist.
 Dies lässt sich als Folge des Spezialfalls halber Füllung verstehen, da die erhaltenen Quasiteilchenenergien $E_\vk = \sqrt{\Delta^2 + \abs{f(\vk)}^2}$ hier unabhängig von dem Vorzeichen von $\epsilon_\pm = \pm \abs{f(\vk)}$, also unabhängig von der Wahl der Energiebänder sind. 

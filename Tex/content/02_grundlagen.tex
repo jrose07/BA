@@ -5,9 +5,9 @@ Diese sind vorallem Vorüberlegungen zur Geometrie und elektronischen Eigenschaf
 
 \section{Bienenwabengitter}~\label{subsec:Bienenwabengitter}
 
-Das Bienenwabengitter ist eine zweidimensionale Gitterstruktur, deren Elemente in einem hexagonalen Muster angeordnet sind. 
-Ein prominentes Beispiel für ein Material mit Bienenwabenstruktur ist das kohlenstoffbasierte \textit{Graphen}~\cite{castro_neto_electronic_2009} bzw. die Monolagen des Graphits, aber  auch in Übergangsmetall-Dichalkogeniden (TMDs) wie $\mathrm{MoS}_2$ oder $\mathrm{MoSe}_2$ kommt diese Struktur vor. \\
-Das Gitter selbst muss im Gegensatz zu einem einfachen hexagonalen Gitter durch gegeneinander verschobene Untergitter $A$ und $B$ beschrieben werden, die jeweils eine hexagonale Struktur aufweisen, siehe Abbildung~\ref{fig:gitter}.
+Das Bienenwabengitter besteht ist ein hexagonales Gitter, das aus zwei trigonalen Unergittern $A$ und $B$ besteht, siehe dazu Abbildung~\ref{fig:gitter}.
+Ein prominentes Beispiel für Materialien mit Bienenwabenstruktur ist das kohlenstoffbasierte \textit{Graphen}~\cite{castro_neto_electronic_2009} bzw.\ die Monolagen des Graphits, aber  auch in Übergangsmetall-Dichalkogeniden (TMDs) wie $\mathrm{MoS}_2$ oder $\mathrm{MoSe}_2$ kommt diese Struktur vor. \\
+% Das Gitter selbst muss im Gegensatz zu einem einfachen hexagonalen Gitter durch gegeneinander verschobene Untergitter $A$ und $B$ beschrieben werden, die jeweils eine hexagonale Struktur aufweisen, siehe Abbildung~\ref{fig:gitter}.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{images/gitter.png}
@@ -15,16 +15,17 @@ Das Gitter selbst muss im Gegensatz zu einem einfachen hexagonalen Gitter durch 
     \label{fig:gitter}
 \end{figure}
 
-Die Untergitter $A$ und $B$ besitzen dieselben primitiven Gittervektoren, sind jedoch um einen der drei Nächste-Nachbar-Vektoren $\vdelta_1$, $\vdelta_2$ und $\vdelta_3$ 
+Die Untergitter $A$ und $B$ besitzen beide die primitiven Gittervektoren 
 \begin{align}
-    \vd{1} &= \frac{a}{2} \begin{pmatrix}1 \\ \sqrt{3}\end{pmatrix} & \vd{2} &= \frac{a}{2} \begin{pmatrix}1 \\ -\sqrt{3}\end{pmatrix} & \vd{3} &= a \begin{pmatrix}-1 \\ 0\end{pmatrix}
+    \vec{a}_1 &= \frac{a}{2} \begin{pmatrix}3 \\ \sqrt{3}\end{pmatrix} & \text{und} & & \vec{a}_2 &= \frac{a}{2} \begin{pmatrix}-3 \\ \sqrt{3}\end{pmatrix} \, ,
+\end{align}
+sind jedoch um einen der drei Nächste-Nachbar-Vektoren $\vdelta_1$, $\vdelta_2$ und $\vdelta_3$ 
+\begin{align}
+    \vd{1} &= \frac{a}{2} \begin{pmatrix}1 \\ \sqrt{3}\end{pmatrix}, & \vd{2} &= \frac{a}{2} \begin{pmatrix}1 \\ -\sqrt{3}\end{pmatrix}, & \vd{3} &= a \begin{pmatrix}-1 \\ 0\end{pmatrix} \, ,
     \label{eq:nn-vektoren}
 \end{align}
 zueinander verschoben, wobei $a$ den Gitterabstand bezeichnet. 
 Da die Nächste-Nachbar-Vektoren nicht als ganzzahlige lineare Kombination der primitiven Gittervektoren $\vec{a_1}$ und $\vec{a_2}$
-\begin{align}
-    \vec{a}_1 &= \frac{a}{2} \begin{pmatrix}3 \\ \sqrt{3}\end{pmatrix} & \vec{a}_2 &= \frac{a}{2} \begin{pmatrix}-3 \\ \sqrt{3}\end{pmatrix}
-\end{align}
 dargestellt werden können, muss das Bienenwabengitter also mit einer zweiatomigen Basis aus den Untergittern $A$ und $B$ beschrieben werden.\\
 Als quantenmechanische Beschreibung der elektronischen Struktur des Gitters wird ein Tight-Binding-Modell (TB) verwendet. 
 Dabei wird angenommen, dass Elektronen stark an ihr zugehöriges Gitteratom gebunden sind, da dessen Atomorbitale nur schwach mit den Orbitalen benachbarter Atome überlappen. 
@@ -56,7 +57,7 @@ Wie in~Abbildung~\ref{fig:bänder} zu sehen, treffen sich beide Energiebänder a
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{Plots/Baenderplot.pdf}
-    \caption{Plot der TB-Bandstruktur des Bienenwabengitters. Dieser Plot wurde mit \textit{matplotlib}~\cite{hunter_matplotlib_2007} erstellt.}
+    \caption{Plot der TB-Bandstruktur des Bienenwabengitters~\eqref{eq:dispersion}. Dieser Plot wurde mit \textit{matplotlib}~\cite{hunter_matplotlib_2007} erstellt.}
     \label{fig:bänder}
 \end{figure}
 Bei halber Füllung, das heißt, es befindet sich auf jedem Gitterplatz im Mittel genau ein Elektron, liegt die Fermienergie aufgrund der vorhandenen Elektron-Loch-Symmetrie genau bei $\epsilon=0$, also an den Dirac-Punkten.
@@ -138,7 +139,7 @@ Die bisher noch nicht betrachtete Coulombabstoßung wirkt dieser Anziehung zwar 
 % kann im Folgenden aber formell einfach in die Wechselwirkung $V$ absorbiert werden.
 Die Coulombabstoßung kann zudem in der Nähe der Fermikante als näherungsweise konstanter Beitrag zur Wechselwirkung betrachtet werden, der der in der BCS-Theorie zur Vereinfachung ebenfalls als konstant angenommenen Anziehung entgegenwirkt. 
 % Insgesamt wird also mit einer effektiven Wechselwirkung, bestehend aus beiden Beiträgen gerechnet, 
-Zusammengefasst können beide Beiträge in Form einer konstanten, effektiven Wechselwirkung beschrieben werden, qualtitativ ändert sich dadurch allerdings nichts.
+Zusammengefasst können beide Beiträge in Form einer konstanten, effektiven Wechselwirkung beschrieben werden, qualtitativ ändert sich durch die Coulombabstoßung dadurch allerdings nichts.
 % Da diese sowieso konstant gesetzt wird, sorgt die Coulombwechselwirkung 
 
 Betrachtet man nun wieder die Form der erhaltenen Elektron-Elektron-Wechselwirkung~\eqref{eq:H_ee}, koppeln in diesem Bild also zwei Elektronen in den Zuständen $(\vk, \sigma)$ und $(\vk', \sigma')$ zu einem Paarzustand, wobei der Phononenimpuls $\vq$ übertragen wird und der Gesamtimpuls $\vec{K} = \vk + \vk'$ des Paars erhalten bleibt. 
@@ -164,7 +165,7 @@ mit der Schreibweise
 \begin{align}
     \sump{\vk} &= \sum_{\vk} \Theta(\hbar \omega_D - \abs{\epsilon_\vk - E_\text{F}}) = \sum_{\vk} \Theta(\hbar \omega_D - \abs{\epsilon_\vk})
 \end{align}
-und der Heaviside-Funktion $\Theta(x)$, wobei die Fermienergie hier und für den Rest der Arbeit auf $E_F = 0$ gesetzt wird.
+und der Heaviside-Funktion $\Theta(x)$, wobei die Fermienergie hier auf $E_F = 0$ gesetzt wird. 
 Der Faktor $N$ steht für die Anzahl an Gitterplätzen und rührt daher, dass der BCS-Term andernfalls aufgrund der Summe über $\vk$ und $\vk'$ mit $N^2$ wachsen würde, was unphysikalisch wäre.
 
 

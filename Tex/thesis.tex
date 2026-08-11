@@ -20,6 +20,17 @@
 ]{tudothesis}
 
 
+\RedeclareSectionCommand[
+  beforeskip=10pt,
+  afterskip=20pt
+]{chapter}
+
+% Does nothing i think
+% \renewcommand{\topfraction}{0.9}
+% \renewcommand{\bottomfraction}{0.8}
+% \renewcommand{\textfraction}{0.07}
+% \renewcommand{\floatpagefraction}{0.7}
+
 % Warning, if another latex run is needed
 \usepackage[aux]{rerunfilecheck}
 
@@ -148,61 +159,96 @@
 
 % Benes Biber
 
-% % Literaturverzeichnis
-% \usepackage[backend=biber, style=numeric, giveninits=true]{biblatex}
+% \DeclareSourcemap{
+%   \maps[datatype=bibtex]{
+%     \map{
+%       \step[
+%         fieldsource=journal,
+%         match={Nature Communications},
+%         replace={Nat. Commun.}
+%       ]
+%     }
+%     \map{
+%       \step[
+%         fieldsource=journal,
+%         match={Physical Review Letters},
+%         replace={Phys. Rev. Lett.}
+%       ]
+%     }
+%     \map{
+%       \step[
+%         fieldsource=journal,
+%         match={Physical Review},
+%         replace={Phys. Rev.}
+%       ]
+%     }
+%     \map{
+%       \step[
+%         fieldsource=journal,
+%         match={The European Physical Journal},
+%         replace={EPJ}
+%       ]
+%     }
+%     \map{
+%       \step[
+%         fieldsource=journal,
+%         match={MODELLING AND SIMULATION IN MATERIALS SCIENCE AND ENGINEERING},
+%         replace={Model. Simul. Mater. Sci. Eng.}
+%       ]
+%     }
+%   }
+% }
 
-% % Quellendatenbank
-% \addbibresource{lit.bib}
+% Quellendatenbank
+\addbibresource{reference.bib} 
 
-
-% %\addbibresource{programme.bib}
-% % Formatierung der Felder anpassen
+% Formatierung der Felder anpassen
 % \DeclareFieldFormat{title}{\mkbibbold{#1}}
 % \DeclareFieldFormat{year}{\mkbibbold{#1}}
 % \DeclareFieldFormat{doi}{\mkbibbold{DOI: #1}}
 
-% \DeclareFieldFormat{doi}{%
-%   \mkbibbold{DOI:}%
-%   \addcolon\space
-%   \ifhyperref
-%     {\href{https://doi.org/#1}{\nolinkurl{#1}}} % Klickbarer Link
-%     {\nolinkurl{#1}} % Nur DOI anzeigen, falls hyperref nicht aktiv
-% }
+\DeclareFieldFormat{doi}{%
+  % \mkbibbold{DOI:}%
+  DOI:
+  \addcolon\space
+  \ifhyperref
+    {\href{https://doi.org/#1}{\nolinkurl{#1}}} % Klickbarer Link
+    {\nolinkurl{#1}} % Nur DOI anzeigen, falls hyperref nicht aktiv
+}
 
 
-% \DefineBibliographyStrings{german}{
-%   andothers = {et\addabbrvspace al\adddot},
-% }
-% % Bibliografie-Driver anpassen
-% \DeclareBibliographyDriver{article}{%
-%   \printnames{author}%
-%   \addcomma\space
-%   \printfield{title}%
-%   \adddot\space
-%   \printfield[journaltitle]{journaltitle}%
-%   \space
-%   \printfield{volume}%
-%   \addcomma\space
-%   \printfield{pages}%
-%   \space
-%   (\printfield{year})%
-%   \adddot\space
-%   \printfield{doi}%
-%   \finentry
-% }
-% \DeclareNameAlias{sortname}{family-given}
+\DefineBibliographyStrings{german}{
+  andothers = {et\addabbrvspace al\adddot},
+}
+% Bibliografie-Driver anpassen
+\DeclareBibliographyDriver{article}{%
+  \printnames{author}%
+  \addcomma\space
+  \printfield{title}%
+  \adddot\space
+  \printfield[journaltitle]{journaltitle}%
+  \space
+  \printfield{volume}%
+  \addcomma\space
+  \printfield{pages}%
+  \space
+  (\printfield{year})%
+  \adddot\space
+  \printfield{doi}%
+  \finentry
+}
+\DeclareNameAlias{sortname}{family-given}
+\DeclareNameAlias{default}{family-given}
 
-% % Stelle sicher, dass \cite die Zahl in eckigen Klammern ausgibt
-% \DeclareCiteCommand{\cite}
-%   {\usebibmacro{prenote}}
-%   {\usebibmacro{citeindex}%
-%    \printtext[bibhyperref]{%
-%      [\printfield{labelnumber}] % Gibt die Nummer in eckigen Klammern aus
-%    }}
-%   {\multicitedelim}
-%   {\usebibmacro{postnote}}
-
-
+% Stelle sicher, dass \cite die Zahl in eckigen Klammern ausgibt
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{%
+     [\printfield{labelnumber}] % Gibt die Nummer in eckigen Klammern aus
+   }}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
 
 % Ende Benes
 
