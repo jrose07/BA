@@ -1,11 +1,11 @@
 \chapter{Theoretische Grundlagen}\label{sec:grundlagen}
 
 In diesem Kapitel werden die für diese Arbeit besonders wichtigen theoretischen Grundlagen dargelegt. 
-Diese sind vorallem Vorüberlegungen zur Geometrie und elektronischen Eigenschaften des Bienenwabengitters, sowie die wichtigsten Punkte der konventiellen Theorie zu Supraleitung, der BCS-Theorie.
+Diese sind vor allem Vorüberlegungen zur Geometrie und elektronischen Eigenschaften des Bienenwabengitters, sowie die wichtigsten Punkte der konventiellen Theorie zu Supraleitung, der BCS-Theorie.
 
 \section{Bienenwabengitter}~\label{subsec:Bienenwabengitter}
 
-Das Bienenwabengitter besteht ist ein hexagonales Gitter, das aus zwei trigonalen Unergittern $A$ und $B$ besteht, siehe dazu Abbildung~\ref{fig:gitter}.
+Das Bienenwabengitter ist ein hexagonales Gitter, das aus zwei trigonalen Untergittern $A$ und $B$ besteht, siehe dazu Abbildung~\ref{fig:gitter}.
 Ein prominentes Beispiel für Materialien mit Bienenwabenstruktur ist das kohlenstoffbasierte \textit{Graphen}~\cite{castro_neto_electronic_2009} bzw.\ die Monolagen des Graphits, aber  auch in Übergangsmetall-Dichalkogeniden (TMDs) wie $\mathrm{MoS}_2$ oder $\mathrm{MoSe}_2$ kommt diese Struktur vor. \\
 % Das Gitter selbst muss im Gegensatz zu einem einfachen hexagonalen Gitter durch gegeneinander verschobene Untergitter $A$ und $B$ beschrieben werden, die jeweils eine hexagonale Struktur aufweisen, siehe Abbildung~\ref{fig:gitter}.
 \begin{figure}[htbp]
@@ -34,7 +34,8 @@ Der verwendete Tight-Binding-Hamiltonoperator lautet
 \begin{align}
     \oH_\text{TB} &= -t \sum_{\expval{\vv{R}, \vv{R}'}, \sigma} \ofed{\vv{R}, \sigma} \ofe{\vv{R}', \sigma} \label{eq:TB}\, ,
 \end{align}
-wobei hier nur ein Elektronorbital und Nächste-Nachbar-Hüpf-Terme berücksichtigt werden, mit $\expval{\vec{R}, \vec{R}'}$ ist die Summe über alle möglichen Gittervektoren $\vec{R}$ und jeweiligen Nachbarn $\vec{R}'$ gemeint.
+wobei hier nur ein Elektronorbital und Nächste-Nachbar-Hüpf-Terme berücksichtigt werden.  
+Die Schreibweise $\expval{\vec{R}, \vec{R}'}$ bezeichnet die Summe über alle möglichen Gittervektoren $\vec{R}$ und jeweiligen Nachbarn $\vec{R}'$.
 Die in einer Energie-Einheit gemessene Hüpf-Wahrscheinlichkeit wird  durch den Hüpfparameter $t$ beschrieben und $\ofed{\vv{R}, \sigma}$ und $\ofe{\vv{R}', \sigma}$ sind die in der zweiten Quantisierung formulierten Erzeugungs- und Vernichtungsoperatoren für Elektronen mit Spin $\sigma$ an den Gitterplätzen $\vec{R}$ bzw. $\vec{R}'$.
 Die fermionischen Operatoren erfüllen die Antikommutatorrelationen
 \begin{align}
@@ -51,16 +52,17 @@ Beide Schritte werden im Folgenden genauer gezeigt, weshalb hier zunächst nur d
 \begin{align}
     \epsilon_\pm(\vk) = \pm t \sqrt{3 + 2 \cos(\sqrt{3} k_y a) + 4 \cos(\sqrt{3} k_y a/2) \cos(3 k_x a/2)}
 \end{align}
-qualtitativ diskutiert wird.
-Wie in~Abbildung~\ref{fig:bänder} zu sehen, treffen sich beide Energiebänder an ausgewählten Stellen, den sogenannten Dirac-Punkten.
+qualitativ diskutiert wird.
+Wie in~Abbildung~\ref{fig:bänder} zu sehen, berühren sich beide Energiebänder an ausgewählten Stellen, den sogenannten Dirac-Punkten.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{Plots/Baenderplot.pdf}
-    \caption{Plot der TB-Bandstruktur des Bienenwabengitters~\eqref{eq:dispersion}. Dieser Plot wurde mit \textit{matplotlib}~\cite{hunter_matplotlib_2007} erstellt.}
+    \caption{Plot der TB-Bandstruktur des Bienenwabengitters~\eqref{eq:dispersion}. Dieser Plot wurde mit \textit{matplotlib}~\cite{hunter_matplotlib_2007} erstellt. Es sind die sechs Dirac-Punkte an dem Rand der ersten Brillouin Zone zu sehen. Die Vektorkomponenten $k_x$ und $k_y$ sind in Einheiten des reziproken Gitterabstands $a$ angegeben und die Energie in Einheiten des Hüpfparameters $t$.}
     \label{fig:bänder}
 \end{figure}
-Bei halber Füllung, das heißt, es befindet sich auf jedem Gitterplatz im Mittel genau ein Elektron, liegt die Fermienergie aufgrund der vorhandenen Elektron-Loch-Symmetrie genau bei $\epsilon=0$, also an den Dirac-Punkten.
+Bei halber Füllung befindet sich auf jedem Gitterplatz im Mittel genau ein Elektron.
+Dann liegt die Fermienergie aufgrund der vorhandenen Elektron-Loch-Symmetrie genau bei $\epsilon=0$, also an den Dirac-Punkten.
 In diesem Fall ergibt sich in der Nähe der Fermikante eine lineare Dispersion $\epsilon_\pm(\vk) \approx \pm \hbar v_F \abs{\vk}$ mit der Fermigeschwindigkeit $v_F$ und Planckschem Wirkungsquantum $\hbar$~\cite{castro_neto_electronic_2009}.
 Diese lineare Dispersion führt zu einer Reihe außergewöhnlicher Effekte, wie dem Auftreten von masselosen Dirac-Fermionen~\cite{semenoff_condensed-matter_1984, novoselov_two-dimensional_2005} und einer am Dirac-Punkt ebenfalls linear verschwindenden Zustandsdichte $\rho(E) \propto \abs{E}$~\cite{castro_neto_electronic_2009}, was für die Ausbildung von Supraleitung bei halber Füllung besonders von Relevanz ist.
 
@@ -78,14 +80,15 @@ Das folgende Kapitel soll hierbei eine Einführung in die Grundkonzepte, die Lim
 Der Schlüsselmechanismus bei der Ausbildung einer supraleitenden Phase ist eine attraktive Wechselwirkung zweier Elektronen, die die Bildung  neuer gebundener Zustände, nämlich der sogenannten Cooper-Paare ermöglicht. 
 Aufgrund ihres ganzzahligen Gesamtspins besitzen Cooper-Paare bosonischen Charakter und können unterhalb einer kritischen Temperatur einen gemeinsamen makroskopisch kohärenten Quantenzustand ausbilden.
 Dieser wird durch den komplexen Ordnungsparameter $\Delta$ beschrieben, dessen Betrag im Rahmen der BCS-Theorie gleichzeitig die Energielücke für die Anregung eines einzelnes Quasiteilchens aus dem kondensierten Grundzustand bestimmt (vgl. Abschnitt~\ref{sec:modell}).
-Es lässt sich zeigen, dass dieser makroskopische Quantenzustand genau die Eigenschaften einer supraleitenden Phase erfüllt, siehe dazu z.\,B. Ref.~\cite{tinkham_introduction_2004}.
+Es lässt sich zeigen, dass dieser makroskopische Quantenzustand genau die Eigenschaften einer supraleitenden Phase erfüllt.
+Siehe dazu z.\,B. Ref.~\cite{tinkham_introduction_2004}.
 
 
 \subsection{Phononenvermittelte Elektron-Elektron-Wechselwirkung}
 Die Ursache der attraktiven Wechselwirkung mag aufgrund der Coulomb-Abstoßung zwischen den Elektronen zunächst kontraintuitiv erscheinen, kann in der BCS-Theorie aber durch die Kopplung der Elektronen mit den Phononen des Kristallgitters begründet werden. \\
 
 Anschaulich lässt sich dies anhand der unterschiedlichen Zeitskalen für Gitterschwingungen und Elektronenbewegungen in Metallen erklären.
-Regt ein Leitungselektron eine Gitterschwingung an bewegt es sich in der Zeit, in der die ausgelenkten Atomrümpfe zurückschwingen um mehrere Gitterkonstanten weiter, während es eine positive Polarisierungsblase hinterlässt, die selbst weitere Elektronen anzieht. 
+Regt ein Leitungselektron eine Gitterschwingung an, bewegt es sich in der Zeit, in der die ausgelenkten Atomrümpfe zurückschwingen um mehrere Gitterkonstanten weiter, während es eine positive Polarisierungsblase hinterlässt, die selbst weitere Elektronen anzieht. 
 Es kommt also in Summe zu einer effektiven (stark retardierten) Anziehung zwischen den Elektronen (vgl. ~\cite[218]{czycholl_theoretische_2017},~\cite[266]{altland_condensed_2012}). \\
 Um dies auch quantitativ zu verstehen, betrachte man den Fröhlich-Hamiltonoperator 
 \begin{align}
@@ -104,10 +107,10 @@ mit der Wechselwirkungsstärke
     V_{\vk, \vec{k}', \vq} = \frac{\abs{M(\vq)}^2 \hbar \omega_\vq}{\abs{\Delta \epsilon}^2 - (\hbar \omega_\vq)^2}
 \end{align}
 gebracht werden~\cite{czycholl_theoretische_2017}. 
-Diese Wechselwirkung ist für $\abs{\Delta \epsilon} \coloneqq \abs{\epsilon_\vk - \epsilon_{\vk + \vq}} < \hbar \omega_\vq$ negativ, also anziehend, was genau die Voraussetzung für die Ausbildung von Cooper-Paaren ist.
+Diese Wechselwirkung ist für $\abs{\Delta \epsilon} \coloneqq \abs{\epsilon_\vk - \epsilon_{\vk + \vq}} < \hbar \omega_\vq$ negativ, also anziehend, welches genau die Voraussetzung für die Ausbildung von Cooper-Paaren ist.
 % Für größere Energieunterschiede wirkt die Wechselwirkung hingegen abstoßend und ist außerdem für $\Delta \epsilon = \hbar \omega_\vq$ singulär, weswegen in der BCS-Theorie nur Elektronen im Energiefenster $\abs{\Delta \epsilon} < \hbar \omega_\vq < \hbar \omega_D$ berüksichtigt werden.
 Für größere Energieunterschiede wirkt die Wechselwirkung hingegen abstoßend und ist außerdem für $\Delta \epsilon = \pm \hbar \omega_\vq$ singulär. 
-Da allerdings aufgrund des Pauli-Verbots davon ausgegangen werden kann, dass die gestreuten Elektronen vor allem aus der Nähe der Fermi-Energie stammen und damit hauptsächlich Beiträge mit kleinen Energiedifferenzen $\abs{\Delta \epsilon} < \hbar \omega_\vq$ wichtig sind, kann der repulsive Teil der Wechselwirkung mit $\abs{\Delta \epsilon} \geq \hbar \omega_\vq$ vernachlässigt werden.
+Da allerdings aufgrund des Pauli-Verbots davon ausgegangen werden kann, dass die gestreuten Elektronen vor allem aus der Nähe der Fermi-Kante stammen und damit hauptsächlich Beiträge mit kleinen Energiedifferenzen $\abs{\Delta \epsilon} < \hbar \omega_\vq$ wichtig sind, kann der repulsive Teil der Wechselwirkung mit $\abs{\Delta \epsilon} \geq \hbar \omega_\vq$ vernachlässigt werden.
 Es wird also formell der Cutoff $\abs{\Delta \epsilon} < \hbar \omega_D$ mit der Debye-Frequenz $\omega_D$ eingeführt, innerhalb der die Wechselwirkung rein anziehend ist~\cite{czycholl_theoretische_2017}.
 Alternativerweise ist es ebenfalls möglich eine rein attraktive Wechselwirkung ohne Singularitäten direkt über andere kontinuierliche Trafos zu erhalten~\cite{krull_enhanced_2012}. 
 Die Begründung zur Einführung des Cutoffs ist allerdings in diesem Fall dieselbe.
@@ -129,7 +132,7 @@ Die Begründung zur Einführung des Cutoffs ist allerdings in diesem Fall diesel
 % weswegen in der BCS-Theorie nur Elektronen im Energiefenster $\abs{\Delta \epsilon} < \hbar \omega_\vq < \hbar \omega_D$ berücksichtigt werden.
 
 % Es wurde also gezeigt, dass aus der Elektron-Phonon-Wechselwirkung
-Mit der zuvor begründeten Annahme, dass die gestreuten Elektronen aus der Nähe der Fermikante kommen ergibt sich also eine effektive phononenvermittelte Anziehung, die in dem Energiefenster
+Mit der zuvor begründeten Annahme, dass die gestreuten Elektronen aus der Nähe der Fermikante kommen, ergibt sich also eine effektive phononenvermittelte Anziehung, die in dem Energiefenster
 \begin{align}
     E_F - \hbar \omega_D \leq \epsilon_\vk \leq E_F + \hbar \omega_D
 \end{align}
@@ -137,15 +140,15 @@ um die Fermienergie herum die Ausbildung von Cooper-Paaren ermöglicht.
 Die bisher noch nicht betrachtete Coulombabstoßung wirkt dieser Anziehung zwar entgegen, allerdings nur schwach, da sie in Metallen einerseits abgeschirmt und andererseits durch ihren instantanen Charakter stark unterdrückt wird~\cite{morel_calculation_1962,althuser_collective_2025}. 
 % Diese Abschwächung der Supraleitung kann also in guter Näherung vernachlässigt werden und wird deswegen in dieser Arbeit nicht weiter mitbehandelt.
 % kann im Folgenden aber formell einfach in die Wechselwirkung $V$ absorbiert werden.
-Die Coulombabstoßung kann zudem in der Nähe der Fermikante als näherungsweise konstanter Beitrag zur Wechselwirkung betrachtet werden, der der in der BCS-Theorie zur Vereinfachung ebenfalls als konstant angenommenen Anziehung entgegenwirkt. 
+Die Coulombabstoßung kann zudem in der Nähe der Fermikante als näherungsweise konstanter Beitrag zur Wechselwirkung betrachtet werden, welcher der in der BCS-Theorie zur Vereinfachung ebenfalls als konstant angenommenen Anziehung entgegenwirkt. 
 % Insgesamt wird also mit einer effektiven Wechselwirkung, bestehend aus beiden Beiträgen gerechnet, 
-Zusammengefasst können beide Beiträge in Form einer konstanten, effektiven Wechselwirkung beschrieben werden, qualtitativ ändert sich durch die Coulombabstoßung dadurch allerdings nichts.
+Zusammengefasst können beide Beiträge in Form einer konstanten, effektiven Wechselwirkung beschrieben werden, qualitativ ändert sich durch die Coulombabstoßung dadurch allerdings nichts\footnote{Dies gilt natürlich nur, sofern die abgeschirmte Coulombabstoßung nicht größer als die Anziehung ist, da dann eine Abstoßung beschrieben wird.}.
 % Da diese sowieso konstant gesetzt wird, sorgt die Coulombwechselwirkung 
 
-Betrachtet man nun wieder die Form der erhaltenen Elektron-Elektron-Wechselwirkung~\eqref{eq:H_ee}, koppeln in diesem Bild also zwei Elektronen in den Zuständen $(\vk, \sigma)$ und $(\vk', \sigma')$ zu einem Paarzustand, wobei der Phononenimpuls $\vq$ übertragen wird und der Gesamtimpuls $\vec{K} = \vk + \vk'$ des Paars erhalten bleibt. 
+Betrachtet man nun wieder die Form der erhaltenen Elektron-Elektron-Wechselwirkung~\eqref{eq:H_ee}, koppeln in diesem Bild zwei Elektronen in den Zuständen $(\vk, \sigma)$ und $(\vk', \sigma')$ zu einem Paarzustand, wobei der Phononenimpuls $\vq$ übertragen wird und der Gesamtimpuls $\vec{K} = \vk + \vk'$ des Paars erhalten bleibt. 
 Um dieses Bild zu vereinfachen, wird in der BCS-Theorie angenommen, dass hauptsächlich nur Elektronen mit Gesamtspin $S = 0$ und Gesamtimpuls $\vec{K} = 0$ Cooper-Paare bilden. 
-Bardeen, Cooper und Schrieffer begründen diese Annahme zum einen damit, dass die Bildung von Paaren mit Gesamtspin $S = 1$, also Triplett-Kopplung durch Austauschterme in der Wechselwirkung energetisch benachteiligt wird\footnote{Alternativ könnte man dies auch so formulieren, dass in diesem Fall die Ortswellenfunktion $\Psi(\vec{r_1} - \vec{r_2})$ antisymmetrisch und daher insbesonders $\Psi(0) = 0$ sein muss, was die attraktive Wechselwirkung also unterdrückt~\cite[225]{czycholl_theoretische_2017}.}~\cite{bardeen_theory_1957}.
-Zum anderen ist die Menge an Zuständen $(\vk, \vk')$ die zu Paaren mit Gesamtimpuls $\vec{K}=0$ koppeln können deutlich größer als für $\vec{K} \neq 0$ (siehe Abbildung~\ref{fig:s_wave}), weswegen die Zustände mit endlichen $\vec{K}$ vernachlässigt werden können. 
+Bardeen, Cooper und Schrieffer begründen diese Annahme zum einen damit, dass die Bildung von Paaren mit Gesamtspin $S = 1$ (Triplett-Kopplung), durch Austauschterme in der Wechselwirkung energetisch benachteiligt wird\footnote{Alternativ könnte man dies auch so formulieren, dass in diesem Fall die Ortswellenfunktion $\Psi(\vec{r_1} - \vec{r_2})$ antisymmetrisch und daher insbesonders $\Psi(0) = 0$ sein muss, was die attraktive Wechselwirkung also unterdrückt~\cite[225]{czycholl_theoretische_2017}.}~\cite{bardeen_theory_1957}.
+Zum anderen ist die Menge an Zuständen $(\vk, \vk')$, die zu Paaren mit Gesamtimpuls $\vec{K}=0$ koppeln können deutlich größer als für $\vec{K} \neq 0$ (siehe Abbildung~\ref{fig:s_wave}), weswegen die Zustände mit endlichen $\vec{K}$ vernachlässigt werden können. 
 
 \begin{figure}[htbp]
     \centering
@@ -177,6 +180,6 @@ Der Faktor $N$ steht für die Anzahl an Gitterplätzen und rührt daher, dass de
 Die BCS-Theorie kann als mikroskopische Theorie der Supraleitung die Eigenschaften konventionelle Supraleiter wie z. B. Aluminium, Blei oder Quecksilber gut beschreiben~\cite{webb_superconductivity_2015}. 
 Für unkonventionelle (Hochtemperatur-) Supraleiter, wie z.B. Yttrium-Barium-Kupferoxid (YBCO) aus der Familie der Cuprate scheint der grundlegende Mechanismus der Supraleitung jedoch ein anderer zu sein. 
 Die Bildung von Cooper-Paaren ist zwar auch hier die Grundlage für die Ausbildung einer supraleitenden Phase, jedoch ist die Ursache der attraktiven Wechselwirkung nicht unbedingt phononübermittelt, sondern kann z.B. auch mit Spin-Fluktuationen zusammenhängen~\cite{cao_unconventional_2018,czycholl_theoretische_2017}.
-Unter diesem Aspekt ist es möglich, dass also für andere, unkonventionelle Supraleiter die in der BCS-Theorie getroffenen Annahmen für Singulett-Kopplung und einer isotropen, konstanten Wechselwirkung nicht zustimmen, weshalb in einer über der BCS-Theorie hinaus gehenden Supraleitungstheorie auch andere Kopplungsformen zugelassen werden. \\
+Unter diesem Aspekt ist es möglich, dass also für andere, unkonventionelle Supraleiter die in der BCS-Theorie getroffenen Annahmen für Singulett-Kopplung und einer isotropen, konstanten Wechselwirkung nicht zutreffen, weshalb in einer über der BCS-Theorie hinaus gehenden Supraleitungstheorie auch andere Kopplungsformen zugelassen werden. \\
 Diese werden in der Literatur als ($s$, $p$, $d$, $f$, \dots)-wave bezeichnet, benannt nach der zugrundliegenden Symmetrie des Ordnungsparameters $\Delta(\vk)$~\cite{sigrist_phenomenological_1991}. 
 Für $s$-wave ist der Ordnungsparameter isotrop, das ist also genau der Fall der durch die BCS-Theorie beschrieben wird\footnote{Ordnungsparameter, die die Symmetrie des zugrundliegenden Gitters besitzen, werden \glqq extended $s$-wave \grqq genannt. Dieser Fall wird allerdings nicht durch die BCS-Theorie beschrieben.}.
