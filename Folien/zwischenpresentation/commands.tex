@@ -95,9 +95,7 @@
 \newcommand{\oH}{\op{H}}
 \newcommand{\oHZ}{\op{H}_{\Zee}}
 \newcommand{\oHeff}{\op{H}_{\eff}}
-\newcommand{\oHNN}{\op{H}_{\mathrm{NN}}}
-\newcommand{\oHWW}{\op{H}_{\mathrm{WW}}}
-\newcommand{\oHWWeff}{\op{H}_{\mathrm{WW}}^{(\mathrm{eff})}}
+\newcommand{\oh}{\op{h}}
 
 % unitary transformations
 \newcommand{\oU}{\op{U}}
@@ -118,106 +116,19 @@
 \def\obd#1{\op{B}^{\dagg}_{#1}}
 \def\on#1{\op{n}^{\pdagg}_{#1}}
 
-% Vector k
-\newcommand{\vk}{{\vec{k}}}
-\newcommand{\vq}{{\vec{q}}}
-\newcommand{\vdelta}{{\vec{\delta}}}
-\def\vd#1{{\vec{\delta}_{#1}}}
+\newcommand{\ocdu}{\ocd{\mb{k}+\mb{q}, \uparrow}}
+\newcommand{\ocdd}{\ocd{\mb{k'} - \mb{q},\downarrow}}
+\newcommand{\ocndd}{\oc{\mb{k'}, \downarrow}}
+\newcommand{\ocndu}{\oc{\mb{k}, \uparrow}}
 
-% h.c.
-\newcommand{\hc}{\text{h.c.}}
-% diag
-\newcommand{\diag}{\text{diag}}
-% U_m, W, h, h', W', P
-\newcommand{\mUM}{\mb{U}_\text{M}}
-\newcommand{\mW}{\mb{W}}
-\newcommand{\mh}{\mb{h}}
-\newcommand{\mhp}{\mb{h}'}
-\newcommand{\mWp}{\mb{W}'}
-\newcommand{\mP}{\mb{P}}
-\newcommand{\mM}{\mb{M}}
-\newcommand{\mone}{\mb{1}}
-\newcommand{\mhpp}{\mb{h}''}
-\newcommand{\mBp}{\mb{B}_+}
-\newcommand{\mBm}{\mb{B}_-}
-\newcommand{\mBpm}{\mb{B}_\pm}
-\newcommand{\mUp}{\mb{U}_+}
-\newcommand{\mUm}{\mb{U}_-}
-\newcommand{\mUpm}{\mb{U}_\pm}
-\newcommand{\mU}{\mb{U}}
-
-
-% arsinh ?
-\newcommand{\arsinh}{\operatorname{arsinh}}
-
-% Custom to Superconductivity
-\newcommand{\ocdu}{\ocd{\vk', \uparrow}}
-\newcommand{\ocdd}{\ocd{-\vk',\downarrow}}
-\newcommand{\ocndd}{\oc{-\vk, \downarrow}}
-\newcommand{\ocndu}{\oc{\vk, \uparrow}}
-\newcommand{\ocdup}{\ocd{\vk, \up}}
-\newcommand{\ocddown}{\ocd{-\vk, \down}}
-\newcommand{\ocup}{\oc{\vk, \up}}
-\newcommand{\ocdown}{\oc{-\vk, \down}}
-\newcommand{\oadup}{\oad{\vk, \up}}
-\newcommand{\oaddown}{\oad{-\vk, \down}}
-\newcommand{\oaup}{\oa{\vk, \up}}
-\newcommand{\oadown}{\oa{-\vk, \down}}
-\newcommand{\obdup}{\obd{\vk, \up}}
-\newcommand{\obddown}{\obd{-\vk, \down}}
-\newcommand{\obup}{\ob{\vk, \up}}
-\newcommand{\obdown}{\ob{-\vk, \down}}
-
-% Nambu Spinors
-\newcommand{\opsi}{\symbf{\Psi}^{\pdagg}}
-\newcommand{\opsid}{\symbf{\Psi}^{\dagg}}
-\newcommand{\vopsi}{\vec{\symbf{\Psi}}^{\pdagg}}
-\newcommand{\vopsid}{\vec{\symbf{\Psi}}^{\dagg}}
-\newcommand{\ophi}{\symbf{\varphi}^{\pdagg}}
-\newcommand{\ophid}{\symbf{\varphi}^{\dagg}}
-\newcommand{\vophi}{\vec{\symbf{\varphi}}^{\pdagg}}
-\newcommand{\vophid}{\vec{\symbf{\varphi}}^{\dagg}}
-
-% For Hopping terms
-\newcommand{\oakd}{\oad{\vk, \sigma}}
-\newcommand{\oak}{\oa{\vk, \sigma}}
-\newcommand{\obkd}{\obd{\vk, \sigma}}
-\newcommand{\obk}{\ob{\vk, \sigma}}
-\newcommand{\ockd}{\ocd{\vk, \sigma}}
-\newcommand{\ock}{\oc{\vk, \sigma}}
-% For Hubbard Terms
-% \newcommand{\ocdur}{\ocd{\vk+\mb{q}, \uparrow}}
-% \newcommand{\ocddr}{\ocd{\mb{k'} - \mb{q},\downarrow}}
-% \newcommand{\ocnddr}{\oc{\mb{k'}, \downarrow}}
-% \newcommand{\ocndur}{\oc{\vk, \uparrow}}
-
-% For Fermionic and bosonic Operators
-\def\ofe#1{\op{c}^{\pdagg}_{#1}}
-\def\ofed#1{\op{c}^{\dagg}_{#1}}
-\def\obo#1{\op{b}^{\pdagg}_{#1}}
-\def\obod#1{\op{b}^{\dagg}_{#1}}
-
-% Up and down
-\newcommand{\up}{\uparrow}
-\newcommand{\down}{\downarrow}
-
-% Restricted Sum
-\def\sump#1{\sideset{}{'}\sum_{#1}}
-% \def\sump#1{\sum_{#1}^{\prime}
-% \newcommand{\sumpk}{\sideset{}{'}\sum_{\vec{k}}}
-% \newcommand{\sumpk}{\sum_{\vec{k}}'}
-
-
-
-
-\newcommand{\ophioned}{\symbf{\varphi}^{\dagg}_{1, \vk}}
-\newcommand{\ophione}{\symbf{\varphi}^{\pdagg}_{1, \vk}}
-\newcommand{\ophitwod}{\symbf{\varphi}^{\dagg}_{2, \vk}}
-\newcommand{\ophitwo}{\symbf{\varphi}^{\pdagg}_{2, \vk}}
-\newcommand{\ophithreed}{\symbf{\varphi}^{\dagg}_{3, \vk}}
-\newcommand{\ophithree}{\symbf{\varphi}^{\pdagg}_{3, \vk}}
-\newcommand{\ophifourd}{\symbf{\varphi}^{\dagg}_{4, \vk}}
-\newcommand{\ophifour}{\symbf{\varphi}^{\pdagg}_{4, \vk}}
+\newcommand{\ophioned}{~{\varphi}^{\dagg}_{1, \mb{k}}}
+\newcommand{\ophione}{~{\varphi}^{\pdagg}_{1, \mb{k}}}
+\newcommand{\ophitwod}{~{\varphi}^{\dagg}_{2, \mb{k}}}
+\newcommand{\ophitwo}{~{\varphi}^{\pdagg}_{2, \mb{k}}}
+\newcommand{\ophithreed}{~{\varphi}^{\dagg}_{3, \mb{k}}}
+\newcommand{\ophithree}{~{\varphi}^{\pdagg}_{3, \mb{k}}}
+\newcommand{\ophifourd}{~{\varphi}^{\dagg}_{4, \mb{k}}}
+\newcommand{\ophifour}{~{\varphi}^{\pdagg}_{4, \mb{k}}}
 
 % spin operators in direction
 \newcommand{\oS}{\op{S}}
@@ -347,7 +258,6 @@
 
 % commutator 
 \def\commute#1#2{\left[#1,#2\right]}
-\def\anticommute#1#2{\left\{#1,#2\right\}}
 
 % taxicab 
 \def\taxicab#1#2{\lambda(#1,#2)}
