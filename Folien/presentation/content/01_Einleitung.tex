@@ -88,6 +88,7 @@
             \begin{itemize}
                 \item[$\rightarrow$] Bildung von Cooper-Paaren energetisch begünstigt
                 \item[$\rightarrow$] für $T<T_C$ makroskopischer Quantenzustand (Supraleitung)
+                \item[$\rightarrow$] Energielücke $2\abs{\Delta}$ im Anregungsspektrum des Systems ``schützt'' Kondensat
             \end{itemize}
         \item Beschreibung durch BCS-Hamiltonian 
         \begin{align*}
@@ -138,13 +139,18 @@
 \begin{frame}
     \frametitle{Bienenwabengitter -- Tight-Binding-Modell}
     \begin{itemize}
-        \item Beschreibung über Nächste-Nachbar Tight-Binding-Modell
+        \item Tight-Binding: Elektronen stark an Gitteratom gebunden
+        \begin{itemize}
+            \item[$\rightarrow$] können mit ``Hüpfwahrscheinlichkeit'' $t$ zu benachbartem Gitterplatz tunneln
+        \end{itemize}
+        \item Beschränkung auf Nächste-Nachbar-Tunneln 
         \begin{align*}
-            \oH_{\text{TB}} &= -t \sum_{\expval{\vec{R}, \vec{R}'}} \oad{\vec{R}} \ob{\vec{R}'} + \hc
+            \oH_{\text{TB}} &= -t \sum_{\vec{R}, \vdelta} \oad{\vec{R}} \ob{\vec{R}+\vdelta} + \hc
         \end{align*}
         \item $\oA_{\alpha}$ und $\oB_{\beta}$ erfüllen die Antikommutatorrelationen
         \begin{align*}
-            \anticommute{\oad{\alpha}, \oa{\beta}} &= \anticommute{\obd{\alpha}, \ob{\beta}} = \delta_{\alpha \beta} 
+            \anticommute{\oad{\alpha}}{\oa{\beta}} &= \anticommute{\obd{\alpha}}{\ob{\beta}} = \delta_{\alpha \beta} \\
+            \anticommute{\oad{\alpha}}{\oad{\beta}} = \anticommute{\obd{\alpha}}{\obd{\beta}} &= \anticommute{\oad{\alpha}}{\obd{\beta}} = \anticommute{\oad{\alpha}}{\ob{\beta}} = 0
         \end{align*}
     \end{itemize}
 \end{frame}

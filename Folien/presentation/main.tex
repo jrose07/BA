@@ -29,6 +29,22 @@
 
 \usepackage[export]{adjustbox} % align figures
 
+
+% vv vec
+\usepackage[a]{esvect}
+% RedCancel
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\newcommand{\RedCancel}[1]{%
+  \tikz[baseline=(X.base)]{
+    \node[inner sep=0pt, outer sep=0pt] (X) {$#1$};
+    \draw[red, line width=0.8pt]
+      ([yshift=0pt]X.west) --
+      ([yshift=0pt]X.east);
+  }%
+}
+
 % short commands
 \input{commands.tex}
 \newcommand{\dsq}{\phantom{}^2}
@@ -44,7 +60,7 @@
 %=======================
 % Bibliography:
 %=======================
-\usepackage[style=nature,doi=false,isbn=false,url=false,eprint=false,backend=bibtex]{biblatex}
+\usepackage[style=nature,doi=true,isbn=false,url=false,eprint=false,backend=bibtex]{biblatex}
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 \addbibresource{lit.bib}
 \newcommand{\addtobibliography}{{\color{white}\cite{graes21,graes24,stark18,chave21,store14,david15}}} % engel74,alvar10c,marti23
@@ -122,5 +138,25 @@
 {
  \printbibliography
 }
-
+\backupframe{Back-Up}
+{
+  \frametitle{Backup-Folie \textendash{} Unitäre Matrix}
+    \begin{itemize}
+        \item Unitäre Matrix 
+        \begin{align*}
+            \dul{U} = \frac{1}{2} \begin{pmatrix}
+            -\frac{\Delta}{N_1} e^{-\im \varphi} \quad & -\frac{\Delta}{N_2} e^{-\im \varphi} \quad & -\frac{\Delta}{N_3} e^{-\im \varphi} \quad & -\frac{\Delta}{N_4} e^{-\im \varphi} \\[0.3em]
+            \frac{\Delta}{N_1} & \frac{\Delta}{N_2} & \frac{\Delta}{N_3} & \frac{\Delta}{N_4} \\[0.3em]
+            \left(\frac{-E_+ + \lambda_+}{N_1}\right)e^{-\im \varphi} \quad & \left(\frac{E_+ + \lambda_+}{N_2}\right)e^{-\im \varphi} \quad & \left(\frac{E_- - \lambda_-}{N_3}\right)e^{-\im \varphi} \quad & \left(\frac{-E_- - \lambda_-}{N_4}\right)e^{-\im \varphi} \\[0.3em]
+            \frac{E_+ - \lambda_+}{N_1} & \frac{-E_+ - \lambda_+}{N_2} & \frac{E_- - \lambda_-}{N_3} & \frac{-E_- - \lambda_-}{N_4}
+            \end{pmatrix}
+        \end{align*}
+        \item mit den folgenden Definitionen 
+        \begin{align*}
+            \lambda_\pm &= \mu \pm \abs{f(\vk)}, & E_\pm &= \sqrt{\lambda_{\pm}^2 + \Delta^2}, \\
+    N_{1,2} &= \sqrt{E_+(E_+ \mp \lambda_+)}, & N_{3,4} &= \sqrt{E_-(E_- \mp \lambda_-)} \, \\
+    \varphi &= \arg(f(\vk)) \, , & e^{-\im \varphi} &= \frac{f^*(\vk)}{\abs{f(\vk)}}
+        \end{align*}
+    \end{itemize}
+}
 \end{document}
