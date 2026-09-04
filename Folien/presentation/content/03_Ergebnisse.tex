@@ -1,0 +1,189 @@
+\section{Ergebnisse}
+
+\begin{frame}[plain]
+    % \frametitle{Ergebnisse}
+    \centering
+    \Large
+    \textbf{Ergebnisse}
+    \vspace{1cm}
+    \begin{itemize}
+        \item numerische Lösung der Selbstkonsistenzgleichung
+        \begin{itemize}
+            \item[$\rightarrow$] Kombination aus Newton-Verfahren (Nullstellenverfahren) und Fixpunktiteration
+        \end{itemize}
+        % \item 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Temperaturabhängigkeit}
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{itemize}
+            \item $W$ = $6t = $ Bandbreite, $E_D = \hbar \omega_D$ 
+            \item starke Abhängigkeit von $\mu$ 
+            \item Plateau für $\Delta(T)$ bei $T \rightarrow 0$
+            \item Wurzelverhalten für $\Delta(T)$ bei $T \rightarrow T_C$
+            \begin{itemize}
+                \item[$\rightarrow$] typisch für BCS-Theorie 
+            \end{itemize}
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.49\textwidth}
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=\textwidth]{images/T_abh.png}
+            % \caption{}
+            % \label{<label>}
+        \end{figure}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Abhängigkeit von Wechselwirkung $U$}
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{itemize}
+            \item $T=0$ ($\Delta_0$)
+            \item Für $\mu \neq 0$ ist exponentieller Abfall für $U \rightarrow 0$ zu beobachten
+            \item Für $\mu = 0$ (halbe Füllung) ist erst ab $U > U_C = 12,3 W$ eine Energielücke $\Delta_0 \neq 0$ vorhanden
+            \begin{itemize}
+                \item[$\rightarrow$] kritische Wechselwirkung existiert (``quantenkritischer Punkt'')
+            \end{itemize}
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.49\textwidth}
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=\textwidth]{images/U_abh.png}
+            % \caption{<caption>}
+            % \label{<label>}
+        \end{figure}
+    \end{minipage}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Quantenkritischer Punkt}
+    \begin{minipage}[t]{0.55\textwidth}
+        \begin{itemize}
+            \item Löse Selbstkonsistenzgleichung für $\mu = 0$ bei $T = 0$
+            \begin{align*}
+                1 = \frac{U}{2} \int_{-E_D}^{E_D} \frac{\rho(\epsilon)}{\sqrt{\epsilon^2 + \Delta_0^2}} \, d\epsilon
+            \end{align*}
+            \begin{itemize}
+                \item[$\rightarrow$] erhalte Ausdruck für $U(\Delta_0)$ 
+                \item[$\rightarrow$] $U_C = \lim_{\Delta_0 \rightarrow 0} U(\Delta_0)$
+            \end{itemize}
+            \item Für $E_D \ll W$ ist Näherung $\rho(\epsilon) \approx A \abs{\epsilon}$ gut 
+            \item Es folgt
+            \begin{align*}
+                U_C = \frac{1}{A E_D}
+            \end{align*}
+            \begin{itemize}
+                \item[$\rightarrow$] $A = \qty{6.6447}{W^{-2}}$
+            \end{itemize}
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.44\textwidth}
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=\textwidth]{images/DOS_Regress.png}
+            % \caption{<caption>}
+            % \label{<label>}
+        \end{figure}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Abhängigkeit von Debye-Energie $E_D$}
+    \begin{itemize}
+            \item Hyperbolischer Verlauf von $U_C(E_D)$ bestätigt
+            \item für $\mu \neq 0$ exponentieller Verlauf hier nicht erkennbar
+    \end{itemize}
+    \begin{minipage}[t]{0.5\textwidth}
+        % \begin{itemize}
+        %     \item dlad
+        % \end{itemize}
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=\textwidth]{images/E_D_m0.png}
+            % \caption{<caption>}
+            % \label{<label>}
+        \end{figure}
+    \end{minipage}
+    \begin{minipage}[t]{0.49\textwidth}
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=\textwidth]{images/E_D_m1.png}
+            % \caption{<caption>}
+            % \label{<label>}
+        \end{figure}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Abhängigkeit von chemischem Potential $\mu$}
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{itemize}
+            \item Supraleitung ist bei halber Füllung am stärksten unterdrückt
+            \item Chemisches Potential bei den Van-Hove-Singularitäten ($\mu = \pm W/6$) liefert besonders starke Unterstützung 
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.49\textwidth}
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=\textwidth]{images/mu_U.png}
+            % \caption{<caption>}
+            % \label{<label>}
+        \end{figure}
+    \end{minipage}
+\end{frame}
+
+
+%  Zeige einmal Bandstruktur von Graphen -> Das sind die $\pi$-Bänder (relevant weil an Fermi-Energie)
+% Zeige einmal wie gut NN-TB-Näherung ist (im Vergleich zu 2nd, 3rd-Neighbour)
+\begin{frame}
+    \frametitle{Anwendung auf Graphen (1)}
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{itemize}
+            \item Modell beschreibt $\pi$/$\pi^*$-Bänder von Graphen gut 
+            \item Korrekturen durch höhere Tight-Binding-Terme bringen keine großen Abweichungen (v.a. Elektron-Loch-Asymmetrie)
+            \item $t = \qty{2.7}{\electronvolt}$ und $E_D = 150 - \qty{200}{\milli \electronvolt}$
+            \item reines Graphen hat $\mu = 0$
+            \begin{itemize}
+                \item[$\rightarrow$] Veränderung von $\mu$ kann durch Dotierung entstehen
+                \item[$\rightarrow$] Vorhersage nur ohne Veränderung der Bandstruktur durch Dotierung möglich
+            \end{itemize}
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.49\textwidth}
+        % \begin{figure}[htbp]
+        %     \centering
+        %     \includegraphics[width=\textwidth]{images/Bandstruktur_Graphen.png}
+        %     % \caption{<caption>}
+        %     % \label{<label>}
+        % \end{figure}
+        % \begin{figure}[htbp]
+        %     \centering
+        %     \includegraphics[width=\textwidth]{images/DOS_Graphen.png}
+        %     % \caption{<caption>}
+        %     % \label{<label>}
+        % \end{figure}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Anwendung auf Graphen (2)}
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{itemize}
+            \item 
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=\textwidth]{images/U_mu_Graphen.png}
+            % \caption{<caption>}
+            % \label{<label>}
+        \end{figure}
+    \end{minipage}
+\end{frame}

@@ -122,6 +122,10 @@
 %Titelgrafik:
 %\titlegraphic{\includegraphics[width=0.3\textwidth]{images/title.pdf}}
 
+% QTY WORKING
+\sisetup{locale = DE}
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+
 \begin{document}
 
 {
@@ -129,8 +133,9 @@
 }
 
 \input{content/01_Einleitung.tex}
-\input{content/02_Hauptteil.tex}
-\input{content/03_Zusammenfassung.tex}
+\input{content/02_Modell.tex}
+\input{content/03_Ergebnisse.tex}
+\input{content/04_Zusammenfassung.tex}
 
 \sectionframe{Danke fürs Zuhören!}
 
