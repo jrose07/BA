@@ -1,64 +1,72 @@
 \section{ Einleitung }
 
-% \begin{frame}
-% 	\frametitle{ Womit beschäftige ich mich? }
-%     \begin{itemize}
-%         \item Supraleitung beschrieben über BCS-Theorie 
-%         \item Wende auf Bienenwabengitter, Gitterstrukur z.B. von Graphen an
-%         \item Ziel: Das Auftreten von Supraleitung und dessen Begrenzungen in dem Bienenwabengitter zu untersuchen
-%     \end{itemize}
-% \end{frame}
 \begin{frame}
     \frametitle{Übersicht}
     \begin{itemize}
         \item Einleitung
+        \begin{itemize}
+            \item Supraleitung und BCS-Theorie
+            \item Bienenwabengitter
+        \end{itemize}
         \item Modell
+        % \begin{itemize}
+        %     % \item Herleitung Selbstkonsistenzgleichung
+        % \end{itemize}
         \item Ergebnisse
+        \begin{itemize}
+            \item Allgemeine Ergebnisse
+            \item Anwendung auf Graphen 
+        \end{itemize}
         \item Zusammenfassung und Ausblick
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Supraleitung}
-    \begin{itemize}
-        % \item Supraleitung mega cool
-        % \item kann das:
-        % \item kann aber auch das:
-        % \item wow!
-        \item 
-    \end{itemize}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.68\textwidth}
+            \begin{itemize}
+                \item Verschwindender elektrischer Widerstand unterhalb der kritischen Temperatur
+                \item Meißner-Ochsenfeld-Effekt: Verdrängung des Magnetfeldes aus dem Inneren
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.30\textwidth}
+            \begin{tikzpicture}[baseline=(current bounding box.center)]
+                \draw
+                    (0,0.15) -- (0,1.45)
+                    node[midway,anchor=west,xshift=6pt,text width=\linewidth,align=left] {\small diverse Anwendungen in Elektrotechnik, Quantencomputing, ...};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+    \vfill
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.30\textwidth}
+            % Platz für zusätzliche Zeilen auf der linken Seite
+            \vspace{1cm}
+            \begin{itemize}
+                \item Motivation: Beispiel Graphen für Kuriosität der $2D$-Materialien
+                \item Dazu mikroskopische Theorie für konventionelle Supraleitung: BCS-Theorie 
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.68\textwidth}
+            \begin{figure}
+                \centering
+                \begin{minipage}[t]{0.49\textwidth}
+                    \centering
+                    \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{images/Supraleitung_Widerstand.png}
+                    % \caption{}
+                \end{minipage}
+                \hfill
+                \begin{minipage}[t]{0.49\textwidth}
+                    \centering
+                    \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{images/Supraleitung_Meißner.png}
+                    % \caption{Meißner-Ochsenfeld-Effekt.}
+                \end{minipage}
+            \end{figure}
+        \end{column}
+    \end{columns}
 \end{frame}
 
-% \begin{frame}
-%     \frametitle{BCS-Theorie -- Ein Überblick (1)}
-%     \begin{minipage}[c]{0.7\textwidth}
-%         \begin{itemize}
-%             \item Beschreibung konventioneller Supraleitung 
-%             \item Grundlegender Mechanismus: Elektron-Phonon-Wechselwirkung 
-%             \begin{itemize}
-%                 \item[$\rightarrow$] effektive, phononenvermitelte Elektron-Elektron-Anziehung 
-%             \end{itemize}
-%             \item Bildung von Cooper-Paaren 
-%             \begin{itemize}
-%                 \item[$\rightarrow$] Kopplung von Zuständen $(\vk, \up)$ und $(-\vk, \down)$ 
-%                 \item[$\rightarrow$] gebundene ``bosonische'' Quasiteilchen mit Impuls $0$ und Spin $0$
-%             \end{itemize}
-%             \item attraktive Wechselwirkung führt zu ``Cooper-Instabilität''
-%             \begin{itemize}
-%                 \item[$\rightarrow$] Bildung von Cooper-Paaren energetisch begünstigt
-%                 \item[$\rightarrow$] für $T<T_C$ makroskopischer Quantenzustand (Supraleitung)
-%             \end{itemize}
-%         \end{itemize}
-%     \end{minipage}
-%     \begin{minipage}[c]{0.29\textwidth}
-%         \begin{figure}
-%             \centering
-%             \includegraphics[width=0.8\textwidth]{images/cooperall.png}
-%             \caption{Anregung einer Gitterpolarisation durch ein Elektron~\cite{czycholl_theoretische_2017}.}
-%             % \label{<label>}
-%         \end{figure}
-%     \end{minipage}
-% \end{frame}
 
 \begin{frame}
     \frametitle{BCS-Theorie  -- Ein Überblick (1)}
@@ -130,7 +138,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=\textwidth]{images/gitter3.png}
-            \caption{Bienenwabengitter~\cite{maksymiuk_tunable_2025}.}
+            \caption{Bienenwabengitter~\cite{maksimov_localized_2013}.}
             % \label{<label>}
         \end{figure}
     \end{minipage}
